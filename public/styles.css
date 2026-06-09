@@ -116,8 +116,8 @@ nav {
 }
 
 .nav-cta {
-  background: var(--brand);
-  color: var(--fg-on-brand);
+  background: #8AC2E5;
+  color: #1A3A4A;
   font-family: var(--font-text);
   font-size: 14px;
   font-weight: 600;
@@ -126,7 +126,7 @@ nav {
   text-decoration: none;
   transition: background 0.15s;
 }
-.nav-cta:hover { background: var(--brand-strong); }
+.nav-cta:hover { background: #6BAFD9; }
 
 /* ── HERO ─────────────────────────────────────────────── */
 .hero {
@@ -238,8 +238,8 @@ nav {
 .form-row button {
   flex-shrink: 0;
   padding: 10px 22px;
-  background: var(--brand);
-  color: var(--fg-on-brand);
+  background: #8AC2E5;
+  color: #1A3A4A;
   font-family: var(--font-text);
   font-size: 14px;
   font-weight: 600;
@@ -249,8 +249,8 @@ nav {
   white-space: nowrap;
   transition: background 0.15s;
 }
-.form-row button:hover { background: var(--brand-strong); }
-.form-row button:active { background: var(--brand-press); }
+.form-row button:hover { background: #6BAFD9; }
+.form-row button:active { background: #4F9DC8; }
 .form-row button:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .form-note { font-size: 13px; color: var(--fg3); }
@@ -470,10 +470,10 @@ nav {
 .bottom-cta .form-row input[type="email"]::placeholder { color: rgba(243,250,246,0.4); }
 
 .bottom-cta .form-row button {
-  background: var(--accent);
-  color: var(--fg-on-honey);
+  background: #8AC2E5;
+  color: #1A3A4A;
 }
-.bottom-cta .form-row button:hover { background: var(--accent-strong); }
+.bottom-cta .form-row button:hover { background: #6BAFD9; }
 
 .bottom-cta .form-note { color: rgba(243,250,246,0.45); }
 
