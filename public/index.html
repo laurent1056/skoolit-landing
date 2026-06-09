@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skoolit — The AI command center for your child's school life</title>
+  <meta name="description" content="Skoolit connects to the tools you already use and automatically handles the school email chaos — permission slips, schedule changes, and action items — before you've even read the email." />
+
+  <!-- OG -->
+  <meta property="og:title" content="Skoolit — Get early access" />
+  <meta property="og:description" content="Stop missing things. Skoolit reads your school emails, builds your calendar, and surfaces what needs action — automatically." />
+  <meta property="og:url" content="https://getskoolit.com" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="wordmark" href="/">Skoolit</a>
+    <a class="nav-cta" href="#signup">Get early access</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="badge">Coming soon</div>
+    <h1>Stop missing things.<br><em>Your kids' school life,</em><br>on autopilot.</h1>
+    <p>You're managing 5+ apps, platforms, and inboxes to stay on top of your kids' schedules. Skoolit connects to the tools you already use — and does the cognitive work for you.</p>
+
+    <div class="form-wrap" id="signup">
+      <div class="form-row">
+        <input type="email" id="hero-email" placeholder="you@example.com" autocomplete="email" />
+        <button type="button" onclick="subscribe('hero-email', 'hero-success', 'hero-error', this)">Get early access</button>
+      </div>
+      <div class="form-success" id="hero-success">You're on the list. We'll be in touch soon.</div>
+      <div class="form-error" id="hero-error"></div>
+      <p class="form-note">Free 30-day trial when we launch. No credit card required.</p>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="features-inner">
+      <div class="features-header">
+        <h2>It reads. It organizes. It acts.</h2>
+        <p>Most apps just show you the problem. Skoolit solves it before you see it.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Never miss a deadline</h3>
+          <p>Permission slips, payments, and RSVPs surface automatically before they're due — with a clear action and a one-tap way to handle it.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>Calendar on autopilot</h3>
+          <p>When a practice is rescheduled or a field trip is added, it's already in your calendar before you've read the email. No copy-paste, no manual entry.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">☀️</div>
+          <h3>One digest, every morning</h3>
+          <p>Today's events, this week's action items, and what needs a reply — in a single daily view, across all your kids and all their schools.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem">
+    <h2>The school email problem is worse than you think.</h2>
+    <p>A parent with two kids across different schools and activities can be managing a grade portal, a school communication app, district and teacher emails, a separate school calendar, payment portals, sports team apps, and individual instructor threads — <strong>none of which talk to each other.</strong></p>
+    <p>Even organized, attentive parents get burned. A permission slip buried in a Friday afternoon email. A practice time that changed in a reply-all thread from two weeks ago. A marking period closing that nobody reminded you about.</p>
+    <p><strong>Skoolit closes the loop.</strong> It connects to the inboxes schools actually use, reads what comes in, and automatically handles the calendar, the reminders, and the action items — so you don't have to.</p>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="bottom-cta">
+    <h2>Get early access.</h2>
+    <p>Join parents who are done manually managing school logistics.</p>
+
+    <div class="form-wrap">
+      <div class="form-row">
+        <input type="email" id="bottom-email" placeholder="you@example.com" autocomplete="email" />
+        <button type="button" onclick="subscribe('bottom-email', 'bottom-success', 'bottom-error', this)">Join the waitlist</button>
+      </div>
+      <div class="form-success" id="bottom-success">You're on the list. We'll be in touch soon.</div>
+      <div class="form-error" id="bottom-error" style="color:rgba(255,255,255,0.7)"></div>
+      <p class="form-note">Free 30-day trial when we launch. No credit card required.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Skoolit. All rights reserved. &nbsp;·&nbsp; Launching soon.</p>
+  </footer>
+
+  <script>
+    async function subscribe(inputId, successId, errorId, btn) {
+      const input = document.getElementById(inputId);
+      const successEl = document.getElementById(successId);
+      const errorEl = document.getElementById(errorId);
+      const email = input.value.trim();
+
+      errorEl.style.display = 'none';
+      errorEl.textContent = '';
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorEl.textContent = 'Please enter a valid email address.';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Joining…';
+
+      try {
+        const res = await fetch('/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+
+        if (res.ok) {
+          input.closest('.form-row').style.display = 'none';
+          successEl.style.display = 'block';
+        } else {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.error || 'Something went wrong. Please try again.');
+        }
+      } catch (err) {
+        errorEl.textContent = err.message;
+        errorEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = inputId === 'hero-email' ? 'Get early access' : 'Join the waitlist';
+      }
+    }
+  </script>
+
+</body>
+</html>

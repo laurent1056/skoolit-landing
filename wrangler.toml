@@ -1,0 +1,7 @@
+name = "skoolit-landing"
+pages_build_output_dir = "public"
+
+# Secrets (set via Cloudflare dashboard or wrangler CLI, never committed here):
+#   APPS_SCRIPT_URL — the Google Apps Script Web App deployment URL
+#
+# To set: wrangler pages secret put APPS_SCRIPT_URL --project-name skoolit-landing
