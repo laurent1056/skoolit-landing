@@ -160,7 +160,7 @@ nav {
 }
 
 .hero h1 .line2 {
-  color: var(--brand);
+  color: #8AC2E5;
 }
 
 .hero .subhead {
@@ -439,7 +439,7 @@ nav {
 
 /* ── BOTTOM CTA ─────────────────────────────────────────── */
 .bottom-cta {
-  background: var(--brand-press);
+  background: #8AC2E5;
   text-align: center;
   padding: 88px 24px;
 }
@@ -449,33 +449,33 @@ nav {
   font-size: clamp(30px, 4.5vw, 46px);
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: var(--fg-on-brand);
+  color: #1A3A4A;
   margin-bottom: 14px;
 }
 
 .bottom-cta .subhead {
   font-size: 17px;
-  color: rgba(243,250,246,0.7);
+  color: rgba(26,58,74,0.75);
   max-width: 440px;
   margin: 0 auto 40px;
   line-height: 1.6;
 }
 
 .bottom-cta .form-row {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.45);
+  border-color: rgba(26,58,74,0.15);
 }
 
-.bottom-cta .form-row input[type="email"] { color: var(--fg-on-brand); }
-.bottom-cta .form-row input[type="email"]::placeholder { color: rgba(243,250,246,0.4); }
+.bottom-cta .form-row input[type="email"] { color: #1A3A4A; }
+.bottom-cta .form-row input[type="email"]::placeholder { color: rgba(26,58,74,0.4); }
 
 .bottom-cta .form-row button {
-  background: #8AC2E5;
-  color: #1A3A4A;
+  background: #1A3A4A;
+  color: #fff;
 }
-.bottom-cta .form-row button:hover { background: #6BAFD9; }
+.bottom-cta .form-row button:hover { background: #0E2A38; }
 
-.bottom-cta .form-note { color: rgba(243,250,246,0.45); }
+.bottom-cta .form-note { color: rgba(26,58,74,0.55); }
 
 .bottom-cta .form-success {
   background: rgba(255,255,255,0.12);
@@ -491,14 +491,14 @@ footer {
   flex-wrap: wrap;
   gap: 8px;
   padding: 28px 32px;
-  border-top: none;
+  border-top: 1px solid var(--border);
   font-size: 13px;
-  color: #1A3A4A;
-  background: #8AC2E5;
+  color: var(--fg3);
+  background: var(--surface);
 }
 
-footer a { color: #1A3A4A; text-decoration: none; }
-footer a:hover { color: #0E2A38; }
+footer a { color: var(--fg2); text-decoration: none; }
+footer a:hover { color: var(--brand); }
 
 /* ── RESPONSIVE ─────────────────────────────────────── */
 @media (max-width: 600px) {
