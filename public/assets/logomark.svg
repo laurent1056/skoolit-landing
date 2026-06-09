@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="185 512 230 230" role="img" aria-label="Skoolit">
+  <defs>
+    <linearGradient id="bgBlue" x1="185" y1="512" x2="415" y2="742" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8CC8EF"></stop>
+      <stop offset="1" stop-color="#74B8E5"></stop>
+    </linearGradient>
+    <linearGradient id="busYellow" x1="228" y1="548" x2="376" y2="704" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFE06B"></stop>
+      <stop offset="1" stop-color="#F4B83A"></stop>
+    </linearGradient>
+    <filter id="softShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#5F99BB" flood-opacity="0.20"></feDropShadow>
+    </filter>
+  </defs>
+
+  
+  <rect x="185" y="512" width="230" height="230" rx="52" fill="url(#bgBlue)"></rect>
+
+  
+  <rect x="228" y="552" width="146" height="145" rx="31" fill="url(#busYellow)"></rect>
+  
+  <path d="M244 582 Q244 555 271 552 H331 Q358 552 358 582 V606 H244 Z" fill="#FFE683" opacity="0.95"></path>
+
+  
+  <circle cx="257" cy="570" r="6" fill="#EA3F72"></circle>
+  <circle cx="345" cy="570" r="6" fill="#EA3F72"></circle>
+  
+  <rect x="276" y="563" width="48" height="12" rx="3" fill="#566573"></rect>
+
+  
+  <rect x="213" y="594" width="16" height="30" rx="5" fill="#536D7D"></rect>
+  <rect x="374" y="594" width="16" height="30" rx="5" fill="#536D7D"></rect>
+
+  
+  <rect x="241" y="584" width="121" height="48" rx="7" fill="#FFFFFF"></rect>
+  <rect x="297" y="584" width="5" height="48" fill="#D9E9F3"></rect>
+
+  
+  <rect x="238" y="634" width="127" height="41" rx="13" fill="#FFC74A"></rect>
+  <circle cx="252" cy="655" r="13" fill="#FFFFFF"></circle>
+  <circle cx="351" cy="655" r="13" fill="#FFFFFF"></circle>
+  <rect x="276" y="644" width="52" height="6" rx="3" fill="#72A8CA"></rect>
+  <rect x="276" y="656" width="52" height="6" rx="3" fill="#72A8CA"></rect>
+
+  
+  <rect x="228" y="678" width="146" height="16" rx="8" fill="#FFFFFF"></rect>
+  <rect x="241" y="691" width="27" height="20" rx="7" fill="#536D7D"></rect>
+  <rect x="335" y="691" width="27" height="20" rx="7" fill="#536D7D"></rect>
+</svg>
