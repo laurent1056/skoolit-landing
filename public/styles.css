@@ -491,14 +491,14 @@ footer {
   flex-wrap: wrap;
   gap: 8px;
   padding: 28px 32px;
-  border-top: 1px solid var(--border);
+  border-top: none;
   font-size: 13px;
-  color: var(--fg3);
-  background: var(--surface);
+  color: #1A3A4A;
+  background: #8AC2E5;
 }
 
-footer a { color: var(--fg2); text-decoration: none; }
-footer a:hover { color: var(--brand); }
+footer a { color: #1A3A4A; text-decoration: none; }
+footer a:hover { color: #0E2A38; }
 
 /* ── RESPONSIVE ─────────────────────────────────────── */
 @media (max-width: 600px) {
