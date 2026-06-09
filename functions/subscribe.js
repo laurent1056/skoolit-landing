@@ -28,6 +28,7 @@ export async function onRequestPost(context) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, timestamp: new Date().toISOString() }),
+      redirect: 'follow',
     });
 
     if (!res.ok) {
