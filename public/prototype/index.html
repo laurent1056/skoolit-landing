@@ -6,155 +6,120 @@
 <title>Skoolit — Prototype</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #1B241F; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+         display: flex; align-items: center; justify-content: center; min-height: 100vh; }
 
-  body { background: #1B241F; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  .card { background: #fff; border-radius: 12px; padding: 32px 28px; width: 100%; max-width: 360px; }
 
-  /* ── Gate overlay ── */
-  #gate {
-    position: fixed; inset: 0; z-index: 9999;
-    background: #1B241F;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .g-box {
-    background: #fff; border-radius: 16px; padding: 40px 36px;
-    width: 100%; max-width: 400px; text-align: center;
-  }
-  .g-wordmark {
-    font-size: 22px; font-weight: 700; color: #1B241F; margin-bottom: 6px;
-    letter-spacing: -0.5px;
-  }
-  .g-tagline { font-size: 13px; color: #828B85; margin-bottom: 28px; }
-  .g-heading { font-size: 17px; font-weight: 600; color: #1B241F; margin-bottom: 6px; }
-  .g-sub     { font-size: 13px; color: #5E6862; margin-bottom: 20px; }
-
-  .g-field {
-    display: block; width: 100%; padding: 11px 14px;
+  .card input {
+    display: block; width: 100%; padding: 10px 12px; margin-bottom: 10px;
     border: 1.5px solid #DAD4C8; border-radius: 8px;
-    font-size: 15px; color: #1B241F; background: #F6F3EC;
-    margin-bottom: 10px; outline: none;
-    transition: border-color .15s;
+    font-size: 15px; color: #1B241F; background: #F6F3EC; outline: none;
   }
-  .g-field:focus { border-color: #8AC2E5; background: #fff; }
+  .card input:focus { border-color: #8AC2E5; background: #fff; }
 
-  .g-btn {
-    display: block; width: 100%; padding: 12px;
-    background: #8AC2E5; color: #1B241F;
-    border: none; border-radius: 8px; font-size: 15px; font-weight: 600;
-    cursor: pointer; margin-top: 4px; transition: opacity .15s;
+  .card button.primary {
+    display: block; width: 100%; padding: 11px;
+    background: #8AC2E5; color: #1B241F; border: none; border-radius: 8px;
+    font-size: 15px; font-weight: 600; cursor: pointer; margin-bottom: 8px;
   }
-  .g-btn:hover { opacity: .85; }
-  .g-btn:disabled { opacity: .5; cursor: default; }
+  .card button.primary:disabled { opacity: .5; cursor: default; }
 
-  .g-error   { font-size: 13px; color: #C8472E; margin-top: 8px; display: none; }
-  .g-success { font-size: 13px; color: #2a7a4f; margin-top: 8px; display: none; }
-
-  .g-link {
+  .card button.link {
     background: none; border: none; color: #3076A8; font-size: 13px;
-    cursor: pointer; margin-top: 16px; text-decoration: underline; display: block;
+    cursor: pointer; text-decoration: underline; padding: 0;
   }
 
-  @keyframes g-shake {
+  .error   { font-size: 13px; color: #C8472E; margin-bottom: 8px; display: none; }
+  .success { font-size: 13px; color: #2a7a4f; margin-bottom: 8px; display: none; }
+
+  @keyframes shake {
     0%,100% { transform: translateX(0); }
     20%,60%  { transform: translateX(-6px); }
     40%,80%  { transform: translateX(6px); }
   }
-  .g-shake { animation: g-shake .35s ease; }
+  .shake { animation: shake .35s ease; }
 
-  /* ── State cards ── */
-  #g-state-req { display: none; }
+  #state-req { display: none; }
 
-  /* ── Prototype iframe ── */
-  #proto-frame {
-    display: none;
-    position: fixed; inset: 0;
-    width: 100%; height: 100%;
-    border: none;
-  }
+  iframe { display: none; position: fixed; inset: 0; width: 100%; height: 100%; border: none; }
+  #gate  { display: flex; align-items: center; justify-content: center;
+           position: fixed; inset: 0; background: #1B241F; }
 </style>
 </head>
 <body>
 
 <div id="gate">
-  <div class="g-box">
-    <div class="g-wordmark">Skoolit</div>
-    <div class="g-tagline">Prototype preview — restricted access</div>
+  <div class="card">
 
-    <!-- State A: password -->
-    <div id="g-state-pw">
-      <div class="g-heading">Enter access password</div>
-      <div class="g-sub">This prototype is for invited reviewers only.</div>
-      <input id="g-pw" class="g-field" type="password" placeholder="Password" autocomplete="off" />
-      <button class="g-btn" onclick="gCheckPw()">Enter prototype</button>
-      <div class="g-error" id="g-pw-err">Incorrect password. Try again.</div>
-      <button class="g-link" onclick="gShow('req')">Don't have a password? Request access →</button>
+    <div id="state-pw">
+      <input id="pw" type="password" placeholder="Password" autocomplete="off" />
+      <button class="primary" onclick="checkPw()">Enter prototype</button>
+      <div class="error" id="pw-err">Incorrect password. Try again.</div>
+      <button class="link" onclick="show('req')">Don't have a password? Request access →</button>
     </div>
 
-    <!-- State B: request access -->
-    <div id="g-state-req">
-      <div class="g-heading">Request access</div>
-      <div class="g-sub">Enter your details and we'll follow up with access.</div>
-      <input id="g-name"  class="g-field" type="text"  placeholder="Your name"       autocomplete="name" />
-      <input id="g-email" class="g-field" type="email" placeholder="Email address"    autocomplete="email" />
-      <input id="g-phone" class="g-field" type="tel"   placeholder="Phone (optional)" autocomplete="tel" />
-      <button class="g-btn" id="g-req-btn" onclick="gRequestAccess()">Request access</button>
-      <div class="g-error"   id="g-req-err"></div>
-      <div class="g-success" id="g-req-ok">Thanks — we'll be in touch soon.</div>
-      <button class="g-link" onclick="gShow('pw')">← Back to password entry</button>
+    <div id="state-req">
+      <input id="req-name"  type="text"  placeholder="Your name" />
+      <input id="req-email" type="email" placeholder="Email address" />
+      <input id="req-phone" type="tel"   placeholder="Phone (optional)" />
+      <button class="primary" id="req-btn" onclick="requestAccess()">Request access</button>
+      <div class="error"   id="req-err"></div>
+      <div class="success" id="req-ok">Thanks — we'll be in touch soon.</div>
+      <button class="link" onclick="show('pw')">← Back</button>
     </div>
+
   </div>
 </div>
 
-<iframe id="proto-frame" src="app.html" title="Skoolit Prototype"></iframe>
+<iframe id="frame" src="app.html" title="Skoolit Prototype"></iframe>
 
 <script>
 (function () {
-  var PW_HASH = btoa('skoolit2026');
   var KEY = 'skoolit_proto';
+  var PW  = btoa('skoolit2026');
 
   function unlock() {
     sessionStorage.setItem(KEY, '1');
-    document.getElementById('gate').style.display = 'none';
-    var frame = document.getElementById('proto-frame');
-    frame.style.display = 'block';
+    document.getElementById('gate').style.display  = 'none';
+    document.getElementById('frame').style.display = 'block';
   }
 
-  // Already unlocked this session
-  if (sessionStorage.getItem(KEY) === '1') { unlock(); }
+  if (sessionStorage.getItem(KEY) === '1') unlock();
 
-  window.gShow = function (state) {
-    document.getElementById('g-state-pw').style.display  = state === 'pw'  ? '' : 'none';
-    document.getElementById('g-state-req').style.display = state === 'req' ? '' : 'none';
+  window.show = function (state) {
+    document.getElementById('state-pw').style.display  = state === 'pw'  ? 'block' : 'none';
+    document.getElementById('state-req').style.display = state === 'req' ? 'block' : 'none';
   };
 
-  window.gCheckPw = function () {
-    var input = document.getElementById('g-pw');
-    var err   = document.getElementById('g-pw-err');
-    if (btoa(input.value) === PW_HASH) {
+  window.checkPw = function () {
+    var input = document.getElementById('pw');
+    var err   = document.getElementById('pw-err');
+    if (btoa(input.value) === PW) {
       unlock();
     } else {
       err.style.display = 'block';
-      input.classList.remove('g-shake');
+      input.classList.remove('shake');
       void input.offsetWidth;
-      input.classList.add('g-shake');
+      input.classList.add('shake');
       input.value = '';
-      setTimeout(function () { input.classList.remove('g-shake'); }, 400);
     }
   };
 
-  window.gRequestAccess = function () {
-    var name  = document.getElementById('g-name').value.trim();
-    var email = document.getElementById('g-email').value.trim();
-    var phone = document.getElementById('g-phone').value.trim();
-    var err   = document.getElementById('g-req-err');
-    var ok    = document.getElementById('g-req-ok');
-    var btn   = document.getElementById('g-req-btn');
+  window.requestAccess = function () {
+    var name  = document.getElementById('req-name').value.trim();
+    var email = document.getElementById('req-email').value.trim();
+    var phone = document.getElementById('req-phone').value.trim();
+    var err   = document.getElementById('req-err');
+    var ok    = document.getElementById('req-ok');
+    var btn   = document.getElementById('req-btn');
 
     err.style.display = 'none';
     ok.style.display  = 'none';
 
     if (!name)  { err.textContent = 'Please enter your name.'; err.style.display = 'block'; return; }
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      err.textContent = 'Please enter a valid email address.'; err.style.display = 'block'; return;
+      err.textContent = 'Please enter a valid email.'; err.style.display = 'block'; return;
     }
 
     btn.disabled = true; btn.textContent = 'Sending…';
@@ -167,11 +132,11 @@
     .then(function (r) { return r.json(); })
     .then(function (d) {
       if (d.success) {
-        ok.style.display = 'block';
+        ok.style.display  = 'block';
         btn.style.display = 'none';
-        document.getElementById('g-name').disabled  = true;
-        document.getElementById('g-email').disabled = true;
-        document.getElementById('g-phone').disabled = true;
+        document.getElementById('req-name').disabled  = true;
+        document.getElementById('req-email').disabled = true;
+        document.getElementById('req-phone').disabled = true;
       } else { throw new Error(d.error || 'Something went wrong.'); }
     })
     .catch(function (e) {
@@ -180,8 +145,8 @@
     });
   };
 
-  document.getElementById('g-pw').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') gCheckPw();
+  document.getElementById('pw').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') checkPw();
   });
 })();
 </script>
