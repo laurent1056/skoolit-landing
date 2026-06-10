@@ -4,144 +4,783 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Skoolit — Less inbox. More parenting.</title>
-  <meta name="description" content="Skoolit reads your school emails, builds your family calendar, and surfaces what actually needs you. Set up in under 5 minutes." />
-
+  <meta name="description" content="Skoolit reads your school and activity emails, builds your family calendar automatically, and surfaces what needs you — across all your kids, all their schools, and every activity." />
   <meta property="og:title" content="Skoolit — Less inbox. More parenting." />
-  <meta property="og:description" content="Skoolit reads your school emails, builds your family calendar, and surfaces what actually needs you." />
-  <meta property="og:url" content="https://getskoolit.com" />
-  <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
+  <meta property="og:description" content="Skoolit reads your school and activity emails, builds your family calendar automatically, and surfaces what needs you — across all your kids, all their schools, and every activity." />
   <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:url" content="https://getskoolit.com" />
 
-  <link rel="icon" href="assets/logomark.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Tokens ─────────────────────────────────────── */
+    :root {
+      --bg:        #EDEADE;
+      --surface:   #FFFFFF;
+      --ink:       #1A1A1A;
+      --ink-mid:   #444444;
+      --ink-light: #777777;
+      --blue:      #5BBAD5;
+      --blue-dark: #3fa5c4;
+      --amber:     #F5C97A;
+      --amber-bg:  #FEF3DC;
+      --green-dot: #4CAF7D;
+      --border:    #DDDAD0;
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+    }
+
+    /* ── Reset ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Typography ─────────────────────────────────── */
+    .display {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .display-xl  { font-size: clamp(2.8rem, 7vw, 5.2rem); }
+    .display-lg  { font-size: clamp(2rem, 4.5vw, 3rem); }
+    .body-lg     { font-size: 1.125rem; line-height: 1.65; color: var(--ink-mid); }
+    .body-sm     { font-size: 0.9rem; line-height: 1.6; color: var(--ink-light); }
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── Layout helpers ─────────────────────────────── */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section { padding: 96px 0; }
+    .section-tight { padding: 72px 0; }
+
+    /* ── Nav ────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo img { width: 32px; height: 32px; }
+    .btn-nav {
+      background: var(--blue);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 10px 22px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-nav:hover { background: var(--blue-dark); }
+
+    /* ── Hero ───────────────────────────────────────── */
+    .hero {
+      text-align: center;
+      padding: 80px 0 64px;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--amber-bg);
+      color: #9A6F00;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .hero-headline { margin-bottom: 8px; }
+    .hero-headline .accent { color: var(--blue); }
+    .hero-sub {
+      max-width: 560px;
+      margin: 0 auto 36px;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: var(--ink-mid);
+    }
+    .trust-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .trust-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink-mid);
+    }
+    .trust-pill .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green-dot);
+      flex-shrink: 0;
+    }
+    .signup-form {
+      display: flex;
+      gap: 8px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .signup-form input {
+      flex: 1;
+      padding: 14px 20px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: var(--surface);
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .signup-form input:focus { border-color: var(--blue); }
+    .signup-form input::placeholder { color: var(--ink-light); }
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 14px 24px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s;
+      font-family: inherit;
+    }
+    .btn-primary:hover { background: var(--blue-dark); }
+    .success-msg {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      color: var(--green-dot);
+      font-weight: 500;
+      padding: 14px 0;
+    }
+    .hero-app-preview {
+      margin-top: 60px;
+      max-width: 380px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-app-preview img {
+      border-radius: var(--radius-lg);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.12);
+      width: 100%;
+    }
+
+    /* ── Problem section ────────────────────────────── */
+    .problem-section { background: var(--ink); color: #fff; }
+    .problem-section .display { color: #fff; }
+    .problem-section p { color: rgba(255,255,255,0.72); }
+    .problem-section strong { color: #fff; }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .problem-list {
+      list-style: none;
+      margin: 28px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .problem-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.5;
+    }
+    .problem-list li .icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .callout-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      margin-top: 28px;
+    }
+    .callout-card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.72);
+    }
+    .callout-card strong { color: var(--amber); }
+    .watches-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .watches-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ── How it works ───────────────────────────────── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .section-header .eyebrow {
+      color: var(--blue);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .section-header p {
+      max-width: 520px;
+      margin: 16px auto 0;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      transition: box-shadow 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+    }
+    .feature-icon {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .feature-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .feature-card p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--ink-mid);
+    }
+
+    /* ── Watches section ────────────────────────────── */
+    .watches-section { background: var(--surface); }
+    .watches-section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .watches-light-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .watches-light-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+      font-weight: 500;
+    }
+    .watches-light-item .item-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Differentiation ────────────────────────────── */
+    .diff-section { background: var(--bg); }
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .diff-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+    }
+    .diff-card.skoolit-card {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+    .diff-card h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+    .diff-card.skoolit-card h4 { opacity: 0.8; color: #fff; }
+    .diff-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .diff-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .diff-list li .check {
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 0.75rem;
+    }
+    .diff-card .diff-list li { color: var(--ink-mid); }
+    .diff-card .diff-list li .check { color: #bbb; }
+    .diff-card.skoolit-card .diff-list li { color: rgba(255,255,255,0.9); }
+    .diff-card.skoolit-card .diff-list li .check { color: rgba(255,255,255,0.7); }
+
+    /* ── Integrations bar ───────────────────────────── */
+    .integrations-bar {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 0;
+    }
+    .integrations-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .integrations-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-right: 8px;
+    }
+    .integration-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink-mid);
+    }
+
+    /* ── Final CTA ──────────────────────────────────── */
+    .cta-section {
+      text-align: center;
+    }
+    .cta-section .display { margin-bottom: 16px; }
+    .cta-section p {
+      max-width: 460px;
+      margin: 0 auto 36px;
+    }
+    .cta-form {
+      display: flex;
+      gap: 8px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .cta-form input {
+      flex: 1;
+      padding: 14px 20px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: var(--surface);
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .cta-form input:focus { border-color: var(--blue); }
+    .cta-form input::placeholder { color: var(--ink-light); }
+
+    /* ── Footer ─────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-logo img { width: 24px; }
+    footer p { font-size: 0.82rem; color: var(--ink-light); }
+    footer a { color: var(--ink-light); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── Responsive ─────────────────────────────────── */
+    @media (max-width: 768px) {
+      .problem-grid,
+      .features-grid,
+      .watches-section-grid,
+      .diff-grid,
+      .watches-grid,
+      .watches-light-grid { grid-template-columns: 1fr; gap: 24px; }
+      .signup-form, .cta-form { flex-direction: column; }
+      .signup-form input, .cta-form input,
+      .signup-form .btn-primary, .cta-form .btn-primary { width: 100%; }
+      .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+      .integrations-inner { gap: 8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- ── Nav ─────────────────────────────────────────── -->
   <nav>
-    <a class="logomark" href="/">
-      <img src="assets/logomark.svg" alt="Skoolit" width="36" height="36" />
-      <span class="logomark-name">Skoolit</span>
-    </a>
-    <a class="nav-cta" href="#signup">Get early access</a>
+    <div class="container">
+      <div class="nav-inner">
+        <div class="nav-logo">
+          <img src="/assets/logomark.svg" alt="Skoolit" />
+          Skoolit
+        </div>
+        <button class="btn-nav" onclick="document.getElementById('hero-email').focus()">Get early access</button>
+      </div>
+    </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="eyebrow">Coming soon</div>
+  <!-- ── Hero ────────────────────────────────────────── -->
+  <section class="section hero">
+    <div class="container">
+      <span class="badge">Coming soon</span>
 
-    <h1>Less inbox.<br><span class="line2">More parenting.</span></h1>
+      <h1 class="display display-xl hero-headline">
+        Less inbox.<br />
+        <span class="accent">More parenting.</span>
+      </h1>
 
-    <p class="subhead">Skoolit reads your school emails, builds your family calendar, and surfaces what actually needs you.</p>
+      <p class="hero-sub">
+        Skoolit reads your emails, builds your family calendar, and handles the chaos of school, sports, and everything in between.
+      </p>
 
-    <div class="trust-badges">
-      <div class="badge"><div class="badge-dot"></div> Set up in under 5 minutes</div>
-      <div class="badge"><div class="badge-dot"></div> Your emails are never stored</div>
-      <div class="badge"><div class="badge-dot"></div> Works with Gmail, iCloud &amp; Outlook</div>
-    </div>
-
-    <div class="form-wrap" id="signup">
-      <div class="form-row">
-        <input type="email" id="hero-email" placeholder="your@email.com" autocomplete="email" />
-        <button type="button" onclick="subscribe('hero-email','hero-success','hero-error',this,'Get early access')">Get early access</button>
+      <div class="trust-pills">
+        <span class="trust-pill"><span class="dot"></span>Set up in under 5 minutes</span>
+        <span class="trust-pill"><span class="dot"></span>Your emails are never stored</span>
+        <span class="trust-pill"><span class="dot"></span>Works with Gmail, iCloud &amp; Outlook</span>
       </div>
-      <div class="form-success" id="hero-success">🎉 You're on the list. We'll be in touch soon.</div>
-      <div class="form-error" id="hero-error"></div>
-      <p class="form-note">Free 30-day trial at launch. No credit card required.</p>
+
+      <div class="signup-form" id="hero-form">
+        <input type="email" id="hero-email" placeholder="your@email.com" autocomplete="email" />
+        <button class="btn-primary" onclick="handleSignup('hero-form', 'hero-success')">Get early access</button>
+      </div>
+      <div class="success-msg" id="hero-success">
+        🎉 You're on the list. We'll be in touch soon.
+      </div>
+
+      <div class="hero-app-preview">
+        <img src="/assets/screens/04-digest.png" alt="Skoolit daily digest view" />
+      </div>
     </div>
   </section>
 
-  <!-- APP SCREENSHOT -->
-  <div class="screenshot-section">
-    <div class="screenshot-wrap">
-      <div class="phone-frame">
-        <img src="assets/screens/04-digest.png" alt="Skoolit app showing the daily digest view" loading="lazy" />
+  <!-- ── Integrations bar ─────────────────────────────── -->
+  <div class="integrations-bar">
+    <div class="container">
+      <div class="integrations-inner">
+        <span class="integrations-label">Works with</span>
+        <span class="integration-pill">📧 Gmail</span>
+        <span class="integration-pill">☁️ iCloud Mail</span>
+        <span class="integration-pill">📨 Outlook</span>
+        <span class="integration-pill">📅 Google Calendar</span>
+        <span class="integration-pill">🍎 Apple Calendar</span>
+        <span class="integration-pill">🗓 Microsoft Calendar</span>
       </div>
     </div>
   </div>
 
-  <!-- FEATURES -->
-  <section class="features">
-    <div class="features-inner">
-      <div class="features-header">
-        <div class="section-label">How it works</div>
-        <h2>It reads. It organizes. It acts.</h2>
-        <p>Most apps just show you the problem. Skoolit solves it before you see it.</p>
+  <!-- ── Problem ──────────────────────────────────────── -->
+  <section class="section problem-section">
+    <div class="container">
+      <div class="problem-grid">
+        <div>
+          <span class="eyebrow" style="color: var(--amber); display:block; margin-bottom:16px;">The real problem</span>
+          <h2 class="display display-lg">The parent coordination problem is bigger than just school.</h2>
+          <p class="body-lg" style="margin-top:20px; color:rgba(255,255,255,0.65);">
+            A parent with two kids can be managing a school portal, a classroom app, district emails, a school calendar, payment portals, a soccer coach on Gmail, a piano teacher on Yahoo, a travel baseball group chat — <strong>and none of it talks to each other.</strong>
+          </p>
+          <div class="callout-card">
+            <p>
+              <strong>Skoolit closes the loop.</strong> Connect your inbox, tell it who to watch — your kids' schools, their coaches, their instructors — and it handles everything automatically.
+            </p>
+          </div>
+        </div>
+        <div>
+          <p class="body-sm" style="color:rgba(255,255,255,0.45); margin-bottom:16px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">Even organized parents get burned by:</p>
+          <ul class="problem-list">
+            <li><span class="icon">📋</span>A permission slip buried in a Friday afternoon email</li>
+            <li><span class="icon">⚽</span>A practice rescheduled in a reply-all from two weeks ago</li>
+            <li><span class="icon">📚</span>A marking period closing with three missing assignments nobody flagged</li>
+            <li><span class="icon">🎵</span>A recital time that changed and nobody remembered to tell the nanny</li>
+            <li><span class="icon">💳</span>A payment deadline that expired while it sat unread</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How It Works ─────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">How it works</span>
+        <h2 class="display display-lg">It reads. It organizes. It acts.</h2>
+        <p class="body-lg">Most apps just show you the problem. Skoolit solves it before you see it.</p>
       </div>
 
       <div class="features-grid">
+
         <div class="feature-card">
-          <div class="feature-icon">📋</div>
+          <span class="feature-icon">📋</span>
           <h3>Never miss a deadline</h3>
-          <p>Permission slips, payments, and RSVPs surface automatically before they're due — with a one-tap way to handle each one.</p>
+          <p>Permission slips, payments, and RSVPs surface automatically before they're due — across school and every activity. One tap to handle each one.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">📅</div>
+          <span class="feature-icon">📅</span>
           <h3>Calendar on autopilot</h3>
-          <p>When a practice is rescheduled or a field trip is added, it's already in your calendar before you've read the email. No copy-paste.</p>
+          <p>When a practice is rescheduled, a field trip is added, or a recital time changes, it's already in your calendar before you've read the email. No copy-paste. No manual entry.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">☀️</div>
+          <span class="feature-icon">☀️</span>
           <h3>One digest, every morning</h3>
-          <p>Today's events, this week's action items, and what needs a reply — across all your kids and all their schools, in one place.</p>
+          <p>Today's events, this week's action items, and what needs a reply — across all your kids and all their activities — in one calm, organized view.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <h3>Smart alerts, not noise</h3>
+          <p>Skoolit scores every email for urgency. Truly time-sensitive items push immediately. Everything else lands in your morning digest so you're not interrupted all day.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🔗</span>
+          <h3>Both parents, fully in the loop</h3>
+          <p>Link accounts with your co-parent. You both see the same digest, the same calendar, the same action items. When one of you marks something handled, it's done for both.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🧑‍🍼</span>
+          <h3>Keep your caregivers in sync</h3>
+          <p>Invite your nanny, babysitter, or grandparent to receive schedule updates and pickup reminders — without giving them access to grades, emails, or your account.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What Skoolit Watches ──────────────────────────── -->
+  <section class="section-tight watches-section">
+    <div class="container">
+      <div class="watches-section-grid">
+        <div>
+          <span class="eyebrow" style="color: var(--blue); display:block; margin-bottom:16px;">Full coverage</span>
+          <h2 class="display display-lg">Every channel your family actually uses.</h2>
+          <p class="body-lg" style="margin-top:20px;">
+            Skoolit watches the senders you tell it to — whether that's your school district, your kid's soccer coach on Gmail, or a piano studio on Yahoo. You control the scope entirely.
+          </p>
+          <p class="body-sm" style="margin-top:16px;">
+            You can also snap a photo of a paper flyer sent home with your child and Skoolit will extract the dates automatically.
+          </p>
+        </div>
+        <div>
+          <div class="watches-light-grid">
+            <div class="watches-light-item"><span class="item-icon">🏫</span>School &amp; district emails</div>
+            <div class="watches-light-item"><span class="item-icon">⚽</span>Sports coaches &amp; leagues</div>
+            <div class="watches-light-item"><span class="item-icon">🎵</span>Music teachers &amp; studios</div>
+            <div class="watches-light-item"><span class="item-icon">📚</span>Tutors &amp; instructors</div>
+            <div class="watches-light-item"><span class="item-icon">🏕️</span>Camps &amp; after-school programs</div>
+            <div class="watches-light-item"><span class="item-icon">📄</span>Paper flyers — just take a photo</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROBLEM -->
-  <section class="problem">
-    <h2>The school email problem is worse than you think.</h2>
-    <p>A parent with two kids across different schools and activities can be managing a grade portal, a school app, district emails, a school calendar, payment portals, sports apps, and individual teacher threads — <strong>none of which talk to each other.</strong></p>
-    <p>Even organized, attentive parents get burned. A permission slip buried in a Friday email. A practice time that changed in a reply-all from two weeks ago. A marking period closing nobody reminded you about.</p>
-    <p><strong>Skoolit closes the loop.</strong> Connect your inbox, and it handles the rest — automatically.</p>
-  </section>
-
-  <!-- PROVIDERS -->
-  <div class="providers">
-    <div class="provider-chip"><span>📧</span> Gmail</div>
-    <div class="provider-chip"><span>☁️</span> iCloud Mail</div>
-    <div class="provider-chip"><span>📨</span> Outlook</div>
-  </div>
-
-  <!-- BOTTOM CTA -->
-  <section class="bottom-cta">
-    <h2>Less inbox.<br>More parenting.</h2>
-    <p class="subhead">Join parents who are done manually managing school logistics.</p>
-
-    <div class="form-wrap">
-      <div class="form-row">
-        <input type="email" id="bottom-email" placeholder="your@email.com" autocomplete="email" />
-        <button type="button" onclick="subscribe('bottom-email','bottom-success','bottom-error',this,'Join the waitlist')">Join the waitlist</button>
-      </div>
-      <div class="form-success" id="bottom-success">🎉 You're on the list. We'll be in touch soon.</div>
-      <div class="form-error" id="bottom-error"></div>
-      <p class="form-note">Free 30-day trial at launch. No credit card required.</p>
+  <!-- ── Multi-child callout ───────────────────────────── -->
+  <section class="section-tight" style="background: var(--bg);">
+    <div class="container" style="text-align:center;">
+      <span class="eyebrow" style="color: var(--blue); display:block; margin-bottom:16px;">Multi-child households</span>
+      <h2 class="display display-lg" style="max-width:640px; margin:0 auto 20px;">Every kid. Every activity. One place.</h2>
+      <p class="body-lg" style="max-width:520px; margin:0 auto;">
+        One account handles soccer, violin, tutoring, and school — across all your children. Each kid gets their own color-coded calendar layer. See everything at once, or zoom in on one child at a time.
+      </p>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ── Differentiation ──────────────────────────────── -->
+  <section class="section diff-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Not another school app you have to check</span>
+        <h2 class="display display-lg">Built for parents, not schools.</h2>
+        <p class="body-lg">ClassDojo, ParentSquare, and Remind are school tools. Schools decide to use them. You receive what they send. Skoolit is yours.</p>
+      </div>
+
+      <div class="diff-grid">
+        <div class="diff-card">
+          <h4>School apps (ClassDojo, ParentSquare, Remind)</h4>
+          <ul class="diff-list">
+            <li><span class="check">✗</span>School-controlled — you use what your school chooses</li>
+            <li><span class="check">✗</span>One school at a time — no cross-school view</li>
+            <li><span class="check">✗</span>No extracurriculars — coaches, tutors, studios not included</li>
+            <li><span class="check">✗</span>You still read the emails and build your own calendar</li>
+            <li><span class="check">✗</span>No co-parent sync or caregiver relay</li>
+          </ul>
+        </div>
+        <div class="diff-card skoolit-card">
+          <h4>Skoolit</h4>
+          <ul class="diff-list">
+            <li><span class="check">✓</span>Parent-controlled — works with any school, no adoption required</li>
+            <li><span class="check">✓</span>All schools + all activities in a single view</li>
+            <li><span class="check">✓</span>Soccer, piano, tutoring, baseball — all covered</li>
+            <li><span class="check">✓</span>Calendar built and updated automatically, with zero manual entry</li>
+            <li><span class="check">✓</span>Co-parent sync and caregiver relay built in</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Final CTA ─────────────────────────────────────── -->
+  <section class="section cta-section">
+    <div class="container">
+      <h2 class="display display-lg">Done chasing emails across five apps?</h2>
+      <p class="body-lg">
+        Skoolit handles the whole loop — school, sports, activities, and everything the nanny needs to know.
+      </p>
+
+      <div class="cta-form" id="cta-form">
+        <input type="email" id="cta-email" placeholder="your@email.com" autocomplete="email" />
+        <button class="btn-primary" onclick="handleSignup('cta-form', 'cta-success')">Get early access</button>
+      </div>
+      <div class="success-msg" id="cta-success">
+        🎉 You're on the list. We'll be in touch soon.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────── -->
   <footer>
-    <span>© 2026 Skoolit · Launching soon</span>
-    <span><a href="mailto:hello@getskoolit.com">hello@getskoolit.com</a></span>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <img src="/assets/logomark.svg" alt="Skoolit" />
+          Skoolit
+        </div>
+        <p>© 2026 Skoolit · Launching soon · <a href="mailto:hello@getskoolit.com">hello@getskoolit.com</a></p>
+      </div>
+    </div>
   </footer>
 
   <script>
-    async function subscribe(inputId, successId, errorId, btn, originalLabel) {
-      const input = document.getElementById(inputId);
-      const successEl = document.getElementById(successId);
-      const errorEl = document.getElementById(errorId);
-      const email = input.value.trim();
+    async function handleSignup(formId, successId) {
+      const form = document.getElementById(formId);
+      const success = document.getElementById(successId);
+      const input = form.querySelector('input[type="email"]');
+      const btn = form.querySelector('button');
 
-      errorEl.style.display = 'none';
-      errorEl.textContent = '';
-
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        errorEl.textContent = 'Please enter a valid email address.';
-        errorEl.style.display = 'block';
+      if (!input.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+        input.focus();
+        input.style.borderColor = '#e53e3e';
+        setTimeout(() => input.style.borderColor = '', 1500);
         return;
       }
 
@@ -152,23 +791,32 @@
         const res = await fetch('/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ email: input.value.trim().toLowerCase() }),
         });
-
-        if (res.ok) {
-          input.closest('.form-row').style.display = 'none';
-          successEl.style.display = 'block';
-        } else {
-          const data = await res.json().catch(() => ({}));
-          throw new Error(data.error || 'Something went wrong. Please try again.');
-        }
-      } catch (err) {
-        errorEl.textContent = err.message;
-        errorEl.style.display = 'block';
+        if (!res.ok) throw new Error('server');
+        form.style.display = 'none';
+        success.style.display = 'flex';
+      } catch {
         btn.disabled = false;
-        btn.textContent = originalLabel;
+        btn.textContent = 'Get early access';
+        input.style.borderColor = '#e53e3e';
+        input.placeholder = 'Something went wrong — try again';
+        setTimeout(() => {
+          input.style.borderColor = '';
+          input.placeholder = 'your@email.com';
+        }, 3000);
       }
     }
+
+    document.querySelectorAll('input[type="email"]').forEach(input => {
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          const form = input.closest('[id$="-form"]');
+          const successId = form.id.replace('-form', '-success');
+          handleSignup(form.id, successId);
+        }
+      });
+    });
   </script>
 
 </body>
