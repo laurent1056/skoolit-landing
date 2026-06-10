@@ -23,11 +23,19 @@ export async function onRequestPost(context) {
     return new Response(JSON.stringify({ error: 'Server misconfiguration.' }), { status: 500, headers });
   }
 
+  const payload = {
+    email,
+    timestamp: new Date().toISOString(),
+    name:   (body.name  || '').trim()  || undefined,
+    phone:  (body.phone || '').trim()  || undefined,
+    source: (body.source || '').trim() || undefined,
+  };
+
   try {
     const res = await fetch(appsScriptUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, timestamp: new Date().toISOString() }),
+      body: JSON.stringify(payload),
       redirect: 'follow',
     });
 

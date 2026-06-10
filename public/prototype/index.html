@@ -1,0 +1,4271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skoolit — Prototype</title>
+<style>
+/* ============================================================
+   FONTS
+   ============================================================ */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  src: url("fonts/HankenGrotesk.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 100 800;
+  font-display: swap;
+}
+
+/* ============================================================
+   DESIGN TOKENS (from colors_and_type.css)
+   ============================================================ */
+:root {
+  --paper:        #F6F3EC;
+  --paper-sunk:   #EFEBE1;
+  --surface:      #FFFFFF;
+  --surface-2:    #FBF9F4;
+  --ink-900:      #1B241F;
+  --ink-700:      #3A453E;
+  --ink-500:      #5E6862;
+  --ink-400:      #828B85;
+  --ink-300:      #AEB4AE;
+  --line-strong:  #DAD4C8;
+  --line:         #E6E1D6;
+  --line-soft:    #EFEBE1;
+  --spruce-900:   #5A0A1E;
+  --spruce-700:   #AA1A40;
+  --spruce-600:   #EA4073;
+  --spruce-500:   #EE6090;
+  --spruce-300:   #F5AABF;
+  --spruce-100:   #FDDCE8;
+  --spruce-050:   #FEF0F5;
+  --honey-600:    #3076A8;
+  --honey-500:    #8AC2E5;
+  --honey-100:    #C8E4F4;
+  --honey-050:    #E8F4FB;
+  --red-600:      #B23A24;
+  --red-500:      #C8472E;
+  --red-100:      #F8E1DA;
+  --red-050:      #FBEDE8;
+  --amber-600:    #B87E0A;
+  --amber-500:    #EAB42E;
+  --amber-100:    #FBF0CC;
+  --amber-050:    #FEF8E8;
+  --grey-500:     #9A9F98;
+  --grey-100:     #ECE9E1;
+  --green-600:    #237A52;
+  --green-100:    #D7EDDF;
+
+  --bg:               var(--paper);
+  --bg-sunk:          var(--paper-sunk);
+  --card:             var(--surface);
+  --card-alt:         var(--surface-2);
+  --fg1:              var(--ink-900);
+  --fg2:              var(--ink-500);
+  --fg3:              var(--ink-400);
+  --fg-disabled:      var(--ink-300);
+  --fg-on-brand:      #FFFFFF;
+  --fg-on-honey:      #14416B;
+  --brand:            var(--spruce-600);
+  --brand-strong:     var(--spruce-700);
+  --brand-press:      var(--spruce-900);
+  --brand-tint:       var(--spruce-100);
+  --brand-tint-soft:  var(--spruce-050);
+  --accent:           var(--honey-500);
+  --accent-strong:    var(--honey-600);
+  --accent-tint:      var(--honey-100);
+  --border:           var(--line-strong);
+  --border-soft:      var(--line);
+  --hairline:         var(--line-soft);
+  --urgent:           var(--red-500);
+  --urgent-fg:        var(--red-600);
+  --urgent-tint:      var(--red-050);
+  --soon:             var(--amber-500);
+  --soon-fg:          var(--amber-600);
+  --soon-tint:        var(--amber-050);
+  --info:             var(--grey-500);
+  --success:          var(--green-600);
+  --success-tint:     var(--green-100);
+  --review:           var(--honey-500);
+  --review-tint:      var(--honey-050);
+  --focus:            var(--spruce-500);
+  --focus-ring:       0 0 0 3px color-mix(in srgb, var(--spruce-500) 35%, transparent);
+
+  --child-1:        #2C66C9;  --child-1-tint: #E2ECFB;
+  --child-2:        #C24A2E;  --child-2-tint: #FAE5DD;
+  --child-3:        #0E857C;  --child-3-tint: #D8F0ED;
+  --child-4:        #7A45C9;  --child-4-tint: #ECE3FA;
+  --child-5:        #B23A78;  --child-5-tint: #FAE2EF;
+  --child-6:        #8A6A12;  --child-6-tint: #F6EDD0;
+  --child-7:        #3F7E33;  --child-7-tint: #E2F0DC;
+  --child-8:        #4A5A66;  --child-8-tint: #E6EBEF;
+
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-text:    "Hanken Grotesk", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+  --w-regular: 400;
+  --w-medium:  500;
+  --w-semibold:600;
+  --w-bold:    700;
+  --w-display: 800;
+
+  --t-display: 2.5rem;
+  --t-h1:      1.875rem;
+  --t-h2:      1.375rem;
+  --t-h3:      1.125rem;
+  --t-body:    1rem;
+  --t-body-sm: 0.9375rem;
+  --t-label:   0.8125rem;
+  --t-meta:    0.75rem;
+
+  --lh-tight:   1.12;
+  --lh-snug:    1.28;
+  --lh-normal:  1.5;
+  --lh-relaxed: 1.62;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --radius-xs:  6px;
+  --radius-sm:  10px;
+  --radius-md:  14px;
+  --radius-lg:  18px;
+  --radius-xl:  24px;
+  --radius-pill:999px;
+
+  --shadow-xs: 0 1px 2px rgba(27,36,31,.05);
+  --shadow-sm: 0 1px 2px rgba(27,36,31,.05), 0 2px 6px rgba(27,36,31,.05);
+  --shadow-md: 0 2px 4px rgba(27,36,31,.05), 0 8px 20px rgba(27,36,31,.07);
+  --shadow-lg: 0 6px 16px rgba(27,36,31,.08), 0 24px 48px rgba(27,36,31,.12);
+
+  --ease-out:    cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.45, 0.05, 0.25, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+
+  --app-max: 420px;
+  --tap-min: 44px;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: #E9E4DA;
+  font-family: var(--font-text);
+  font-size: 16px;
+  color: var(--fg1);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 32px 16px 48px;
+  -webkit-font-smoothing: antialiased;
+}
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* ============================================================
+   PHONE SHELL
+   ============================================================ */
+.phone {
+  width: 390px;
+  height: 844px;
+  background: var(--paper);
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(27,36,31,.14), 0 32px 80px rgba(27,36,31,.32);
+  position: relative;
+  overflow: hidden;
+  border: 10px solid #13110E;
+  display: flex;
+  flex-direction: column;
+  flex: none;
+}
+
+/* ============================================================
+   STATUS BAR
+   ============================================================ */
+.statusbar {
+  height: 50px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 26px 0 30px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg1);
+  position: relative;
+  z-index: 5;
+}
+.statusbar .notch {
+  position: absolute;
+  top: 10px; left: 50%;
+  transform: translateX(-50%);
+  width: 110px; height: 28px;
+  background: #13110E;
+  border-radius: 999px;
+}
+.statusbar .si { display: flex; gap: 5px; align-items: center; }
+.statusbar .si svg { width: 14px; height: 14px; }
+
+/* ============================================================
+   BROWSER CHROME (PWA entry — landing shown in mobile browser)
+   ============================================================ */
+.browser-bar {
+  flex: none;
+  display: flex; align-items: center; gap: 10px;
+  padding: 4px 14px 10px;
+  background: var(--paper-sunk);
+  border-bottom: 1px solid var(--hairline);
+}
+.browser-bar .bb-nav { color: var(--fg2); flex: none; }
+.browser-bar .bb-dim { color: var(--fg3); opacity: .5; }
+.browser-bar .bb-url {
+  flex: 1; min-width: 0;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: 999px; padding: 7px 14px;
+  font-size: 13px; font-weight: 500; color: var(--fg2);
+}
+.browser-bar .bb-url svg { color: var(--success); flex: none; }
+.browser-bar .bb-url span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* PWA install banner */
+.install-banner {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md); padding: 11px 12px; box-shadow: var(--shadow-sm);
+  margin-bottom: 4px;
+}
+.install-banner img { width: 34px; height: 34px; flex: none; }
+.install-banner .ib-text { flex: 1; min-width: 0; text-align: left; }
+.install-banner .ib-title { font-size: 14px; font-weight: 600; color: var(--fg1); }
+.install-banner .ib-sub { font-size: 12px; color: var(--fg3); margin-top: 1px; }
+.install-banner .ib-add {
+  flex: none; font-family: var(--font-text); font-size: 13px; font-weight: 600;
+  color: var(--brand-strong); background: var(--brand-tint-soft);
+  border: 1px solid transparent; border-radius: 999px; padding: 7px 16px; cursor: pointer;
+}
+.install-banner .ib-add:hover { background: var(--brand-tint); }
+
+/* ============================================================
+   SCREEN SCROLL AREA
+   ============================================================ */
+.screen {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+}
+.screen::-webkit-scrollbar { width: 0; }
+
+/* ============================================================
+   APP HEADER
+   ============================================================ */
+.appheader {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(12px);
+  padding: 10px 18px 12px;
+  border-bottom: 1px solid var(--hairline);
+}
+.appheader-row { display: flex; align-items: center; justify-content: space-between; }
+.brand { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+.brand img { width: 28px; height: 28px; }
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -.03em;
+  color: #8AC2E5;
+}
+.iconbtn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--fg1);
+  position: relative;
+  transition: background var(--dur-fast);
+}
+.iconbtn:hover { background: var(--paper-sunk); }
+.iconbtn svg { width: 20px; height: 20px; }
+.ping {
+  position: absolute; top: 9px; right: 9px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--urgent);
+  border: 2px solid var(--paper);
+}
+
+/* Filter chips */
+.filters {
+  display: flex; gap: 7px;
+  margin-top: 11px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+.filters::-webkit-scrollbar { height: 0; }
+.fchip {
+  flex: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-text);
+  font-size: 13px; font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--fg2);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast);
+}
+.fchip .cdot { width: 7px; height: 7px; border-radius: 50%; }
+.fchip.active { background: var(--ink-900); color: var(--paper); border-color: var(--ink-900); }
+
+/* ============================================================
+   DIGEST
+   ============================================================ */
+.digest { padding: 18px 16px 130px; display: flex; flex-direction: column; gap: 24px; }
+.section-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.section-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: var(--fg3);
+}
+.section-count {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--fg3);
+}
+.stack { display: flex; flex-direction: column; gap: 10px; }
+
+/* ============================================================
+   ITEM CARD
+   ============================================================ */
+.card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 14px 15px 13px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+  cursor: pointer;
+}
+.card:hover { box-shadow: var(--shadow-md); }
+.card:active { transform: translateY(1px); }
+
+/* Urgency left border */
+.card[data-urg]::before {
+  content: "";
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 5px;
+}
+.card[data-urg="urgent"]::before { background: var(--urgent); }
+.card[data-urg="soon"]::before   { background: var(--soon); }
+.card[data-urg="info"]::before   { background: var(--info); }
+
+.card-top {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; margin-bottom: 8px;
+}
+.src {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--fg3); font-weight: 600;
+  min-width: 0; flex: 1;
+}
+.src svg { width: 13px; height: 13px; flex: none; }
+.src span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tags { display: flex; align-items: center; gap: 6px; flex: none; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-weight: 600;
+  padding: 3px 8px; border-radius: 999px;
+  white-space: nowrap;
+}
+.badge svg { width: 11px; height: 11px; }
+.badge.urgent   { background: var(--red-100);     color: var(--red-600); }
+.badge.soon     { background: var(--amber-100);   color: var(--amber-600); }
+.badge.changed  { background: var(--brand-tint);  color: var(--brand-strong); }
+.badge.added    { background: var(--success-tint);color: var(--success); }
+.badge.updated  { background: var(--paper-sunk);  color: var(--fg2); }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; font-weight: 600;
+  padding: 3px 8px; border-radius: 999px;
+  white-space: nowrap;
+}
+.chip .cdot { width: 7px; height: 7px; border-radius: 50%; }
+
+.card h3 { font-size: 15px; font-weight: 600; color: var(--fg1); line-height: 1.35; }
+.card .summary { font-size: 13.5px; color: var(--fg2); line-height: 1.5; margin-top: 4px; }
+
+.diff {
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 8px;
+  font-family: var(--font-mono); font-size: 12px;
+}
+.diff .old { color: var(--fg3); text-decoration: line-through; }
+.diff .new { color: var(--fg1); font-weight: 600; }
+.diff svg  { width: 12px; height: 12px; color: var(--fg3); }
+
+.actions { display: flex; gap: 7px; margin-top: 12px; }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font-family: var(--font-text);
+  font-weight: 600; font-size: 13.5px;
+  border-radius: var(--radius-sm);
+  padding: 9px 13px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  min-height: 42px;
+  white-space: nowrap;
+  transition: background var(--dur-fast), box-shadow var(--dur-fast);
+  text-align: center;
+}
+.btn svg { width: 14px; height: 14px; }
+.btn.block { flex: 1; }
+.btn-primary { background: var(--brand); color: var(--fg-on-brand); }
+.btn-primary:hover { background: var(--brand-strong); }
+.btn-primary:active { background: var(--brand-press); }
+.btn-secondary { background: var(--surface); color: var(--fg1); border-color: var(--border); }
+.btn-secondary:hover { background: var(--surface-2); }
+.btn-ghost { background: transparent; color: var(--brand-strong); border: none; }
+.btn-ghost:hover { background: var(--brand-tint-soft); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Onboarding — multi-account pickers */
+.acct-label { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--fg3); margin-bottom: -2px; }
+.text-add-btn {
+  background: none; border: none; font-family: var(--font-text); font-size: 13px;
+  font-weight: 600; color: var(--brand-strong); cursor: pointer; text-align: left;
+  padding: 4px 0; align-self: flex-start;
+}
+.text-add-btn:hover { text-decoration: underline; }
+.future-callout {
+  display: flex; gap: 11px; align-items: flex-start;
+  background: var(--brand-tint-soft); color: var(--brand-strong);
+  border-radius: var(--radius-md); padding: 12px 14px; font-size: 13px; line-height: 1.5;
+}
+.future-callout svg { flex: none; margin-top: 1px; }
+
+/* ============================================================
+   NEEDS REVIEW CARD
+   ============================================================ */
+.card.review {
+  border: 1.5px dashed var(--accent);
+  background: var(--review-tint);
+  box-shadow: none;
+}
+.rlabel {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .04em; text-transform: uppercase;
+  color: var(--accent-strong);
+  margin-bottom: 6px;
+}
+.rlabel svg { width: 12px; height: 12px; }
+
+/* ============================================================
+   ASK-TO-CREATE CARD
+   ============================================================ */
+.propose {
+  background: var(--card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 14px 15px 13px;
+  box-shadow: var(--shadow-sm);
+}
+.propose-title {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; color: var(--fg3);
+  margin-bottom: 10px;
+}
+.propose-title svg { width: 13px; height: 13px; color: var(--accent-strong); }
+.evrow {
+  display: flex; gap: 10px; align-items: flex-start;
+  background: var(--brand-tint-soft);
+  border-radius: var(--radius-md);
+  padding: 10px 11px;
+}
+.calchip {
+  flex: none; width: 44px; text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden;
+}
+.calchip .cm { font-size: 9px; font-weight: 700; letter-spacing: .05em; background: var(--brand); color: #fff; padding: 2px 0; text-transform: uppercase; }
+.calchip .cd { font-size: 19px; font-weight: 700; color: var(--fg1); padding: 2px 0; font-family: var(--font-display); }
+.ev-meta { font-family: var(--font-mono); font-size: 12px; color: var(--fg2); }
+
+/* ============================================================
+   ALL CLEAR EMPTY STATE
+   ============================================================ */
+.allclear {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  padding: 72px 32px 40px;
+}
+.allclear .glyph {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--brand-tint);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.allclear .glyph svg { width: 26px; height: 26px; color: var(--brand); }
+.allclear h2 {
+  font-family: var(--font-display); font-weight: 700; font-size: 22px;
+  color: var(--fg1); margin-bottom: 8px;
+}
+.allclear p { font-size: 14px; color: var(--fg2); line-height: 1.5; max-width: 240px; }
+
+/* ============================================================
+   UNDO TOAST
+   ============================================================ */
+.toast {
+  position: absolute; left: 14px; right: 14px; bottom: 96px; z-index: 20;
+  background: var(--ink-900); color: var(--paper);
+  border-radius: var(--radius-md);
+  padding: 13px 14px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: var(--shadow-lg);
+  animation: toastIn var(--dur-base) var(--ease-out);
+}
+.toast-msg { display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 500; }
+.toast-msg svg { width: 15px; height: 15px; color: var(--spruce-300); }
+.toast button { background: transparent; border: none; color: var(--honey-500); font-weight: 700; font-size: 13.5px; cursor: pointer; font-family: var(--font-text); flex: none; }
+@keyframes toastIn { from { transform: translateY(12px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* ============================================================
+   BOTTOM NAV
+   ============================================================ */
+.bottomnav {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-around;
+  padding: 10px 20px 18px;
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--hairline);
+}
+.navitem {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  background: transparent; border: none; cursor: pointer;
+  color: var(--fg3); font-size: 11px; font-weight: 600;
+  padding: 5px 12px; border-radius: var(--radius-md);
+  font-family: var(--font-text);
+  transition: color var(--dur-fast);
+}
+.navitem svg { width: 22px; height: 22px; }
+.navitem.active { color: var(--brand-strong); }
+.navitem.home-pill {
+  background: var(--brand); color: var(--fg-on-brand);
+  padding: 10px 22px; border-radius: 999px;
+  margin-top: -4px;
+}
+.navitem.home-pill svg { width: 20px; height: 20px; }
+
+/* ============================================================
+   SUBSCREEN HEADER
+   ============================================================ */
+.subhead {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter: blur(10px);
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid var(--hairline);
+  display: flex; align-items: center; gap: 12px;
+}
+.subhead h1 { font-family: var(--font-display); font-weight: 700; font-size: 22px; }
+.pad { padding: 16px 16px 130px; }
+
+/* ============================================================
+   DETAIL SHEET
+   ============================================================ */
+.sheet-scrim {
+  position: absolute; inset: 0; z-index: 30;
+  background: rgba(27,36,31,.44);
+  display: flex; align-items: flex-end;
+  animation: fadeIn var(--dur-base) var(--ease-out);
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.sheet {
+  width: 100%;
+  background: var(--paper);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  max-height: 90%;
+  overflow-y: auto;
+  padding: 8px 18px 30px;
+  box-shadow: var(--shadow-lg);
+  animation: sheetIn var(--dur-slow) var(--ease-out);
+}
+@keyframes sheetIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.grabber {
+  width: 36px; height: 4px; border-radius: 999px;
+  background: var(--line-strong); margin: 8px auto 16px;
+}
+.email-view {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 14px; margin-top: 14px;
+}
+.email-from { font-size: 12.5px; color: var(--fg2); margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
+.email-from svg { width: 13px; height: 13px; }
+.email-subject { font-size: 14.5px; font-weight: 600; margin-bottom: 10px; }
+.email-body { font-size: 13.5px; color: var(--fg2); line-height: 1.6; }
+.email-body mark { background: var(--honey-100); color: var(--fg1); padding: 0 2px; border-radius: 3px; }
+.transparency-note {
+  font-size: 12px; color: var(--fg3); margin-top: 12px;
+  display: flex; align-items: center; gap: 5px;
+}
+.transparency-note svg { width: 12px; height: 12px; }
+
+/* ============================================================
+   CALENDAR VIEW
+   ============================================================ */
+.cal-controls {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+}
+.cal-month { font-family: var(--font-display); font-weight: 700; font-size: 18px; }
+.cal-toggle { display: flex; gap: 4px; }
+.cal-toggle button {
+  font-family: var(--font-text); font-size: 12.5px; font-weight: 600;
+  padding: 6px 12px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--surface); color: var(--fg2);
+  cursor: pointer;
+}
+.cal-toggle button.active { background: var(--ink-900); color: var(--paper); border-color: var(--ink-900); }
+
+.cal-grid { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.cal-dow { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--fg3); padding: 0 0 8px; text-align: center; }
+.cal-cell { padding: 4px 2px; vertical-align: top; width: 14.28%; }
+.day-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 500; color: var(--fg2);
+  margin: 0 auto 3px;
+}
+.day-num.today { background: var(--brand); color: var(--fg-on-brand); font-weight: 700; }
+.day-num.other-month { color: var(--fg-disabled); }
+.ev-chip {
+  display: block; width: 100%;
+  font-size: 9px; font-weight: 600;
+  padding: 2px 3px; border-radius: 3px; margin-bottom: 2px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  line-height: 1.4;
+}
+.ev-chip.skoolit { font-style: italic; }
+
+/* ============================================================
+   SOURCES VIEW
+   ============================================================ */
+.src-suggest-head {
+  display: flex; align-items: center; justify-content: space-between; padding: 0 4px;
+}
+.src-suggest-head > div:first-child {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--brand-strong);
+}
+.src-pulse {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--brand); flex-shrink: 0;
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(from var(--brand) l c h / .5); }
+  50%       { box-shadow: 0 0 0 5px oklch(from var(--brand) l c h / 0); }
+}
+.src-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 18px; height: 18px; padding: 0 5px;
+  background: var(--brand); color: var(--fg-on-brand);
+  border-radius: 999px; font-size: 11px; font-weight: 700;
+}
+.src-suggest-card {
+  padding: 13px 13px 11px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.src-suggest-icon {
+  width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.src-suggest-actions { display: flex; gap: 8px; }
+.sp-group-row {
+  display: flex; align-items: center; justify-content: space-between; padding: 0 4px;
+}
+.src-add-btn {
+  display: flex; align-items: center; gap: 5px;
+  font-family: var(--font-text); font-size: 12.5px; font-weight: 600;
+  color: var(--brand); background: none; border: none; cursor: pointer; padding: 3px 0;
+  transition: color var(--dur-fast);
+}
+.src-add-btn:hover { color: var(--brand-strong); }
+.src-type-icon {
+  width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.src-type-pill {
+  display: inline-flex; align-items: center;
+  background: var(--surface-2); border: 1px solid var(--border-soft);
+  border-radius: 999px; padding: 2px 7px;
+  font-size: 11px; font-weight: 600; color: var(--fg3);
+}
+.src-remove-btn {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--fg3); flex-shrink: 0;
+  transition: background var(--dur-fast), color var(--dur-fast);
+}
+.src-remove-btn:hover { background: var(--red-050); color: var(--red-600); }
+.src-type-tab {
+  flex: 1; padding: 7px 4px; border-radius: var(--radius-sm);
+  font-family: var(--font-text); font-size: 12px; font-weight: 600;
+  background: var(--surface); border: 1px solid var(--border-soft);
+  color: var(--fg2); cursor: pointer; transition: all var(--dur-fast);
+}
+.src-type-tab.active {
+  background: var(--brand-tint); border-color: var(--brand); color: var(--brand-strong);
+}
+.src-empty {
+  padding: 18px 16px; text-align: center;
+  color: var(--fg3); font-size: 13px; font-style: italic;
+}
+.src-scan-strip {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  background: var(--brand-tint-soft); border: 1px solid var(--spruce-100);
+  border-radius: var(--radius-md);
+  font-size: 12.5px; color: var(--fg2);
+}
+.src-scan-strip strong { color: var(--fg1); font-weight: 700; }
+
+/* ============================================================
+   SETTINGS VIEW
+   ============================================================ */
+.settings-section { margin-bottom: 28px; }
+.settings-section-title {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: var(--fg3); margin-bottom: 8px; padding: 0 4px;
+}
+.settings-list { background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border-soft); overflow: hidden; }
+.settings-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; cursor: pointer;
+  border-bottom: 1px solid var(--hairline);
+  transition: background var(--dur-fast);
+}
+.settings-row:last-child { border-bottom: none; }
+.settings-row:hover { background: var(--surface-2); }
+.settings-row-left { display: flex; align-items: center; gap: 12px; }
+.settings-icon {
+  width: 34px; height: 34px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+}
+.settings-icon svg { width: 17px; height: 17px; }
+.settings-row-label { font-size: 15px; font-weight: 500; color: var(--fg1); }
+.settings-row-meta { font-size: 12.5px; color: var(--fg3); margin-top: 1px; }
+.settings-row-chevron svg { width: 16px; height: 16px; color: var(--fg3); }
+
+/* ============================================================
+   ONBOARDING WIZARD
+   ============================================================ */
+.ob-wrap {
+  width: 390px;
+  height: 844px;
+  background: var(--paper);
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(27,36,31,.14), 0 32px 80px rgba(27,36,31,.32);
+  position: relative;
+  overflow: hidden;
+  border: 10px solid #13110E;
+  display: flex;
+  flex-direction: column;
+  flex: none;
+}
+.ob-statusbar {
+  height: 50px; flex: none;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 26px 0 30px;
+  font-size: 13px; font-weight: 600; color: var(--fg1);
+  position: relative; z-index: 5;
+}
+.ob-statusbar .notch {
+  position: absolute; top: 10px; left: 50%;
+  transform: translateX(-50%);
+  width: 110px; height: 28px;
+  background: #13110E; border-radius: 999px;
+}
+.ob-inner {
+  flex: 1; overflow-y: auto; overflow-x: hidden;
+  display: flex; flex-direction: column;
+}
+.ob-inner::-webkit-scrollbar { width: 0; }
+
+/* Top bar: step X of 7 + back */
+.ob-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 20px 0;
+}
+.ob-back {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 14px; font-weight: 600; color: var(--fg2);
+  background: transparent; border: none; cursor: pointer;
+  font-family: var(--font-text);
+}
+.ob-back svg { width: 16px; height: 16px; }
+.ob-step-label { font-size: 13px; font-weight: 600; color: var(--fg3); }
+
+/* Progress bar */
+.ob-progress {
+  height: 3px; background: var(--line);
+  margin: 12px 20px 0; border-radius: 999px; overflow: hidden;
+}
+.ob-progress-fill {
+  height: 100%; background: var(--brand); border-radius: 999px;
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+/* Step content */
+.ob-content { flex: 1; padding: 28px 24px 24px; display: flex; flex-direction: column; gap: 20px; }
+.ob-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
+.ob-title { font-family: var(--font-display); font-weight: 800; font-size: 26px; line-height: 1.15; letter-spacing: -.02em; color: var(--fg1); }
+.ob-subtitle { font-size: 15px; color: var(--fg2); line-height: 1.55; }
+
+/* Form elements */
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label { font-size: 13px; font-weight: 600; color: var(--fg1); }
+.form-hint { font-size: 12px; color: var(--fg3); }
+.form-input {
+  width: 100%; padding: 11px 14px;
+  font-family: var(--font-text); font-size: 15px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--fg1);
+  transition: border-color var(--dur-fast);
+  outline: none;
+}
+.form-input:focus { border-color: var(--brand); }
+.form-input::placeholder { color: var(--fg3); }
+
+.form-row { display: flex; gap: 10px; }
+.form-row .form-group { flex: 1; }
+
+/* Provider buttons */
+.provider-btn {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; border-radius: var(--radius-md);
+  border: 1.5px solid var(--border);
+  background: var(--surface); cursor: pointer;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+  font-family: var(--font-text);
+  width: 100%;
+}
+.provider-btn:hover { border-color: var(--brand); background: var(--brand-tint-soft); }
+.provider-btn.selected { border-color: var(--brand); background: var(--brand-tint-soft); }
+.provider-btn svg { width: 22px; height: 22px; color: var(--fg2); }
+.provider-btn .pb-text { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; }
+.provider-btn .pb-name { font-size: 15px; font-weight: 600; color: var(--fg1); }
+.provider-btn .pb-desc { font-size: 12px; color: var(--fg3); }
+.provider-btn .check { margin-left: auto; width: 20px; height: 20px; border-radius: 50%; background: var(--brand); display: flex; align-items: center; justify-content: center; }
+.provider-btn .check svg { width: 12px; height: 12px; color: white; }
+
+/* Event type rules (step 5) */
+.event-rules { display: flex; flex-direction: column; gap: 8px; }
+.event-rule-row {
+  display: flex; align-items: center;
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md); padding: 10px 12px;
+  gap: 10px;
+}
+.event-rule-name { flex: 1; font-size: 14px; font-weight: 500; color: var(--fg1); }
+.rule-selector { display: flex; gap: 3px; }
+.rule-btn {
+  font-family: var(--font-text); font-size: 11px; font-weight: 600;
+  padding: 5px 9px; border-radius: var(--radius-xs);
+  border: 1px solid var(--border);
+  background: var(--surface); color: var(--fg3);
+  cursor: pointer; transition: all var(--dur-fast);
+  white-space: nowrap;
+}
+.rule-btn.active-always { background: var(--success-tint); color: var(--success); border-color: var(--green-100); }
+.rule-btn.active-ask    { background: var(--amber-100);    color: var(--amber-600); border-color: var(--amber-100); }
+.rule-btn.active-never  { background: var(--grey-100);     color: var(--ink-500);   border-color: var(--grey-100); }
+
+/* Bottom action area */
+.ob-bottom { padding: 16px 24px 28px; flex: none; border-top: 1px solid var(--hairline); display: flex; flex-direction: column; gap: 10px; }
+.ob-next {
+  width: 100%; padding: 14px;
+  font-family: var(--font-text); font-size: 16px; font-weight: 700;
+  border-radius: var(--radius-md); border: none; cursor: pointer;
+  background: var(--brand); color: var(--fg-on-brand);
+  transition: background var(--dur-fast);
+}
+.ob-next:hover { background: var(--brand-strong); }
+.ob-next:disabled { background: var(--fg-disabled); cursor: not-allowed; }
+.ob-skip {
+  background: transparent; border: none;
+  font-family: var(--font-text); font-size: 14px; font-weight: 600;
+  color: var(--fg3); cursor: pointer; text-align: center;
+  padding: 4px; display: block; width: 100%;
+}
+.ob-skip:hover { color: var(--fg2); }
+
+/* Connected confirmation */
+.connected-box {
+  background: var(--success-tint);
+  border: 1.5px solid var(--green-100);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.connected-box svg { width: 18px; height: 18px; color: var(--success); flex: none; }
+.connected-box .cb-text { font-size: 14px; font-weight: 500; color: var(--success); }
+.connected-box .cb-sub { font-size: 12px; color: var(--fg2); margin-top: 2px; }
+
+/* Completion screen */
+.ob-complete {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  padding: 40px 24px 24px; text-align: center; gap: 24px;
+}
+.ob-complete-icon {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--brand-tint);
+  display: flex; align-items: center; justify-content: center;
+}
+.ob-complete-icon svg { width: 36px; height: 36px; color: var(--brand); }
+.ob-complete h1 {
+  font-family: var(--font-display); font-weight: 800; font-size: 30px;
+  line-height: 1.15; letter-spacing: -.02em; color: var(--fg1);
+}
+.ob-complete .sub { font-size: 16px; color: var(--fg2); line-height: 1.55; max-width: 280px; }
+.watching-list {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg); padding: 16px 18px;
+  width: 100%; text-align: left;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.watching-row { display: flex; align-items: flex-start; gap: 10px; }
+.watching-row svg { width: 16px; height: 16px; color: var(--brand); margin-top: 1px; flex: none; }
+.watching-row-text .wr-label { font-size: 14px; font-weight: 600; color: var(--fg1); }
+.watching-row-text .wr-val { font-size: 13px; color: var(--fg2); margin-top: 2px; }
+
+/* Prototype nav */
+.proto-nav {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px; z-index: 100;
+  background: rgba(20,17,14,.85); backdrop-filter: blur(8px);
+  border-radius: 999px; padding: 8px 12px;
+}
+.proto-nav button {
+  font-family: var(--font-text); font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 999px; border: none; cursor: pointer;
+  color: rgba(255,255,255,.6); background: transparent;
+}
+.proto-nav button.active { background: rgba(255,255,255,.15); color: white; }
+
+/* ============================================================
+   D-2 — CHILD FILTER FADE MASK (signals horizontal overflow)
+   ============================================================ */
+.filters-wrap { position: relative; }
+.filters-wrap::after {
+  content: ""; position: absolute; top: 0; bottom: 0; right: 0;
+  width: 40px; pointer-events: none;
+  background: linear-gradient(to right, transparent, var(--paper));
+}
+
+/* ============================================================
+   D-11 — SETTINGS SUB-PAGES
+   ============================================================ */
+.subpage { padding: 16px 16px 130px; display: flex; flex-direction: column; gap: 22px; }
+.sp-group { display: flex; flex-direction: column; gap: 8px; }
+.sp-group-title {
+  font-size: 11px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--fg3); padding: 0 4px;
+}
+.sp-group-hint { font-size: 12.5px; color: var(--fg3); padding: 0 4px; line-height: 1.5; }
+.sp-list {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.sp-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 13px 15px; border-bottom: 1px solid var(--hairline);
+  min-height: var(--tap-min); width: 100%; background: none;
+  border-left: none; border-right: none; border-top: none;
+  font-family: var(--font-text); text-align: left; cursor: pointer;
+  transition: background var(--dur-fast);
+}
+.sp-row:last-child { border-bottom: none; }
+.sp-row.tappable:hover { background: var(--surface-2); }
+.sp-row.static { cursor: default; }
+.sp-row-main { flex: 1; min-width: 0; }
+.sp-row-title { font-size: 15px; font-weight: 600; color: var(--fg1); }
+.sp-row-meta { font-size: 12.5px; color: var(--fg3); margin-top: 2px; line-height: 1.4; }
+.sp-cdot { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+.sp-chev svg { width: 16px; height: 16px; color: var(--fg3); }
+
+/* Add row (dashed, brand) */
+.sp-add {
+  display: flex; align-items: center; gap: 9px;
+  width: 100%; padding: 13px 15px; min-height: var(--tap-min);
+  background: var(--surface); border: 1px dashed var(--border);
+  border-radius: var(--radius-md); cursor: pointer;
+  font-family: var(--font-text); font-size: 14px; font-weight: 600;
+  color: var(--brand-strong); transition: background var(--dur-fast);
+}
+.sp-add:hover { background: var(--brand-tint-soft); }
+.sp-add svg { width: 16px; height: 16px; }
+
+/* Provider/status badges */
+.status-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-weight: 700; padding: 3px 9px;
+  border-radius: 999px; white-space: nowrap;
+}
+.status-badge svg { width: 11px; height: 11px; }
+.status-badge.ok   { background: var(--success-tint); color: var(--success); }
+.status-badge.warn { background: var(--red-050); color: var(--red-600); }
+.provider-glyph {
+  width: 36px; height: 36px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center; flex: none;
+}
+.provider-glyph svg { width: 18px; height: 18px; }
+
+/* Field block (edit views) */
+.sp-field { display: flex; flex-direction: column; gap: 6px; }
+.sp-field-label { font-size: 13px; font-weight: 600; color: var(--fg1); }
+
+/* Color picker — 8-dot grid (D-4) */
+.swatch-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.swatch {
+  width: 100%; aspect-ratio: 1; max-width: 56px; justify-self: center;
+  border-radius: 50%; border: none; cursor: pointer; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform var(--dur-fast);
+}
+.swatch:hover { transform: scale(1.06); }
+.swatch[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px currentColor; }
+.swatch svg { width: 20px; height: 20px; color: #fff; }
+
+/* Destructive row */
+.sp-danger {
+  width: 100%; padding: 13px 15px; min-height: var(--tap-min);
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md); cursor: pointer;
+  font-family: var(--font-text); font-size: 14px; font-weight: 600;
+  color: var(--red-600); text-align: left;
+  display: flex; align-items: center; gap: 9px;
+  transition: background var(--dur-fast);
+}
+.sp-danger:hover { background: var(--red-050); }
+.sp-danger svg { width: 16px; height: 16px; }
+
+/* Category pill (monitored senders) */
+.cat-pill {
+  font-size: 11px; font-weight: 600; padding: 2px 8px;
+  border-radius: 999px; background: var(--paper-sunk); color: var(--fg2);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   CONFIRMATION MODAL (destructive actions)
+   ============================================================ */
+.modal-scrim {
+  position: absolute; inset: 0; z-index: 40;
+  background: rgba(27,36,31,.44);
+  display: flex; align-items: center; justify-content: center;
+  padding: 26px; animation: fadeIn var(--dur-base) var(--ease-out);
+}
+.modal {
+  background: var(--paper); border-radius: var(--radius-xl);
+  padding: 22px 20px 18px; width: 100%; max-width: 320px;
+  box-shadow: var(--shadow-lg); text-align: center;
+  animation: modalIn var(--dur-base) var(--ease-out);
+}
+@keyframes modalIn { from { transform: scale(.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.modal-icon {
+  width: 46px; height: 46px; border-radius: 50%; margin: 0 auto 12px;
+  background: var(--red-050); display: flex; align-items: center; justify-content: center;
+}
+.modal-icon svg { width: 22px; height: 22px; color: var(--red-600); }
+.modal h3 { font-family: var(--font-display); font-weight: 700; font-size: 19px; margin-bottom: 7px; color: var(--fg1); }
+.modal p { font-size: 13.5px; color: var(--fg2); line-height: 1.55; margin-bottom: 18px; }
+.modal-actions { display: flex; flex-direction: column; gap: 9px; }
+
+/* ============================================================
+   D-13 — FEEDBACK REPAIR SHEET
+   ============================================================ */
+.fb-q { font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--fg1); margin: 4px 0 16px; }
+.fb-pills { display: flex; gap: 8px; }
+.fb-pill {
+  flex: 1; font-family: var(--font-text); font-size: 13px; font-weight: 600;
+  padding: 11px 8px; border-radius: 999px; cursor: pointer;
+  border: 1.5px solid var(--border); background: var(--surface); color: var(--fg2);
+  min-height: var(--tap-min); transition: all var(--dur-fast); text-align: center;
+}
+.fb-pill.sel-child  { background: var(--brand-tint);  color: var(--brand-strong); border-color: var(--brand-tint); }
+.fb-pill.sel-date   { background: var(--amber-100);   color: var(--amber-600);    border-color: var(--amber-100); }
+.fb-pill.sel-remove { background: var(--grey-100);    color: var(--ink-700);      border-color: var(--grey-100); }
+.fb-sublabel { font-size: 13px; font-weight: 600; color: var(--fg1); margin: 18px 0 9px; }
+.fb-textarea {
+  width: 100%; padding: 11px 14px; font-family: var(--font-text); font-size: 14px;
+  border: 1.5px solid var(--border); border-radius: var(--radius-md);
+  background: var(--surface); color: var(--fg1); resize: none; min-height: 64px;
+  outline: none; transition: border-color var(--dur-fast);
+}
+.fb-textarea:focus { border-color: var(--brand); }
+.fb-childpick { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ============================================================
+   D-15 — PAST-DUE CARD VARIANT
+   ============================================================ */
+.card.pastdue {
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+  box-shadow: none;
+}
+.card.pastdue::before { display: none; }
+.pd-eyebrow {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--urgent-fg); margin-bottom: 7px;
+}
+.pd-eyebrow svg { width: 12px; height: 12px; }
+
+/* ============================================================
+   D-17 — CO-PARENT DETECTION SCREEN
+   ============================================================ */
+.coparent-inner {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center; padding: 32px 28px; gap: 0;
+}
+.cp-avatar {
+  width: 72px; height: 72px; border-radius: 50%; margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 30px;
+  background: var(--brand-tint); color: var(--brand-strong);
+}
+.cp-card {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl); padding: 28px 24px;
+  box-shadow: var(--shadow-md); width: 100%;
+}
+.cp-card h1 {
+  font-family: var(--font-display); font-weight: 800; font-size: 27px;
+  line-height: 1.15; letter-spacing: -.02em; color: var(--fg1); margin-bottom: 12px;
+}
+.cp-card p { font-size: 15px; color: var(--fg2); line-height: 1.6; margin-bottom: 24px; }
+
+/* ============================================================
+   §4.11 — CO-PARENT ACCOUNT LINKING
+   ============================================================ */
+.status-badge.pending { background: var(--amber-100); color: var(--amber-600); }
+
+/* Avatar circle (initials) */
+.cp-ava {
+  border-radius: 50%; flex: none; display: flex; align-items: center;
+  justify-content: center; font-family: var(--font-display); font-weight: 800;
+  color: #fff; letter-spacing: -.01em;
+}
+
+/* Family Access — person rows */
+.fa-person {
+  display: flex; align-items: center; gap: 12px; padding: 13px 15px;
+  border-bottom: 1px solid var(--hairline);
+}
+.fa-person:last-child { border-bottom: none; }
+.fa-person-main { flex: 1; min-width: 0; }
+.fa-person-name { font-size: 15px; font-weight: 600; color: var(--fg1); display: flex; align-items: center; gap: 7px; }
+.fa-person-meta { font-size: 12.5px; color: var(--fg3); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.role-tag {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase;
+  padding: 2px 7px; border-radius: 999px; background: var(--paper-sunk); color: var(--fg3);
+}
+.role-tag.owner { background: var(--brand-tint); color: var(--brand-strong); }
+.fa-children-note {
+  display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--fg3);
+  padding: 0 4px;
+}
+.fa-children-note .cdot { width: 8px; height: 8px; }
+
+/* Pending / suggestion card */
+.fa-pending {
+  display: flex; align-items: center; gap: 12px; padding: 13px 15px;
+}
+.fa-cancel {
+  font-family: var(--font-text); font-size: 13px; font-weight: 600;
+  color: var(--red-600); background: none; border: none; cursor: pointer;
+  padding: 8px 4px; flex: none;
+}
+.fa-cancel:hover { text-decoration: underline; }
+.fa-invite-btn {
+  font-family: var(--font-text); font-size: 13px; font-weight: 700;
+  color: var(--brand-strong); background: var(--brand-tint); border: none;
+  border-radius: 999px; cursor: pointer; padding: 8px 16px; min-height: 38px; flex: none;
+}
+.fa-invite-btn:hover { background: var(--brand-tint-soft); }
+
+/* Co-parent banner (dismissable) */
+.cp-banner {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg); padding: 13px 14px; box-shadow: var(--shadow-sm);
+}
+.cp-banner-icon {
+  width: 36px; height: 36px; border-radius: var(--radius-sm); flex: none;
+  display: flex; align-items: center; justify-content: center;
+}
+.cp-banner-icon svg { width: 18px; height: 18px; }
+.cp-banner-main { flex: 1; min-width: 0; }
+.cp-banner-title { font-size: 14px; font-weight: 600; color: var(--fg1); }
+.cp-banner-sub { font-size: 12px; color: var(--fg3); margin-top: 1px; }
+.cp-banner-cta {
+  font-family: var(--font-text); font-size: 13px; font-weight: 700; color: var(--brand-strong);
+  background: var(--brand-tint); border: none; border-radius: 999px;
+  padding: 7px 14px; min-height: 36px; cursor: pointer; flex: none;
+}
+.cp-banner-cta:hover { background: var(--brand-tint-soft); }
+.cp-banner-x {
+  width: 30px; height: 30px; border-radius: 50%; flex: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; background: none; border: none; color: var(--fg3);
+}
+.cp-banner-x:hover { background: var(--surface-2); }
+.cp-banner-x svg { width: 15px; height: 15px; }
+
+/* Accept-flow — shared-with header strip */
+.invite-from {
+  display: flex; align-items: center; gap: 13px; padding: 16px;
+  background: var(--brand-tint-soft); border-radius: var(--radius-lg); margin-bottom: 4px;
+}
+.invite-from-main { flex: 1; min-width: 0; }
+.invite-from-name { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--fg1); }
+.invite-from-sub { font-size: 12.5px; color: var(--fg2); margin-top: 1px; }
+
+/* Scope list (what you'll see / can't change) */
+.scope-block { display: flex; flex-direction: column; gap: 9px; }
+.scope-title { font-size: 13px; font-weight: 700; color: var(--fg1); display: flex; align-items: center; gap: 7px; }
+.scope-title svg { width: 15px; height: 15px; }
+.scope-title.yes { color: var(--success); }
+.scope-title.no  { color: var(--fg3); }
+.scope-list { display: flex; flex-direction: column; gap: 7px; padding-left: 2px; }
+.scope-item { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: var(--fg2); line-height: 1.45; }
+.scope-item svg { flex: none; margin-top: 2px; width: 14px; height: 14px; }
+
+/* Acknowledge checkbox */
+.ack-row {
+  display: flex; align-items: flex-start; gap: 11px; padding: 13px 14px;
+  background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-md);
+  cursor: pointer; transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+.ack-row.on { border-color: var(--brand); background: var(--brand-tint-soft); }
+.ack-box {
+  width: 22px; height: 22px; border-radius: 6px; flex: none; margin-top: 1px;
+  border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center;
+  background: var(--surface); transition: all var(--dur-fast);
+}
+.ack-row.on .ack-box { background: var(--brand); border-color: var(--brand); }
+.ack-box svg { width: 14px; height: 14px; color: #fff; opacity: 0; }
+.ack-row.on .ack-box svg { opacity: 1; }
+.ack-text { font-size: 13.5px; color: var(--fg1); line-height: 1.5; }
+
+/* Children chips row (invite landing) */
+.kid-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.kid-chip {
+  display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px;
+  border-radius: 999px; font-size: 13px; font-weight: 600;
+  background: var(--surface); border: 1px solid var(--border-soft); color: var(--fg1);
+}
+.kid-chip .cdot { width: 9px; height: 9px; }
+
+/* ============================================================
+   SETUP PROMPT CARDS (first-login action prompts)
+   ============================================================ */
+.setup-card {
+  position: relative;
+  display: flex; align-items: center; gap: 12px;
+  background: var(--brand-tint-soft);
+  border: 1px solid var(--spruce-100);
+  border-radius: var(--radius-lg);
+  padding: 14px 36px 14px 14px;
+  box-shadow: var(--shadow-xs);
+}
+.setup-card-icon {
+  width: 38px; height: 38px; border-radius: var(--radius-sm); flex: none;
+  background: var(--brand-tint);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--brand-strong);
+}
+.setup-card-icon svg { width: 18px; height: 18px; }
+.setup-card-body { flex: 1; min-width: 0; }
+.setup-card-title { font-size: 14px; font-weight: 600; color: var(--fg1); }
+.setup-card-desc { font-size: 12.5px; color: var(--fg2); margin-top: 2px; line-height: 1.4; }
+.setup-card-cta {
+  flex: none;
+  font-family: var(--font-text); font-size: 12.5px; font-weight: 700;
+  background: var(--brand); color: var(--fg-on-brand);
+  border: none; border-radius: 999px;
+  padding: 8px 14px; min-height: 36px; cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--dur-fast);
+}
+.setup-card-cta:hover { background: var(--brand-strong); }
+.setup-card-dismiss {
+  position: absolute; top: 9px; right: 9px;
+  width: 24px; height: 24px; border-radius: 50%;
+  border: none; background: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--fg3);
+  transition: background var(--dur-fast);
+}
+.setup-card-dismiss:hover { background: var(--brand-tint); }
+.setup-card-dismiss svg { width: 13px; height: 13px; }
+
+/* Google OAuth button + OR divider */
+.btn-google-oauth {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 13px 16px;
+  font-family: var(--font-text); font-size: 15px; font-weight: 600;
+  background: var(--brand); color: var(--fg-on-brand);
+  border: none; border-radius: var(--radius-md); cursor: pointer;
+  min-height: 50px;
+  transition: background var(--dur-fast);
+}
+.btn-google-oauth:hover { background: var(--brand-strong); }
+.btn-google-oauth:active { background: var(--brand-press); }
+.or-divider {
+  display: flex; align-items: center; gap: 12px;
+  color: var(--fg3); font-size: 13px; font-weight: 500;
+  user-select: none;
+}
+.or-divider::before, .or-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+/* ============================================================
+   §4.12 — ADD CONTENT (email forwarding + document upload)
+   ============================================================ */
+.ac-upload-zone {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 28px 16px; width: 100%; cursor: pointer;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  font-family: var(--font-text);
+  transition: border-color var(--dur-fast), background var(--dur-fast), color var(--dur-fast);
+}
+.ac-upload-zone:hover { border-color: var(--brand); background: var(--brand-tint-soft); }
+.ac-upload-zone svg { width: 28px; height: 28px; color: var(--brand); margin-bottom: 2px; }
+
+.confidence-bar { height: 5px; background: var(--line); border-radius: 999px; overflow: hidden; margin: 14px 0; }
+.confidence-bar-fill { height: 100%; border-radius: 999px; background: var(--success); }
+
+.extract-row {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 9px 0; border-bottom: 1px solid var(--hairline);
+}
+.extract-row:last-child { border-bottom: none; }
+.extract-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--fg3); min-width: 70px; flex: none;
+}
+.extract-value { font-size: 14px; color: var(--fg1); }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- CDN dependencies -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<script type="text/babel">
+
+
+
+const { useState, useEffect, useRef, useCallback } = React;
+
+/* ============================================================
+   TWEAKS — expressive controls that reshape the whole feel
+   by overriding raw design tokens (brand ramp, material, atmosphere).
+   ============================================================ */
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "brand": [
+    "#EA4073",
+    "#AA1A40",
+    "#F5AABF",
+    "#FDDCE8"
+  ],
+  "material": "balanced",
+  "atmosphere": "neutral"
+}/*EDITMODE-END*/;
+
+// Each option maps a brand hex (the 600) to a full evergreen-style ramp.
+// The app already derives --brand/--brand-tint/--focus from --spruce-*,
+// so swapping these seven shades recolors the entire product.
+const BRAND_OPTIONS = [
+['#EA4073', '#AA1A40', '#F5AABF', '#FDDCE8'], // Pink      — default
+['#EA8246', '#B84F12', '#F5C49A', '#FDE9D6'], // Tangerine — warm energy
+['#EAB42E', '#9A7210', '#F6E099', '#FBF0CC'], // Gold      — deadline signals
+['#8AC2E5', '#3076A8', '#C8E4F4', '#E8F4FB'], // Sky       — accent / logo
+];
+const BRAND_RAMPS = {
+  '#EA4073': { s900: '#5A0A1E', s700: '#AA1A40', s600: '#EA4073', s500: '#EE6090', s300: '#F5AABF', s100: '#FDDCE8', s050: '#FEF0F5' },
+  '#EA8246': { s900: '#5C2100', s700: '#B84F12', s600: '#EA8246', s500: '#EF9A69', s300: '#F5C49A', s100: '#FDE9D6', s050: '#FEF4EC' },
+  '#EAB42E': { s900: '#4A3100', s700: '#9A7210', s600: '#EAB42E', s500: '#EFC04E', s300: '#F6E099', s100: '#FBF0CC', s050: '#FEF8E8' },
+  '#8AC2E5': { s900: '#0F2A3D', s700: '#3076A8', s600: '#8AC2E5', s500: '#A3CEEA', s300: '#C8E4F4', s100: '#E8F4FB', s050: '#F3F9FD' },
+};
+
+const MATERIAL = {
+  pillowy: {
+    '--radius-xs': '10px', '--radius-sm': '14px', '--radius-md': '20px', '--radius-lg': '26px', '--radius-xl': '34px',
+    '--shadow-xs': '0 1px 3px rgba(27,36,31,.06)',
+    '--shadow-sm': '0 2px 6px rgba(27,36,31,.06), 0 8px 18px rgba(27,36,31,.07)',
+    '--shadow-md': '0 5px 14px rgba(27,36,31,.07), 0 18px 40px rgba(27,36,31,.11)',
+    '--shadow-lg': '0 12px 30px rgba(27,36,31,.12), 0 36px 70px rgba(27,36,31,.18)'
+  },
+  balanced: {
+    '--radius-xs': '6px', '--radius-sm': '10px', '--radius-md': '14px', '--radius-lg': '18px', '--radius-xl': '24px',
+    '--shadow-xs': '0 1px 2px rgba(27,36,31,.05)',
+    '--shadow-sm': '0 1px 2px rgba(27,36,31,.05), 0 2px 6px rgba(27,36,31,.05)',
+    '--shadow-md': '0 2px 4px rgba(27,36,31,.05), 0 8px 20px rgba(27,36,31,.07)',
+    '--shadow-lg': '0 6px 16px rgba(27,36,31,.08), 0 24px 48px rgba(27,36,31,.12)'
+  },
+  sharp: {
+    '--radius-xs': '2px', '--radius-sm': '4px', '--radius-md': '6px', '--radius-lg': '8px', '--radius-xl': '12px',
+    '--shadow-xs': '0 1px 1px rgba(27,36,31,.04)',
+    '--shadow-sm': '0 1px 2px rgba(27,36,31,.06)',
+    '--shadow-md': '0 2px 5px rgba(27,36,31,.07)',
+    '--shadow-lg': '0 5px 14px rgba(27,36,31,.10)'
+  }
+};
+
+const ATMOS = {
+  warm: {
+    body: '#E9E4DA',
+    '--paper': '#F6F3EC', '--paper-sunk': '#EFEBE1', '--surface': '#FFFFFF', '--surface-2': '#FBF9F4',
+    '--line-strong': '#DAD4C8', '--line': '#E6E1D6', '--line-soft': '#EFEBE1',
+    '--ink-900': '#1B241F', '--ink-700': '#3A453E', '--ink-500': '#5E6862', '--ink-400': '#828B85', '--ink-300': '#AEB4AE'
+  },
+  neutral: {
+    body: '#E7E5E0',
+    '--paper': '#F3F2EF', '--paper-sunk': '#E9E7E2', '--surface': '#FFFFFF', '--surface-2': '#FAFAF8',
+    '--line-strong': '#D8D6CF', '--line': '#E7E5DF', '--line-soft': '#F0EEE9',
+    '--ink-900': '#1E211F', '--ink-700': '#3E423F', '--ink-500': '#60635F', '--ink-400': '#8A8C88', '--ink-300': '#B2B3AF'
+  },
+  cool: {
+    body: '#DFE6E7',
+    '--paper': '#EEF2F3', '--paper-sunk': '#E3EAEC', '--surface': '#FFFFFF', '--surface-2': '#F6FAFA',
+    '--line-strong': '#CFD8DA', '--line': '#DFE7E8', '--line-soft': '#EAF0F1',
+    '--ink-900': '#172123', '--ink-700': '#344244', '--ink-500': '#586468', '--ink-400': '#84908F', '--ink-300': '#AAB4B4'
+  }
+};
+
+function applyTweaks(t) {
+  const root = document.documentElement;
+  const brandKey = (t.brand && t.brand[0]) || '#EA4073';
+  const ramp = BRAND_RAMPS[brandKey] || BRAND_RAMPS['#EA4073'];
+  const brandMap = {
+    '--spruce-900': ramp.s900, '--spruce-700': ramp.s700, '--spruce-600': ramp.s600,
+    '--spruce-500': ramp.s500, '--spruce-300': ramp.s300, '--spruce-100': ramp.s100, '--spruce-050': ramp.s050
+  };
+  const mat = MATERIAL[t.material] || MATERIAL.balanced;
+  const atm = ATMOS[t.atmosphere] || ATMOS.warm;
+  [brandMap, mat, atm].forEach((obj) => {
+    Object.entries(obj).forEach(([k, v]) => {if (k !== 'body') root.style.setProperty(k, v);});
+  });
+  // Sky is a light color — flip fg-on-brand to dark so text stays legible
+  const fgOnBrand = brandKey === '#8AC2E5' ? '#1A3D52' : '#FFFFFF';
+  root.style.setProperty('--fg-on-brand', fgOnBrand);
+  document.body.style.background = atm.body;
+}
+
+/* ============================================================
+   SAMPLE DATA
+   ============================================================ */
+const CHILDREN = [
+{ id: 'emma', name: 'Emma', color: 'var(--child-1)', tint: 'var(--child-1-tint)' },
+{ id: 'noah', name: 'Noah', color: 'var(--child-2)', tint: 'var(--child-2-tint)' },
+{ id: 'mia', name: 'Mia', color: 'var(--child-3)', tint: 'var(--child-3-tint)' }];
+
+/* §4.11 — co-parent identities */
+const PRIMARY_PARENT = { name: 'Sarah Reyes', first: 'Sarah', email: 'sarah@gmail.com', initials: 'S', color: 'var(--child-1)' };
+const DETECTED_COPARENT = { name: 'Michael Reyes', first: 'Michael', email: 'michael.reyes@gmail.com', initials: 'M', color: 'var(--child-4)', appearances: 4 };
+
+
+const DIGEST_ITEMS = [
+{
+  id: 'r1', section: 'review', type: 'review', timeframe: 'today',
+  childName: 'Leo', childColor: 'var(--child-4)', childTint: 'var(--child-4-tint)',
+  source: 'Lincoln Middle School', icon: 'music',
+  title: "We weren't sure about the date — check the original.",
+  summary: "Mr. Alvarez mentions a spring band concert, but the day wasn't clear.",
+  email: { from: 'r.alvarez@lincolnms.edu', subject: 'Spring concert — save the date!',
+    body: "Families, we're excited for our spring band concert! It'll be in the auditorium — doors at 6:30, music at 7. We're finalizing between <mark>Thursday and Friday</mark> next week and will confirm soon." }
+},
+{
+  id: 'pd1', section: 'deadline', type: 'pastdue', timeframe: 'today', pastdue: true, pastdueDate: 'May 28',
+  childName: 'Noah', childColor: 'var(--child-2)', childTint: 'var(--child-2-tint)',
+  source: 'Lincoln Middle School', icon: 'file-text',
+  title: 'Permission slip for the spring field trip.',
+  summary: 'From your 30-day inbox history. This due date has already passed.',
+  email: { from: 'office@lincolnms.edu', subject: 'Reminder: field trip permission slip',
+    body: "Just a reminder that the signed permission slip for the spring field trip was due <mark>May 28</mark>. Please return it as soon as possible if you haven't already." }
+},
+{
+  id: 'u1', section: 'urgent', type: 'deadline', urgency: 'urgent', timeframe: 'today',
+  childName: 'Emma', childColor: 'var(--child-1)', childTint: 'var(--child-1-tint)',
+  source: 'Lincoln Middle School', icon: 'graduation-cap',
+  title: 'Permission slip for the science museum trip is due tomorrow.',
+  summary: 'Needs your signature and the $12 fee before Friday. The trip is Monday, June 1.',
+  email: { from: 'office@lincolnms.edu', subject: 'ACTION NEEDED: Field trip permission + payment',
+    body: "Dear parents, the 6th grade science museum trip is <mark>Monday, June 1</mark>. Please return the signed permission slip and <mark>$12</mark> fee by <mark>Friday</mark>. Students without a slip cannot attend." }
+},
+{
+  id: 'u2', section: 'urgent', type: 'payment', urgency: 'urgent', timeframe: 'today',
+  childName: 'Noah', childColor: 'var(--child-2)', childTint: 'var(--child-2-tint)',
+  source: 'Riverside Soccer Club', icon: 'circle-dot',
+  title: 'Spring season registration fee is overdue.',
+  summary: "$85 was due last week to hold Noah's spot on the U10 team.",
+  email: { from: 'register@riversidesoccer.org', subject: 'Final reminder: spring registration',
+    body: "This is a final reminder that the <mark>$85</mark> spring registration fee was due <mark>May 22</mark>. Players with unpaid fees will be moved to the waitlist." }
+},
+{
+  id: 'e1', section: 'events', type: 'event-ask', urgency: 'soon', ask: true, timeframe: 'week',
+  childName: 'Leo', childColor: 'var(--child-4)', childTint: 'var(--child-4-tint)',
+  source: 'Lincoln Middle School', icon: 'music',
+  proposed: { month: 'JUN', day: '06', title: 'Spring band concert · Leo', meta: 'Fri · drop-off 6:30 PM · starts 7:00 PM', place: 'Lincoln Middle School auditorium' }
+},
+{
+  id: 'e2', section: 'events', type: 'event', urgency: 'soon', changed: true, timeframe: 'week',
+  childName: 'Noah', childColor: 'var(--child-2)', childTint: 'var(--child-2-tint)',
+  source: 'Riverside Soccer Club', icon: 'circle-dot',
+  title: 'Practice moved this week.',
+  summary: 'Same time and field — just a different day because of the forecast.',
+  diff: { old: 'Thu', new: 'Fri 4:00 PM' },
+  conflict: "Overlaps with Emma's chess club (Fri 4:00 PM)",
+  email: { from: 'coach.dana@riversidesoccer.org', subject: 'Practice change this week',
+    body: "Hi families — because of rain in the forecast, we're moving this week's practice from <mark>Thursday to Friday</mark>, same time (4pm) and field. See you there!" }
+},
+{
+  id: 'e3', section: 'events', type: 'event', urgency: 'info', added: true, timeframe: 'week',
+  childName: 'Mia', childColor: 'var(--child-3)', childTint: 'var(--child-3-tint)',
+  source: 'Maple Street Music', icon: 'music-2',
+  title: 'Piano lesson with Ms. Reyes, Wednesday 5pm.',
+  summary: 'Added to your calendar automatically with a 1-day reminder.',
+  email: { from: 'studio@maplestreetmusic.com', subject: 'Lesson confirmation',
+    body: "Confirming Mia's weekly piano lesson, <mark>Wednesdays at 5:00 PM</mark>, starting this week. Please arrive 5 minutes early." }
+},
+{
+  id: 'd1', section: 'deadlines', type: 'deadline', urgency: 'soon', timeframe: 'week',
+  childName: 'Emma', childColor: 'var(--child-1)', childTint: 'var(--child-1-tint)',
+  source: 'Lincoln Middle School', icon: 'book-open',
+  title: 'Reading log is due next Monday.',
+  summary: '15 minutes a night, signed and returned. Counts toward this quarter.',
+  email: { from: 'k.boyd@lincolnms.edu', subject: 'Weekly reading log',
+    body: "Reminder that the reading log is due <mark>Monday</mark>. Students should read 15 minutes nightly and parents initial each day." }
+},
+{
+  id: 'g1', section: 'info', type: 'info', urgency: 'info', timeframe: 'month',
+  childName: 'Mia', childColor: 'var(--child-3)', childTint: 'var(--child-3-tint)',
+  source: 'PTA Newsletter', icon: 'newspaper',
+  title: 'The spring book fair raised $2,400 for the library.',
+  summary: 'Thanks to everyone who volunteered. No action needed.',
+  email: { from: 'pta@lincolnms.edu', subject: 'Book fair recap',
+    body: "What a week! Thanks to our amazing volunteers, the spring book fair raised <mark>$2,400</mark> for new library books. No action needed — just a thank you!" }
+}];
+
+
+const ACTIONS = {
+  event: { primary: { label: 'Add to calendar', icon: 'calendar-plus' }, secondary: { label: 'View original', icon: 'mail' } },
+  deadline: { primary: { label: 'View & act', icon: 'pen-line' }, secondary: { label: 'Mark handled', icon: 'check' } },
+  payment: { primary: { label: 'View & pay', icon: 'credit-card' }, secondary: { label: 'Mark handled', icon: 'check' } },
+  info: { primary: { label: 'Mark handled', icon: 'check' }, secondary: { label: 'View original', icon: 'mail' } },
+  review: { primary: { label: 'Review', icon: 'search' }, secondary: { label: 'View original', icon: 'mail' } }
+};
+
+// June 2026 calendar data
+const JUNE_EVENTS = [
+{ day: 1, child: 'emma', color: 'var(--child-1)', tint: 'var(--child-1-tint)', label: 'Museum trip', skoolit: true },
+{ day: 4, child: 'mia', color: 'var(--child-3)', tint: 'var(--child-3-tint)', label: 'Piano 5pm' },
+{ day: 5, child: 'noah', color: 'var(--child-2)', tint: 'var(--child-2-tint)', label: 'Soccer practice', skoolit: true },
+{ day: 6, child: 'leo', color: 'var(--child-4)', tint: 'var(--child-4-tint)', label: 'Band concert 7pm', skoolit: true },
+{ day: 9, child: 'noah', color: 'var(--child-2)', tint: 'var(--child-2-tint)', label: 'Reading log due', skoolit: true },
+{ day: 11, child: 'mia', color: 'var(--child-3)', tint: 'var(--child-3-tint)', label: 'Piano 5pm' },
+{ day: 12, child: 'emma', color: 'var(--child-1)', tint: 'var(--child-1-tint)', label: 'Science fair' },
+{ day: 14, child: 'noah', color: 'var(--child-2)', tint: 'var(--child-2-tint)', label: 'Game vs. Oakdale', skoolit: true },
+{ day: 18, child: 'mia', color: 'var(--child-3)', tint: 'var(--child-3-tint)', label: 'Piano 5pm' },
+{ day: 20, child: 'emma', color: 'var(--child-1)', tint: 'var(--child-1-tint)', label: "Parent-teacher conf", skoolit: true },
+{ day: 25, child: 'mia', color: 'var(--child-3)', tint: 'var(--child-3-tint)', label: 'Piano 5pm' },
+{ day: 27, child: 'noah', color: 'var(--child-2)', tint: 'var(--child-2-tint)', label: 'Soccer practice', skoolit: true }];
+
+
+/* ============================================================
+   ICON COMPONENT
+   ============================================================ */
+function Icon({ name, size = 16, style = {} }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (ref.current && window.lucide) {
+      ref.current.innerHTML = '';
+      const el = document.createElement('i');
+      el.setAttribute('data-lucide', name);
+      ref.current.appendChild(el);
+      try {
+        window.lucide.createIcons({ nameAttr: 'data-lucide' });
+      } catch (e) {}
+    }
+  }, [name]);
+  return (
+    <span ref={ref} style={{ display: 'inline-flex', width: size, height: size, flexShrink: 0, ...style }} />);
+
+}
+
+/* ============================================================
+   STATUS BAR
+   ============================================================ */
+function StatusBar() {
+  return (
+    <div className="statusbar">
+      <span>9:41</span>
+      <div className="notch" />
+      <div className="si">
+        <Icon name="signal" size={14} />
+        <Icon name="wifi" size={14} />
+        <Icon name="battery" size={14} />
+      </div>
+    </div>);
+
+}
+
+/* ============================================================
+   CHILD CHIP
+   ============================================================ */
+function ChildChip({ name, color, tint }) {
+  return (
+    <span className="chip" style={{ background: tint, color }}>
+      <span className="cdot" style={{ background: color }} />
+      {name}
+    </span>);
+
+}
+
+/* ============================================================
+   URGENCY BADGE
+   ============================================================ */
+function UrgencyBadge({ urgency, changed, added }) {
+  if (added) return <span className="badge added"><Icon name="check" size={11} />Added</span>;
+  if (changed) return <span className="badge changed"><Icon name="repeat" size={11} />Rescheduled</span>;
+  if (urgency === 'urgent') return <span className="badge urgent"><Icon name="alert-triangle" size={11} />Urgent</span>;
+  if (urgency === 'soon') return <span className="badge soon">Soon</span>;
+  return null;
+}
+
+/* ============================================================
+   ASK TO CREATE CARD
+   ============================================================ */
+function AskToCreate({ item, onAdd }) {
+  const p = item.proposed;
+  return (
+    <div className="propose">
+      <div className="propose-title">
+        <Icon name="sparkles" size={13} />
+        Add this to your calendar?
+      </div>
+      <div className="evrow">
+        <div className="calchip">
+          <div className="cm">{p.month}</div>
+          <div className="cd">{p.day}</div>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 3, minWidth: 0 }}>
+          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--fg1)' }}>{p.title}</div>
+          <div className="ev-meta">{p.meta}</div>
+          <div className="ev-meta" style={{ color: 'var(--fg3)' }}>{p.place}</div>
+        </div>
+      </div>
+      <div className="actions" style={{ marginTop: 12 }}>
+        <button className="btn btn-primary block" onClick={() => onAdd(item)}>
+          <Icon name="check" size={14} />Add to calendar
+        </button>
+        <button className="btn btn-secondary" onClick={() => {}}>Not this one</button>
+      </div>
+    </div>);
+
+}
+
+/* ============================================================
+   DIGEST ITEM CARD
+   ============================================================ */
+function DigestItem({ item, onOpen, onResolve, onAdd, flagged, onFlag }) {
+  if (item.ask) return <AskToCreate item={item} onAdd={onAdd} />;
+
+  if (item.pastdue) {
+    return (
+      <div
+        className="card pastdue"
+        onClick={() => onOpen(item)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === 'Enter' && onOpen(item)}
+        aria-label={item.title}>
+        <div className="pd-eyebrow">
+          <Icon name="history" size={12} />
+          Past due · {item.pastdueDate}
+        </div>
+        <div className="card-top">
+          <div className="src">
+            <Icon name={item.icon} size={13} />
+            <span>{item.source}</span>
+          </div>
+          <ChildChip name={item.childName} color={item.childColor} tint={item.childTint} />
+        </div>
+        <h3>{item.title}</h3>
+        <div className="summary" style={{ color: 'var(--fg3)' }}>May already be handled — mark it if so.</div>
+        <div className="actions" onClick={(e) => e.stopPropagation()}>
+          <button className="btn btn-primary" onClick={() => onResolve(item)}>
+            <Icon name="check" size={14} />Mark handled
+          </button>
+          <button className="btn btn-secondary" onClick={() => onOpen(item)}>View original</button>
+        </div>
+      </div>);
+  }
+
+  const isReview = item.type === 'review';
+  const cfg = ACTIONS[item.type] || ACTIONS.info;
+
+  return (
+    <div
+      className={'card' + (isReview ? ' review' : '')}
+      data-urg={!isReview ? item.urgency : undefined}
+      onClick={() => onOpen(item)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && onOpen(item)}
+      aria-label={item.title || 'Review item'}>
+      
+      {isReview &&
+      <div className="rlabel">
+          <Icon name="help-circle" size={12} />
+          Needs review
+        </div>
+      }
+      <div className="card-top">
+        <div className="src">
+          <Icon name={item.icon} size={13} />
+          <span>{item.source}</span>
+        </div>
+        <div className="tags">
+          <UrgencyBadge urgency={item.urgency} changed={item.changed} added={item.added} />
+          <ChildChip name={item.childName} color={item.childColor} tint={item.childTint} />
+        </div>
+      </div>
+      <h3>{item.title}</h3>
+      {item.summary && <div className="summary">{item.summary}</div>}
+      {item.diff &&
+      <div className="diff">
+          <span className="old">{item.diff.old}</span>
+          <Icon name="arrow-right" size={12} />
+          <span className="new">{item.diff.new}</span>
+        </div>
+      }
+      {item.conflict &&
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 6,
+        background: 'var(--amber-050)', border: '1px solid var(--amber-100)',
+        borderRadius: 'var(--radius-xs)', padding: '6px 10px',
+        fontSize: 12, color: 'var(--amber-600)', marginTop: 9, fontWeight: 500
+      }}>
+          <Icon name="alert-triangle" size={12} />
+          <span>Conflict: {item.conflict}</span>
+        </div>
+      }
+      <div className="actions" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="btn btn-primary"
+          onClick={() => item.type === 'info' ? onResolve(item) : onOpen(item)}>
+          
+          <Icon name={cfg.primary.icon} size={14} />
+          {cfg.primary.label}
+        </button>
+        <button
+          className="btn btn-secondary"
+          onClick={() => cfg.secondary.label.startsWith('Mark') ? onResolve(item) : onOpen(item)}>
+          
+          {cfg.secondary.label}
+        </button>
+        <button
+          className="btn btn-secondary"
+          style={{
+            minWidth: 40, padding: '0 11px', flex: 'none',
+            color: flagged && flagged.has(item.id) ? 'var(--amber-600)' : 'var(--fg3)',
+            background: flagged && flagged.has(item.id) ? 'var(--amber-050)' : 'transparent',
+            borderColor: flagged && flagged.has(item.id) ? 'var(--amber-100)' : 'var(--border-soft)'
+          }}
+          onClick={() => onFlag && onFlag(item)}
+          aria-label="Flag for review"
+          title="Something's wrong — flag for review">
+          
+          <Icon name="thumbs-down" size={14} />
+        </button>
+      </div>
+      {flagged && flagged.has(item.id) &&
+      <div style={{ fontSize: 11, color: 'var(--fg3)', marginTop: 8, display: 'flex', alignItems: 'center', gap: 5 }}>
+          <Icon name="flag" size={10} /> Flagged for review — Skoolit will take another look.
+        </div>
+      }
+    </div>);
+
+}
+
+/* ============================================================
+   DETAIL SHEET
+   ============================================================ */
+function DetailSheet({ item, onClose, onResolve }) {
+  if (!item) return null;
+  const e = item.email || {};
+  const cfg = ACTIONS[item.type] || ACTIONS.info;
+  return (
+    <div className="sheet-scrim" onClick={onClose}>
+      <div className="sheet" onClick={(ev) => ev.stopPropagation()} role="dialog" aria-label={item.title}>
+        <div className="grabber" />
+        <div className="card-top" style={{ marginBottom: 12 }}>
+          <div className="src"><Icon name={item.icon} size={13} /><span>{item.source}</span></div>
+          <ChildChip name={item.childName} color={item.childColor} tint={item.childTint} />
+        </div>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 21, fontWeight: 700, lineHeight: 1.25, marginBottom: 8 }}>{item.title}</h2>
+        {item.summary && <p style={{ fontSize: 14, color: 'var(--fg2)', lineHeight: 1.55 }}>{item.summary}</p>}
+
+        {e.from &&
+        <div className="email-view">
+            <div className="email-from">
+              <Icon name="mail" size={13} />{e.from}
+            </div>
+            <div className="email-subject">{e.subject}</div>
+            <div className="email-body" dangerouslySetInnerHTML={{ __html: e.body || '' }} />
+          </div>
+        }
+        <div className="transparency-note">
+          <Icon name="shield-check" size={12} />
+          This is the original email behind this item. Nothing happens in a black box.
+        </div>
+
+        <div className="actions" style={{ marginTop: 18 }}>
+          <button className="btn btn-primary block" onClick={() => {onResolve(item);onClose();}}>
+            <Icon name={cfg.primary.icon} size={14} />{cfg.primary.label}
+          </button>
+          <button className="btn btn-secondary" onClick={onClose}>Close</button>
+        </div>
+      </div>
+    </div>);
+
+}
+
+/* ============================================================
+   UNDO TOAST
+   ============================================================ */
+function UndoToast({ msg, onUndo, onDismiss }) {
+  useEffect(() => {
+    const t = setTimeout(onDismiss, 10000);
+    return () => clearTimeout(t);
+  }, []);
+  return (
+    <div className="toast">
+      <div className="toast-msg">
+        <Icon name="calendar-check" size={15} />
+        {msg}
+      </div>
+      <button onClick={onUndo}>Undo</button>
+    </div>);
+
+}
+
+/* ============================================================
+   APP HEADER
+   ============================================================ */
+function AppHeader({ filter, setFilter, view = 'home' }) {
+  return (
+    <div className="appheader">
+      <div className="appheader-row">
+        <div className="brand">
+          <img src="assets/logomark.svg" alt="" />
+          <span className="brand-name">Skoolit</span>
+        </div>
+        <button className="iconbtn" aria-label="Notifications">
+          <Icon name="bell" size={20} />
+          <span className="ping" />
+        </button>
+      </div>
+      {view === 'home' && <div className="filters-wrap">
+        <div className="filters" role="tablist" aria-label="Filter by child" data-comment-anchor="4a2290d0e0-div-504-9">
+          <button
+            className={'fchip' + (filter === 'all' ? ' active' : '')}
+            onClick={() => setFilter('all')}
+            role="tab"
+            aria-selected={filter === 'all'}>
+            All children</button>
+          {CHILDREN.map((c) =>
+          <button
+            key={c.id}
+            className={'fchip' + (filter === c.id ? ' active' : '')}
+            onClick={() => setFilter(c.id)}
+            role="tab"
+            aria-selected={filter === c.id}>
+            
+              <span className="cdot" style={{ background: c.color }} />
+              {c.name}
+            </button>
+          )}
+        </div>
+      </div>}
+    </div>);
+
+}
+
+/* ============================================================
+   BOTTOM NAV
+   ============================================================ */
+function BottomNav({ view, setView }) {
+  const items = [
+  { id: 'calendar', icon: 'calendar-days', label: 'Calendar' },
+  { id: 'home',     icon: 'house',         label: 'Home', pill: true },
+  { id: 'settings', icon: 'settings',      label: 'Settings' }];
+
+  return (
+    <nav className="bottomnav">
+      {items.map((it) =>
+      <button
+        key={it.id}
+        className={'navitem' + (it.pill ? ' home-pill' : '') + (view === it.id ? ' active' : '')}
+        onClick={() => setView(it.id)}
+        aria-label={it.label}>
+        
+          <Icon name={it.icon} size={it.pill ? 20 : 22} />
+          {it.label}
+        </button>
+      )}
+    </nav>);
+
+}
+
+/* ============================================================
+   FEEDBACK REPAIR SHEET (D-13)
+   ============================================================ */
+function FeedbackSheet({ item, onClose, onDone }) {
+  const [choice, setChoice] = useState(null); // 'child' | 'date' | 'remove'
+  const [childPick, setChildPick] = useState(null);
+  const [dateVal, setDateVal] = useState('');
+  const [text, setText] = useState('');
+  if (!item) return null;
+
+  return (
+    <div className="sheet-scrim" onClick={onClose}>
+      <div className="sheet" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label="What's wrong with this item?">
+        <div className="grabber" />
+        <div className="fb-q">What's wrong with this item?</div>
+        <div className="fb-pills">
+          <button className={'fb-pill' + (choice === 'child' ? ' sel-child' : '')} aria-pressed={choice === 'child'} onClick={() => setChoice('child')}>Wrong child</button>
+          <button className={'fb-pill' + (choice === 'date' ? ' sel-date' : '')} aria-pressed={choice === 'date'} onClick={() => setChoice('date')}>Wrong date / amount</button>
+          <button className={'fb-pill' + (choice === 'remove' ? ' sel-remove' : '')} aria-pressed={choice === 'remove'} onClick={() => setChoice('remove')}>Shouldn't be here</button>
+        </div>
+
+        {choice === 'child' &&
+        <>
+            <div className="fb-sublabel">Which child is this for?</div>
+            <div className="fb-childpick">
+              {CHILDREN.map((c) =>
+            <button key={c.id} className="chip"
+            style={{ background: childPick === c.id ? c.tint : 'var(--surface)', color: c.color, cursor: 'pointer', padding: '9px 13px', minHeight: 'var(--tap-min)', border: '1.5px solid ' + (childPick === c.id ? c.color : 'var(--border)') }}
+            aria-pressed={childPick === c.id} onClick={() => setChildPick(c.id)}>
+                  <span className="cdot" style={{ background: c.color }} />{c.name}
+                </button>
+            )}
+            </div>
+          </>
+        }
+        {choice === 'date' &&
+        <>
+            <div className="fb-sublabel">What's the right date or amount?</div>
+            <input className="form-input" placeholder="e.g. Fri, Jun 6 at 4pm — or $12"
+          value={dateVal} onChange={(e) => setDateVal(e.target.value)} />
+          </>
+        }
+
+        <div className="fb-sublabel">Or describe it <span style={{ fontWeight: 400, color: 'var(--fg3)' }}>(optional)</span></div>
+        <textarea className="fb-textarea" placeholder="Tell Skoolit what to fix…" value={text} onChange={(e) => setText(e.target.value)} />
+
+        <div className="actions" style={{ marginTop: 18 }}>
+          <button className="btn btn-primary block" disabled={!choice} onClick={() => onDone(item)}>Done</button>
+        </div>
+      </div>
+    </div>);
+}
+
+/* ============================================================
+   DIGEST VIEW
+   ============================================================ */
+function DigestView({ filter, onOpen, handled, onResolve, onAdd, toast, onUndoToast, coParent, firstLogin = false, onGoToSources }) {
+  const [collapsed, setCollapsed] = useState({ week: true, month: true });
+  const [flagged, setFlagged] = useState(new Set());
+  const [banners, setBanners] = useState({ calendar: true, inbox: true });
+  const [feedbackItem, setFeedbackItem] = useState(null);
+  const [dismissedCards, setDismissedCards] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('skoolit-setup-dismissed') || '{}'); }
+    catch(e) { return {}; }
+  });
+  const dismissCard = (key) => {
+    const next = { ...dismissedCards, [key]: true };
+    setDismissedCards(next);
+    try { localStorage.setItem('skoolit-setup-dismissed', JSON.stringify(next)); } catch(e) {}
+  };
+  const onFlag = (item) => setFeedbackItem(item);
+  const onFeedbackDone = (item) => {
+    setFlagged((prev) => new Set([...prev, item.id]));
+    setFeedbackItem(null);
+  };
+
+  const visible = (id) => {
+    if (handled.has(id)) return false;
+    if (filter === 'all') return true;
+    const item = DIGEST_ITEMS.find((d) => d.id === id);
+    return item && item.childName.toLowerCase() === filter;
+  };
+
+  const sections = [
+  { key: 'today', label: 'Today', sublabel: 'Mon, Jun 1', items: DIGEST_ITEMS.filter((d) => d.timeframe === 'today' && visible(d.id)) },
+  { key: 'week', label: 'This week', sublabel: 'Jun 2 – Jun 7', items: DIGEST_ITEMS.filter((d) => d.timeframe === 'week' && visible(d.id)) },
+  { key: 'month', label: 'This month', sublabel: 'June 2026', items: DIGEST_ITEMS.filter((d) => d.timeframe === 'month' && visible(d.id)) }].
+  filter((s) => s.items.length > 0);
+
+  const totalActions = (sections.find((s) => s.key === 'today') || { items: [] }).items.length;
+
+  if (sections.length === 0) {
+    return (
+      <div className="digest">
+        <div className="allclear">
+          <div className="glyph"><Icon name="check" size={26} /></div>
+          <h2>All clear for today.</h2>
+          <p>Nothing needs your attention right now. Skoolit is still watching.</p>
+        </div>
+        {toast && <UndoToast msg={toast.msg} onUndo={toast.onUndo} onDismiss={onUndoToast} />}
+      </div>);
+
+  }
+
+  return (
+    <div className="digest">
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+        <div>
+          <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20 }}>Monday, June 1</div>
+          {totalActions > 0 &&
+          <div style={{ fontSize: 13, color: 'var(--fg2)', marginTop: 3 }}>
+              {totalActions} thing{totalActions !== 1 ? 's' : ''} need{totalActions === 1 ? 's' : ''} your attention today
+            </div>
+          }
+        </div>
+      </div>
+
+      {firstLogin && (!dismissedCards.coparent || !dismissedCards.senders) && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {!dismissedCards.coparent && (
+            <div className="setup-card">
+              <button className="setup-card-dismiss" aria-label="Dismiss" onClick={() => dismissCard('coparent')}>
+                <Icon name="x" size={13} />
+              </button>
+              <div className="setup-card-icon"><Icon name="user-plus" size={18} /></div>
+              <div className="setup-card-body">
+                <div className="setup-card-title">Invite your co-parent</div>
+                <div className="setup-card-desc">Stay in sync — share school updates with a co-parent or caregiver.</div>
+              </div>
+              <button className="setup-card-cta">Send Invite</button>
+            </div>
+          )}
+          {!dismissedCards.senders && (
+            <div className="setup-card">
+              <button className="setup-card-dismiss" aria-label="Dismiss" onClick={() => dismissCard('senders')}>
+                <Icon name="x" size={13} />
+              </button>
+              <div className="setup-card-icon"><Icon name="inbox" size={18} /></div>
+              <div className="setup-card-body">
+                <div className="setup-card-title">Review your school senders</div>
+                <div className="setup-card-desc">We scanned your inbox. Confirm the schools and senders we found.</div>
+              </div>
+              <button className="setup-card-cta" onClick={onGoToSources}>Review Now</button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {coParent && (banners.calendar || banners.inbox) &&
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {banners.calendar &&
+        <div className="cp-banner">
+            <div className="cp-banner-icon" style={{ background: 'var(--brand-tint)', color: 'var(--brand)' }}><Icon name="calendar-days" size={18} /></div>
+            <div className="cp-banner-main">
+              <div className="cp-banner-title">Connect your calendar</div>
+              <div className="cp-banner-sub">Add events to your own calendar too.</div>
+            </div>
+            <button className="cp-banner-cta">Connect</button>
+            <button className="cp-banner-x" aria-label="Dismiss" onClick={() => setBanners((b) => ({ ...b, calendar: false }))}><Icon name="x" size={15} /></button>
+          </div>
+        }
+          {banners.inbox &&
+        <div className="cp-banner">
+            <div className="cp-banner-icon" style={{ background: 'var(--success-tint)', color: 'var(--success)' }}><Icon name="mail" size={18} /></div>
+            <div className="cp-banner-main">
+              <div className="cp-banner-title">Connect your inbox</div>
+              <div className="cp-banner-sub">Catch emails sent only to you — no duplicates.</div>
+            </div>
+            <button className="cp-banner-cta">Connect</button>
+            <button className="cp-banner-x" aria-label="Dismiss" onClick={() => setBanners((b) => ({ ...b, inbox: false }))}><Icon name="x" size={15} /></button>
+          </div>
+        }
+        </div>
+      }
+
+      {sections.map((section) => {
+        const isCollapsed = collapsed[section.key];
+        return (
+          <div key={section.key}>
+            <div className="section-head"
+            style={{ cursor: 'pointer' }}
+            onClick={() => setCollapsed((c) => ({ ...c, [section.key]: !c[section.key] }))}>
+              
+              <span style={{ display: 'flex', alignItems: 'baseline', gap: 7 }}>
+                <span className="section-label">{section.label}</span>
+                {section.sublabel &&
+                <span style={{ fontSize: 11, color: 'var(--fg3)', fontWeight: 500 }}>{section.sublabel}</span>
+                }
+              </span>
+              <span className="section-count" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                {section.items.length}
+                <Icon name={isCollapsed ? 'chevron-down' : 'chevron-up'} size={14} />
+              </span>
+            </div>
+            {!isCollapsed &&
+            <div className="stack">
+                {section.items.map((item) =>
+              <DigestItem
+                key={item.id}
+                item={item}
+                onOpen={onOpen}
+                onResolve={onResolve}
+                onAdd={onAdd}
+                flagged={flagged}
+                onFlag={onFlag} />
+
+              )}
+              </div>
+            }
+          </div>);
+
+      })}
+
+      {feedbackItem && <FeedbackSheet item={feedbackItem} onClose={() => setFeedbackItem(null)} onDone={onFeedbackDone} />}
+      {toast && <UndoToast msg={toast.msg} onUndo={toast.onUndo} onDismiss={onUndoToast} />}
+    </div>);
+
+}
+
+/* ============================================================
+   CALENDAR VIEW
+   ============================================================ */
+function CalendarView({ filter }) {
+  // June 2026: starts on Monday (day 1 = Monday)
+  // June 1, 2026 is a Monday
+  const days = Array.from({ length: 30 }, (_, i) => i + 1);
+  // Leading empty cells: June 1 is Monday = 0 offset (Monday = index 0)
+  const leadingEmpty = 0;
+
+  const eventsForDay = (day) => {
+    return JUNE_EVENTS.filter((e) => {
+      if (e.day !== day) return false;
+      if (filter === 'all') return true;
+      return e.child === filter;
+    });
+  };
+
+  return (
+    <div>
+      <div className="subhead">
+        <h1>Calendar</h1>
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: 5 }}>
+          <button className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: 12, minHeight: 0 }}>Week</button>
+          <button className="btn btn-primary" style={{ padding: '6px 12px', fontSize: 12, minHeight: 0 }}>Month</button>
+        </div>
+      </div>
+      <div className="pad" style={{ paddingTop: 16 }}>
+        <div className="cal-controls">
+          <span className="cal-month">June 2026</span>
+          <div style={{ display: 'flex', gap: 6 }}>
+            <button className="iconbtn" aria-label="Previous month" style={{ width: 32, height: 32 }}><Icon name="chevron-left" size={16} /></button>
+            <button className="iconbtn" aria-label="Next month" style={{ width: 32, height: 32 }}><Icon name="chevron-right" size={16} /></button>
+          </div>
+        </div>
+
+        <table className="cal-grid">
+          <thead>
+            <tr>
+              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((d) =>
+              <th key={d} className="cal-dow">{d}</th>
+              )}
+            </tr>
+          </thead>
+          <tbody>
+            {(() => {
+              const cells = [
+              ...Array(leadingEmpty).fill(null),
+              ...days];
+
+              // Pad to full weeks
+              while (cells.length % 7 !== 0) cells.push(null);
+              const rows = [];
+              for (let i = 0; i < cells.length; i += 7) {
+                rows.push(cells.slice(i, i + 7));
+              }
+              return rows.map((row, ri) =>
+              <tr key={ri}>
+                  {row.map((day, ci) =>
+                <td key={ci} className="cal-cell">
+                      {day &&
+                  <>
+                          <div className={'day-num' + (day === 1 ? ' today' : '')}>{day}</div>
+                          {eventsForDay(day).map((ev, ei) =>
+                    <span
+                      key={ei}
+                      className={'ev-chip' + (ev.skoolit ? ' skoolit' : '')}
+                      style={{ background: ev.tint, color: ev.color }}>
+                      
+                              {ev.skoolit ? '• ' : ''}{ev.label}
+                            </span>
+                    )}
+                        </>
+                  }
+                    </td>
+                )}
+                </tr>
+              );
+            })()}
+          </tbody>
+        </table>
+
+        <div style={{ marginTop: 20, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+          {CHILDREN.map((c) =>
+          <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, color: 'var(--fg2)' }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: c.color, display: 'inline-block' }} />
+              {c.name}
+            </div>
+          )}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, color: 'var(--fg3)', fontStyle: 'italic' }}>
+            • = added by Skoolit
+          </div>
+        </div>
+      </div>
+    </div>);
+
+}
+
+/* ============================================================
+   SETTINGS SUB-PAGES (D-11)
+   ============================================================ */
+const CHILD_PALETTE = Array.from({ length: 8 }, (_, i) => ({
+  color: `var(--child-${i + 1})`, tint: `var(--child-${i + 1}-tint)`
+}));
+const GRADES = ['K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+
+function SubPageHead({ title, onBack }) {
+  return (
+    <div className="subhead">
+      <button className="iconbtn" onClick={onBack} aria-label="Back to settings" style={{ marginLeft: -6 }}>
+        <Icon name="chevron-left" size={20} />
+      </button>
+      <h1>{title}</h1>
+    </div>);
+}
+
+function ConfirmModal({ title, body, confirmLabel, onConfirm, onCancel }) {
+  return (
+    <div className="modal-scrim" onClick={onCancel}>
+      <div className="modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label={title}>
+        <div className="modal-icon"><Icon name="alert-triangle" size={22} /></div>
+        <h3>{title}</h3>
+        <p>{body}</p>
+        <div className="modal-actions">
+          <button className="btn btn-primary block" style={{ background: 'var(--red-600)' }} onClick={onConfirm}>
+            <Icon name="trash-2" size={14} />{confirmLabel}
+          </button>
+          <button className="btn btn-secondary block" onClick={onCancel}>Cancel</button>
+        </div>
+      </div>
+    </div>);
+}
+
+function ColorPicker({ value, onChange }) {
+  return (
+    <div className="swatch-grid" role="radiogroup" aria-label="Child colour">
+      {CHILD_PALETTE.map((c, i) =>
+      <button key={i} className="swatch" style={{ background: c.color, color: c.color }}
+      role="radio" aria-checked={value === i} aria-label={`Colour ${i + 1}`}
+      aria-pressed={value === i} onClick={() => onChange(i)}>
+          {value === i && <Icon name="check" size={20} />}
+        </button>
+      )}
+    </div>);
+}
+
+function ChildrenSettings({ onBack }) {
+  const [kids, setKids] = useState([
+  { name: 'Emma', grade: '6', school: 'Lincoln Middle School', color: 0 },
+  { name: 'Noah', grade: '4', school: 'Lincoln Middle School', color: 1 },
+  { name: 'Mia', grade: '2', school: 'Maple Street Elementary', color: 2 }]);
+  const [editing, setEditing] = useState(null);
+  const [confirm, setConfirm] = useState(false);
+
+  if (editing !== null && kids[editing]) {
+    const k = kids[editing];
+    const update = (patch) => setKids((prev) => prev.map((x, i) => i === editing ? { ...x, ...patch } : x));
+    return (
+      <div>
+        <SubPageHead title={k.name || 'Child'} onBack={() => setEditing(null)} />
+        <div className="subpage">
+          <div className="sp-field">
+            <label className="sp-field-label">Preferred name</label>
+            <input className="form-input" value={k.name} onChange={(e) => update({ name: e.target.value })} />
+          </div>
+          <div className="form-row">
+            <div className="sp-field" style={{ flex: 1 }}>
+              <label className="sp-field-label">Grade</label>
+              <select className="form-input" value={k.grade} onChange={(e) => update({ grade: e.target.value })}>
+                {GRADES.map((g) => <option key={g} value={g}>Grade {g}</option>)}
+              </select>
+            </div>
+          </div>
+          <div className="sp-field">
+            <label className="sp-field-label">School name</label>
+            <input className="form-input" value={k.school} onChange={(e) => update({ school: e.target.value })} />
+          </div>
+          <div className="sp-field">
+            <label className="sp-field-label">Colour</label>
+            <div className="sp-group-hint" style={{ padding: 0 }}>Used for {k.name || 'this child'}'s chips and calendar events.</div>
+            <ColorPicker value={k.color} onChange={(i) => update({ color: i })} />
+          </div>
+          <button className="sp-danger" onClick={() => setConfirm(true)}>
+            <Icon name="trash-2" size={16} />Remove {k.name || 'child'}
+          </button>
+        </div>
+        {confirm &&
+        <ConfirmModal
+          title={`Remove ${k.name || 'this child'}?`}
+          body={`Removing ${k.name || 'this child'} will delete their monitored senders and Skoolit calendar sub-layer. This cannot be undone.`}
+          confirmLabel={`Remove ${k.name || 'child'}`}
+          onConfirm={() => {setKids((prev) => prev.filter((_, i) => i !== editing));setConfirm(false);setEditing(null);}}
+          onCancel={() => setConfirm(false)} />
+        }
+      </div>);
+  }
+
+  return (
+    <div>
+      <SubPageHead title="Children" onBack={onBack} />
+      <div className="subpage">
+        <div className="sp-group">
+          <div className="sp-list">
+            {kids.map((k, i) =>
+            <button key={i} className="sp-row tappable" onClick={() => setEditing(i)}>
+                <span className="sp-cdot" style={{ background: CHILD_PALETTE[k.color].color }} />
+                <div className="sp-row-main">
+                  <div className="sp-row-title">{k.name}</div>
+                  <div className="sp-row-meta">Grade {k.grade} · {k.school}</div>
+                </div>
+                <span className="sp-chev"><Icon name="chevron-right" size={16} /></span>
+              </button>
+            )}
+          </div>
+          <button className="sp-add"
+          onClick={() => {setKids((p) => [...p, { name: '', grade: 'K', school: '', color: p.length % 8 }]);setEditing(kids.length);}}>
+            <Icon name="plus" size={16} />Add another child
+          </button>
+        </div>
+      </div>
+    </div>);
+}
+
+function SenderList({ title, items, cats, onRemove, onAdd, placeholder }) {
+  const [val, setVal] = useState('');
+  return (
+    <div className="sp-group">
+      <div className="sp-group-title">{title}</div>
+      <div className="sp-list">
+        {items.map((d, i) =>
+        <div key={i} className="sp-row static">
+            <div className="sp-row-main"><div className="sp-row-title">{d.v}</div></div>
+            <span className="cat-pill">{d.cat}</span>
+            <button className="iconbtn" style={{ width: 32, height: 32 }} aria-label={`Remove ${d.v}`}
+          onClick={() => onRemove(i)}>
+              <Icon name="x" size={16} />
+            </button>
+          </div>
+        )}
+        {items.length === 0 &&
+        <div className="sp-row static"><div className="sp-row-meta">None yet.</div></div>
+        }
+      </div>
+      <div style={{ display: 'flex', gap: 8 }}>
+        <input className="form-input" placeholder={placeholder} value={val} onChange={(e) => setVal(e.target.value)} />
+        <button className="btn btn-secondary" disabled={!val.trim()}
+        onClick={() => {onAdd(val.trim());setVal('');}}>Add</button>
+      </div>
+    </div>);
+}
+
+function EmailAccountsSettings({ onBack }) {
+  const [accts, setAccts] = useState([
+  { provider: 'Gmail', icon: 'mail', bg: 'var(--red-050)', color: 'var(--red-600)', email: 'sarah@gmail.com', status: 'ok' },
+  { provider: 'Outlook', icon: 'inbox', bg: 'var(--child-1-tint)', color: 'var(--child-1)', email: 'sarah.w@outlook.com', status: 'warn' }]);
+  const [open, setOpen] = useState(null);
+  const [confirm, setConfirm] = useState(null);
+
+  return (
+    <div>
+      <SubPageHead title="Email accounts" onBack={onBack} />
+      <div className="subpage">
+        <div className="sp-group">
+          <div className="sp-list">
+            {accts.map((a, i) =>
+            <div key={i}>
+                <button className="sp-row tappable" onClick={() => setOpen(open === i ? null : i)}>
+                  <div className="provider-glyph" style={{ background: a.bg, color: a.color }}><Icon name={a.icon} size={18} /></div>
+                  <div className="sp-row-main">
+                    <div className="sp-row-title">{a.provider}</div>
+                    <div className="sp-row-meta">{a.email}</div>
+                  </div>
+                  {a.status === 'ok' ?
+                <span className="status-badge ok"><Icon name="check" size={11} />Connected</span> :
+                <span className="status-badge warn"><Icon name="alert-triangle" size={11} />Reconnect</span>}
+                </button>
+                {open === i &&
+              <div style={{ display: 'flex', gap: 8, padding: '0 15px 14px' }}>
+                    <button className="btn btn-secondary block"><Icon name="refresh-cw" size={14} />Reconnect</button>
+                    <button className="btn btn-secondary block" style={{ color: 'var(--red-600)' }} onClick={() => setConfirm(i)}>Disconnect</button>
+                  </div>
+              }
+              </div>
+            )}
+          </div>
+          <button className="sp-add"><Icon name="plus" size={16} />Add account</button>
+        </div>
+      </div>
+      {confirm !== null && accts[confirm] &&
+      <ConfirmModal
+        title={`Disconnect ${accts[confirm].provider}?`}
+        body={`Skoolit will stop reading email from ${accts[confirm].email}. Events already on your calendar stay, but no new ones will be created from this inbox.`}
+        confirmLabel="Disconnect"
+        onConfirm={() => {setAccts((p) => p.filter((_, j) => j !== confirm));setConfirm(null);setOpen(null);}}
+        onCancel={() => setConfirm(null)} />
+      }
+    </div>);
+}
+
+function CalendarSettings({ onBack }) {
+  const [connected, setConnected] = useState(true);
+  const [confirm, setConfirm] = useState(false);
+
+  return (
+    <div>
+      <SubPageHead title="Calendar" onBack={onBack} />
+      <div className="subpage">
+        {connected ?
+        <>
+            <div className="sp-group">
+              <div className="sp-group-title">Connected calendar</div>
+              <div className="sp-list">
+                <div className="sp-row static">
+                  <div className="provider-glyph" style={{ background: 'var(--brand-tint)', color: 'var(--brand)' }}><Icon name="calendar-days" size={18} /></div>
+                  <div className="sp-row-main">
+                    <div className="sp-row-title">Google Calendar</div>
+                    <div className="sp-row-meta">sarah@gmail.com</div>
+                  </div>
+                  <span className="status-badge ok"><Icon name="check" size={11} />Connected</span>
+                </div>
+              </div>
+            </div>
+            <div className="sp-group">
+              <div className="sp-group-title">Skoolit sub-calendars</div>
+              <div className="sp-group-hint">Each child's events land on their own colour-coded layer.</div>
+              <div className="sp-list">
+                {[['Emma', 0], ['Noah', 1], ['Mia', 2]].map(([n, c]) =>
+              <div key={n} className="sp-row static">
+                    <span className="sp-cdot" style={{ background: `var(--child-${c + 1})` }} />
+                    <div className="sp-row-main"><div className="sp-row-title">Skoolit — {n}</div></div>
+                    <span className="status-badge ok"><Icon name="check" size={11} />Active</span>
+                  </div>
+              )}
+              </div>
+            </div>
+            <button className="sp-add"><Icon name="plus" size={16} />Add calendar</button>
+            <button className="sp-danger" onClick={() => setConfirm(true)}><Icon name="unplug" size={16} />Disconnect calendar</button>
+          </> :
+        <>
+            <div className="connected-box" style={{ background: 'var(--amber-050)', borderColor: 'var(--amber-100)' }}>
+              <Icon name="alert-triangle" size={18} style={{ color: 'var(--amber-600)' }} />
+              <div>
+                <div className="cb-text" style={{ color: 'var(--amber-600)' }}>No calendar connected</div>
+                <div className="cb-sub">Skoolit can show events but can't add them automatically.</div>
+              </div>
+            </div>
+            <button className="sp-add" style={{ borderStyle: 'solid', justifyContent: 'center' }} onClick={() => setConnected(true)}>
+              <Icon name="plus" size={16} />Add calendar
+            </button>
+          </>}
+      </div>
+      {confirm &&
+      <ConfirmModal
+        title="Disconnect calendar?"
+        body="Skoolit will stop adding events automatically and reminders will be turned off. Events already added stay on your calendar."
+        confirmLabel="Disconnect"
+        onConfirm={() => {setConnected(false);setConfirm(false);}}
+        onCancel={() => setConfirm(false)} />
+      }
+    </div>);
+}
+
+function CalendarRulesSettings({ onBack }) {
+  const [rules, setRules] = useState(() => Object.fromEntries(EVENT_TYPES.map((et, i) => [i, et.default])));
+  return (
+    <div>
+      <SubPageHead title="Calendar rules" onBack={onBack} />
+      <div className="subpage">
+        <div className="sp-group-hint">
+          <strong style={{ color: 'var(--fg2)' }}>Auto</strong> adds automatically · <strong style={{ color: 'var(--fg2)' }}>Ask</strong> asks you first · <strong style={{ color: 'var(--fg2)' }}>Skip</strong> never adds.
+        </div>
+        <div className="event-rules">
+          {EVENT_TYPES.map((et, i) =>
+          <div key={i} className="event-rule-row">
+              <span className="event-rule-name">{et.label}</span>
+              <div className="rule-selector">
+                {['always', 'ask', 'never'].map((r) =>
+              <button key={r} className={'rule-btn' + (rules[i] === r ? ` active-${r}` : '')}
+              onClick={() => setRules((prev) => ({ ...prev, [i]: r }))}>
+                    {r === 'always' ? 'Auto' : r === 'ask' ? 'Ask' : 'Skip'}
+                  </button>
+              )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>);
+}
+
+/* ============================================================
+   §4.11.1 — FAMILY ACCESS (primary + co-parent)
+   ============================================================ */
+function PersonRow({ person, role, you }) {
+  return (
+    <div className="fa-person">
+      <div className="cp-ava" style={{ width: 38, height: 38, fontSize: 16, background: person.color }}>{person.initials}</div>
+      <div className="fa-person-main">
+        <div className="fa-person-name">{person.name}{you && <span style={{ color: 'var(--fg3)', fontWeight: 500 }}>· You</span>}</div>
+        <div className="fa-person-meta">{person.email}</div>
+      </div>
+      <span className={'role-tag' + (role === 'Owner' ? ' owner' : '')}>{role}</span>
+    </div>);
+}
+
+function FamilyAccessSettings({ onBack, seed = 'confirm', coParent = false }) {
+  const [pending, setPending] = useState(
+    !coParent && seed === 'confirm' ? [{ ...DETECTED_COPARENT, sentAt: 'Just now' }] : []);
+  const [suggestions, setSuggestions] = useState(
+    !coParent && seed === 'decline' ? [DETECTED_COPARENT] : []);
+  const [email, setEmail] = useState('');
+  const [cancelTarget, setCancelTarget] = useState(null);
+
+  const childNote =
+  <div className="fa-children-note">
+      <span>Shared for</span>
+      {CHILDREN.map((c) => <span key={c.id} className="cdot" style={{ background: c.color }} />)}
+      <span>Emma, Noah & Mia</span>
+    </div>;
+
+  const sendInvite = (addr, name) => {
+    setPending((p) => [...p, { name: name || addr.split('@')[0], first: (name || addr).split(/[@ ]/)[0], email: addr, initials: (name || addr)[0].toUpperCase(), color: 'var(--child-6)', sentAt: 'Just now' }]);
+  };
+
+  return (
+    <div>
+      <SubPageHead title="Family Access" onBack={onBack} />
+      <div className="subpage">
+        {/* People with access */}
+        <div className="sp-group">
+          <div className="sp-group-title">People with access</div>
+          <div className="sp-list">
+            {coParent ?
+            <>
+                <PersonRow person={PRIMARY_PARENT} role="Owner" />
+                <PersonRow person={DETECTED_COPARENT} role="Co-parent" you />
+              </> :
+            <PersonRow person={PRIMARY_PARENT} role="Owner" you />}
+          </div>
+          {childNote}
+        </div>
+
+        {/* Pending invitations */}
+        {pending.length > 0 &&
+        <div className="sp-group">
+            <div className="sp-group-title">Pending invitations</div>
+            <div className="sp-list">
+              {pending.map((p, i) =>
+            <div key={i} className="fa-pending">
+                  <div className="cp-ava" style={{ width: 38, height: 38, fontSize: 16, background: p.color }}>{p.initials}</div>
+                  <div className="fa-person-main">
+                    <div className="fa-person-name">{p.name}</div>
+                    <div className="fa-person-meta">{p.email}</div>
+                  </div>
+                  <span className="status-badge pending"><Icon name="clock" size={11} />Pending</span>
+                  <button className="fa-cancel" onClick={() => setCancelTarget(i)}>Cancel</button>
+                </div>
+            )}
+            </div>
+            <div className="sp-group-hint">Invite link expires in 7 days. {pending[0].first || 'They'} can accept on any device.</div>
+          </div>
+        }
+
+        {/* Dormant auto-detect suggestion */}
+        {suggestions.length > 0 &&
+        <div className="sp-group">
+            <div className="sp-group-title">Suggested from your inbox</div>
+            <div className="sp-list">
+              {suggestions.map((s, i) =>
+            <div key={i} className="fa-pending">
+                  <div className="cp-ava" style={{ width: 38, height: 38, fontSize: 16, background: s.color }}>{s.initials}</div>
+                  <div className="fa-person-main">
+                    <div className="fa-person-name">{s.name}</div>
+                    <div className="fa-person-meta">On {s.appearances} of Emma's school emails</div>
+                  </div>
+                  <button className="fa-invite-btn" onClick={() => {sendInvite(s.email, s.name);setSuggestions((p) => p.filter((_, j) => j !== i));}}>Invite</button>
+                </div>
+            )}
+            </div>
+          </div>
+        }
+
+        {/* Invite by email */}
+        {!coParent &&
+        <div className="sp-group">
+            <div className="sp-group-title">Invite a co-parent</div>
+            <div className="sp-field">
+              <input className="form-input" type="email" placeholder="Their email address" value={email}
+            onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <button className="btn btn-primary block" disabled={!email.trim()}
+          onClick={() => {sendInvite(email.trim());setEmail('');}}>
+              <Icon name="send" size={14} />Send invite
+            </button>
+            <div className="sp-group-hint">They'll get a link to join Emma, Noah & Mia's family — they inherit all your setup and add nothing.</div>
+          </div>
+        }
+
+        {coParent &&
+        <div className="sp-group">
+            <div className="future-callout" style={{ background: 'var(--paper-sunk)', color: 'var(--fg2)' }}>
+              <Icon name="info" size={17} />
+              <span>You're sharing {PRIMARY_PARENT.first}'s family. School connections, monitored senders, and child details are managed by {PRIMARY_PARENT.first}.</span>
+            </div>
+          </div>
+        }
+      </div>
+
+      {cancelTarget !== null && pending[cancelTarget] &&
+      <ConfirmModal
+        title={`Cancel invite to ${pending[cancelTarget].first || pending[cancelTarget].name}?`}
+        body="The invitation link will stop working immediately. You can always send a new one later."
+        confirmLabel="Cancel invite"
+        onConfirm={() => {setPending((p) => p.filter((_, j) => j !== cancelTarget));setCancelTarget(null);}}
+        onCancel={() => setCancelTarget(null)} />
+      }
+    </div>);
+}
+
+/* ============================================================
+   §4.12 — ADD CONTENT (email forwarding + document upload)
+   ============================================================ */
+function AddContentSettings({ onBack }) {
+  const [copied, setCopied] = useState(null);
+  const [uploadPhase, setUploadPhase] = useState(null); // null | child-pick | preview | added
+  const [uploadChild, setUploadChild] = useState(null);
+  const [fwdVisible, setFwdVisible] = useState(true);
+  const [monitorDone, setMonitorDone] = useState(false);
+  const [backfillPhase, setBackfillPhase] = useState(null); // null | ask | running
+
+  const KIDS = [
+    { name: 'Emma', ci: 0, addr: 'sarah+emma@in.skoolit.com' },
+    { name: 'Noah', ci: 1, addr: 'sarah+noah@in.skoolit.com' },
+    { name: 'Mia',  ci: 2, addr: 'sarah+mia@in.skoolit.com'  },
+  ];
+  const FWD_SENDER = 'coach.mike@gmail.com';
+
+  const copyAddr = (c) => {
+    try { navigator.clipboard.writeText(c.addr); } catch(e) {}
+    setCopied(c.name);
+    setTimeout(() => setCopied((prev) => prev === c.name ? null : prev), 2000);
+  };
+
+  const extracted = {
+    event: 'Field Trip — Science Museum',
+    date: 'Fri, Jun 13',
+    time: '8:00 AM – 3:00 PM',
+    location: 'Natural History Museum',
+    deadline: 'Jun 9 — permission slip',
+    amount: '$12.00',
+    confidence: 94,
+  };
+
+  return (
+    <div>
+      <SubPageHead title="Add Content" onBack={onBack} />
+      <div className="subpage">
+
+        {/* ── §4.12.1 Forward to Skoolit ─────────────────── */}
+        <div className="sp-group">
+          <div className="sp-group-title">Forward to Skoolit</div>
+          <div className="sp-group-hint">Share a child's address with any coach, teacher, or sender not on your monitored list. Forwarded emails are processed identically to monitored ones — same AI parsing, same digest.</div>
+          <div className="sp-list">
+            {KIDS.map((c, i) =>
+            <div key={i} className="sp-row static" style={{ gap: 10 }}>
+                <div style={{ width: 34, height: 34, borderRadius: 8, background: CHILD_PALETTE[c.ci].tint, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Icon name="mail" size={15} style={{ color: CHILD_PALETTE[c.ci].color }} />
+                </div>
+                <div className="sp-row-main">
+                  <div className="sp-row-title">{c.name}</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10.5, color: 'var(--fg3)', marginTop: 2, letterSpacing: '.01em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.addr}</div>
+                </div>
+                <button className="btn btn-secondary" style={{ fontSize: 12, padding: '5px 11px', minHeight: 34, flexShrink: 0 }}
+                onClick={() => copyAddr(c)}>
+                  {copied === c.name ?
+                <><Icon name="check" size={12} />&nbsp;Copied</> :
+                <><Icon name="copy" size={12} />&nbsp;Copy</>}
+                </button>
+              </div>
+            )}
+          </div>
+          {/* Pending monitor prompt (shown after a forwarded email is processed) */}
+          {fwdVisible &&
+          <div style={{ background: 'var(--amber-050)', border: '1px solid var(--amber-100)', borderRadius: 'var(--radius-md)', padding: '11px 13px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
+                <Icon name="mail" size={15} style={{ color: 'var(--amber-600)', flexShrink: 0 }} />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--fg1)' }}>New forwarded email from {FWD_SENDER}</div>
+                  <div style={{ fontSize: 12, color: 'var(--fg3)', marginTop: 1 }}>Processed and added to Noah's digest.</div>
+                </div>
+                <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--fg3)', padding: 3, display: 'flex', borderRadius: '50%' }}
+                  onClick={() => setFwdVisible(false)}>
+                  <Icon name="x" size={14} />
+                </button>
+              </div>
+              {!monitorDone ?
+              <div style={{ marginTop: 10, paddingTop: 10, borderTop: '1px solid var(--amber-100)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
+                  <div style={{ fontSize: 12.5, color: 'var(--fg2)', lineHeight: 1.4 }}>Monitor this sender automatically?</div>
+                  <div style={{ display: 'flex', gap: 7, flexShrink: 0 }}>
+                    <button className="btn btn-primary" style={{ fontSize: 12, minHeight: 32, padding: '5px 11px' }}
+                      onClick={() => { setMonitorDone(true); setBackfillPhase('ask'); }}>
+                      Yes
+                    </button>
+                    <button className="btn btn-secondary" style={{ fontSize: 12, minHeight: 32, padding: '5px 11px' }}
+                      onClick={() => setFwdVisible(false)}>
+                      No
+                    </button>
+                  </div>
+                </div> :
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 10, paddingTop: 10, borderTop: '1px solid var(--amber-100)', fontSize: 12.5, color: 'var(--success)', fontWeight: 600 }}>
+                  <Icon name="check-circle" size={13} />{FWD_SENDER} added to monitored senders.
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        {/* ── §4.12.2 Upload a document ──────────────────── */}
+        <div className="sp-group">
+          <div className="sp-group-title">Upload a document</div>
+          <div className="sp-group-hint">Photograph a paper flyer, scan a permission slip, or attach a PDF. Skoolit extracts the key details and adds the item to the right child's digest.</div>
+          <button className="ac-upload-zone"
+          onClick={() => { setUploadChild(null); setUploadPhase('child-pick'); }}>
+            <Icon name="upload-cloud" size={26} />
+            <span style={{ fontWeight: 600, fontSize: 15, color: 'var(--fg1)' }}>Choose file or take photo</span>
+            <span style={{ fontSize: 12.5, color: 'var(--fg3)' }}>PDF · JPG · PNG</span>
+          </button>
+        </div>
+
+        {/* ── Recently added ─────────────────────────────── */}
+        <div className="sp-group">
+          <div className="sp-group-title">Recently added</div>
+          <div className="sp-list">
+            <div className="sp-row static">
+              <div style={{ width: 34, height: 34, borderRadius: 8, background: 'var(--brand-tint-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <Icon name="forward" size={15} style={{ color: 'var(--brand)' }} />
+              </div>
+              <div className="sp-row-main">
+                <div className="sp-row-title">coach.dana@riversidesoccer.org</div>
+                <div className="sp-row-meta">Forwarded Jun 1 · Noah</div>
+              </div>
+              <span className="status-badge ok"><Icon name="check" size={11} />Added</span>
+            </div>
+            <div className="sp-row static">
+              <div style={{ width: 34, height: 34, borderRadius: 8, background: 'var(--red-050)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <Icon name="file-text" size={15} style={{ color: 'var(--red-600)' }} />
+              </div>
+              <div className="sp-row-main">
+                <div className="sp-row-title">Spring Concert schedule.pdf</div>
+                <div className="sp-row-meta">Uploaded May 28 · Mia</div>
+              </div>
+              <span className="status-badge ok"><Icon name="check" size={11} />Added</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* ─── Upload: child picker sheet ──────────────── */}
+      {uploadPhase === 'child-pick' &&
+      <div className="sheet-scrim" onClick={() => setUploadPhase(null)}>
+          <div className="sheet" onClick={(e) => e.stopPropagation()}>
+            <div className="grabber" />
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, marginBottom: 6 }}>Which child is this for?</div>
+            <div style={{ fontSize: 14, color: 'var(--fg2)', marginBottom: 20 }}>Skoolit will route this document to the right digest.</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {KIDS.map((c, i) =>
+              <button key={i} className={'provider-btn' + (uploadChild === c.name ? ' selected' : '')}
+              onClick={() => setUploadChild(c.name)}>
+                  <span className="sp-cdot" style={{ background: CHILD_PALETTE[c.ci].color, width: 11, height: 11 }} />
+                  <div className="pb-text"><span className="pb-name">{c.name}</span></div>
+                  {uploadChild === c.name && <div className="check"><Icon name="check" size={12} /></div>}
+                </button>
+              )}
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <button className="ob-next" disabled={!uploadChild}
+              onClick={() => setUploadPhase('preview')}>
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+
+      {/* ─── Upload: extraction preview sheet ────────── */}
+      {uploadPhase === 'preview' &&
+      <div className="sheet-scrim" onClick={() => setUploadPhase(null)}>
+          <div className="sheet" onClick={(e) => e.stopPropagation()}>
+            <div className="grabber" />
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, marginBottom: 4 }}>Review what we found</div>
+            <div style={{ fontSize: 13.5, color: 'var(--fg2)', marginBottom: 4 }}>Confirm before adding to {uploadChild}'s digest.</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div className="confidence-bar" style={{ flex: 1, margin: '14px 0' }}>
+                <div className="confidence-bar-fill" style={{ width: extracted.confidence + '%' }} />
+              </div>
+              <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--success)', flexShrink: 0 }}>{extracted.confidence}% confidence</span>
+            </div>
+            <div style={{ background: 'var(--surface)', border: '1px solid var(--border-soft)', borderRadius: 'var(--radius-md)', padding: '4px 14px', marginBottom: 20 }}>
+              {[['Event', extracted.event], ['Date', extracted.date], ['Time', extracted.time], ['Location', extracted.location], ['Deadline', extracted.deadline], ['Amount', extracted.amount]].map(([label, val]) =>
+              <div key={label} className="extract-row">
+                  <div className="extract-label">{label}</div>
+                  <div className="extract-value">{val}</div>
+                </div>
+              )}
+            </div>
+            <div style={{ display: 'flex', gap: 10 }}>
+              <button className="btn btn-primary block" onClick={() => setUploadPhase('added')}>
+                <Icon name="plus" size={14} />Add to digest
+              </button>
+              <button className="btn btn-secondary block" onClick={() => setUploadPhase(null)}>Dismiss</button>
+            </div>
+          </div>
+        </div>
+      }
+
+      {/* ─── Upload: success confirmation ────────────── */}
+      {uploadPhase === 'added' &&
+      <div className="sheet-scrim" onClick={() => setUploadPhase(null)}>
+          <div className="sheet" onClick={(e) => e.stopPropagation()}>
+            <div className="grabber" />
+            <div style={{ textAlign: 'center', padding: '10px 0 24px' }}>
+              <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'var(--success-tint)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+                <Icon name="check" size={26} style={{ color: 'var(--success)' }} />
+              </div>
+              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22, marginBottom: 8 }}>Added to {uploadChild}'s digest</div>
+              <div style={{ fontSize: 14, color: 'var(--fg2)', lineHeight: 1.55 }}>The item will appear tagged as <em>Uploaded by you</em>.</div>
+            </div>
+            <button className="ob-next" onClick={() => { setUploadPhase(null); setUploadChild(null); }}>Done</button>
+          </div>
+        </div>
+      }
+
+      {/* ─── Backfill: ask sheet ──────────────────────── */}
+      {backfillPhase === 'ask' &&
+      <div className="sheet-scrim" onClick={() => setBackfillPhase(null)}>
+          <div className="sheet" onClick={(e) => e.stopPropagation()}>
+            <div className="grabber" />
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22, marginBottom: 10 }}>Catch up on past emails?</div>
+            <div style={{ fontSize: 14.5, color: 'var(--fg2)', lineHeight: 1.6, marginBottom: 24 }}>
+              Want Skoolit to process the last 30 days from <strong style={{ color: 'var(--fg1)' }}>{FWD_SENDER}</strong>? Relevant items will appear in your digest with their original dates.
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <button className="btn btn-primary block" onClick={() => setBackfillPhase('running')}>
+                <Icon name="clock" size={14} />Yes, catch up — last 30 days
+              </button>
+              <button className="btn btn-secondary block" onClick={() => setBackfillPhase(null)}>Skip for now</button>
+            </div>
+          </div>
+        </div>
+      }
+
+      {/* ─── Backfill: running confirmation ──────────── */}
+      {backfillPhase === 'running' &&
+      <div className="sheet-scrim" onClick={() => setBackfillPhase(null)}>
+          <div className="sheet" onClick={(e) => e.stopPropagation()}>
+            <div className="grabber" />
+            <div style={{ textAlign: 'center', padding: '10px 0 24px' }}>
+              <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'var(--brand-tint)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+                <Icon name="loader" size={26} style={{ color: 'var(--brand)', animation: 'spin 1.2s linear infinite' }} />
+              </div>
+              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22, marginBottom: 8 }}>Scanning backlog…</div>
+              <div style={{ fontSize: 14, color: 'var(--fg2)', lineHeight: 1.55 }}>Processing the last 30 days from {FWD_SENDER}. This runs in the background — check your digest soon.</div>
+            </div>
+            <button className="ob-next" onClick={() => setBackfillPhase(null)}>Got it</button>
+          </div>
+        </div>
+      }
+
+    </div>
+  );
+}
+
+/* ============================================================
+   SOURCES VIEW
+   ============================================================ */
+function SourcesView({ onBack = null }) {
+  const KIDS = [
+    { name: 'Emma', ci: 0 },
+    { name: 'Noah', ci: 1 },
+    { name: 'Mia',  ci: 2 },
+  ];
+
+  const [scanState, setScanState] = useState('idle'); // idle | scanning | done
+  const [suggestions, setSuggestions] = useState([
+    { id: 's1', type: 'domain', value: 'lincolnpta.org',           label: 'Lincoln PTA',       child: 'Emma', ci: 0, count: 4  },
+    { id: 's2', type: 'sender', value: 'coach.sarah@ymcasoccer.org', label: 'YMCA Soccer Coach', child: 'Noah', ci: 1, count: 2  },
+    { id: 's3', type: 'domain', value: 'schoolmessenger.com',       label: 'School Messenger',  child: 'Emma', ci: 0, count: 11 },
+  ]);
+  const [approved, setApproved] = useState(new Set());
+  const [skipped,  setSkipped]  = useState(new Set());
+
+  const [domains, setDomains] = useState([
+    { id: 'd1', value: 'riversidesoccer.org', label: 'Sport',  child: 'Noah', ci: 1 },
+    { id: 'd2', value: 'lincolnms.edu',       label: 'School', child: 'Emma', ci: 0 },
+  ]);
+  const [senders, setSenders] = useState([
+    { id: 'p1', value: 'coach.mike@gmail.com',  label: 'Soccer Coach', child: 'Noah', ci: 1 },
+    { id: 'p2', value: 'mrjohnson@gmail.com',   label: 'Math Tutor',   child: 'Emma', ci: 0 },
+  ]);
+
+  const [sheet,         setSheet]         = useState(null); // null | add-domain | add-sender | remove-confirm
+  const [removeTarget,  setRemoveTarget]  = useState(null);
+  const [newDomain,     setNewDomain]     = useState('');
+  const [newDomainType, setNewDomainType] = useState('School');
+  const [newDomainChild,setNewDomainChild]= useState(null);
+  const [newSender,     setNewSender]     = useState('');
+  const [newSenderLabel,setNewSenderLabel]= useState('');
+  const [newSenderChild,setNewSenderChild]= useState(null);
+
+  const pending  = suggestions.filter(s => !approved.has(s.id) && !skipped.has(s.id));
+  const nApproved = [...approved].length;
+
+  const approveAndAdd = (s) => {
+    const kid = KIDS.find(k => k.name === s.child);
+    if (s.type === 'domain') setDomains(prev => [...prev, { id: 'd_'+s.id, value: s.value, label: s.label, child: s.child, ci: kid.ci }]);
+    else setSenders(prev => [...prev, { id: 'p_'+s.id, value: s.value, label: s.label, child: s.child, ci: kid.ci }]);
+    setApproved(prev => new Set([...prev, s.id]));
+  };
+  const skipSugg = (id) => setSkipped(prev => new Set([...prev, id]));
+
+  const confirmRemove = (item, type) => { setRemoveTarget({ ...item, _type: type }); setSheet('remove-confirm'); };
+  const doRemove = () => {
+    if (removeTarget._type === 'domain') setDomains(prev => prev.filter(d => d.id !== removeTarget.id));
+    else setSenders(prev => prev.filter(s => s.id !== removeTarget.id));
+    setSheet(null); setRemoveTarget(null);
+  };
+
+  const addDomain = () => {
+    if (!newDomain || !newDomainChild) return;
+    const kid = KIDS.find(k => k.name === newDomainChild);
+    setDomains(prev => [...prev, { id: 'd'+Date.now(), value: newDomain.toLowerCase().trim(), label: newDomainType, child: newDomainChild, ci: kid.ci }]);
+    setNewDomain(''); setNewDomainType('School'); setNewDomainChild(null); setSheet(null);
+  };
+  const addSender = () => {
+    if (!newSender || !newSenderChild) return;
+    const kid = KIDS.find(k => k.name === newSenderChild);
+    setSenders(prev => [...prev, { id: 'p'+Date.now(), value: newSender.toLowerCase().trim(), label: newSenderLabel || 'Sender', child: newSenderChild, ci: kid.ci }]);
+    setNewSender(''); setNewSenderLabel(''); setNewSenderChild(null); setSheet(null);
+  };
+
+  const handleScan = () => {
+    setScanState('scanning');
+    setTimeout(() => {
+      setSuggestions(prev => [...prev, { id: 's_new', type: 'sender', value: 'noreply@remind.com', label: 'Remind', child: 'Emma', ci: 0, count: 3 }]);
+      setScanState('done');
+    }, 2000);
+  };
+
+  return (
+    <div>
+      {onBack
+        ? <SubPageHead title="Monitored senders &amp; domains" onBack={onBack} />
+        : <div className="subhead"><h1>Sources</h1></div>
+      }
+
+      <div className="subpage" style={{ paddingTop: 12 }}>
+        {/* ── Scan controls ─────────────────────────────── */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <span style={{ fontSize: 11.5, color: 'var(--fg3)', display: 'flex', alignItems: 'center', gap: 5 }}>
+            {scanState === 'scanning'
+              ? <><Icon name="loader" size={13} style={{ animation: 'spin 1.2s linear infinite' }} />Scanning…</>
+              : (scanState === 'done' ? 'Just now' : 'Last scanned today at 9:14\u202fAM')
+            }
+          </span>
+          <button className="btn btn-secondary" style={{ fontSize: 12, padding: '5px 11px', minHeight: 32 }}
+            onClick={handleScan} disabled={scanState === 'scanning'}>
+            <Icon name="refresh-cw" size={12} />Scan now
+          </button>
+        </div>
+
+        {/* ── Scan result strip ─────────────────────── */}
+        {scanState === 'done' && pending.length > 0 &&
+          <div className="src-scan-strip">
+            <Icon name="sparkles" size={15} style={{ color: 'var(--brand)', flexShrink: 0 }} />
+            <span>Scan complete — <strong>{pending.length} new {pending.length === 1 ? 'source' : 'sources'}</strong> found in your inbox.</span>
+          </div>
+        }
+
+        {/* ── Suggested by Skoolit ──────────────────── */}
+        {pending.length > 0 &&
+          <div className="sp-group">
+            <div className="src-suggest-head">
+              <div>
+                <div className="src-pulse" />
+                <span>Suggested by Skoolit</span>
+                <span className="src-badge">{pending.length}</span>
+              </div>
+              <span style={{ fontSize: 11.5, color: 'var(--fg3)', fontWeight: 500 }}>From your inbox</span>
+            </div>
+            <div className="sp-list">
+              {pending.map((s) =>
+                <div key={s.id} className="src-suggest-card">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <div className="src-suggest-icon" style={{ background: CHILD_PALETTE[s.ci].tint, color: CHILD_PALETTE[s.ci].color }}>
+                      <Icon name={s.type === 'domain' ? 'globe' : 'user'} size={14} />
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--fg1)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{s.value}</div>
+                      <div style={{ fontSize: 12, color: 'var(--fg3)', marginTop: 2, display: 'flex', alignItems: 'center', gap: 6 }}>
+                        <span className="sp-cdot" style={{ background: CHILD_PALETTE[s.ci].color, width: 7, height: 7, flexShrink: 0 }} />
+                        {s.child} · {s.count} email{s.count !== 1 ? 's' : ''} found
+                      </div>
+                    </div>
+                    <span style={{ fontSize: 11.5, color: 'var(--fg3)', fontWeight: 500, flexShrink: 0 }}>{s.label}</span>
+                  </div>
+                  <div className="src-suggest-actions">
+                    <button className="btn btn-primary" style={{ flex: 1, fontSize: 13, minHeight: 36 }} onClick={() => approveAndAdd(s)}>
+                      <Icon name="check" size={13} />Add source
+                    </button>
+                    <button className="btn btn-secondary" style={{ flex: 1, fontSize: 13, minHeight: 36 }} onClick={() => skipSugg(s.id)}>
+                      Skip
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        }
+
+        {/* All-reviewed notice */}
+        {pending.length === 0 && nApproved > 0 &&
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 14px', background: 'var(--success-tint)', borderRadius: 'var(--radius-md)', fontSize: 13, color: 'var(--success)', fontWeight: 600 }}>
+            <Icon name="check-circle" size={15} />All suggestions reviewed — {nApproved} added to your sources.
+          </div>
+        }
+
+        {/* ── Monitored Domains ─────────────────────── */}
+        <div className="sp-group">
+          <div className="sp-group-row">
+            <div className="sp-group-title" style={{ marginBottom: 0 }}>Monitored Domains</div>
+            <button className="src-add-btn" onClick={() => setSheet('add-domain')}>
+              <Icon name="plus" size={13} />Add
+            </button>
+          </div>
+          <div className="sp-group-hint">All email from these domains is scanned for school-related content.</div>
+          <div className="sp-list">
+            {domains.length === 0
+              ? <div className="src-empty">No domains yet — add one or approve a suggestion above.</div>
+              : domains.map((d) =>
+                  <div key={d.id} className="sp-row static">
+                    <div className="src-type-icon" style={{ background: CHILD_PALETTE[d.ci].tint }}>
+                      <Icon name="globe" size={14} style={{ color: CHILD_PALETTE[d.ci].color }} />
+                    </div>
+                    <div className="sp-row-main">
+                      <div className="sp-row-title" style={{ fontFamily: 'var(--font-mono)', fontSize: 12.5 }}>{d.value}</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 3 }}>
+                        <span className="src-type-pill">{d.label}</span>
+                        <span className="sp-cdot" style={{ background: CHILD_PALETTE[d.ci].color, width: 7, height: 7 }} />
+                        <span style={{ fontSize: 11.5, color: 'var(--fg3)' }}>{d.child}</span>
+                      </div>
+                    </div>
+                    <span className="status-badge ok" style={{ flexShrink: 0 }}>Active</span>
+                    <button className="src-remove-btn" onClick={() => confirmRemove(d, 'domain')} aria-label="Remove domain">
+                      <Icon name="x" size={13} />
+                    </button>
+                  </div>
+                )
+            }
+          </div>
+        </div>
+
+        {/* ── Monitored Senders ─────────────────────── */}
+        <div className="sp-group">
+          <div className="sp-group-row">
+            <div className="sp-group-title" style={{ marginBottom: 0 }}>Monitored Senders</div>
+            <button className="src-add-btn" onClick={() => setSheet('add-sender')}>
+              <Icon name="plus" size={13} />Add
+            </button>
+          </div>
+          <div className="sp-group-hint">Individual addresses outside your monitored domains.</div>
+          <div className="sp-list">
+            {senders.length === 0
+              ? <div className="src-empty">No individual senders yet.</div>
+              : senders.map((s) =>
+                  <div key={s.id} className="sp-row static">
+                    <div className="src-type-icon" style={{ background: CHILD_PALETTE[s.ci].tint }}>
+                      <Icon name="user" size={14} style={{ color: CHILD_PALETTE[s.ci].color }} />
+                    </div>
+                    <div className="sp-row-main">
+                      <div className="sp-row-title" style={{ fontFamily: 'var(--font-mono)', fontSize: 12.5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{s.value}</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 3 }}>
+                        <span className="src-type-pill">{s.label}</span>
+                        <span className="sp-cdot" style={{ background: CHILD_PALETTE[s.ci].color, width: 7, height: 7 }} />
+                        <span style={{ fontSize: 11.5, color: 'var(--fg3)' }}>{s.child}</span>
+                      </div>
+                    </div>
+                    <span className="status-badge ok" style={{ flexShrink: 0 }}>Active</span>
+                    <button className="src-remove-btn" onClick={() => confirmRemove(s, 'sender')} aria-label="Remove sender">
+                      <Icon name="x" size={13} />
+                    </button>
+                  </div>
+                )
+            }
+          </div>
+        </div>
+
+        {/* ── How automation works ──────────────────── */}
+        <div className="future-callout" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, color: 'var(--fg1)', fontSize: 13.5 }}>
+            <Icon name="sparkles" size={16} style={{ color: 'var(--brand)', flexShrink: 0 }} />
+            How Skoolit finds sources
+          </div>
+          <ul style={{ margin: 0, padding: '0 0 0 22px', fontSize: 13, color: 'var(--fg2)', lineHeight: 1.65, listStyleType: 'disc' }}>
+            <li>Skoolit scans your connected inbox daily for school-pattern emails.</li>
+            <li>Senders with school keywords, .edu domains, or activity-related content surface as suggestions.</li>
+            <li>You approve or skip — nothing is monitored without your confirmation.</li>
+            <li>Hit <strong>Scan now</strong> any time to check for new senders.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      {/* ── Add Domain Sheet ─────────────────────────── */}
+      {sheet === 'add-domain' &&
+        <div className="sheet-scrim" onClick={() => setSheet(null)}>
+          <div className="sheet" onClick={e => e.stopPropagation()}>
+            <div className="grabber" />
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, marginBottom: 4 }}>Add a domain</div>
+            <div style={{ fontSize: 13.5, color: 'var(--fg2)', marginBottom: 20 }}>All email from this domain will be monitored.</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <div className="form-group">
+                <label className="form-label">Domain</label>
+                <input className="form-input" type="text" placeholder="school.edu" value={newDomain} onChange={e => setNewDomain(e.target.value)} />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Type</label>
+                <div style={{ display: 'flex', gap: 6 }}>
+                  {['School', 'Sport', 'Activity', 'Other'].map(t =>
+                    <button key={t} className={'src-type-tab' + (newDomainType === t ? ' active' : '')} onClick={() => setNewDomainType(t)}>{t}</button>
+                  )}
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="form-label">Child</label>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {KIDS.map(c =>
+                    <button key={c.name} className={'provider-btn' + (newDomainChild === c.name ? ' selected' : '')} onClick={() => setNewDomainChild(c.name)}>
+                      <span className="sp-cdot" style={{ background: CHILD_PALETTE[c.ci].color, width: 10, height: 10 }} />
+                      <div className="pb-text"><span className="pb-name">{c.name}</span></div>
+                      {newDomainChild === c.name && <div className="check"><Icon name="check" size={12} /></div>}
+                    </button>
+                  )}
+                </div>
+              </div>
+              <button className="ob-next" disabled={!newDomain || !newDomainChild} onClick={addDomain}>Add Domain</button>
+            </div>
+          </div>
+        </div>
+      }
+
+      {/* ── Add Sender Sheet ─────────────────────────── */}
+      {sheet === 'add-sender' &&
+        <div className="sheet-scrim" onClick={() => setSheet(null)}>
+          <div className="sheet" onClick={e => e.stopPropagation()}>
+            <div className="grabber" />
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, marginBottom: 4 }}>Add a sender</div>
+            <div style={{ fontSize: 13.5, color: 'var(--fg2)', marginBottom: 20 }}>Monitor a specific email address.</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <div className="form-group">
+                <label className="form-label">Email address</label>
+                <input className="form-input" type="email" placeholder="coach@example.com" value={newSender} onChange={e => setNewSender(e.target.value)} />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Label <span style={{ fontWeight: 400, color: 'var(--fg3)' }}>(optional)</span></label>
+                <input className="form-input" type="text" placeholder="e.g. Soccer Coach" value={newSenderLabel} onChange={e => setNewSenderLabel(e.target.value)} />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Child</label>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {KIDS.map(c =>
+                    <button key={c.name} className={'provider-btn' + (newSenderChild === c.name ? ' selected' : '')} onClick={() => setNewSenderChild(c.name)}>
+                      <span className="sp-cdot" style={{ background: CHILD_PALETTE[c.ci].color, width: 10, height: 10 }} />
+                      <div className="pb-text"><span className="pb-name">{c.name}</span></div>
+                      {newSenderChild === c.name && <div className="check"><Icon name="check" size={12} /></div>}
+                    </button>
+                  )}
+                </div>
+              </div>
+              <button className="ob-next" disabled={!newSender || !newSenderChild} onClick={addSender}>Add Sender</button>
+            </div>
+          </div>
+        </div>
+      }
+
+      {/* ── Remove confirm sheet ─────────────────────── */}
+      {sheet === 'remove-confirm' && removeTarget &&
+        <div className="sheet-scrim" onClick={() => setSheet(null)}>
+          <div className="sheet" onClick={e => e.stopPropagation()}>
+            <div className="grabber" />
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, marginBottom: 8 }}>Remove source?</div>
+            <div style={{ fontSize: 14, color: 'var(--fg2)', lineHeight: 1.55, marginBottom: 24 }}>
+              <strong style={{ color: 'var(--fg1)' }}>{removeTarget.value}</strong> will no longer be monitored. Past items in your digest are unaffected.
+            </div>
+            <div style={{ display: 'flex', gap: 10 }}>
+              <button className="btn block" style={{ flex: 1, background: 'var(--red-600)', color: '#fff', fontWeight: 700, border: 'none', minHeight: 46 }} onClick={doRemove}>Remove</button>
+              <button className="btn btn-secondary block" style={{ flex: 1 }} onClick={() => setSheet(null)}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      }
+
+    </div>
+  );
+}
+
+/* ============================================================
+   SETTINGS VIEW
+   ============================================================ */
+function SettingsView({ seed = 'confirm', coParent = false, initialPage = null }) {
+  const [page, setPage] = useState(initialPage);
+  const cpMeta = coParent ? `Shared with ${PRIMARY_PARENT.first}` :
+  seed === 'confirm' ? `1 invite pending — ${DETECTED_COPARENT.first}` :
+  seed === 'decline' ? '1 suggestion' : 'Not connected';
+  const sections = [
+  {
+    title: 'Family',
+    rows: [
+    { icon: 'users', iconBg: 'var(--brand-tint)', iconColor: 'var(--brand)', label: 'Children', meta: 'Emma, Noah, Mia' },
+    { icon: 'user-plus', iconBg: '#ECE3FA', iconColor: '#7A45C9', label: 'Co-parent access', meta: cpMeta },
+    { icon: 'shield', iconBg: '#FAE5DD', iconColor: '#C24A2E', label: 'Caregiver access', meta: 'No caregivers added' }]
+
+  },
+  {
+    title: 'Connections',
+    rows: [
+    { icon: 'mail', iconBg: 'var(--brand-tint)', iconColor: 'var(--brand)', label: 'Email accounts', meta: coParent ? 'Not connected — optional' : 'sarah@gmail.com — connected' },
+    { icon: 'calendar-days', iconBg: 'var(--amber-100)', iconColor: 'var(--amber-600)', label: 'Calendar', meta: coParent ? 'Not connected — optional' : 'Google Calendar — connected' },
+    { icon: 'rss', iconBg: 'var(--green-100)', iconColor: 'var(--success)', label: 'Monitored senders & domains', meta: coParent ? `Managed by ${PRIMARY_PARENT.first}` : '3 domains · 2 addresses' }]
+
+  },
+  {
+    title: 'Preferences',
+    rows: [
+    { icon: 'bell', iconBg: 'var(--paper-sunk)', iconColor: 'var(--fg2)', label: 'Notification preferences', meta: 'Digest at 7:00 AM' },
+    { icon: 'calendar-check', iconBg: 'var(--paper-sunk)', iconColor: 'var(--fg2)', label: 'Calendar rules', meta: coParent ? `Managed by ${PRIMARY_PARENT.first}` : 'All events · Auto' },
+    { icon: 'plus-circle', iconBg: 'var(--paper-sunk)', iconColor: 'var(--fg2)', label: 'Add content', meta: 'Forwarding addresses · file upload' }]
+
+  },
+  {
+    title: 'Account',
+    rows: [
+    { icon: 'credit-card', iconBg: 'var(--paper-sunk)', iconColor: 'var(--fg2)', label: 'Subscription', meta: coParent ? `Shared with ${PRIMARY_PARENT.first}` : '3 children · $10.99/mo · 18 days left in trial' },
+    { icon: 'log-out', iconBg: 'var(--red-050)', iconColor: 'var(--red-600)', label: 'Sign out', meta: '' }]
+
+  }];
+
+
+  if (page === 'Children') return <ChildrenSettings onBack={() => setPage(null)} />;
+  if (page === 'Co-parent access') return <FamilyAccessSettings onBack={() => setPage(null)} seed={seed} coParent={coParent} />;
+  if (page === 'Email accounts') return <EmailAccountsSettings onBack={() => setPage(null)} />;
+  if (page === 'Calendar') return <CalendarSettings onBack={() => setPage(null)} />;
+  if (page === 'Monitored senders & domains') return <SourcesView onBack={() => setPage(null)} />;
+  if (page === 'Calendar rules') return <CalendarRulesSettings onBack={() => setPage(null)} />;
+  if (page === 'Add content') return <AddContentSettings onBack={() => setPage(null)} />;
+
+  if (page) {
+    return (
+      <div>
+        <SubPageHead title={page} onBack={() => setPage(null)} />
+        <div className="pad" style={{ paddingTop: 16 }}>
+          <div style={{ background: 'var(--surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-soft)', padding: '28px 20px', textAlign: 'center', boxShadow: 'var(--shadow-sm)' }}>
+            <div style={{ width: 48, height: 48, borderRadius: 14, background: 'var(--brand-tint-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px' }}>
+              <Icon name="sliders-horizontal" size={22} style={{ color: 'var(--brand)' }} />
+            </div>
+            <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--fg1)', marginBottom: 4 }}>{page}</div>
+            <div style={{ fontSize: 13, color: 'var(--fg3)', lineHeight: 1.55 }}>Settings for this section will appear here.</div>
+          </div>
+        </div>
+      </div>);
+
+  }
+
+  return (
+    <div>
+      <div className="subhead">
+        <h1>Settings</h1>
+      </div>
+      <div className="pad" style={{ paddingTop: 20 }}>
+        {sections.map((sec) =>
+        <div key={sec.title} className="settings-section">
+            <div className="settings-section-title">{sec.title}</div>
+            <div className="settings-list">
+              {sec.rows.map((row, i) =>
+            <div key={i} className="settings-row" tabIndex={0} onClick={() => setPage(row.label)}>
+                  <div className="settings-row-left">
+                    <div className="settings-icon" style={{ background: row.iconBg }}>
+                      <Icon name={row.icon} size={17} style={{ color: row.iconColor }} />
+                    </div>
+                    <div>
+                      <div className="settings-row-label">{row.label}</div>
+                      {row.meta && <div className="settings-row-meta">{row.meta}</div>}
+                    </div>
+                  </div>
+                  <div className="settings-row-chevron"><Icon name="chevron-right" size={16} /></div>
+                </div>
+            )}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>);
+
+}
+
+/* ============================================================
+   ONBOARDING WIZARD
+   ============================================================ */
+const EVENT_TYPES = [
+{ label: 'Sports', default: 'always' },
+{ label: 'Music lessons', default: 'always' },
+{ label: 'Holidays', default: 'always' },
+{ label: 'Parent–teacher conferences', default: 'always' },
+{ label: 'Field trips', default: 'always' },
+{ label: 'In-school activities', default: 'always' },
+{ label: 'PTA meetings', default: 'always' },
+{ label: 'Assignment due dates', default: 'always' },
+{ label: 'Permission slip due dates', default: 'always' },
+{ label: 'School board meetings', default: 'always' },
+{ label: 'Tutoring', default: 'always' }];
+
+const EMAIL_PROVIDERS = [
+{ id: 'Gmail', icon: 'mail', desc: 'Google account — real-time updates' },
+{ id: 'iCloud', icon: 'cloud', desc: 'Apple ID — checked every 15 minutes' },
+{ id: 'Outlook', icon: 'inbox', desc: 'Microsoft account — real-time updates' }];
+
+const CAL_PROVIDERS = [
+{ id: 'Google Calendar', icon: 'calendar-days', desc: 'Syncs instantly' },
+{ id: 'Apple Calendar', icon: 'calendar', desc: 'iCloud / CalDAV' },
+{ id: 'Microsoft Calendar', icon: 'calendar-range', desc: 'Outlook / Office 365' }];
+
+function AccountPicker({ label, options, value, onSelect, connectedSub }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div className="acct-label">{label}</div>
+      {options.map((p) =>
+      <button key={p.id} className={'provider-btn' + (value === p.id ? ' selected' : '')}
+      onClick={() => onSelect(p.id)}>
+          <Icon name={p.icon} size={22} />
+          <div className="pb-text">
+            <span className="pb-name">{p.id}</span>
+            <span className="pb-desc">{p.desc}</span>
+          </div>
+          {value === p.id && <div className="check"><Icon name="check" size={12} /></div>}
+        </button>
+      )}
+      {value &&
+      <div className="connected-box" style={{ marginTop: 4 }}>
+          <Icon name="check-circle" size={18} />
+          <div>
+            <div className="cb-text">{value} connected</div>
+            <div className="cb-sub">{connectedSub}</div>
+          </div>
+        </div>
+      }
+    </div>);
+}
+
+
+function OnboardingWizard({ onComplete }) {
+  const [step, setStep] = useState(1);
+  const [child, setChild] = useState({ name: '', grade: '', school: '', state: '' });
+  const [emailAccounts, setEmailAccounts] = useState([]); // max 2
+  const [showSecondInbox, setShowSecondInbox] = useState(false);
+  const [calAccounts, setCalAccounts] = useState([]); // max 2
+  const [showSecondCal, setShowSecondCal] = useState(false);
+  const [rules, setRules] = useState(() => Object.fromEntries(EVENT_TYPES.map((et, i) => [i, et.default])));
+  const [digestTime, setDigestTime] = useState('7:00 AM');
+  const totalSteps = 5;
+
+  const canNext = () => {
+    if (step === 1) return child.name.trim() && child.grade && child.school.trim() && child.state.trim();
+    if (step === 2) return emailAccounts.filter(Boolean).length >= 1;
+    return true;
+  };
+
+  const next = () => {
+    if (step === totalSteps) {onComplete();return;}
+    setStep((s) => s + 1);
+  };
+  const back = () => setStep((s) => s - 1);
+  const skip = () => setStep((s) => s + 1);
+
+  const childName = child.name.trim() || 'your child';
+
+  const steps = {
+    1: {
+      eyebrow: 'Step 1 of 5',
+      title: `Tell us about ${step === 1 && child.name ? child.name : 'your child'}`,
+      subtitle: 'Skoolit will use this to find the right school emails and match activities.',
+      content:
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <div className="form-row">
+            <div className="form-group">
+              <label className="form-label">First name</label>
+              <input className="form-input" placeholder="Emma" value={child.name}
+            onChange={(e) => setChild((c) => ({ ...c, name: e.target.value }))} />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Grade</label>
+              <select className="form-input" value={child.grade}
+            onChange={(e) => setChild((c) => ({ ...c, grade: e.target.value }))}>
+                <option value="">Select</option>
+                {['K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'].map((g) =>
+              <option key={g} value={g}>Grade {g}</option>
+              )}
+              </select>
+            </div>
+          </div>
+          <div className="form-group">
+            <label className="form-label">School name</label>
+            <input className="form-input" placeholder="Lincoln Middle School" value={child.school}
+          onChange={(e) => setChild((c) => ({ ...c, school: e.target.value }))} />
+          </div>
+          <div className="form-group">
+            <label className="form-label">State</label>
+            <input className="form-input" placeholder="California" value={child.state}
+          onChange={(e) => setChild((c) => ({ ...c, state: e.target.value }))} />
+          </div>
+          <button style={{ background: 'none', border: 'none', fontSize: 13, color: 'var(--brand)', fontWeight: 600, cursor: 'pointer', textAlign: 'left', padding: 0, fontFamily: 'var(--font-text)' }}
+        onClick={() => {}}>
+            + Add another child
+          </button>
+        </div>
+
+    },
+    2: {
+      eyebrow: 'Step 2 of 5',
+      title: 'Connect your inbox',
+      subtitle: `This is how Skoolit reads ${childName}'s school emails. We only watch the senders you choose.`,
+      content:
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <AccountPicker
+          label="Inbox 1"
+          options={EMAIL_PROVIDERS}
+          value={emailAccounts[0] || null}
+          onSelect={(id) => setEmailAccounts((prev) => {const n = [...prev];n[0] = id;return n;})}
+          connectedSub={`We'll now watch for ${childName}'s school senders.`} />
+          {emailAccounts[0] && !showSecondInbox &&
+        <button className="text-add-btn" onClick={() => setShowSecondInbox(true)}>+ Add a second inbox</button>
+        }
+          {showSecondInbox &&
+        <AccountPicker
+          label="Inbox 2"
+          options={EMAIL_PROVIDERS}
+          value={emailAccounts[1] || null}
+          onSelect={(id) => setEmailAccounts((prev) => {const n = [...prev];n[1] = id;return n;})}
+          connectedSub="A second inbox is connected." />
+        }
+        </div>
+
+    },
+    3: {
+      eyebrow: 'Step 3 of 5',
+      title: 'Connect your calendar',
+      subtitle: 'This lets Skoolit add events automatically — no copy-pasting dates.',
+      content:
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <AccountPicker
+          label="Calendar 1"
+          options={CAL_PROVIDERS}
+          value={calAccounts[0] || null}
+          onSelect={(id) => setCalAccounts((prev) => {const n = [...prev];n[0] = id;return n;})}
+          connectedSub={`Events from ${childName}'s school emails will go straight to your calendar.`} />
+          {calAccounts[0] && !showSecondCal &&
+        <button className="text-add-btn" onClick={() => setShowSecondCal(true)}>+ Add a second calendar</button>
+        }
+          {showSecondCal &&
+        <AccountPicker
+          label="Calendar 2"
+          options={CAL_PROVIDERS}
+          value={calAccounts[1] || null}
+          onSelect={(id) => setCalAccounts((prev) => {const n = [...prev];n[1] = id;return n;})}
+          connectedSub="A second calendar is connected." />
+        }
+          {calAccounts.length === 0 &&
+        <div style={{ fontSize: 13, color: 'var(--fg3)', padding: '2px 0 4px', lineHeight: 1.5 }}>
+              Without a calendar, Skoolit can still show you events — but won't add them automatically. You can connect later in Settings.
+            </div>
+        }
+        </div>,
+
+      skippable: true
+    },
+    4: {
+      eyebrow: 'Step 4 of 5',
+      title: 'How should events land?',
+      subtitle: 'Choose what Skoolit adds automatically, what it asks about, and what to skip.',
+      content:
+      <div className="event-rules">
+          {EVENT_TYPES.map((et, i) =>
+        <div key={i} className="event-rule-row">
+              <span className="event-rule-name">{et.label}</span>
+              <div className="rule-selector">
+                {['always', 'ask', 'never'].map((r) =>
+            <button key={r}
+            className={'rule-btn' + (rules[i] === r ? ` active-${r}` : '')}
+            onClick={() => setRules((prev) => ({ ...prev, [i]: r }))}>
+                    {r === 'always' ? 'Auto' : r === 'ask' ? 'Ask' : 'Skip'}
+                  </button>
+            )}
+              </div>
+            </div>
+        )}
+        </div>
+
+    },
+    5: {
+      eyebrow: 'Step 5 of 5',
+      title: 'Create your account',
+      subtitle: "You're almost in. Continue with Google or set a password to activate Skoolit.",
+      content:
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ fontSize: 13, color: 'var(--fg3)', lineHeight: 1.55, padding: '2px 0' }}>
+            Use the Google account you connected in Step 2 — no new password needed.
+          </div>
+          <button className="btn-google-oauth" type="button">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="white" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="white" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="white" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="white" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Continue with Google
+          </button>
+          <div className="or-divider"><span>or</span></div>
+          <div className="form-group">
+            <label className="form-label">Email</label>
+            <input className="form-input" type="email" placeholder="you@example.com" defaultValue="sarah@gmail.com" />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Password</label>
+            <input className="form-input" type="password" placeholder="Create a password" />
+          </div>
+
+          <div style={{ borderRadius: 'var(--radius-md)', border: '1px solid var(--border-soft)', overflow: 'hidden', marginTop: 2 }}>
+            <div style={{ background: 'var(--brand)', padding: '11px 16px' }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--fg-on-brand)', letterSpacing: '.06em', textTransform: 'uppercase' }}>Your plan</div>
+            </div>
+            <div style={{ padding: '15px 16px', background: 'var(--surface)' }}>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 800, color: 'var(--fg1)', lineHeight: 1 }}>
+                $4.99<span style={{ fontSize: 14, fontWeight: 500, color: 'var(--fg3)' }}> / month</span>
+              </div>
+              <div style={{ fontSize: 13, color: 'var(--fg2)', marginTop: 5 }}>First child · additional children from $1–$3/mo</div>
+              <div style={{ marginTop: 13, padding: '9px 12px', background: 'var(--brand-tint-soft)', borderRadius: 'var(--radius-sm)', fontSize: 13, color: 'var(--brand-strong)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 7 }}>
+                <Icon name="gift" size={15} style={{ flexShrink: 0 }} />
+                14-day free trial — no charge today
+              </div>
+            </div>
+            <div style={{ padding: '15px 16px', borderTop: '1px solid var(--hairline)', background: 'var(--surface)' }}>
+              <div style={{ fontSize: 13, color: 'var(--fg3)', marginBottom: 10, fontWeight: 600 }}>Payment details</div>
+              <input className="form-input" placeholder="Card number" style={{ marginBottom: 8 }} />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                <input className="form-input" placeholder="MM / YY" />
+                <input className="form-input" placeholder="CVC" />
+              </div>
+              <div style={{ fontSize: 11, color: 'var(--fg3)', marginTop: 10, display: 'flex', alignItems: 'center', gap: 5 }}>
+                <Icon name="shield-check" size={11} /> Secured by Stripe · cancel anytime
+              </div>
+            </div>
+          </div>
+        </div>
+
+    }
+  };
+
+  const current = steps[step];
+
+  return (
+    <div className="ob-wrap">
+      <StatusBar />
+      <div className="ob-inner">
+        <div className="ob-topbar">
+          {step > 1 ?
+          <button className="ob-back" onClick={back}>
+              <Icon name="chevron-left" size={16} />Back
+            </button> :
+          <div />}
+          <span className="ob-step-label">Step {step} of {totalSteps}</span>
+        </div>
+        <div className="ob-progress">
+          <div className="ob-progress-fill" style={{ width: `${step / totalSteps * 100}%` }} />
+        </div>
+        <div className="ob-content" data-comment-anchor="059d16babb-div-1702-9">
+          <div className="ob-eyebrow">{current.eyebrow}</div>
+          <div className="ob-title" data-comment-anchor="12baca3628-div-1505-11">{current.title}</div>
+          <div className="ob-subtitle">{current.subtitle}</div>
+          {current.content}
+        </div>
+        <div className="ob-bottom">
+          <button className="ob-next" onClick={next} disabled={!canNext()} data-comment-anchor="2362a99a55-button-1510-11">
+            {step === totalSteps ? 'Complete setup' : 'Continue'}
+          </button>
+          {step < totalSteps &&
+          <button className="ob-skip" onClick={skip}>Skip — do this later</button>
+          }
+        </div>
+      </div>
+    </div>);
+
+}
+
+/* ============================================================
+   MAIN APP
+   ============================================================ */
+function MainApp({ coParent = false, cpSeed = 'confirm', firstLogin = false, initialSubView = 'home', initialSettingsPage = null }) {
+  const [subView, setSubView] = useState(initialSubView);
+  const [settingsInitPage, setSettingsInitPage] = useState(initialSettingsPage);
+  const goToSources = () => { setSettingsInitPage('Monitored senders & domains'); setSubView('settings'); };
+  const [filter, setFilter] = useState('all');
+  const [handled, setHandled] = useState(new Set());
+  const [openItem, setOpenItem] = useState(null);
+  const [toast, setToast] = useState(null);
+
+  const handleResolve = useCallback((item) => {
+    setHandled((prev) => new Set([...prev, item.id]));
+  }, []);
+
+  const handleAdd = useCallback((item) => {
+    setHandled((prev) => new Set([...prev, item.id]));
+    const prevHandled = handled;
+    setToast({
+      msg: `Added to calendar`,
+      onUndo: () => {
+        setHandled((prev) => {
+          const next = new Set(prev);
+          next.delete(item.id);
+          return next;
+        });
+        setToast(null);
+      }
+    });
+  }, [handled]);
+
+  return (
+    <div className="phone">
+      <StatusBar />
+      <div className="screen">
+        <AppHeader filter={filter} setFilter={setFilter} view={subView} />
+        {subView === 'home' &&
+        <DigestView
+          filter={filter}
+          onOpen={setOpenItem}
+          handled={handled}
+          onResolve={handleResolve}
+          onAdd={handleAdd}
+          toast={toast}
+          onUndoToast={() => setToast(null)}
+          coParent={coParent}
+          firstLogin={firstLogin}
+          onGoToSources={goToSources} />
+
+        }
+        {subView === 'calendar' && <CalendarView filter={filter} />}
+        {subView === 'sources'  && <SourcesView />}
+        {subView === 'settings' && <SettingsView seed={cpSeed} coParent={coParent} initialPage={settingsInitPage} />}
+        {openItem &&
+        <DetailSheet
+          item={openItem}
+          onClose={() => setOpenItem(null)}
+          onResolve={(item) => {handleResolve(item);setOpenItem(null);}} />
+
+        }
+      </div>
+      <BottomNav view={subView} setView={setSubView} />
+    </div>);
+
+}
+
+/* ============================================================
+   LANDING SCREEN
+   ============================================================ */
+function BrowserBar() {
+  return (
+    <div className="browser-bar" data-comment-anchor="3375bd94bf-div-1090-5">
+      <Icon name="chevron-left" size={18} style={{ color: 'var(--fg3)', opacity: .45 }} />
+      <div className="bb-url">
+        <Icon name="lock" size={11} />
+        <span>skoolit.app</span>
+      </div>
+      <Icon name="rotate-cw" size={15} style={{ color: 'var(--fg2)' }} />
+    </div>);
+
+}
+
+function LandingScreen({ onStart }) {
+  return (
+    <div className="ob-wrap">
+      <StatusBar />
+      <BrowserBar />
+      <div className="ob-inner" style={{ justifyContent: 'space-between', textAlign: 'center', padding: '18px 28px 16px' }}>
+        <div style={{ paddingTop: 28 }}>
+          <img src="assets/logomark.svg" alt="" style={{ width: 60, height: 60, marginBottom: 20 }} />
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: 30, fontWeight: 800, lineHeight: 1.12, letterSpacing: '-.02em', color: 'var(--fg1)', marginBottom: 14 }}>
+            Less inbox.<br />More parenting.
+          </div>
+          <div style={{ fontSize: 15, color: 'var(--fg2)', lineHeight: 1.6, maxWidth: 300, margin: '0 auto' }}>
+            Skoolit reads your school emails, builds your family calendar, and surfaces what actually needs you.
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, textAlign: 'left', background: 'var(--surface)', border: '1px solid var(--border-soft)', borderRadius: 'var(--radius-lg)', padding: 16, boxShadow: 'var(--shadow-sm)' }}>
+          {[
+          'Set up in under 5 minutes',
+          'Your emails are never stored',
+          'Works with Gmail, iCloud & Outlook'].
+          map((t, i) =>
+          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 11, fontSize: 13.5, color: 'var(--fg2)' }}>
+              <span style={{ width: 22, height: 22, borderRadius: '50%', flex: 'none', background: 'var(--brand-tint)', color: 'var(--brand-strong)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Icon name="check" size={13} />
+              </span>
+              {t}
+            </div>
+          )}
+        </div>
+
+        <div className="ob-bottom" style={{ borderTop: 'none', padding: 0 }}>
+          <div className="install-banner">
+            <img src="assets/logomark.svg" alt="" />
+            <div className="ib-text">
+              <div className="ib-title">Install Skoolit</div>
+              <div className="ib-sub">Add to Home Screen — no app store needed</div>
+            </div>
+            <button className="ib-add">Add</button>
+          </div>
+          <button className="ob-next" onClick={onStart}>Get started</button>
+          <div style={{ fontSize: 13, color: 'var(--fg3)', marginTop: 4 }}>
+            Already have an account? <span style={{ color: 'var(--brand-strong)', fontWeight: 600, cursor: 'pointer' }}>Sign in</span>
+          </div>
+        </div>
+      </div>
+    </div>);
+
+}
+
+/* ============================================================
+   §4.11.0 — CO-PARENT AUTO-DETECTION PROMPT (end of onboarding)
+   ============================================================ */
+function CoParentScreen({ onComplete }) {
+  const cp = DETECTED_COPARENT;
+  return (
+    <div className="ob-wrap">
+      <StatusBar />
+      <div className="ob-inner">
+        <div className="ob-content" style={{ justifyContent: 'center', flex: 1 }} data-comment-anchor="ab8ee5436c-div-1858-9">
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+            <div className="cp-ava" style={{ width: 76, height: 76, fontSize: 32, background: cp.color, marginBottom: 22 }}>{cp.initials}</div>
+            <div className="ob-eyebrow">Looks like you're not the only one</div>
+            <h1 className="ob-title" style={{ marginTop: 8 }} data-comment-anchor="8cdba5ea24-p-1661-13">Share with {cp.first}?</h1>
+            <p className="ob-subtitle" style={{ marginTop: 10, maxWidth: 300 }}>
+              {cp.first} is often included on Emma's school emails. Give {cp.first} the same digest, calendar, and reminders — no setup needed on their end.
+            </p>
+          </div>
+        </div>
+        <div className="ob-bottom">
+          <button className="ob-next" onClick={() => onComplete('confirm')}>Yes, invite {cp.first}</button>
+          <button className="ob-skip" onClick={() => onComplete('decline')}>Not now</button>
+        </div>
+      </div>
+    </div>);
+}
+
+/* ============================================================
+   §4.11.2 — CO-PARENT ACCEPTANCE FLOW (Path A: invite link)
+   ============================================================ */
+function CoParentAcceptFlow({ onComplete }) {
+  const [step, setStep] = useState(1); // 1 landing · 2 account · 3 acknowledge
+  const [declined, setDeclined] = useState(false);
+  const [name, setName] = useState(DETECTED_COPARENT.name);
+  const [pw, setPw] = useState('');
+  const [ack, setAck] = useState(false);
+  const me = DETECTED_COPARENT;
+
+  if (declined) {
+    return (
+      <div className="ob-wrap">
+        <StatusBar />
+        <div className="ob-inner">
+          <div className="ob-content" style={{ justifyContent: 'center', flex: 1, textAlign: 'center', alignItems: 'center' }}>
+            <div className="cp-ava" style={{ width: 64, height: 64, fontSize: 26, background: 'var(--paper-sunk)', color: 'var(--fg2)', marginBottom: 18 }}>
+              <Icon name="clock" size={28} />
+            </div>
+            <h1 className="ob-title">No problem</h1>
+            <p className="ob-subtitle" style={{ marginTop: 10, maxWidth: 300 }}>Your invite stays valid for 7 days. Come back to the link anytime to join {PRIMARY_PARENT.first}'s family.</p>
+          </div>
+          <div className="ob-bottom">
+            <button className="ob-next" onClick={() => {setDeclined(false);setStep(1);}}>Actually, accept now</button>
+          </div>
+        </div>
+      </div>);
+  }
+
+  // Step 1 — Invitation landing
+  if (step === 1) {
+    return (
+      <div className="ob-wrap">
+        <StatusBar />
+        <div className="ob-inner">
+          <div className="ob-content">
+            <div className="invite-from">
+              <div className="cp-ava" style={{ width: 46, height: 46, fontSize: 19, background: PRIMARY_PARENT.color }}>{PRIMARY_PARENT.initials}</div>
+              <div className="invite-from-main">
+                <div className="invite-from-name">{PRIMARY_PARENT.name} invited you</div>
+                <div className="invite-from-sub">to share their family on Skoolit</div>
+              </div>
+            </div>
+            <h1 className="ob-title" style={{ marginTop: 4 }}>Join the family</h1>
+            <p className="ob-subtitle" style={{ marginTop: -6 }}>You'll get the same digest, calendar, and reminders for:</p>
+            <div className="kid-chips">
+              {CHILDREN.map((c) =>
+              <span key={c.id} className="kid-chip"><span className="cdot" style={{ background: c.color }} />{c.name}</span>
+              )}
+            </div>
+            <div className="scope-block" style={{ marginTop: 6 }}>
+              <div className="scope-list">
+                {['Nothing to set up — Sarah\'s school connections come with you', 'Free to join · billing stays with Sarah', 'You can connect your own calendar and inbox later'].map((t, i) =>
+                <div key={i} className="scope-item"><Icon name="check" size={14} style={{ color: 'var(--success)' }} />{t}</div>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="ob-bottom">
+            <button className="ob-next" onClick={() => setStep(2)}>Accept invitation</button>
+            <button className="ob-skip" onClick={() => setDeclined(true)}>Not right now</button>
+          </div>
+        </div>
+      </div>);
+  }
+
+  // Step 2 — Account creation
+  if (step === 2) {
+    return (
+      <div className="ob-wrap">
+        <StatusBar />
+        <div className="ob-inner">
+          <div className="ob-back-row" style={{ padding: '12px 20px 0' }}>
+            <button className="ob-skip" style={{ margin: 0, padding: 0, alignSelf: 'flex-start' }} onClick={() => setStep(1)}>← Back</button>
+          </div>
+          <div className="ob-content">
+            <div className="ob-eyebrow">Step 1 of 2</div>
+            <h1 className="ob-title" style={{ marginTop: 4 }}>Create your account</h1>
+            <p className="ob-subtitle" style={{ marginTop: -6 }}>Shared with {PRIMARY_PARENT.first}'s family — no plan to choose.</p>
+            <div className="form-group">
+              <label className="form-label">Your name</label>
+              <input className="form-input" value={name} onChange={(e) => setName(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Email</label>
+              <input className="form-input" value={me.email} readOnly style={{ color: 'var(--fg3)' }} />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Create a password</label>
+              <input className="form-input" type="password" placeholder="••••••••" value={pw} onChange={(e) => setPw(e.target.value)} />
+            </div>
+          </div>
+          <div className="ob-bottom">
+            <button className="ob-next" onClick={() => setStep(3)}>Continue</button>
+          </div>
+        </div>
+      </div>);
+  }
+
+  // Step 3 — Access confirmation (must acknowledge)
+  return (
+    <div className="ob-wrap">
+      <StatusBar />
+      <div className="ob-inner">
+        <div className="ob-back-row" style={{ padding: '12px 20px 0' }}>
+          <button className="ob-skip" style={{ margin: 0, padding: 0, alignSelf: 'flex-start' }} onClick={() => setStep(2)}>← Back</button>
+        </div>
+        <div className="ob-content">
+          <div className="ob-eyebrow">Step 2 of 2</div>
+          <h1 className="ob-title" style={{ marginTop: 4 }}>What you'll have access to</h1>
+          <div className="scope-block">
+            <div className="scope-title yes"><Icon name="eye" size={15} />You'll see &amp; can act on</div>
+            <div className="scope-list">
+              {['The full family digest, calendar, and AI conversation', 'The school email archive and AI-drafted replies', 'Mark items handled, add events, send replies from your own email'].map((t, i) =>
+              <div key={i} className="scope-item"><Icon name="check" size={14} style={{ color: 'var(--success)' }} />{t}</div>
+              )}
+            </div>
+          </div>
+          <div className="scope-block" style={{ marginTop: 18 }}>
+            <div className="scope-title no"><Icon name="lock" size={15} />Only {PRIMARY_PARENT.first} can change</div>
+            <div className="scope-list">
+              {['Email connection & monitored senders', 'Child profiles and school details', 'The family\'s billing and subscription'].map((t, i) =>
+              <div key={i} className="scope-item"><Icon name="minus" size={14} style={{ color: 'var(--fg3)' }} />{t}</div>
+              )}
+            </div>
+          </div>
+          <div className={'ack-row' + (ack ? ' on' : '')} onClick={() => setAck((v) => !v)} style={{ marginTop: 20 }} role="checkbox" aria-checked={ack}>
+            <div className="ack-box"><Icon name="check" size={14} /></div>
+            <div className="ack-text">I understand I'm joining {PRIMARY_PARENT.name}'s family and what I can access.</div>
+          </div>
+        </div>
+        <div className="ob-bottom">
+          <button className="ob-next" disabled={!ack} onClick={onComplete}>Enter Skoolit</button>
+        </div>
+      </div>
+    </div>);
+}
+
+/* ============================================================
+   APP ROOT — Landing → Onboarding → Main App
+   ============================================================ */
+function App() {
+  const [phase, setPhase] = useState('landing'); // landing | onboarding | coparent | app | cpaccept | cpapp
+  const [cpSeed, setCpSeed] = useState('confirm');
+  const [firstLogin, setFirstLogin] = useState(false); // 'confirm' | 'decline'
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  useEffect(() => {applyTweaks(t);}, [t.brand, t.material, t.atmosphere]);
+
+  return (
+    <>
+      {phase === 'landing' && <LandingScreen onStart={() => setPhase('onboarding')} />}
+      {phase === 'onboarding' && <OnboardingWizard onComplete={() => setPhase('coparent')} />}
+      {phase === 'coparent' && <CoParentScreen onComplete={(action) => {setCpSeed(action);setFirstLogin(true);setPhase('app');}} />}
+      {phase === 'app' && <MainApp cpSeed={cpSeed} firstLogin={firstLogin} />}
+      {phase === 'cpaccept' && <CoParentAcceptFlow onComplete={() => setPhase('cpapp')} />}
+      {phase === 'cpapp' && <MainApp coParent cpSeed={cpSeed} />}
+      {phase === 'sources' && <MainApp initialSubView='settings' initialSettingsPage='Monitored senders & domains' />}
+
+      {/* Prototype nav overlay — jump between flows */}
+      <div className="proto-nav">
+        <span style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,.5)', padding: '0 6px 0 4px', letterSpacing: '.04em', alignSelf: 'center', borderRight: '1px solid rgba(255,255,255,.18)', marginRight: 2 }}>v6</span>
+        {[
+        ['landing', 'Landing'],
+        ['onboarding', 'Onboarding'],
+        ['coparent', 'Share prompt'],
+        ['app', 'Main app'],
+        ['sources', 'Sources'],
+        ['cpaccept', 'Invite accept'],
+        ['cpapp', 'Co-parent app']].
+        map(([id, label]) =>
+        <button key={id} className={phase === id ? 'active' : ''} onClick={() => setPhase(id)}>
+            {label}
+          </button>
+        )}
+      </div>
+
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="Brand mood">
+          <div style={{ fontSize: 11, lineHeight: 1.4, color: 'rgba(41,38,27,.55)', margin: '1px 0 2px' }}>The single confident color that carries the product.</div>
+          <TweakColor label="Palette" value={t.brand} options={BRAND_OPTIONS}
+          onChange={(v) => setTweak('brand', v)} />
+        </TweakSection>
+
+        <TweakSection label="Material">
+          <div style={{ fontSize: 11, lineHeight: 1.4, color: 'rgba(41,38,27,.55)', margin: '1px 0 2px' }}>Shape &amp; elevation — pillowy and friendly to flat and efficient.</div>
+          <TweakRadio label="Surface" value={t.material}
+          options={['pillowy', 'balanced', 'sharp']}
+          onChange={(v) => setTweak('material', v)} />
+        </TweakSection>
+
+        <TweakSection label="Atmosphere">
+          <div style={{ fontSize: 11, lineHeight: 1.4, color: 'rgba(41,38,27,.55)', margin: '1px 0 2px' }}>Surface temperature — warm paper feels human, cool reads clinical.</div>
+          <TweakRadio label="Tone" value={t.atmosphere}
+          options={['warm', 'neutral', 'cool']}
+          onChange={(v) => setTweak('atmosphere', v)} />
+        </TweakSection>
+      </TweaksPanel>
+    </>);
+
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+<!-- ── PROTOTYPE ACCESS GATE ─────────────────────────────────────────────── -->
+<style>
+  .pg-overlay {
+    position: fixed; inset: 0; z-index: 99999;
+    background: #F6F3EC;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .pg-box {
+    width: 100%; max-width: 400px; padding: 0 24px;
+    text-align: center;
+  }
+  .pg-logo {
+    width: 48px; height: 48px; margin: 0 auto 20px;
+  }
+  .pg-wordmark {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-weight: 800; font-size: 22px; letter-spacing: -0.03em;
+    color: #1B241F; margin-bottom: 6px;
+  }
+  .pg-tagline {
+    font-size: 14px; color: #5E6862; margin-bottom: 36px;
+    line-height: 1.5;
+  }
+  .pg-card {
+    background: #fff; border: 1px solid #DAD4C8;
+    border-radius: 18px; padding: 32px 28px;
+    box-shadow: 0 2px 6px rgba(27,36,31,.05), 0 8px 20px rgba(27,36,31,.07);
+  }
+  .pg-heading {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: -0.02em;
+    color: #1B241F; margin-bottom: 8px;
+  }
+  .pg-sub {
+    font-size: 13px; color: #5E6862; margin-bottom: 24px; line-height: 1.5;
+  }
+  .pg-field {
+    width: 100%; padding: 11px 16px;
+    border: 1.5px solid #DAD4C8; border-radius: 10px;
+    font-family: inherit; font-size: 15px; color: #1B241F;
+    background: #fff; outline: none; margin-bottom: 12px;
+    transition: border-color .15s;
+    box-sizing: border-box;
+  }
+  .pg-field:focus { border-color: #8AC2E5; }
+  .pg-field::placeholder { color: #AEB4AE; }
+  .pg-btn {
+    width: 100%; padding: 12px;
+    background: #1A6249; color: #fff;
+    border: none; border-radius: 10px;
+    font-family: inherit; font-size: 15px; font-weight: 600;
+    cursor: pointer; transition: background .15s; margin-top: 4px;
+  }
+  .pg-btn:hover { background: #15543F; }
+  .pg-btn:disabled { opacity: .6; cursor: not-allowed; }
+  .pg-error {
+    font-size: 13px; color: #B23A24;
+    margin-top: 10px; display: none;
+  }
+  .pg-success {
+    font-size: 14px; color: #237A52; font-weight: 500;
+    margin-top: 10px; display: none;
+  }
+  .pg-link {
+    font-size: 13px; color: #5E6862; margin-top: 20px;
+    cursor: pointer; text-decoration: underline; text-underline-offset: 2px;
+    background: none; border: none; font-family: inherit;
+  }
+  .pg-link:hover { color: #1B241F; }
+  @keyframes pg-shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+  }
+  .pg-shake { animation: pg-shake .35s ease; }
+</style>
+
+<div class="pg-overlay" id="pg-overlay">
+  <div class="pg-box">
+    <img class="pg-logo" src="assets/logomark.svg" alt="Skoolit" />
+    <div class="pg-wordmark">Skoolit</div>
+    <div class="pg-tagline">Prototype preview — restricted access</div>
+
+    <!-- State A: password -->
+    <div class="pg-card" id="pg-state-pw">
+      <div class="pg-heading">Enter access password</div>
+      <div class="pg-sub">This prototype is for invited reviewers only.</div>
+      <input id="pg-pw" class="pg-field" type="password" placeholder="Password" autocomplete="off" />
+      <button class="pg-btn" onclick="pgCheckPw()">Enter prototype</button>
+      <div class="pg-error" id="pg-pw-err">Incorrect password. Try again.</div>
+      <button class="pg-link" onclick="pgShow('request')">Don't have a password? Request access →</button>
+    </div>
+
+    <!-- State B: access request -->
+    <div class="pg-card" id="pg-state-req" style="display:none;">
+      <div class="pg-heading">Request access</div>
+      <div class="pg-sub">Enter your details and we'll follow up with access.</div>
+      <input id="pg-name"  class="pg-field" type="text"  placeholder="Your name"  autocomplete="name" />
+      <input id="pg-email" class="pg-field" type="email" placeholder="Email address" autocomplete="email" />
+      <input id="pg-phone" class="pg-field" type="tel"   placeholder="Phone (optional)" autocomplete="tel" />
+      <button class="pg-btn" id="pg-req-btn" onclick="pgRequestAccess()">Request access</button>
+      <div class="pg-error"   id="pg-req-err"></div>
+      <div class="pg-success" id="pg-req-ok">Thanks — we'll be in touch soon.</div>
+      <button class="pg-link" onclick="pgShow('pw')">← Back to password entry</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  if (sessionStorage.getItem('skoolit_proto') === '1') {
+    document.getElementById('pg-overlay').style.display = 'none';
+    return;
+  }
+
+  var PW_HASH = btoa('skoolit2026');
+
+  function pgShow(state) {
+    document.getElementById('pg-state-pw').style.display  = state === 'pw'      ? '' : 'none';
+    document.getElementById('pg-state-req').style.display = state === 'request' ? '' : 'none';
+  }
+  window.pgShow = pgShow;
+
+  window.pgCheckPw = function () {
+    var input = document.getElementById('pg-pw');
+    var err   = document.getElementById('pg-pw-err');
+    if (btoa(input.value) === PW_HASH) {
+      sessionStorage.setItem('skoolit_proto', '1');
+      document.getElementById('pg-overlay').style.display = 'none';
+    } else {
+      err.style.display = 'block';
+      input.classList.remove('pg-shake');
+      void input.offsetWidth;
+      input.classList.add('pg-shake');
+      input.value = '';
+      setTimeout(function () { input.classList.remove('pg-shake'); }, 400);
+    }
+  };
+
+  window.pgRequestAccess = function () {
+    var name  = document.getElementById('pg-name').value.trim();
+    var email = document.getElementById('pg-email').value.trim();
+    var phone = document.getElementById('pg-phone').value.trim();
+    var err   = document.getElementById('pg-req-err');
+    var ok    = document.getElementById('pg-req-ok');
+    var btn   = document.getElementById('pg-req-btn');
+
+    err.style.display = 'none';
+    ok.style.display  = 'none';
+
+    if (!name) { err.textContent = 'Please enter your name.'; err.style.display = 'block'; return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      err.textContent = 'Please enter a valid email address.'; err.style.display = 'block'; return;
+    }
+
+    btn.disabled = true; btn.textContent = 'Sending…';
+
+    fetch('/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, email: email, phone: phone, source: 'prototype-gate' })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (data.success) {
+        ok.style.display = 'block';
+        btn.style.display = 'none';
+        document.getElementById('pg-name').disabled  = true;
+        document.getElementById('pg-email').disabled = true;
+        document.getElementById('pg-phone').disabled = true;
+      } else {
+        throw new Error(data.error || 'Something went wrong.');
+      }
+    })
+    .catch(function (e) {
+      err.textContent = e.message; err.style.display = 'block';
+      btn.disabled = false; btn.textContent = 'Request access';
+    });
+  };
+
+  document.getElementById('pg-pw').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') window.pgCheckPw();
+  });
+})();
+</script>
+<!-- ── END GATE ─────────────────────────────────────────────────────────── -->
+</body>
+</html>
