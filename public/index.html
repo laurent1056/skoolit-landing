@@ -9,7 +9,10 @@
   <meta property="og:description" content="Skoolit reads your school and activity emails, builds your family calendar automatically, and surfaces what needs you — across all your kids, all their schools, and every activity." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://getskoolit.com" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
 
+  <link rel="icon" href="assets/logomark.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
@@ -194,6 +197,7 @@
       font-family: inherit;
     }
     .btn-primary:hover { background: var(--blue-dark); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
     .success-msg {
       display: none;
       align-items: center;
@@ -203,6 +207,12 @@
       color: var(--green-dot);
       font-weight: 500;
       padding: 14px 0;
+    }
+    .error-msg {
+      font-size: 0.85rem;
+      color: #e53e3e;
+      margin-top: 10px;
+      display: none;
     }
     .hero-app-preview {
       margin-top: 60px;
@@ -267,22 +277,6 @@
       color: rgba(255,255,255,0.72);
     }
     .callout-card strong { color: var(--amber); }
-    .watches-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .watches-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius-sm);
-      padding: 12px 16px;
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.8);
-    }
 
     /* ── How it works ───────────────────────────────── */
     .section-header {
@@ -507,7 +501,6 @@
       .features-grid,
       .watches-section-grid,
       .diff-grid,
-      .watches-grid,
       .watches-light-grid { grid-template-columns: 1fr; gap: 24px; }
       .signup-form, .cta-form { flex-direction: column; }
       .signup-form input, .cta-form input,
@@ -528,7 +521,7 @@
     <div class="container">
       <div class="nav-inner">
         <div class="nav-logo">
-          <img src="/assets/logomark.svg" alt="Skoolit" />
+          <img src="assets/logomark.svg" alt="Skoolit" />
           Skoolit
         </div>
         <button class="btn-nav" onclick="document.getElementById('hero-email').focus()">Get early access</button>
@@ -558,14 +551,15 @@
 
       <div class="signup-form" id="hero-form">
         <input type="email" id="hero-email" placeholder="your@email.com" autocomplete="email" />
-        <button class="btn-primary" onclick="handleSignup('hero-form', 'hero-success')">Get early access</button>
+        <button class="btn-primary" onclick="handleSignup('hero-email', 'hero-form', 'hero-success', 'hero-error', this)">Get early access</button>
       </div>
       <div class="success-msg" id="hero-success">
         🎉 You're on the list. We'll be in touch soon.
       </div>
+      <div class="error-msg" id="hero-error"></div>
 
       <div class="hero-app-preview">
-        <img src="/assets/screens/04-digest.png" alt="Skoolit daily digest view" />
+        <img src="assets/screens/04-digest.png" alt="Skoolit daily digest view" loading="lazy" />
       </div>
     </div>
   </section>
@@ -749,11 +743,12 @@
 
       <div class="cta-form" id="cta-form">
         <input type="email" id="cta-email" placeholder="your@email.com" autocomplete="email" />
-        <button class="btn-primary" onclick="handleSignup('cta-form', 'cta-success')">Get early access</button>
+        <button class="btn-primary" onclick="handleSignup('cta-email', 'cta-form', 'cta-success', 'cta-error', this)">Get early access</button>
       </div>
       <div class="success-msg" id="cta-success">
         🎉 You're on the list. We'll be in touch soon.
       </div>
+      <div class="error-msg" id="cta-error"></div>
     </div>
   </section>
 
@@ -762,7 +757,7 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-logo">
-          <img src="/assets/logomark.svg" alt="Skoolit" />
+          <img src="assets/logomark.svg" alt="Skoolit" />
           Skoolit
         </div>
         <p>© 2026 Skoolit · Launching soon · <a href="mailto:hello@getskoolit.com">hello@getskoolit.com</a></p>
@@ -771,19 +766,22 @@
   </footer>
 
   <script>
-    async function handleSignup(formId, successId) {
-      const form = document.getElementById(formId);
-      const success = document.getElementById(successId);
-      const input = form.querySelector('input[type="email"]');
-      const btn = form.querySelector('button');
+    async function handleSignup(inputId, formId, successId, errorId, btn) {
+      const input = document.getElementById(inputId);
+      const errorEl = document.getElementById(errorId);
+      const email = input.value.trim();
 
-      if (!input.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-        input.focus();
+      errorEl.style.display = 'none';
+      errorEl.textContent = '';
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         input.style.borderColor = '#e53e3e';
         setTimeout(() => input.style.borderColor = '', 1500);
+        input.focus();
         return;
       }
 
+      const originalLabel = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Joining…';
 
@@ -791,30 +789,30 @@
         const res = await fetch('/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: input.value.trim().toLowerCase() }),
+          body: JSON.stringify({ email }),
         });
-        if (!res.ok) throw new Error('server');
-        form.style.display = 'none';
-        success.style.display = 'flex';
-      } catch {
+
+        if (res.ok) {
+          document.getElementById(formId).style.display = 'none';
+          const successEl = document.getElementById(successId);
+          successEl.style.display = 'flex';
+        } else {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.error || 'Something went wrong. Please try again.');
+        }
+      } catch (err) {
+        errorEl.textContent = err.message;
+        errorEl.style.display = 'block';
         btn.disabled = false;
-        btn.textContent = 'Get early access';
-        input.style.borderColor = '#e53e3e';
-        input.placeholder = 'Something went wrong — try again';
-        setTimeout(() => {
-          input.style.borderColor = '';
-          input.placeholder = 'your@email.com';
-        }, 3000);
+        btn.textContent = originalLabel;
       }
     }
 
     document.querySelectorAll('input[type="email"]').forEach(input => {
       input.addEventListener('keydown', e => {
-        if (e.key === 'Enter') {
-          const form = input.closest('[id$="-form"]');
-          const successId = form.id.replace('-form', '-success');
-          handleSignup(form.id, successId);
-        }
+        if (e.key !== 'Enter') return;
+        const btn = input.closest('div').querySelector('button');
+        if (btn) btn.click();
       });
     });
   </script>
