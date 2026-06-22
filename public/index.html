@@ -514,6 +514,57 @@
       * { transition: none !important; }
     }
 
+    /* ── Blog teaser ────────────────────────────────── */
+    .blog-teaser { background: var(--bg); }
+    .blog-card {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      max-width: 720px;
+      margin: 0 auto;
+      transition: box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .blog-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.07); }
+    .blog-card-label {
+      flex-shrink: 0;
+      background: var(--amber-bg);
+      color: #9A6F00;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .blog-card-body { flex: 1; }
+    .blog-card-body h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .blog-card-body p {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--ink-mid);
+      margin-bottom: 16px;
+    }
+    .blog-read-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
     /* ── FAQ ────────────────────────────────────────── */
     .faq-section { background: var(--surface); }
     .faq-list {
@@ -988,6 +1039,24 @@
     </div>
   </section>
 
+  <!-- ── Blog teaser ──────────────────────────────────── -->
+  <section class="section-tight blog-teaser">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 32px;">
+        <span class="eyebrow">From the blog</span>
+        <h2 class="display display-lg">Research for parents.</h2>
+      </div>
+      <a href="/blog/school-email-overload/" class="blog-card">
+        <div class="blog-card-body">
+          <span class="blog-card-label">Research</span>
+          <h3>We Counted Every Email Katie Got From Her Kids' Schools Last Month</h3>
+          <p>One mom. Two kids. 94 school emails in 30 days. We read every one to find out how much information parents are expected to track — and how much they actually miss.</p>
+          <span class="blog-read-link">Read the article →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
   <!-- ── Footer ────────────────────────────────────────── -->
   <footer>
     <div class="container">
@@ -996,7 +1065,7 @@
           <img src="assets/logomark.svg" alt="Skoolit" />
           Skoolit
         </div>
-        <p>© 2026 Skoolit · Launching soon · <a href="mailto:hello@getskoolit.com">hello@getskoolit.com</a> · <a href="/prototype/" target="_blank" rel="noopener">Prototype</a></p>
+        <p>© 2026 Skoolit · Launching soon · <a href="mailto:hello@getskoolit.com">hello@getskoolit.com</a> · <a href="/blog/school-email-overload/">Blog</a> · <a href="/vs/cozi/">vs Cozi</a> · <a href="/vs/skylight/">vs Skylight</a> · <a href="/prototype/" target="_blank" rel="noopener">Prototype</a></p>
       </div>
     </div>
   </footer>
