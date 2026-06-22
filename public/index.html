@@ -12,6 +12,7 @@
   <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <link rel="canonical" href="https://getskoolit.com/" />
   <link rel="icon" href="assets/logomark.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -512,7 +513,158 @@
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
     }
+
+    /* ── FAQ ────────────────────────────────────────── */
+    .faq-section { background: var(--surface); }
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .faq-item + .faq-item { margin-top: 8px; }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 20px 24px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-question:hover { background: var(--bg); }
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+      color: var(--ink-light);
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer {
+      display: none;
+      padding: 0 24px 20px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--ink-mid);
+    }
+    .faq-item.open .faq-answer { display: block; }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Skoolit",
+        "url": "https://getskoolit.com",
+        "description": "Skoolit reads your school and activity emails, builds your family calendar automatically, and surfaces what needs your attention — across all your kids, all their schools, and every activity.",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "Web, iOS, Android",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free 30-day trial"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "142"
+        }
+      },
+      {
+        "@type": "Organization",
+        "name": "Skoolit",
+        "url": "https://getskoolit.com",
+        "logo": "https://getskoolit.com/assets/logomark.svg",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@getskoolit.com",
+          "contactType": "customer support"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Skoolit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Skoolit is an AI-powered family inbox organizer that reads your school and activity emails, automatically builds your family calendar, and surfaces deadlines, permission slips, and schedule changes before you miss them."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Skoolit store my emails?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Skoolit reads and processes your emails in real time but never stores the raw content. Only structured data — events, deadlines, action items — is saved to your account."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which email providers does Skoolit support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Skoolit works with Gmail, iCloud Mail, and Outlook. It also syncs with Google Calendar, Apple Calendar, and Microsoft Calendar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can Skoolit handle multiple children?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. One Skoolit account covers all your children. Each child gets a color-coded calendar layer so you can see everything at once or filter by child."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can both parents use the same Skoolit account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can link accounts with your co-parent so you both see the same digest, calendar, and action items. When one parent marks something handled, it's resolved for both."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Skoolit cover extracurricular activities, not just school?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. Skoolit monitors any sender you tell it to — your school district, a soccer coach, a piano studio, a tutor, or a summer camp. It's not limited to school emails."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is Skoolit different from ClassDojo or ParentSquare?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ClassDojo, ParentSquare, and Remind are school-controlled platforms — your school decides to use them and you receive what they send. Skoolit is parent-controlled: it works with any school (no adoption required), covers all your kids' extracurriculars, and builds your calendar automatically from your existing inbox."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -752,6 +904,90 @@
     </div>
   </section>
 
+  <!-- ── FAQ ──────────────────────────────────────────── -->
+  <section class="section faq-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Common questions</span>
+        <h2 class="display display-lg">Everything you want to know.</h2>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What is Skoolit?
+            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            Skoolit is an AI-powered family inbox organizer that reads your school and activity emails, automatically builds your family calendar, and surfaces deadlines, permission slips, and schedule changes before you miss them.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Does Skoolit store my emails?
+            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            No. Skoolit reads and processes your emails in real time but never stores the raw content. Only structured data — events, deadlines, action items — is saved to your account.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Which email providers does Skoolit support?
+            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            Skoolit works with Gmail, iCloud Mail, and Outlook. It also syncs with Google Calendar, Apple Calendar, and Microsoft Calendar.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can Skoolit handle multiple children?
+            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            Yes. One Skoolit account covers all your children. Each child gets a color-coded calendar layer so you can see everything at once or filter by child.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can both parents use the same Skoolit account?
+            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            Yes. You can link accounts with your co-parent so you both see the same digest, calendar, and action items. When one parent marks something handled, it's resolved for both.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Does Skoolit cover extracurricular activities, not just school?
+            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            Absolutely. Skoolit monitors any sender you tell it to — your school district, a soccer coach, a piano studio, a tutor, or a summer camp. It's not limited to school emails.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How is Skoolit different from ClassDojo or ParentSquare?
+            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            ClassDojo, ParentSquare, and Remind are school-controlled platforms — your school decides to use them and you receive what they send. Skoolit is parent-controlled: it works with any school (no adoption required), covers all your kids' extracurriculars, and builds your calendar automatically from your existing inbox.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ── Footer ────────────────────────────────────────── -->
   <footer>
     <div class="container">
@@ -815,6 +1051,13 @@
         if (btn) btn.click();
       });
     });
+
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
   </script>
 
 </body>
