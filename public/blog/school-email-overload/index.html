@@ -448,10 +448,10 @@
         <h3>Never miss another deadline.</h3>
         <p>Join the parents getting early access to Skoolit — the inbox organizer built for school life.</p>
         <div class="cta-form" id="blog-form">
-          <input type="email" id="blog-email" placeholder="your@email.com" autocomplete="email" />
+          <input type="email" id="blog-email" aria-label="Email address" placeholder="your@email.com" autocomplete="email" />
           <button class="btn-primary" onclick="handleSignup('blog-email', 'blog-form', 'blog-success', this)">Get early access</button>
         </div>
-        <div class="success-msg" id="blog-success">You're on the list. We'll be in touch soon.</div>
+        <div class="success-msg" id="blog-success" role="status" aria-live="polite">You're on the list. We'll be in touch soon.</div>
       </div>
 
       <h2>A note on methodology</h2>

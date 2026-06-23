@@ -112,6 +112,7 @@
       transition: background 0.15s;
     }
     .btn-nav:hover { background: var(--blue-dark); }
+    .btn-nav:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
 
     /* ── Hero ───────────────────────────────────────── */
     .hero {
@@ -182,7 +183,7 @@
       outline: none;
       transition: border-color 0.15s;
     }
-    .signup-form input:focus { border-color: var(--blue); }
+    .signup-form input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(91,186,213,0.25); }
     .signup-form input::placeholder { color: var(--ink-light); }
     .btn-primary {
       background: var(--blue);
@@ -198,6 +199,7 @@
       font-family: inherit;
     }
     .btn-primary:hover { background: var(--blue-dark); }
+    .btn-primary:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
     .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
     .success-msg {
       display: none;
@@ -470,7 +472,7 @@
       outline: none;
       transition: border-color 0.15s;
     }
-    .cta-form input:focus { border-color: var(--blue); }
+    .cta-form input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(91,186,213,0.25); }
     .cta-form input::placeholder { color: var(--ink-light); }
 
     /* ── Footer ─────────────────────────────────────── */
@@ -597,6 +599,7 @@
       gap: 16px;
     }
     .faq-question:hover { background: var(--bg); }
+    .faq-question:focus-visible { outline: 3px solid var(--blue); outline-offset: -3px; }
     .faq-chevron {
       flex-shrink: 0;
       width: 20px;
@@ -753,13 +756,13 @@
       </div>
 
       <div class="signup-form" id="hero-form">
-        <input type="email" id="hero-email" placeholder="your@email.com" autocomplete="email" />
+        <input type="email" id="hero-email" aria-label="Email address" placeholder="your@email.com" autocomplete="email" />
         <button class="btn-primary" onclick="handleSignup('hero-email', 'hero-form', 'hero-success', 'hero-error', this)">Get early access</button>
       </div>
-      <div class="success-msg" id="hero-success">
+      <div class="success-msg" id="hero-success" role="status" aria-live="polite">
         🎉 You're on the list. We'll be in touch soon.
       </div>
-      <div class="error-msg" id="hero-error"></div>
+      <div class="error-msg" id="hero-error" role="alert" aria-live="assertive"></div>
 
       <div class="hero-app-preview">
         <img src="assets/screens/04-digest.png" alt="Skoolit daily digest view" loading="lazy" />
@@ -945,13 +948,13 @@
       </p>
 
       <div class="cta-form" id="cta-form">
-        <input type="email" id="cta-email" placeholder="your@email.com" autocomplete="email" />
+        <input type="email" id="cta-email" aria-label="Email address" placeholder="your@email.com" autocomplete="email" />
         <button class="btn-primary" onclick="handleSignup('cta-email', 'cta-form', 'cta-success', 'cta-error', this)">Get early access</button>
       </div>
-      <div class="success-msg" id="cta-success">
+      <div class="success-msg" id="cta-success" role="status" aria-live="polite">
         🎉 You're on the list. We'll be in touch soon.
       </div>
-      <div class="error-msg" id="cta-error"></div>
+      <div class="error-msg" id="cta-error" role="alert" aria-live="assertive"></div>
     </div>
   </section>
 
@@ -966,9 +969,9 @@
       <div class="faq-list">
 
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
             What is Skoolit?
-            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="faq-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </button>
           <div class="faq-answer">
             Skoolit is an AI-powered family inbox organizer that reads your school and activity emails, automatically builds your family calendar, and surfaces deadlines, permission slips, and schedule changes before you miss them.
@@ -976,9 +979,9 @@
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
             Does Skoolit store my emails?
-            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="faq-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </button>
           <div class="faq-answer">
             No. Skoolit reads and processes your emails in real time but never stores the raw content. Only structured data — events, deadlines, action items — is saved to your account.
@@ -986,9 +989,9 @@
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
             Which email providers does Skoolit support?
-            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="faq-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </button>
           <div class="faq-answer">
             Skoolit works with Gmail, iCloud Mail, and Outlook. It also syncs with Google Calendar, Apple Calendar, and Microsoft Calendar.
@@ -996,9 +999,9 @@
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
             Can Skoolit handle multiple children?
-            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="faq-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </button>
           <div class="faq-answer">
             Yes. One Skoolit account covers all your children. Each child gets a color-coded calendar layer so you can see everything at once or filter by child.
@@ -1006,9 +1009,9 @@
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
             Can both parents use the same Skoolit account?
-            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="faq-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </button>
           <div class="faq-answer">
             Yes. You can link accounts with your co-parent so you both see the same digest, calendar, and action items. When one parent marks something handled, it's resolved for both.
@@ -1016,9 +1019,9 @@
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
             Does Skoolit cover extracurricular activities, not just school?
-            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="faq-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </button>
           <div class="faq-answer">
             Absolutely. Skoolit monitors any sender you tell it to — your school district, a soccer coach, a piano studio, a tutor, or a summer camp. It's not limited to school emails.
@@ -1026,9 +1029,9 @@
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
             How is Skoolit different from ClassDojo or ParentSquare?
-            <span class="faq-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="faq-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </button>
           <div class="faq-answer">
             ClassDojo, ParentSquare, and Remind are school-controlled platforms — your school decides to use them and you receive what they send. Skoolit is parent-controlled: it works with any school (no adoption required), covers all your kids' extracurriculars, and builds your calendar automatically from your existing inbox.
@@ -1124,8 +1127,14 @@
     function toggleFaq(btn) {
       const item = btn.closest('.faq-item');
       const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
     }
   </script>
 
