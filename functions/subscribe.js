@@ -23,12 +23,22 @@ export async function onRequestPost(context) {
     return new Response(JSON.stringify({ error: 'Server misconfiguration.' }), { status: 500, headers });
   }
 
+  // Neutralize spreadsheet formula injection before values reach Google Sheets.
+  // Any value beginning with =, +, -, @, or a tab/CR is treated as a formula by
+  // Sheets (e.g. =IMPORTXML/=IMAGE auto-execute on open and can exfiltrate data),
+  // so prefix those with an apostrophe and cap length as defense-in-depth.
+  const sanitize = (value, max) => {
+    let v = (value || '').trim().slice(0, max);
+    if (/^[=+\-@\t\r]/.test(v)) v = `'${v}`;
+    return v || undefined;
+  };
+
   const payload = {
-    email,
+    email:  sanitize(email, 254),
     timestamp: new Date().toISOString(),
-    name:   (body.name  || '').trim()  || undefined,
-    phone:  (body.phone || '').trim()  || undefined,
-    source: (body.source || '').trim() || undefined,
+    name:   sanitize(body.name,   100),
+    phone:  sanitize(body.phone,  40),
+    source: sanitize(body.source, 100),
   };
 
   try {
