@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skoolit Alternatives Hub — Compare Skoolit to Every Family Calendar App</title>
+  <meta name="description" content="See how Skoolit compares to Cozi, Skylight Calendar, OurFamilyWizard, Google Calendar, Apple Calendar, and more. Find the right family organizer for your household." />
+  <link rel="canonical" href="https://getskoolit.com/alternatives/" />
+  <meta property="og:title" content="Skoolit Alternatives Hub — Compare Skoolit to Every Family Calendar App" />
+  <meta property="og:description" content="See how Skoolit compares to Cozi, Skylight Calendar, OurFamilyWizard, Google Calendar, Apple Calendar, and more." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getskoolit.com/alternatives/" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/assets/logomark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Skoolit Alternatives Hub",
+    "description": "Compare Skoolit to every major family calendar and school organizer app — Cozi, Skylight, OurFamilyWizard, Google Calendar, Apple Calendar, and Fantastical.",
+    "url": "https://getskoolit.com/alternatives/"
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg:        #EDEADE;
+      --surface:   #FFFFFF;
+      --ink:       #1A1A1A;
+      --ink-mid:   #444444;
+      --ink-light: #777777;
+      --blue:      #5BBAD5;
+      --blue-dark: #3fa5c4;
+      --amber:     #F5C97A;
+      --amber-bg:  #FEF3DC;
+      --green-dot: #4CAF7D;
+      --red:       #E53E3E;
+      --border:    #DDDAD0;
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
+    }
+    .nav-logo img { width: 32px; height: 32px; }
+    .btn-nav {
+      background: var(--blue); color: #fff; font-weight: 600;
+      font-size: 0.875rem; padding: 10px 22px; border-radius: 100px; border: none; cursor: pointer;
+    }
+    .btn-nav:hover { background: var(--blue-dark); }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero { padding: 80px 0 64px; text-align: center; }
+    .badge {
+      display: inline-block; background: var(--amber-bg); color: #9A6F00;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .hero p.lead {
+      max-width: 600px; margin: 0 auto;
+      font-size: 1.1rem; line-height: 1.65; color: var(--ink-mid);
+    }
+
+    /* Differentiator strip */
+    .diff-strip {
+      background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 40px 0;
+    }
+    .diff-strip h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: 1.1rem; letter-spacing: -0.01em; text-align: center; margin-bottom: 32px;
+      color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem;
+    }
+    .diff-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .diff-item { text-align: center; }
+    .diff-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .diff-item h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+    .diff-item p { font-size: 0.8rem; color: var(--ink-light); line-height: 1.5; }
+
+    /* Comparison cards grid */
+    .cards-section { padding: 72px 0; }
+    .cards-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .cards-section p.section-sub {
+      color: var(--ink-mid); font-size: 1rem; margin-bottom: 40px;
+    }
+    .cards-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    }
+    .comp-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 28px 32px;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: box-shadow 0.2s;
+    }
+    .comp-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+    .comp-card.featured { border-color: var(--blue); }
+    .comp-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .comp-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: 1.15rem; letter-spacing: -0.02em;
+    }
+    .comp-tag {
+      flex-shrink: 0; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+    }
+    .comp-tag.priority { background: var(--amber-bg); color: #9A6F00; }
+    .comp-tag.standard { background: var(--bg); color: var(--ink-light); }
+    .comp-card p {
+      font-size: 0.92rem; line-height: 1.6; color: var(--ink-mid);
+    }
+    .comp-card-wins { display: flex; flex-direction: column; gap: 6px; }
+    .comp-card-wins .win-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-light); margin-bottom: 2px;
+    }
+    .win-item {
+      display: flex; gap: 8px; align-items: flex-start;
+      font-size: 0.875rem; color: var(--ink-mid); line-height: 1.45;
+    }
+    .win-item .dot { color: var(--green-dot); font-size: 0.7rem; margin-top: 3px; flex-shrink: 0; }
+    .comp-card a.read-more {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.9rem; font-weight: 600; color: var(--blue);
+      border-top: 1px solid var(--border); padding-top: 16px; margin-top: auto;
+    }
+    .comp-card a.read-more:hover { color: var(--blue-dark); }
+
+    /* Bottom CTA */
+    .cta-section { padding: 80px 0; text-align: center; }
+    .cta-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.03em; margin-bottom: 16px;
+    }
+    .cta-section p { max-width: 500px; margin: 0 auto 32px; font-size: 1.05rem; color: var(--ink-mid); line-height: 1.6; }
+    .cta-form { display: flex; gap: 8px; max-width: 460px; margin: 0 auto; }
+    .cta-form input {
+      flex: 1; padding: 14px 20px; border: 1px solid var(--border);
+      border-radius: 100px; background: var(--surface);
+      font-size: 0.95rem; font-family: inherit; color: var(--ink); outline: none;
+    }
+    .cta-form input:focus { border-color: var(--blue); }
+    .cta-form input::placeholder { color: var(--ink-light); }
+    .btn-cta {
+      background: var(--blue); color: #fff; font-weight: 600;
+      font-size: 0.95rem; padding: 14px 24px; border-radius: 100px; border: none;
+      cursor: pointer; white-space: nowrap; font-family: inherit;
+    }
+    .btn-cta:hover { background: var(--blue-dark); }
+    .success-msg { display: none; color: var(--green-dot); font-weight: 500; margin-top: 12px; }
+
+    footer { border-top: 1px solid var(--border); padding: 28px 0; }
+    .footer-inner {
+      max-width: 1080px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-logo {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: 0.95rem; letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .footer-logo img { width: 24px; }
+    footer p { font-size: 0.82rem; color: var(--ink-light); }
+    footer a { color: var(--ink-light); text-decoration: underline; text-underline-offset: 3px; }
+
+    @media (max-width: 768px) {
+      .diff-grid { grid-template-columns: repeat(2, 1fr); }
+      .cards-grid { grid-template-columns: 1fr; }
+      .cta-form { flex-direction: column; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/assets/logomark.svg" alt="Skoolit" />
+        Skoolit
+      </a>
+      <a href="/#hero-form"><button class="btn-nav">Get early access</button></a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <span class="badge">Comparisons · 2026</span>
+      <h1>How Skoolit compares to<br />every family calendar app</h1>
+      <p class="lead">
+        Skoolit is the only family organizer that monitors your inbox automatically — no forwarding, no manual entry. See how that changes the comparison against every major alternative.
+      </p>
+    </div>
+  </section>
+
+  <!-- What makes Skoolit different -->
+  <div class="diff-strip">
+    <div class="container">
+      <h2>What sets Skoolit apart</h2>
+      <div class="diff-grid">
+        <div class="diff-item">
+          <div class="diff-icon">📧</div>
+          <h3>Automatic inbox monitoring</h3>
+          <p>Connects to Gmail or Outlook once. No forwarding, no manual entry — ever.</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon">⚡</div>
+          <h3>Urgency triage</h3>
+          <p>AI scores every item: Urgent, Soon, or Info. Time-sensitive things surface immediately.</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon">👨‍👩‍👧</div>
+          <h3>Co-parent &amp; caregiver relay</h3>
+          <p>Both parents connect their own inboxes independently. Nannies get schedule access without inbox access.</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon">🏫</div>
+          <h3>No school adoption required</h3>
+          <p>Works with any school, any email sender — ClassDojo, Seesaw, Remind, or plain email.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alternative pages cards -->
+  <section class="cards-section">
+    <div class="container">
+      <h2>Compare Skoolit to specific apps</h2>
+      <p class="section-sub">Deep-dive comparisons for the most common family calendar alternatives.</p>
+      <div class="cards-grid">
+
+        <!-- Cozi Alternative -->
+        <div class="comp-card featured">
+          <div class="comp-card-header">
+            <h3>Cozi Alternative</h3>
+            <span class="comp-tag priority">Most Searched</span>
+          </div>
+          <p>Cozi is the most popular family calendar — and the most common reason parents start looking for something better. Manual entry, no inbox reading, no urgency scoring. If Cozi's restrictions frustrated you, this is the comparison to read.</p>
+          <div class="comp-card-wins">
+            <div class="win-label">Skoolit advantage over Cozi</div>
+            <div class="win-item"><span class="dot">●</span>Reads your school emails automatically — Cozi requires manual entry</div>
+            <div class="win-item"><span class="dot">●</span>Detects schedule changes and surfaces deadlines before you miss them</div>
+            <div class="win-item"><span class="dot">●</span>Caregiver relay built in — Cozi has no equivalent</div>
+          </div>
+          <a href="/cozi-alternative/" class="read-more">Read the full comparison →</a>
+        </div>
+
+        <!-- Skylight Alternative -->
+        <div class="comp-card featured">
+          <div class="comp-card-header">
+            <h3>Skylight Calendar Alternative</h3>
+            <span class="comp-tag priority">Hardware vs Software</span>
+          </div>
+          <p>Skylight is a beautiful $220–$380 wall display with a $79/yr Plus subscription for AI features. Skoolit is everything Skylight Plus does — automatic inbox parsing, urgency scoring, multi-parent sync — on your existing phone. No hardware required.</p>
+          <div class="comp-card-wins">
+            <div class="win-label">Skoolit advantage over Skylight</div>
+            <div class="win-item"><span class="dot">●</span>$0 hardware cost — works on your existing phone</div>
+            <div class="win-item"><span class="dot">●</span>Available anywhere, not just when you're home near the display</div>
+            <div class="win-item"><span class="dot">●</span>AI inbox monitoring included — no separate Plus subscription</div>
+          </div>
+          <a href="/skylight-calendar-alternative/" class="read-more">Read the full comparison →</a>
+        </div>
+
+        <!-- Google Calendar -->
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <h3>Google Calendar Alternative</h3>
+            <span class="comp-tag standard">For Parents</span>
+          </div>
+          <p>Google Calendar is a powerful general-purpose calendar. It doesn't read your school emails, distinguish between a deadline and a newsletter, or handle co-parent and caregiver relay. Skoolit is the school-intelligence layer Google Calendar is missing.</p>
+          <div class="comp-card-wins">
+            <div class="win-label">Skoolit advantage over Google Calendar</div>
+            <div class="win-item"><span class="dot">●</span>Parses school and activity emails — Google Calendar won't do this automatically</div>
+            <div class="win-item"><span class="dot">●</span>Urgency triage for deadlines and permission slips</div>
+            <div class="win-item"><span class="dot">●</span>Co-parent linking without sharing a Google account</div>
+          </div>
+          <a href="/vs/google-calendar/" class="read-more">Read the full comparison →</a>
+        </div>
+
+        <!-- Apple Calendar -->
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <h3>Apple Calendar Alternative</h3>
+            <span class="comp-tag standard">For Parents</span>
+          </div>
+          <p>Apple Calendar is elegant and deeply integrated into iOS — but it's a manual calendar. It doesn't read your emails, it doesn't know a school event from a dentist appointment, and it has no tools for co-parenting or caregiver coordination. Skoolit fills the gaps.</p>
+          <div class="comp-card-wins">
+            <div class="win-label">Skoolit advantage over Apple Calendar</div>
+            <div class="win-item"><span class="dot">●</span>Automatic inbox monitoring — Apple Calendar requires manual entry</div>
+            <div class="win-item"><span class="dot">●</span>School-specific intelligence: deadlines, permission slips, schedule changes</div>
+            <div class="win-item"><span class="dot">●</span>Caregiver relay and co-parent sync built in</div>
+          </div>
+          <a href="/vs/apple-calendar/" class="read-more">Read the full comparison →</a>
+        </div>
+
+        <!-- OurFamilyWizard -->
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <h3>OurFamilyWizard Alternative</h3>
+            <span class="comp-tag standard">Co-Parenting</span>
+          </div>
+          <p>OurFamilyWizard is the leading co-parenting and custody coordination tool. It requires both parents to adopt the platform and is designed around legal documentation needs. Skoolit works with one parent, one inbox — no co-parent participation required.</p>
+          <div class="comp-card-wins">
+            <div class="win-label">Skoolit advantage over OurFamilyWizard</div>
+            <div class="win-item"><span class="dot">●</span>Works without co-parent sign-up — one parent, one inbox</div>
+            <div class="win-item"><span class="dot">●</span>Automatic inbox monitoring vs. manual entry</div>
+            <div class="win-item"><span class="dot">●</span>School and activity focus, not legal documentation</div>
+          </div>
+          <a href="/vs/ourfamilywizard/" class="read-more">Read the full comparison →</a>
+        </div>
+
+        <!-- Fantastical -->
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <h3>Fantastical Alternative</h3>
+            <span class="comp-tag standard">Power Users</span>
+          </div>
+          <p>Fantastical is a premium calendar for power users who want beautiful design and flexible natural-language scheduling. It doesn't read your school emails or handle family coordination. If school organization is your actual pain point, Skoolit is the focused answer.</p>
+          <div class="comp-card-wins">
+            <div class="win-label">Skoolit advantage over Fantastical</div>
+            <div class="win-item"><span class="dot">●</span>School email parsing — Fantastical is a general-purpose calendar</div>
+            <div class="win-item"><span class="dot">●</span>Co-parent and caregiver relay — no equivalent in Fantastical</div>
+            <div class="win-item"><span class="dot">●</span>Built for parents, not for general task management</div>
+          </div>
+          <a href="/vs/fantastical/" class="read-more">Read the full comparison →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>See for yourself what automatic means</h2>
+      <p>Join parents getting early access to Skoolit — the organizer that reads your school emails so you don't have to.</p>
+      <div class="cta-form" id="cta-form">
+        <input type="email" id="cta-email" placeholder="your@email.com" autocomplete="email" />
+        <button class="btn-cta" onclick="handleSignup('cta-email', 'cta-form', 'cta-success', this)">Get early access</button>
+      </div>
+      <div class="success-msg" id="cta-success">You're on the list. We'll be in touch soon.</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="/assets/logomark.svg" alt="Skoolit" />
+        Skoolit
+      </div>
+      <p>© 2026 Skoolit · <a href="mailto:hello@getskoolit.com">hello@getskoolit.com</a> · <a href="/">Home</a> · <a href="/cozi-alternative/">Cozi Alternative</a> · <a href="/skylight-calendar-alternative/">Skylight Alternative</a> · <a href="/blog/school-email-overload/">Blog</a></p>
+    </div>
+  </footer>
+
+  <script>
+    async function handleSignup(inputId, formId, successId, btn) {
+      const input = document.getElementById(inputId);
+      const email = input.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.style.borderColor = '#e53e3e';
+        setTimeout(() => input.style.borderColor = '', 1500);
+        input.focus();
+        return;
+      }
+      const orig = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Joining…';
+      try {
+        const res = await fetch('/subscribe', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        if (res.ok) {
+          document.getElementById(formId).style.display = 'none';
+          document.getElementById(successId).style.display = 'block';
+        } else { throw new Error(); }
+      } catch { btn.disabled = false; btn.textContent = orig; }
+    }
+    document.querySelectorAll('input[type="email"]').forEach(input => {
+      input.addEventListener('keydown', e => {
+        if (e.key !== 'Enter') return;
+        input.closest('div').querySelector('button')?.click();
+      });
+    });
+  </script>
+
+</body>
+</html>
