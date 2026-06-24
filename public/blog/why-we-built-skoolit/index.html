@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why We Built Skoolit — The Permission Slip That Started It All | Skoolit</title>
+  <meta name="description" content="We missed a permission slip. The field trip left without our kid. That was the moment we decided to build something that would never let that happen again." />
+  <link rel="canonical" href="https://getskoolit.com/blog/why-we-built-skoolit/" />
+  <meta property="og:title" content="Why We Built Skoolit — The Permission Slip That Started It All" />
+  <meta property="og:description" content="We missed a permission slip. The field trip left without our kid. That was the moment we decided to build something that would never let that happen again." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getskoolit.com/blog/why-we-built-skoolit/" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/assets/logomark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G06C694J1V"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G06C694J1V');
+  </script>
+
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Why We Built Skoolit — The Permission Slip That Started It All",
+      "description": "We missed a permission slip. The field trip left without our kid. That was the moment we decided to build something that would never let that happen again.",
+      "url": "https://getskoolit.com/blog/why-we-built-skoolit/",
+      "datePublished": "2026-09-15",
+      "dateModified": "2026-09-15",
+      "author": {
+        "@type": "Organization",
+        "name": "Skoolit"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Skoolit",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://getskoolit.com/assets/logomark.svg"
+        }
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://getskoolit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://getskoolit.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Why We Built Skoolit",
+          "item": "https://getskoolit.com/blog/why-we-built-skoolit/"
+        }
+      ]
+    }
+  ]
+  </script>
+
+  <style>
+    :root {
+      --bg:        #EDEADE;
+      --surface:   #FFFFFF;
+      --ink:       #1A1A1A;
+      --ink-mid:   #444444;
+      --ink-light: #777777;
+      --blue:      #5BBAD5;
+      --blue-dark: #3fa5c4;
+      --amber:     #F5C97A;
+      --amber-bg:  #FEF3DC;
+      --green-dot: #4CAF7D;
+      --red:       #E53E3E;
+      --border:    #DDDAD0;
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
+    }
+    .nav-logo img { width: 32px; height: 32px; }
+    .btn-nav {
+      background: var(--blue); color: #fff; font-weight: 600;
+      font-size: 0.875rem; padding: 10px 22px; border-radius: 100px; border: none; cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-nav:hover { background: var(--blue-dark); }
+
+    .article-wrap {
+      max-width: 720px; margin: 64px auto; padding: 0 24px 80px;
+    }
+    .article-eyebrow {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 16px;
+    }
+    h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.1;
+      letter-spacing: -0.03em; margin-bottom: 20px;
+    }
+    .article-meta {
+      font-size: 0.85rem; color: var(--ink-light); margin-bottom: 40px;
+      padding-bottom: 32px; border-bottom: 1px solid var(--border);
+    }
+    .article-body h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: 1.45rem; letter-spacing: -0.02em; margin: 52px 0 16px; color: var(--ink);
+    }
+    .article-body p {
+      font-size: 1.05rem; line-height: 1.78; color: var(--ink-mid); margin-bottom: 22px;
+    }
+    .article-body p:last-child { margin-bottom: 0; }
+    .article-body strong { color: var(--ink); }
+    .article-body a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    .article-body ul {
+      margin: 0 0 22px 0; padding-left: 0; list-style: none;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .article-body ul li {
+      font-size: 1.05rem; line-height: 1.7; color: var(--ink-mid);
+      display: flex; gap: 10px;
+    }
+    .article-body ul li::before { content: '—'; color: var(--blue); font-weight: 600; flex-shrink: 0; }
+
+    .callout {
+      background: var(--amber-bg); border-left: 4px solid var(--amber);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 20px 24px; margin: 40px 0;
+    }
+    .callout p { color: #7A5200; font-size: 1rem; margin: 0; line-height: 1.65; font-style: italic; }
+
+    .cta-box {
+      background: var(--ink); color: #fff;
+      border-radius: var(--radius-md); padding: 40px; margin: 56px 0; text-align: center;
+    }
+    .cta-box h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: 1.5rem; letter-spacing: -0.02em; color: #fff; margin-bottom: 12px;
+    }
+    .cta-box p { color: rgba(255,255,255,0.7); margin-bottom: 24px; font-size: 1rem; }
+    .cta-form { display: flex; gap: 8px; max-width: 400px; margin: 0 auto; }
+    .cta-form input {
+      flex: 1; padding: 14px 20px; border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 100px; background: rgba(255,255,255,0.1);
+      font-size: 0.95rem; font-family: inherit; color: #fff; outline: none;
+    }
+    .cta-form input::placeholder { color: rgba(255,255,255,0.45); }
+    .cta-form input:focus { border-color: var(--blue); }
+    .btn-primary {
+      background: var(--blue); color: #fff; font-weight: 600;
+      font-size: 0.95rem; padding: 14px 22px; border-radius: 100px; border: none;
+      cursor: pointer; white-space: nowrap; font-family: inherit;
+    }
+    .btn-primary:hover { background: var(--blue-dark); }
+    .success-msg { display: none; color: var(--green-dot); font-weight: 500; font-size: 0.95rem; margin-top: 12px; }
+
+    /* Footer */
+    footer { border-top: none !important; padding: 0 !important; }
+    .sk-cta-row {
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap; justify-content: space-between;
+    }
+    .sk-cta-form { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .sk-fi:focus { outline: none; border-color: #8AC2E5 !important; background: rgba(246,243,236,0.12) !important; }
+    .sk-cta-btn:hover { background: #6cb5de !important; }
+    .sk-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+    .sk-footer-link {
+      font-size: 0.9375rem; color: rgba(246,243,236,0.55); text-decoration: none; line-height: 1;
+      transition: color 0.15s;
+    }
+    .sk-footer-link:hover { color: rgba(246,243,236,0.85); }
+    .sk-footer-email-link {
+      font-size: 0.9rem; color: rgba(246,243,236,0.5); text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .sk-footer-email-link:hover { color: rgba(246,243,236,0.75); }
+    .sk-legal-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+    @media (max-width: 640px) {
+      .cta-form { flex-direction: column; }
+      .sk-cta-row { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .sk-cta-form { flex-direction: column; width: 100%; }
+      .sk-fi { width: 100% !important; }
+      .sk-footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .sk-legal-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+    }
+    @media (max-width: 900px) {
+      .sk-footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/assets/logomark.svg" alt="Skoolit" fetchpriority="high" />
+      Skoolit
+    </a>
+    <a href="/#early-access"><button class="btn-nav">Get early access</button></a>
+  </div>
+</nav>
+
+<article class="article-wrap">
+  <p class="article-eyebrow">Our Story</p>
+
+  <h1>Why We Built Skoolit — The Permission Slip That Started It All</h1>
+
+  <p class="article-meta">By the Skoolit Team &nbsp;·&nbsp; September 15, 2026 &nbsp;·&nbsp; 5 min read</p>
+
+  <div class="article-body">
+
+    <h2>The Email We Missed</h2>
+
+    <p>
+      The permission slip arrived on a Tuesday. We know this because we eventually found it, scrolled back through three weeks of school newsletters, and confirmed: Tuesday, 6:47pm, sent from the Riverside Elementary PTA's email address — which we recognized, technically, but which we had never gotten around to labeling or filtering.
+    </p>
+    <p>
+      It was buried at paragraph eleven of a nine-paragraph newsletter. The newsletter led with information about the spring book fair, then a note about the bike rack repairs, then a lunch menu update, then a thank-you to the volunteers who ran the spring carnival, then — at the end, before the unsubscribe link — a single paragraph about the fourth-grade field trip to the nature center. Permission slip required. Due Friday. Please return the signed form to Room 14.
+    </p>
+    <p>
+      We saw it on Saturday morning. We don't remember exactly what we were doing when we found it. What we remember is the feeling: that particular combination of guilt and frustration that arrives when you realize you weren't paying attention and something your kid cared about paid the price for it.
+    </p>
+    <p>
+      The field trip had left on Friday. Without our kid.
+    </p>
+
+    <h2>We Looked for a Solution</h2>
+
+    <p>
+      We are, by nature, problem-solvers. We don't sit with a bad experience and accept it. So we started looking.
+    </p>
+    <p>
+      We searched "school email organizer." We searched "family calendar app." We searched "never miss permission slip." We found blog posts recommending Cozi, which we already used. We found enthusiastic reviews of Sense, which we tried and found useful for some things — but not for this. We found recommendations to set up Gmail filters to label school emails automatically, which we did, and which helped slightly and then stopped working when the PTA started sending from a new address.
+    </p>
+    <p>
+      We tried forwarding our school emails to a dedicated inbox. We tried setting up a shared Google Calendar and committing to entering every event manually. We tried reminder apps. We tried a whiteboard by the front door where we wrote down all upcoming deadlines by hand, which worked until the week we got busy and stopped updating it, and then it became a whiteboard of outdated information that we eventually erased.
+    </p>
+    <p>
+      Nothing did the thing we actually needed. Which was: automatically find the important stuff in the inbox we already have, and tell us about it before we miss it.
+    </p>
+
+    <h2>The Thing We Actually Needed</h2>
+
+    <p>
+      It took us a while to articulate it precisely, but here's what we wanted: we wanted our existing email to work harder.
+    </p>
+    <p>
+      Not another app. Not another login. Not another place to check. We already had too many places to check. What we wanted was something that would sit quietly in the background, read the emails we were already receiving, recognize the ones that mattered, extract the dates and deadlines, and put them somewhere we'd actually see them.
+    </p>
+    <p>
+      We wanted it to know that a permission slip is urgent and a book fair newsletter is not. We wanted it to know that "practice moved to Wednesday" means the calendar needs to change. We wanted it to tell our co-parent automatically, without either of us having to forward the email and say "did you see this?" We wanted it to tell the babysitter what she needed to know about pickup on Thursday without us having to write her a separate message.
+    </p>
+    <p>
+      We wanted something that would have caught the permission slip. At 6:47pm on a Tuesday. Before Friday.
+    </p>
+
+    <h2>So We Built It</h2>
+
+    <p>
+      Skoolit connects to your Gmail, iCloud Mail, or Outlook. You authorize it once via OAuth — read-only access, no passwords shared, nothing stored beyond what's school-related. From that point, it monitors your inbox automatically.
+    </p>
+    <p>
+      Every email from your kids' schools, coaches, studios, PTA boards, and activity leagues gets read. Skoolit identifies the emails that matter: upcoming events, schedule changes, payment links, permission slip deadlines. It creates calendar events. It flags time-sensitive items and surfaces them prominently. It sends urgent alerts when something needs to happen before a deadline passes.
+    </p>
+    <p>
+      It knows which emails belong to which child — you add each child with their school and grade, and Skoolit learns the sender patterns for each one separately. When Emma's swim coach emails and Noah's violin teacher emails, Skoolit tags them correctly and assigns events to the right child's calendar view.
+    </p>
+    <p>
+      It shares everything with your co-parent automatically. Both parents connect their own inboxes — no inbox sharing required — and Skoolit merges both streams into one family calendar. When one parent sees it, both parents see it.
+    </p>
+    <p>
+      It tells your caregiver what they need to know through a read-only magic link — no account required on their end. They open it, they see this week's schedule, they know what's happening.
+    </p>
+    <p>
+      It does everything we wished existed the day our kid missed that field trip.
+    </p>
+
+    <div class="callout">
+      <p>"We didn't want another app to check. We wanted the inbox to work for us. That's what Skoolit does."</p>
+    </div>
+
+    <h2>Today Is Day One</h2>
+
+    <p>
+      Skoolit launches today — September 15, 2026.
+    </p>
+    <p>
+      We're starting with the families who have been on the waitlist since June. Hundreds of parents who found us early, signed up before we had a product, and waited because the problem we're solving resonated with them. Today, they're getting access.
+    </p>
+    <p>
+      If you're reading this, you found us early too. Maybe you found us through the blog, or through a friend who recommended us, or through a search for something like "never miss permission slip" — the same search we did two years ago that didn't find anything good. We're glad you're here.
+    </p>
+    <p>
+      We built Skoolit for parents like us. Parents who are organized enough to know they're missing things, and frustrated enough to want something better. Parents who've tried all the existing options and found them wanting. Parents who don't have a personal assistant but could really use one.
+    </p>
+    <p>
+      We'd love to show you what we built. Try the <a href="/prototype/">interactive prototype</a> to see exactly how it works, read <a href="/blog/7-apps-one-school/">our launch manifesto</a> on the broader problem we're solving, or sign up below. First year is on us.
+    </p>
+    <p>
+      And if you have a permission slip story of your own — the one that made you feel like you should have known better, the one where the field trip left without your kid, the one that made you realize the system is broken — we'd genuinely love to hear it. <a href="mailto:hello@getskoolit.com">hello@getskoolit.com</a>.
+    </p>
+    <p>
+      Today is day one. We've been building toward this for two years. We can't wait to see what happens next.
+    </p>
+
+    <div class="cta-box">
+      <h3>Try Skoolit free. We built this for you.</h3>
+      <p>Connect your inbox. Never miss a permission slip again.</p>
+      <form class="cta-form" onsubmit="ctaSignup(event)">
+        <input type="email" id="cta-email" placeholder="Your email address" required />
+        <button type="submit" class="btn-primary" id="cta-btn">Get early access</button>
+      </form>
+      <p class="success-msg" id="cta-success">You're on the list. We'll be in touch soon.</p>
+    </div>
+
+  </div>
+</article>
+
+<footer style="background: #1B241F; font-family: 'Inter', sans-serif;">
+  <div style="border-bottom: 1px solid rgba(246,243,236,0.08); padding: clamp(48px,7vw,80px) clamp(24px,6vw,80px);">
+    <div style="max-width: 1200px; margin: 0 auto;" class="sk-cta-row">
+      <div style="max-width: 500px;">
+        <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(1.625rem,3.5vw,2.375rem); line-height: 1.1; letter-spacing: -0.025em; color: #F6F3EC; margin: 0 0 12px; text-wrap: balance;">Stop chasing emails.<br>Start parenting.</p>
+        <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.5); line-height: 1.65; margin: 0;">Join the early access list — free for your first year.</p>
+      </div>
+      <form id="footer-form" class="sk-cta-form" onsubmit="footerSignup(event)">
+        <input id="footer-email" type="email" placeholder="Your email address" required class="sk-fi" style="padding: 13px 16px; border-radius: 10px; border: 1px solid rgba(246,243,236,0.15); background: rgba(246,243,236,0.07); color: #F6F3EC; font-family: 'Inter', sans-serif; font-size: 0.9375rem; width: 248px; transition: border-color 0.15s, background 0.15s;" />
+        <button id="footer-btn" type="submit" class="sk-cta-btn" style="padding: 13px 26px; border-radius: 10px; background: #8AC2E5; color: #1A3D52; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9375rem; border: none; cursor: pointer; white-space: nowrap;">Get early access</button>
+      </form>
+      <div id="footer-success" style="display: none; align-items: center; gap: 10px; padding: 14px 20px; background: rgba(138,194,229,0.1); border-radius: 10px; border: 1px solid rgba(138,194,229,0.22);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8AC2E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <span style="font-size: 0.9375rem; color: #8AC2E5; font-weight: 500;">You're on the list. We'll be in touch soon.</span>
+      </div>
+    </div>
+  </div>
+  <div style="padding: clamp(44px,5.5vw,64px) clamp(24px,6vw,80px) clamp(36px,4vw,52px);">
+    <div style="max-width: 1200px; margin: 0 auto;" class="sk-footer-grid">
+      <div>
+        <div style="display: flex; align-items: center; gap: 9px; margin-bottom: 14px;">
+          <img src="/assets/logomark.svg" width="28" height="28" alt="Skoolit" loading="lazy" />
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.03em; color: #8AC2E5;">Skoolit</span>
+        </div>
+        <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.45); line-height: 1.72; max-width: 268px; margin: 0 0 22px;">The calm command center for parents. Reads school and activity emails, builds your family calendar, and handles the chaos.</p>
+        <a href="mailto:hello@getskoolit.com" class="sk-footer-email-link">hello@getskoolit.com</a>
+      </div>
+      <div>
+        <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Product</p>
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <a href="/#early-access" class="sk-footer-link">Get early access</a>
+          <a href="/#how-it-works" class="sk-footer-link">How it works</a>
+          <a href="/prototype/" class="sk-footer-link">Try the prototype</a>
+          <a href="/blog/school-email-overload/" class="sk-footer-link">Blog</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Compare</p>
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <a href="/vs/google-calendar/" class="sk-footer-link">vs Google Calendar</a>
+          <a href="/vs/apple-calendar/" class="sk-footer-link">vs Apple Calendar</a>
+          <a href="/vs/cozi/" class="sk-footer-link">vs Cozi</a>
+          <a href="/vs/skylight/" class="sk-footer-link">vs Skylight</a>
+          <a href="/vs/sense/" class="sk-footer-link">vs Sense</a>
+          <a href="/alternatives/" class="sk-footer-link" style="color: rgba(246,243,236,0.38); font-size: 0.8125rem;">All comparisons &#8594;</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Resources</p>
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <a href="/cozi-alternative/" class="sk-footer-link">Cozi alternative</a>
+          <a href="/skylight-calendar-alternative/" class="sk-footer-link">Skylight alternative</a>
+          <a href="/sense-alternative/" class="sk-footer-link">Sense alternative</a>
+          <a href="/privacy/" class="sk-footer-link">Privacy policy</a>
+          <a href="/terms/" class="sk-footer-link">Terms of service</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="border-top: 1px solid rgba(246,243,236,0.07); padding: 18px clamp(24px,6vw,80px);">
+    <div style="max-width: 1200px; margin: 0 auto;" class="sk-legal-row">
+      <p style="font-size: 0.75rem; color: rgba(246,243,236,0.28); margin: 0;">© 2026 Skoolit · Launching September 15, 2026</p>
+      <p style="font-size: 0.75rem; color: rgba(246,243,236,0.22); margin: 0;">Made for parents who have better things to do.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  async function ctaSignup(e) {
+    e.preventDefault();
+    const input = document.getElementById('cta-email');
+    const btn = document.getElementById('cta-btn');
+    const email = input.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      input.style.borderColor = '#e53e3e';
+      setTimeout(() => input.style.borderColor = '', 1500);
+      input.focus();
+      return;
+    }
+    const orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Joining…';
+    try {
+      const res = await fetch('/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        document.getElementById('cta-success').style.display = 'block';
+        e.target.style.display = 'none';
+      } else {
+        btn.disabled = false;
+        btn.textContent = orig;
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = orig;
+    }
+  }
+
+  async function footerSignup(e) {
+    e.preventDefault();
+    const input = document.getElementById('footer-email');
+    const btn = document.getElementById('footer-btn');
+    const email = input.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      input.style.borderColor = '#e53e3e';
+      setTimeout(() => input.style.borderColor = '', 1500);
+      input.focus();
+      return;
+    }
+    const orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Joining…';
+    try {
+      const res = await fetch('/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        document.getElementById('footer-form').style.display = 'none';
+        document.getElementById('footer-success').style.display = 'flex';
+      } else {
+        btn.disabled = false;
+        btn.textContent = orig;
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = orig;
+    }
+  }
+</script>
+
+</body>
+</html>
