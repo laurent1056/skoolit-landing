@@ -378,10 +378,10 @@
         Here's what that looks like in practice. It's 9am on a Tuesday. Three emails arrive in your inbox: an Amazon shipping update, a work Slack digest, and an email from your son's teacher about an upcoming field trip with a permission slip attached. Skoolit checks all three. The Amazon email and the Slack digest are identified as non-school in under a second — they're ignored completely. They're never stored, never logged, never seen again by Skoolit. The teacher's email is recognized as school-related: Skoolit reads it in full, identifies it as a Field Trip + Permission Slip Due event, extracts the deadline (Friday at noon), creates a calendar entry, and sends you an immediate push notification. You never opened your email. You didn't miss a thing.
       </p>
       <p>
-        When a permission slip email arrives — whether it comes from your school's main address, a teacher's personal Gmail, or the PTA's organizational account — Skoolit reads it, recognizes it by content rather than sender, and categorizes it as a "Permission Slip Due" event. It extracts the deadline date, creates a calendar entry, and flags it for immediate attention.
+        When a permission slip email arrives — whether it comes from your school's main address, a teacher's personal Gmail, or the PTA's organizational account — Skoolit reads the email and categorizes it as a "Permission Slip Due" event. It extracts the deadline date, creates a calendar entry, and flags it for immediate attention.
       </p>
       <p>
-        Because Skoolit recognizes school email content rather than sender addresses, it catches permission slips from:
+        Because Skoolit uses content analysis alongside sender signals (not just sender address alone), it catches permission slips from:
       </p>
       <ul>
         <li>School main office addresses you know</li>
