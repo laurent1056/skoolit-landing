@@ -32,6 +32,46 @@
     "url": "https://getskoolit.com/alternatives/"
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What makes Skoolit different from other family calendar apps?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Skoolit is the only family organizer that reads your school and activity emails automatically and builds your calendar from them. Apps like Cozi and Google Calendar require manual entry; Skoolit eliminates that step entirely."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use Skoolit alongside apps like Cozi or Google Calendar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Skoolit syncs events to Google Calendar and Apple Calendar, so your family can keep using the calendar app they already have while Skoolit handles the email-to-event conversion automatically."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to buy any hardware for Skoolit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Unlike Skylight Calendar, which requires a dedicated display device, Skoolit works entirely in software — on any phone, tablet, or computer. Nothing to mount or charge."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which email providers does Skoolit support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Skoolit connects to Gmail and Outlook. Connect your inbox once and Skoolit will process every incoming school and activity email automatically from that point forward."
+        }
+      }
+    ]
+  }
+  </script>
 
   <style>
     :root {
@@ -214,6 +254,17 @@
       .cta-form { flex-direction: column; }
       .footer-inner { flex-direction: column; text-align: center; }
     }
+
+    /* FAQ */
+    .faq-section { padding: 60px 0; }
+    .faq-section h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em; margin-bottom: 32px; text-align: center; }
+    .faq-list { list-style: none; max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+    .faq-question { width: 100%; background: none; border: none; padding: 18px 20px; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; color: var(--ink); cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left; gap: 16px; }
+    .faq-chevron { flex-shrink: 0; transition: transform 0.2s; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer { display: none; padding: 0 20px 18px; font-size: 0.95rem; line-height: 1.65; color: var(--ink-mid); }
+    .faq-item.open .faq-answer { display: block; }
   </style>
   <script type="application/ld+json">
   {
@@ -241,7 +292,7 @@
   <nav>
     <div class="nav-inner">
       <a href="/" class="nav-logo">
-        <img src="/assets/logomark.svg" alt="Skoolit" />
+        <img src="/assets/logomark.svg" alt="Skoolit" fetchpriority="high" />
         Skoolit
       </a>
       <a href="/#hero-form"><button class="btn-nav">Get early access</button></a>
@@ -395,6 +446,43 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Common questions</h2>
+      <ul class="faq-list">
+        <li class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            What makes Skoolit different from other family calendar apps?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer">Skoolit is the only family organizer that reads your school and activity emails automatically and builds your calendar from them. Apps like Cozi and Google Calendar require manual entry; Skoolit eliminates that step entirely.</div>
+        </li>
+        <li class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            Can I use Skoolit alongside apps like Cozi or Google Calendar?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer">Yes. Skoolit syncs events to Google Calendar and Apple Calendar, so your family can keep using the calendar app they already have while Skoolit handles the email-to-event conversion automatically.</div>
+        </li>
+        <li class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            Do I need to buy any hardware for Skoolit?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer">No. Unlike Skylight Calendar, which requires a dedicated display device, Skoolit works entirely in software — on any phone, tablet, or computer. Nothing to mount or charge.</div>
+        </li>
+        <li class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            Which email providers does Skoolit support?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer">Skoolit connects to Gmail and Outlook. Connect your inbox once and Skoolit will process every incoming school and activity email automatically from that point forward.</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta-section">
     <div class="container">
@@ -419,6 +507,13 @@
   </footer>
 
   <script>
+
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    }
+
     async function handleSignup(inputId, formId, successId, btn) {
       const input = document.getElementById(inputId);
       const email = input.value.trim();
