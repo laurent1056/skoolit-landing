@@ -624,6 +624,32 @@
       color: var(--ink-mid);
     }
     .faq-item.open .faq-answer { display: block; }
+
+
+    footer { border-top: none !important; padding: 0 !important; background: none !important; }
+    /* ── New footer ─────────────────────────────────── */
+    .sk-footer-link { font-size: 0.9375rem; color: rgba(246,243,236,0.62); text-decoration: none; transition: color 0.15s; display: block; }
+    .sk-footer-link:hover { color: rgba(246,243,236,1); }
+    .sk-footer-email-link { font-size: 0.8125rem; color: rgba(246,243,236,0.42); text-decoration: none; transition: color 0.15s; }
+    .sk-footer-email-link:hover { color: rgba(246,243,236,0.72); }
+    .sk-fi::placeholder { color: rgba(246,243,236,0.3); }
+    .sk-fi:focus { outline: none; border-color: rgba(138,194,229,0.55) !important; background: rgba(246,243,236,0.1) !important; }
+    .sk-cta-btn { transition: background 0.15s, transform 0.1s; }
+    .sk-cta-btn:hover { background: #A5D0EC !important; }
+    .sk-cta-btn:active { transform: scale(0.98); }
+    .sk-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; }
+    .sk-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .sk-cta-form { display: flex; gap: 10px; align-items: stretch; flex-shrink: 0; }
+    .sk-legal-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    @media (max-width: 960px) { .sk-footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 40px; } }
+    @media (max-width: 640px) {
+      .sk-footer-grid { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
+      .sk-cta-row { flex-direction: column; align-items: flex-start; }
+      .sk-cta-form { flex-direction: column; width: 100%; }
+      .sk-fi { width: 100% !important; }
+      .sk-cta-btn { width: 100%; text-align: center; }
+    }
+    @media (max-width: 420px) { .sk-footer-grid { grid-template-columns: 1fr; } }
   </style>
 
   <script type="application/ld+json">
@@ -1067,17 +1093,117 @@
   </section>
 
   <!-- ── Footer ────────────────────────────────────────── -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-logo">
-          <img src="assets/logomark.svg" alt="Skoolit" loading="lazy" />
-          Skoolit
+
+  <footer style="background: #1B241F; font-family: 'Inter', sans-serif;">
+
+    <!-- Pre-footer CTA -->
+    <div style="border-bottom: 1px solid rgba(246,243,236,0.08); padding: clamp(48px,7vw,80px) clamp(24px,6vw,80px);">
+      <div style="max-width: 1200px; margin: 0 auto;" class="sk-cta-row">
+        <div style="max-width: 500px;">
+          <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(1.625rem,3.5vw,2.375rem); line-height: 1.1; letter-spacing: -0.025em; color: #F6F3EC; margin: 0 0 12px; text-wrap: balance;">Stop chasing emails.<br>Start parenting.</p>
+          <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.5); line-height: 1.65; margin: 0;">Join the early access list — free for your first year.</p>
         </div>
-        <p>© 2026 Skoolit · Launching soon · <a href="mailto:hello@getskoolit.com">hello@getskoolit.com</a> · <a href="/blog/school-email-overload/">Blog</a> · <a href="/cozi-alternative/">Cozi Alternative</a> · <a href="/skylight-calendar-alternative/">Skylight Alternative</a> · <a href="/alternatives/">All Comparisons</a> · <a href="/vs/google-calendar/">vs Google Calendar</a> · <a href="/vs/apple-calendar/">vs Apple Calendar</a> · <a href="/vs/cozi/">vs Cozi</a> · <a href="/vs/skylight/">vs Skylight</a> · <a href="/vs/ourfamilywizard/">vs OurFamilyWizard</a> · <a href="/vs/fantastical/">vs Fantastical</a> · <a href="/prototype/" target="_blank" rel="noopener">Prototype</a></p>
+        <form id="footer-form" class="sk-cta-form" onsubmit="footerSignup(event)">
+          <input id="footer-email" type="email" placeholder="Your email address" required class="sk-fi" style="padding: 13px 16px; border-radius: 10px; border: 1px solid rgba(246,243,236,0.15); background: rgba(246,243,236,0.07); color: #F6F3EC; font-family: 'Inter', sans-serif; font-size: 0.9375rem; width: 248px; transition: border-color 0.15s, background 0.15s;" />
+          <button id="footer-btn" type="submit" class="sk-cta-btn" style="padding: 13px 26px; border-radius: 10px; background: #8AC2E5; color: #1A3D52; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9375rem; border: none; cursor: pointer; white-space: nowrap;">Get early access</button>
+        </form>
+        <div id="footer-success" style="display: none; align-items: center; gap: 10px; padding: 14px 20px; background: rgba(138,194,229,0.1); border-radius: 10px; border: 1px solid rgba(138,194,229,0.22);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8AC2E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span style="font-size: 0.9375rem; color: #8AC2E5; font-weight: 500;">You're on the list. We'll be in touch soon.</span>
+        </div>
       </div>
     </div>
+
+    <!-- Link columns -->
+    <div style="padding: clamp(44px,5.5vw,64px) clamp(24px,6vw,80px) clamp(36px,4vw,52px);">
+      <div style="max-width: 1200px; margin: 0 auto;" class="sk-footer-grid">
+
+        <!-- Brand -->
+        <div>
+          <div style="display: flex; align-items: center; gap: 9px; margin-bottom: 14px;">
+            <img src="/assets/logomark.svg" width="28" height="28" alt="Skoolit" loading="lazy" />
+            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.03em; color: #8AC2E5;">Skoolit</span>
+          </div>
+          <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.45); line-height: 1.72; max-width: 268px; margin: 0 0 22px;">The calm command center for parents. Reads school and activity emails, builds your family calendar, and handles the chaos.</p>
+          <a href="mailto:hello@getskoolit.com" class="sk-footer-email-link">hello@getskoolit.com</a>
+        </div>
+
+        <!-- Product -->
+        <div>
+          <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Product</p>
+          <div style="display: flex; flex-direction: column; gap: 13px;">
+            <a href="/#early-access" class="sk-footer-link">Get early access</a>
+            <a href="/#how-it-works" class="sk-footer-link">How it works</a>
+            <a href="/prototype/" class="sk-footer-link">Try the prototype</a>
+            <a href="/blog/school-email-overload/" class="sk-footer-link">Blog</a>
+          </div>
+        </div>
+
+        <!-- Compare -->
+        <div>
+          <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Compare</p>
+          <div style="display: flex; flex-direction: column; gap: 13px;">
+            <a href="/vs/google-calendar/" class="sk-footer-link">vs Google Calendar</a>
+            <a href="/vs/apple-calendar/" class="sk-footer-link">vs Apple Calendar</a>
+            <a href="/vs/cozi/" class="sk-footer-link">vs Cozi</a>
+            <a href="/vs/skylight/" class="sk-footer-link">vs Skylight</a>
+            <a href="/vs/ourfamilywizard/" class="sk-footer-link">vs OurFamilyWizard</a>
+            <a href="/vs/fantastical/" class="sk-footer-link">vs Fantastical</a>
+            <a href="/alternatives/" class="sk-footer-link" style="color: rgba(246,243,236,0.38); font-size: 0.8125rem;">All comparisons &#8594;</a>
+          </div>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Resources</p>
+          <div style="display: flex; flex-direction: column; gap: 13px;">
+            <a href="/cozi-alternative/" class="sk-footer-link">Cozi alternative</a>
+            <a href="/skylight-calendar-alternative/" class="sk-footer-link">Skylight alternative</a>
+            <a href="#" class="sk-footer-link">Privacy policy</a>
+            <a href="#" class="sk-footer-link">Terms of service</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Legal bar -->
+    <div style="border-top: 1px solid rgba(246,243,236,0.07); padding: 18px clamp(24px,6vw,80px);">
+      <div style="max-width: 1200px; margin: 0 auto;" class="sk-legal-row">
+        <p style="font-size: 0.75rem; color: rgba(246,243,236,0.28); margin: 0;">&#169; 2026 Skoolit &middot; Launching soon</p>
+        <p style="font-size: 0.75rem; color: rgba(246,243,236,0.22); margin: 0;">Made for parents who have better things to do.</p>
+      </div>
+    </div>
+
   </footer>
+
+  <script>
+    async function footerSignup(e) {
+      e.preventDefault();
+      const input = document.getElementById('footer-email');
+      const btn   = document.getElementById('footer-btn');
+      const email = input.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.style.borderColor = '#e53e3e';
+        setTimeout(() => input.style.borderColor = '', 1500);
+        input.focus();
+        return;
+      }
+      const orig = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Joining…';
+      try {
+        const res = await fetch('/subscribe', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        if (res.ok) {
+          document.getElementById('footer-form').style.display = 'none';
+          document.getElementById('footer-success').style.display = 'flex';
+        } else { btn.disabled = false; btn.textContent = orig; }
+      } catch { btn.disabled = false; btn.textContent = orig; }
+    }
+  </script>
+
 
   <script>
     async function handleSignup(inputId, formId, successId, errorId, btn) {
