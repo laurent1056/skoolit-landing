@@ -10,8 +10,12 @@
   <meta property="og:description" content="Comparing Skoolit and Cozi? Cozi is a shared family calendar. Skoolit reads your school and activity emails and builds the calendar for you." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://getskoolit.com/vs/cozi/" />
-  <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
+  <meta property="og:site_name" content="Skoolit" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.svg" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Best Cozi Alternative 2026 — Skoolit vs Cozi Family Organizer" />
+  <meta name="twitter:description" content="Comparing Skoolit and Cozi? Cozi is a shared family calendar. Skoolit reads your school and activity emails and builds the calendar for you." />
+  <meta name="twitter:image" content="https://getskoolit.com/assets/og.svg" />
 
   <link rel="icon" href="/assets/logomark.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,10 +25,41 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Best Cozi Alternative 2026 — Skoolit vs Cozi",
-    "description": "A detailed comparison of Skoolit and Cozi Family Organizer for busy parents managing school and activity schedules.",
-    "url": "https://getskoolit.com/vs/cozi/"
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the main difference between Skoolit and Cozi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cozi is a shared family calendar that you fill in manually. Skoolit connects to your Gmail or Outlook inbox and builds your family calendar automatically by reading your school and activity emails — no manual entry required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Cozi read school emails automatically?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Cozi is a manual calendar app. Every event needs to be typed in by a family member. Cozi does not read, parse, or monitor your email inbox. Skoolit does this automatically."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Skoolit better than Cozi Gold?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "That depends on what you need. Cozi Gold adds family journal features, recipe storage, and an ad-free experience — but it still requires manual entry for every event. If your main frustration is keeping up with school and activity emails without typing everything in, Skoolit solves a problem Cozi Gold doesn't address."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use both Skoolit and Cozi at the same time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Some families use Skoolit for school and activity inbox intelligence, and keep Cozi for grocery lists and meal planning — two things Skoolit doesn't focus on at MVP. You don't have to choose one or the other immediately."
+        }
+      }
+    ]
   }
   </script>
 
@@ -201,7 +236,53 @@
       .compare-table thead th, .compare-table td { padding: 12px 16px; font-size: 0.88rem; }
       .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
     }
+
+    /* FAQ */
+    .faq-section { padding: 72px 0; background: var(--surface); }
+    .faq-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em;
+      text-align: center; margin-bottom: 48px;
+    }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
+    .faq-item { background: var(--bg); border-radius: var(--radius-sm); overflow: hidden; }
+    .faq-question {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px; background: none; border: none; cursor: pointer;
+      font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--ink);
+      text-align: left; gap: 16px;
+    }
+    .faq-chevron { flex-shrink: 0; transition: transform 0.25s; font-size: 0.8rem; color: var(--ink-light); }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer { display: none; padding: 0 24px 20px; font-size: 0.95rem; line-height: 1.7; color: var(--ink-mid); }
+    .faq-item.open .faq-answer { display: block; }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://getskoolit.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Comparisons",
+      "item": "https://getskoolit.com/alternatives/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Skoolit vs Cozi",
+      "item": "https://getskoolit.com/vs/cozi/"
+    }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -387,6 +468,20 @@
   </footer>
 
   <script>
+
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
     async function handleSignup(inputId, formId, successId, btn) {
       const input = document.getElementById(inputId);
       const email = input.value.trim();

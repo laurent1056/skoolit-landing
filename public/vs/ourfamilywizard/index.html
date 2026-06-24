@@ -10,8 +10,12 @@
   <meta property="og:description" content="OurFamilyWizard is built for co-parenting coordination. Skoolit is built for inbox overload — and works for any family structure. See the comparison." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://getskoolit.com/vs/ourfamilywizard/" />
-  <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
+  <meta property="og:site_name" content="Skoolit" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.svg" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="OurFamilyWizard Alternative 2026 — Skoolit vs OurFamilyWizard" />
+  <meta name="twitter:description" content="OurFamilyWizard is built for co-parenting coordination. Skoolit is built for inbox overload — and works for any family structure. See the comparison." />
+  <meta name="twitter:image" content="https://getskoolit.com/assets/og.svg" />
 
   <link rel="icon" href="/assets/logomark.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,10 +25,41 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "OurFamilyWizard Alternative 2026 — Skoolit vs OurFamilyWizard",
-    "description": "A detailed comparison of Skoolit and OurFamilyWizard for co-parents managing school and activity schedules.",
-    "url": "https://getskoolit.com/vs/ourfamilywizard/"
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the main difference between Skoolit and OurFamilyWizard?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "OurFamilyWizard is a co-parenting platform built around legal custody coordination — shared calendars, expense tracking, secure messaging, and court-admissible communication logs. Skoolit is a school and activity inbox organizer. It monitors your email, builds your family calendar automatically, and coordinates with co-parents without requiring the other parent to sign up."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Skoolit work for divorced or co-parenting families?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Skoolit is designed to work with any family structure, including co-parenting situations. Each parent connects their own inbox independently. Both parents see the same consolidated family calendar and daily digest. You don't need the other parent's cooperation to start using Skoolit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the other parent need to sign up for Skoolit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — this is a key difference from OurFamilyWizard. Skoolit works with one parent's inbox. If both parents want to participate, each creates their own account and connects their own email. But the app is fully functional with just one parent signed up."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is OurFamilyWizard or Skoolit better for co-parents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on your primary need. OurFamilyWizard is better for legal co-parenting coordination where you need court-admissible records and structured custody scheduling. Skoolit is better when your primary problem is managing the school and activity email load and keeping both parents informed of upcoming events and deadlines."
+        }
+      }
+    ]
   }
   </script>
 
@@ -110,7 +145,53 @@
       .compare-table thead th, .compare-table td { padding: 12px 16px; font-size: 0.88rem; }
       .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
     }
+
+    /* FAQ */
+    .faq-section { padding: 72px 0; background: var(--surface); }
+    .faq-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em;
+      text-align: center; margin-bottom: 48px;
+    }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
+    .faq-item { background: var(--bg); border-radius: var(--radius-sm); overflow: hidden; }
+    .faq-question {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px; background: none; border: none; cursor: pointer;
+      font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--ink);
+      text-align: left; gap: 16px;
+    }
+    .faq-chevron { flex-shrink: 0; transition: transform 0.25s; font-size: 0.8rem; color: var(--ink-light); }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer { display: none; padding: 0 24px 20px; font-size: 0.95rem; line-height: 1.7; color: var(--ink-mid); }
+    .faq-item.open .faq-answer { display: block; }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://getskoolit.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Comparisons",
+      "item": "https://getskoolit.com/alternatives/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Skoolit vs OurFamilyWizard",
+      "item": "https://getskoolit.com/vs/ourfamilywizard/"
+    }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -281,6 +362,20 @@
   </footer>
 
   <script>
+
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
     async function handleSignup(inputId, formId, successId, btn) {
       const input = document.getElementById(inputId);
       const email = input.value.trim();

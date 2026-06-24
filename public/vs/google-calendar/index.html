@@ -10,8 +10,12 @@
   <meta property="og:description" content="Google Calendar is great for scheduling — but it doesn't read your school emails or surface permission slips. Skoolit does." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://getskoolit.com/vs/google-calendar/" />
-  <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
+  <meta property="og:site_name" content="Skoolit" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.svg" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Best Google Calendar Alternative for Parents 2026 — Skoolit vs Google Calendar" />
+  <meta name="twitter:description" content="Google Calendar is great for scheduling — but it doesn't read your school emails or surface permission slips. Skoolit does." />
+  <meta name="twitter:image" content="https://getskoolit.com/assets/og.svg" />
 
   <link rel="icon" href="/assets/logomark.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,10 +25,41 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Best Google Calendar Alternative for Parents 2026 — Skoolit vs Google Calendar",
-    "description": "A detailed comparison of Skoolit and Google Calendar for parents managing school and activity schedules.",
-    "url": "https://getskoolit.com/vs/google-calendar/"
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the main difference between Skoolit and Google Calendar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Google Calendar is a general-purpose scheduling tool that requires manual event entry. Skoolit monitors your Gmail inbox and automatically extracts school and activity events, deadlines, and schedule changes — you never have to type them in."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Google Calendar read school emails automatically?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Google Calendar can suggest events from emails in some cases, but it doesn't specifically parse school communications, detect urgency, surface permission slip deadlines, or handle co-parent and caregiver coordination. Skoolit is built specifically for school and activity inbox management."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use Skoolit with Google Calendar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Skoolit maintains its own family calendar view and digest. Google Calendar sync is on the roadmap, so events Skoolit extracts will optionally appear in Google Calendar. In the meantime, Skoolit's own calendar covers school and activity scheduling comprehensively."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Skoolit a replacement for Google Calendar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not entirely — Google Calendar is excellent for general scheduling (work meetings, personal appointments). Skoolit is focused on school and activity email intelligence. Many parents use Google Calendar for general life scheduling and Skoolit for school-specific organization."
+        }
+      }
+    ]
   }
   </script>
 
@@ -110,7 +145,53 @@
       .compare-table thead th, .compare-table td { padding: 12px 16px; font-size: 0.88rem; }
       .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
     }
+
+    /* FAQ */
+    .faq-section { padding: 72px 0; background: var(--surface); }
+    .faq-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em;
+      text-align: center; margin-bottom: 48px;
+    }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
+    .faq-item { background: var(--bg); border-radius: var(--radius-sm); overflow: hidden; }
+    .faq-question {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px; background: none; border: none; cursor: pointer;
+      font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--ink);
+      text-align: left; gap: 16px;
+    }
+    .faq-chevron { flex-shrink: 0; transition: transform 0.25s; font-size: 0.8rem; color: var(--ink-light); }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer { display: none; padding: 0 24px 20px; font-size: 0.95rem; line-height: 1.7; color: var(--ink-mid); }
+    .faq-item.open .faq-answer { display: block; }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://getskoolit.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Comparisons",
+      "item": "https://getskoolit.com/alternatives/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Skoolit vs Google Calendar",
+      "item": "https://getskoolit.com/vs/google-calendar/"
+    }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -281,6 +362,20 @@
   </footer>
 
   <script>
+
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
     async function handleSignup(inputId, formId, successId, btn) {
       const input = document.getElementById(inputId);
       const email = input.value.trim();
