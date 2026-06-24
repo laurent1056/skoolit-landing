@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How AI Is Finally Solving the School Email Overload Problem | Skoolit</title>
+  <meta name="description" content="Parents have tried filters, labels, and dedicated apps. The real solution is AI that understands what a permission slip looks like and acts on it before you even open it." />
+  <link rel="canonical" href="https://getskoolit.com/blog/ai-school-email/" />
+  <meta property="og:title" content="How AI Is Finally Solving the School Email Overload Problem" />
+  <meta property="og:description" content="Parents have tried filters, labels, and dedicated apps. The real solution is AI that understands what a permission slip looks like and acts on it before you even open it." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getskoolit.com/blog/ai-school-email/" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/assets/logomark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G06C694J1V"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G06C694J1V');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How AI Is Finally Solving the School Email Overload Problem",
+    "description": "Parents have tried filters, labels, and dedicated apps. The real solution is AI that understands what a permission slip looks like and acts on it before you even open it.",
+    "url": "https://getskoolit.com/blog/ai-school-email/",
+    "datePublished": "2026-11-12",
+    "dateModified": "2026-11-12",
+    "author": { "@type": "Organization", "name": "Skoolit" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Skoolit",
+      "logo": { "@type": "ImageObject", "url": "https://getskoolit.com/assets/logomark.svg" }
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #EDEADE;
+      --surface: #FFFFFF;
+      --ink: #1A1A1A;
+      --ink-mid: #444444;
+      --ink-light: #777777;
+      --blue: #5BBAD5;
+      --blue-dark: #3fa5c4;
+      --amber: #F5C97A;
+      --amber-bg: #FEF3DC;
+      --green-dot: #4CAF7D;
+      --red: #E53E3E;
+      --border: #DDDAD0;
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; }
+    .nav-logo img { width: 32px; height: 32px; }
+    .btn-nav { background: var(--blue); color: #fff; font-weight: 600; font-size: 0.875rem; padding: 10px 22px; border-radius: 100px; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.15s; }
+    .btn-nav:hover { background: var(--blue-dark); }
+
+    .article-wrap { max-width: 720px; margin: 64px auto; padding: 0 24px; }
+    .article-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; }
+    h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px; }
+    .article-meta { font-size: 0.85rem; color: var(--ink-light); margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+
+    .article-body h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; margin: 48px 0 16px; }
+    .article-body p { font-size: 1.05rem; line-height: 1.75; color: var(--ink-mid); margin-bottom: 20px; }
+    .article-body strong { color: var(--ink); }
+    .article-body a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    .article-body ul, .article-body ol { margin: 0 0 20px 24px; display: flex; flex-direction: column; gap: 8px; }
+    .article-body li { font-size: 1.05rem; line-height: 1.7; color: var(--ink-mid); }
+
+    .callout { background: var(--amber-bg); border-left: 4px solid var(--amber); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 20px 24px; margin: 32px 0; }
+    .callout p { color: #7A5200; font-size: 1rem; line-height: 1.65; margin: 0; }
+
+    .pipeline { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px; margin: 32px 0; }
+    .pipeline-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 20px; }
+    .pipeline-steps { display: flex; flex-direction: column; gap: 0; }
+    .pipeline-step { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+    .pipeline-step:last-child { border-bottom: none; padding-bottom: 0; }
+    .pipeline-step:first-child { padding-top: 0; }
+    .step-badge { background: var(--blue); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.04em; padding: 4px 10px; border-radius: 100px; flex-shrink: 0; margin-top: 2px; white-space: nowrap; }
+    .step-info h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--ink); margin-bottom: 4px; }
+    .step-info p { font-size: 0.875rem; color: var(--ink-light); line-height: 1.55; margin: 0; }
+
+    .urgency-scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 24px 0 32px; }
+    .urgency-level { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 10px; text-align: center; }
+    .urgency-num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.5rem; line-height: 1; margin-bottom: 6px; }
+    .u1 .urgency-num { color: var(--green-dot); }
+    .u2 .urgency-num { color: #8BC34A; }
+    .u3 .urgency-num { color: var(--amber); }
+    .u4 .urgency-num { color: #FF8C00; }
+    .u5 .urgency-num { color: var(--red); }
+    .urgency-desc { font-size: 0.72rem; color: var(--ink-light); line-height: 1.4; }
+    .urgency-example { font-size: 0.68rem; color: var(--ink-light); margin-top: 4px; font-style: italic; }
+
+    .cta-box { background: linear-gradient(135deg, #3fa5c4 0%, #5BBAD5 100%); border-radius: var(--radius-md); padding: 40px 36px; margin: 56px 0; text-align: center; }
+    .cta-box h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; color: #fff; margin-bottom: 12px; }
+    .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; font-size: 1rem; line-height: 1.6; }
+    .cta-form { display: flex; gap: 8px; max-width: 400px; margin: 0 auto; }
+    .cta-form input { flex: 1; padding: 14px 20px; border: 1px solid rgba(255,255,255,0.2); border-radius: 100px; background: rgba(255,255,255,0.1); font-size: 0.95rem; font-family: inherit; color: #fff; outline: none; }
+    .cta-form input::placeholder { color: rgba(255,255,255,0.45); }
+    .btn-primary { background: #fff; color: var(--blue-dark); font-weight: 600; font-size: 0.95rem; padding: 14px 22px; border-radius: 100px; border: none; cursor: pointer; white-space: nowrap; font-family: inherit; transition: opacity 0.15s; }
+    .btn-primary:hover { opacity: 0.9; }
+    .success-msg { display: none; color: #fff; font-weight: 500; font-size: 0.95rem; margin-top: 12px; opacity: 0.9; }
+
+    footer { border-top: none !important; padding: 0 !important; }
+    .sk-cta-row { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; justify-content: space-between; }
+    .sk-cta-form { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .sk-fi:focus { outline: none; border-color: #8AC2E5 !important; background: rgba(246,243,236,0.12) !important; }
+    .sk-cta-btn:hover { background: #6cb5de !important; }
+    .sk-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+    .sk-footer-link { font-size: 0.9375rem; color: rgba(246,243,236,0.55); text-decoration: none; line-height: 1; transition: color 0.15s; }
+    .sk-footer-link:hover { color: rgba(246,243,236,0.85); }
+    .sk-footer-email-link { font-size: 0.9rem; color: rgba(246,243,236,0.5); text-decoration: underline; text-underline-offset: 3px; }
+    .sk-footer-email-link:hover { color: rgba(246,243,236,0.75); }
+    .sk-legal-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+    @media (max-width: 640px) {
+      .urgency-scale { grid-template-columns: 1fr 1fr; }
+      .cta-form { flex-direction: column; }
+      .sk-cta-row { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .sk-cta-form { flex-direction: column; width: 100%; }
+      .sk-fi { width: 100% !important; }
+      .sk-footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .sk-legal-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+    }
+    @media (max-width: 900px) {
+      .sk-footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/assets/logomark.svg" alt="Skoolit" fetchpriority="high" />
+      Skoolit
+    </a>
+    <a href="/#early-access"><button class="btn-nav">Get early access</button></a>
+  </div>
+</nav>
+
+<article class="article-wrap">
+  <p class="article-eyebrow">Auto-Inbox Intelligence</p>
+
+  <h1>How AI Is Finally Solving the School Email Overload Problem</h1>
+
+  <p class="article-meta">By the Skoolit Team &nbsp;·&nbsp; November 2026 &nbsp;·&nbsp; 8 min read</p>
+
+  <div class="article-body">
+
+    <p>
+      Parents have been trying to solve school email overload for years. Gmail filters. Color-coded labels. Dedicated "school" inboxes. Family apps that require email forwarding. None of them have worked — not really. Because all of them require you to be the system. You have to configure the filters, maintain the labels, and remember to check the secondary inbox.
+    </p>
+    <p>
+      The real problem isn't that parents lack the right tool to organize their email. The problem is that organizing email is the wrong task. What parents need is something that <em>understands</em> their school email and <em>acts on it</em> — without requiring them to do the work.
+    </p>
+    <p>
+      That's what AI finally makes possible. Here's how it actually works.
+    </p>
+
+    <h2>The Problem With Manual Solutions</h2>
+
+    <p>
+      Every manual solution to school email overload fails for the same fundamental reason: it assumes the problem is sorting. If only you could sort your school emails into the right pile, you'd be fine. So people build systems: a label for the school district, a label for the soccer coach, a filter that moves anything from teachers@ to a dedicated folder.
+    </p>
+    <p>
+      These systems work until something unexpected happens — which is constantly. The new teacher emails from a personal account, not the school address. The soccer coach changes teams and has a new email. The PTA sends something urgent from their annual-fundraiser-only address. The filter doesn't catch it. The event falls through the gap.
+    </p>
+    <p>
+      Rule-based systems can't handle novelty. They require you to have anticipated every sender, every format, every edge case when you set up the rule. Real school communication is full of edge cases. That's why rule-based systems always fail parents eventually — and usually at the moment when it matters most.
+    </p>
+
+    <h2>What AI Changes</h2>
+
+    <p>
+      AI doesn't need rules because it doesn't pattern-match on sender addresses or subject-line keywords. It understands language. It reads the email and understands what it's about.
+    </p>
+    <p>
+      This is the critical difference. A keyword filter for "permission slip" will catch some emails and miss others. An AI system that understands that "please complete the attached form and return by Friday" in the context of a school communication <em>is a permission slip</em> — regardless of the exact words used — will catch them all.
+    </p>
+    <p>
+      The same principle applies to every type of school communication. A school closure notice might say "no school Monday" or "school will be closed" or "classes are cancelled due to weather" or "students do not need to report on November 11" — all different phrasings, all the same event type. AI handles all of them without rules for each.
+    </p>
+    <p>
+      AI also handles the coach who emails from their personal Gmail with no subject line and writes "hey team, Saturday is 9am not 10, see ya there." No school address. No formatted subject. No standard template. But any language-understanding system knows: this is a practice time change.
+    </p>
+
+    <h2>The Classification Problem</h2>
+
+    <p>
+      Before you can extract information from a school email, you have to classify it. And classification is harder than it sounds. The question isn't just "is this a school email?" The question is "what type of school event is this, and what does that type mean for urgency and action?"
+    </p>
+    <p>
+      Skoolit recognizes 12 event types across two categories:
+    </p>
+    <ul>
+      <li><strong>School events:</strong> Permission Slip, School Closure, Early Dismissal, Delayed Start, School Event, Assignment, PTA/Organization, General Info</li>
+      <li><strong>Activity events:</strong> Sports, Music Lessons, Tutoring, In-School Activity</li>
+    </ul>
+    <p>
+      Each type has different urgency treatment. A Permission Slip with a deadline 2 days out scores as high urgency and triggers an immediate push notification. A monthly school newsletter scores as low urgency and gets batched into the next daily digest. An Early Dismissal on tomorrow's calendar scores medium-high and gets pushed to both parents immediately.
+    </p>
+    <p>
+      Getting the classification right is what makes the urgency score meaningful. Wrong classification means the permission slip gets treated like a newsletter. That's the failure mode that makes parents miss things. Skoolit's classification model is trained specifically on school and activity communications — not general-purpose email — to minimize misclassification.
+    </p>
+
+    <h2>How Skoolit's AI Pipeline Works</h2>
+
+    <p>
+      When a new email arrives from a monitored sender, Skoolit runs it through a five-stage pipeline:
+    </p>
+
+    <div class="pipeline">
+      <div class="pipeline-title">The AI pipeline — what happens to every school email</div>
+      <div class="pipeline-steps">
+        <div class="pipeline-step">
+          <span class="step-badge">1 · Classify</span>
+          <div class="step-info">
+            <h4>Event type classification</h4>
+            <p>Is this a permission slip, a school closure, an activity schedule, a PTA announcement? The model assigns one of 12 event types with a confidence score.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <span class="step-badge">2 · Extract</span>
+          <div class="step-info">
+            <h4>Entity extraction</h4>
+            <p>Dates, times, locations, child names, deadlines, action items, payment amounts — structured data extracted from unstructured email text.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <span class="step-badge">3 · Score</span>
+          <div class="step-info">
+            <h4>Urgency scoring</h4>
+            <p>A 1–5 urgency score based on event type, deadline proximity, and action required. Scores determine delivery method: immediate push vs. daily digest.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <span class="step-badge">4 · Detect</span>
+          <div class="step-info">
+            <h4>Action detection</h4>
+            <p>Does this email require the parent to do something? Sign a form, make a payment, reply, add an event to their calendar? Actions are flagged explicitly in the digest card.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <span class="step-badge">5 · Confidence</span>
+          <div class="step-info">
+            <h4>Confidence gating</h4>
+            <p>If the classification confidence is below 70%, the email goes to a "Needs Review" queue rather than being auto-processed. You review, confirm, and the model learns.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>The Urgency Score</h2>
+
+    <p>
+      Urgency scoring is what actually solves the information overload problem. Not all school emails need the same response. Treating them all with equal weight is what causes things to fall through the cracks.
+    </p>
+
+    <div class="urgency-scale">
+      <div class="urgency-level u1">
+        <div class="urgency-num">1</div>
+        <div class="urgency-desc">Low</div>
+        <div class="urgency-example">Newsletter, general info</div>
+      </div>
+      <div class="urgency-level u2">
+        <div class="urgency-num">2</div>
+        <div class="urgency-desc">Informational</div>
+        <div class="urgency-example">Upcoming event, 14+ days</div>
+      </div>
+      <div class="urgency-level u3">
+        <div class="urgency-num">3</div>
+        <div class="urgency-desc">Watch</div>
+        <div class="urgency-example">Deadline within 7 days</div>
+      </div>
+      <div class="urgency-level u4">
+        <div class="urgency-num">4</div>
+        <div class="urgency-desc">Action soon</div>
+        <div class="urgency-example">Permission slip, 3–5 days</div>
+      </div>
+      <div class="urgency-level u5">
+        <div class="urgency-num">5</div>
+        <div class="urgency-desc">Urgent</div>
+        <div class="urgency-example">Due &lt;48h, school closure</div>
+      </div>
+    </div>
+
+    <p>
+      Scores 1–2 are batched into the daily digest. Scores 3 appear in the digest with visual emphasis. Scores 4–5 trigger an immediate push notification to both the owner and co-parent (if connected), regardless of digest timing.
+    </p>
+    <p>
+      A school newsletter might contain twelve items — one of which is a permission slip deadline. Skoolit doesn't score the newsletter. It scores the individual extracted items. The newsletter body gets a score of 1. The permission slip deadline within it gets a score of 4. You get an immediate push about the permission slip. The newsletter recap waits for your digest.
+    </p>
+
+    <h2>What Happens When AI Isn't Sure</h2>
+
+    <p>
+      AI systems make mistakes. The right response to uncertainty is not to guess — it's to be transparent about the uncertainty and involve the parent. Skoolit's confidence gating does exactly this.
+    </p>
+    <p>
+      When the classification confidence falls below 70% — because the email is ambiguous, written in an unusual format, or contains conflicting signals — it goes to the Needs Review queue instead of being auto-processed. You see the email, a summary of what Skoolit thinks it might be, and a simple interface to confirm or correct the classification.
+    </p>
+    <p>
+      Two important things happen when you review and correct:
+    </p>
+    <ul>
+      <li>The event is processed correctly, so nothing is missed</li>
+      <li>Your correction improves the model's accuracy for similar emails in the future</li>
+    </ul>
+    <p>
+      This means Skoolit gets better over time with your specific school's communication style, your specific coach's email habits, and your specific family's event patterns. The model is personalized to your family, not just a generic school-email model.
+    </p>
+
+    <h2>Privacy and AI</h2>
+
+    <p>
+      The most common concern parents have about an AI system reading their email is privacy. It's a legitimate concern. Here's exactly how Skoolit handles it:
+    </p>
+    <p>
+      Skoolit connects to your inbox via OAuth — the same authorization flow you use to connect Gmail to Google Calendar. It reads your emails to extract school and activity content. It does <strong>not</strong> store your raw emails. It does not store the content of non-school emails. The only data Skoolit retains is the structured information extracted from school and activity emails — event type, date, time, deadline, action, child association, urgency score.
+    </p>
+    <p>
+      In other words: your inbox is not stored anywhere. Your email content is not accessible to Skoolit after extraction. The only thing Skoolit keeps is: "Soccer practice, Saturday Nov 8, 9am–10:30am, field A, extracted from Coach Rivera's email." That's it.
+    </p>
+    <p>
+      Skoolit is FERPA and COPPA compliant. Student information extracted from school communications is handled with the same protections required of schools themselves. <a href="/privacy/">Read the full privacy policy here.</a>
+    </p>
+
+    <div class="callout">
+      <p>
+        The difference between a permission slip and a newsletter isn't just keywords — it's context. "Please return the attached form by Friday" means something different in paragraph 9 of a monthly newsletter than it does in a standalone teacher email. That's what AI understands and keyword filters don't.
+      </p>
+    </div>
+
+    <div class="cta-box">
+      <h3>See Skoolit's AI in action.</h3>
+      <p>Try the interactive prototype, or join early access — free for your first year.</p>
+      <div class="cta-form" id="blog-form">
+        <input type="email" id="blog-email" aria-label="Email address" placeholder="your@email.com" autocomplete="email" />
+        <button class="btn-primary" onclick="handleSignup('blog-email', 'blog-form', 'blog-success', this)">Get early access</button>
+      </div>
+      <div class="success-msg" id="blog-success" role="status" aria-live="polite">You're on the list. We'll be in touch soon.</div>
+    </div>
+
+    <p style="text-align:center; margin-top: 0;">
+      Or <a href="/prototype/">try the prototype</a> to see the AI pipeline working on sample emails — no account needed.
+    </p>
+
+  </div>
+</article>
+
+<footer style="background: #1B241F; font-family: 'Inter', sans-serif;">
+  <div style="border-bottom: 1px solid rgba(246,243,236,0.08); padding: clamp(48px,7vw,80px) clamp(24px,6vw,80px);">
+    <div style="max-width: 1200px; margin: 0 auto;" class="sk-cta-row">
+      <div style="max-width: 500px;">
+        <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(1.625rem,3.5vw,2.375rem); line-height: 1.1; letter-spacing: -0.025em; color: #F6F3EC; margin: 0 0 12px; text-wrap: balance;">Stop chasing emails.<br>Start parenting.</p>
+        <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.5); line-height: 1.65; margin: 0;">Join the early access list — free for your first year.</p>
+      </div>
+      <form id="footer-form" class="sk-cta-form" onsubmit="footerSignup(event)">
+        <input id="footer-email" type="email" placeholder="Your email address" required class="sk-fi" style="padding: 13px 16px; border-radius: 10px; border: 1px solid rgba(246,243,236,0.15); background: rgba(246,243,236,0.07); color: #F6F3EC; font-family: 'Inter', sans-serif; font-size: 0.9375rem; width: 248px; transition: border-color 0.15s, background 0.15s;" />
+        <button id="footer-btn" type="submit" class="sk-cta-btn" style="padding: 13px 26px; border-radius: 10px; background: #8AC2E5; color: #1A3D52; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9375rem; border: none; cursor: pointer; white-space: nowrap;">Get early access</button>
+      </form>
+      <div id="footer-success" style="display: none; align-items: center; gap: 10px; padding: 14px 20px; background: rgba(138,194,229,0.1); border-radius: 10px; border: 1px solid rgba(138,194,229,0.22);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8AC2E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <span style="font-size: 0.9375rem; color: #8AC2E5; font-weight: 500;">You're on the list. We'll be in touch soon.</span>
+      </div>
+    </div>
+  </div>
+  <div style="padding: clamp(44px,5.5vw,64px) clamp(24px,6vw,80px) clamp(36px,4vw,52px);">
+    <div style="max-width: 1200px; margin: 0 auto;" class="sk-footer-grid">
+      <div>
+        <div style="display: flex; align-items: center; gap: 9px; margin-bottom: 14px;">
+          <img src="/assets/logomark.svg" width="28" height="28" alt="Skoolit" loading="lazy" />
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.03em; color: #8AC2E5;">Skoolit</span>
+        </div>
+        <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.45); line-height: 1.72; max-width: 268px; margin: 0 0 22px;">The calm command center for parents. Reads school and activity emails, builds your family calendar, and handles the chaos.</p>
+        <a href="mailto:hello@getskoolit.com" class="sk-footer-email-link">hello@getskoolit.com</a>
+      </div>
+      <div>
+        <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Product</p>
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <a href="/#early-access" class="sk-footer-link">Get early access</a>
+          <a href="/#how-it-works" class="sk-footer-link">How it works</a>
+          <a href="/prototype/" class="sk-footer-link">Try the prototype</a>
+          <a href="/blog/school-email-overload/" class="sk-footer-link">Blog</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Compare</p>
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <a href="/vs/google-calendar/" class="sk-footer-link">vs Google Calendar</a>
+          <a href="/vs/apple-calendar/" class="sk-footer-link">vs Apple Calendar</a>
+          <a href="/vs/cozi/" class="sk-footer-link">vs Cozi</a>
+          <a href="/vs/skylight/" class="sk-footer-link">vs Skylight</a>
+          <a href="/vs/sense/" class="sk-footer-link">vs Sense</a>
+          <a href="/alternatives/" class="sk-footer-link" style="color: rgba(246,243,236,0.38); font-size: 0.8125rem;">All comparisons &#8594;</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Resources</p>
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <a href="/cozi-alternative/" class="sk-footer-link">Cozi alternative</a>
+          <a href="/skylight-calendar-alternative/" class="sk-footer-link">Skylight alternative</a>
+          <a href="/sense-alternative/" class="sk-footer-link">Sense alternative</a>
+          <a href="/privacy/" class="sk-footer-link">Privacy policy</a>
+          <a href="/terms/" class="sk-footer-link">Terms of service</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="border-top: 1px solid rgba(246,243,236,0.07); padding: 18px clamp(24px,6vw,80px);">
+    <div style="max-width: 1200px; margin: 0 auto;" class="sk-legal-row">
+      <p style="font-size: 0.75rem; color: rgba(246,243,236,0.28); margin: 0;">© 2026 Skoolit · Launching September 15, 2026</p>
+      <p style="font-size: 0.75rem; color: rgba(246,243,236,0.22); margin: 0;">Made for parents who have better things to do.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  async function handleSignup(inputId, formId, successId, btn) {
+    const input = document.getElementById(inputId);
+    const email = input.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      input.style.borderColor = '#e53e3e'; setTimeout(() => input.style.borderColor = '', 1500); input.focus(); return;
+    }
+    const orig = btn.textContent; btn.disabled = true; btn.textContent = 'Joining…';
+    try {
+      const res = await fetch('/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+      if (res.ok) { document.getElementById(formId).style.display = 'none'; document.getElementById(successId).style.display = 'block'; }
+      else { btn.disabled = false; btn.textContent = orig; }
+    } catch { btn.disabled = false; btn.textContent = orig; }
+  }
+  document.querySelectorAll('input[type="email"]').forEach(input => {
+    input.addEventListener('keydown', e => { if (e.key !== 'Enter') return; const btn = input.closest('div').querySelector('button'); if (btn) btn.click(); });
+  });
+  async function footerSignup(e) {
+    e.preventDefault();
+    const input = document.getElementById('footer-email'); const btn = document.getElementById('footer-btn');
+    const email = input.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      input.style.borderColor = '#e53e3e'; setTimeout(() => input.style.borderColor = '', 1500); input.focus(); return;
+    }
+    const orig = btn.textContent; btn.disabled = true; btn.textContent = 'Joining…';
+    try {
+      const res = await fetch('/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+      if (res.ok) { document.getElementById('footer-form').style.display = 'none'; document.getElementById('footer-success').style.display = 'flex'; }
+      else { btn.disabled = false; btn.textContent = orig; }
+    } catch { btn.disabled = false; btn.textContent = orig; }
+  }
+</script>
+</body>
+</html>
