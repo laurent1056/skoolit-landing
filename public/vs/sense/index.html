@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skoolit vs Sense — The Family App That Actually Reads Your Inbox</title>
+  <meta name="description" content="Sense requires manual email forwarding. Skoolit connects directly to your Gmail, iCloud, or Outlook and monitors it automatically. Here's the full comparison." />
+  <link rel="canonical" href="https://getskoolit.com/vs/sense/" />
+  <meta property="og:title" content="Skoolit vs Sense — The Family App That Actually Reads Your Inbox" />
+  <meta property="og:description" content="Sense requires manual email forwarding. Skoolit connects directly to your Gmail, iCloud, or Outlook and monitors it automatically. Here's the full comparison." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getskoolit.com/vs/sense/" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/assets/logomark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G06C694J1V"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G06C694J1V');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does Sense monitor your email automatically?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Sense requires you to forward emails to a special Sense inbox address in order to process them. This means you have to remember to forward every relevant school or activity email manually. If you forget — or the email comes from a new sender you haven't learned to forward yet — it doesn't get processed. Skoolit connects directly to your inbox and monitors it automatically, with no forwarding required."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What email providers does Skoolit support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Skoolit supports Gmail, iCloud Mail, and Outlook via secure OAuth connections. Once connected, Skoolit monitors your inbox automatically regardless of which email provider you use. No passwords are ever stored — just a secure authorization token."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use both Skoolit and Sense?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Technically yes, but you won't need to. Skoolit covers everything Sense does — school event tracking, shared family calendar, co-parent coordination — and adds the automatic inbox monitoring that Sense is missing. Most families who try Skoolit don't go back to a forwarding-based system."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Skoolit handle co-parenting?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Skoolit has a three-tier permission system: Owner, Co-parent, and Caregiver. Co-parents each have their own account and see the same automatically populated calendar. Both receive urgency alerts for time-sensitive events. Caregivers — babysitters, nannies, grandparents — can access a read-only view of the schedule via a magic link, with no account needed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does Skoolit cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Skoolit costs $4.99/month for your first child, plus $3.00 for a second, $2.00 for a third, and $1.00 for each additional child. For a two-child family that's $7.99/month. There's a free trial (credit card required). Parents joining the early access list get their first year free."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://getskoolit.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Compare", "item": "https://getskoolit.com/alternatives/"},
+          {"@type": "ListItem", "position": 3, "name": "Skoolit vs Sense", "item": "https://getskoolit.com/vs/sense/"}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg:        #EDEADE;
+      --surface:   #FFFFFF;
+      --ink:       #1A1A1A;
+      --ink-mid:   #444444;
+      --ink-light: #777777;
+      --blue:      #5BBAD5;
+      --blue-dark: #3fa5c4;
+      --amber:     #F5C97A;
+      --amber-bg:  #FEF3DC;
+      --green-dot: #4CAF7D;
+      --red:       #E53E3E;
+      --border:    #DDDAD0;
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
+    }
+    .nav-logo img { width: 32px; height: 32px; }
+    .btn-nav {
+      display: inline-block;
+      background: var(--blue); color: #fff; font-weight: 600;
+      font-size: 0.875rem; padding: 10px 22px; border-radius: 100px; border: none; cursor: pointer;
+    }
+    .btn-nav:hover { background: var(--blue-dark); }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .vs-hero { padding: 80px 0 64px; text-align: center; }
+    .vs-badge {
+      display: inline-block; background: var(--amber-bg); color: #9A6F00;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .vs-hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1; letter-spacing: -0.03em;
+      margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto;
+    }
+    .vs-hero p {
+      max-width: 580px; margin: 0 auto 40px;
+      font-size: 1.15rem; line-height: 1.6; color: var(--ink-mid);
+    }
+    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--blue); color: #fff; font-weight: 600;
+      font-size: 1rem; padding: 14px 28px; border-radius: 100px; border: none;
+      cursor: pointer; white-space: nowrap; font-family: inherit;
+    }
+    .btn-primary:hover { background: var(--blue-dark); }
+    .btn-outline {
+      background: transparent; color: var(--ink); font-weight: 600;
+      font-size: 1rem; padding: 14px 28px; border-radius: 100px;
+      border: 2px solid var(--border); cursor: pointer; white-space: nowrap; font-family: inherit;
+    }
+    .btn-outline:hover { border-color: var(--ink-mid); }
+
+    /* Core difference prose */
+    .prose-section { padding: 80px 0; }
+    .prose-wrap { max-width: 720px; margin: 0 auto; }
+    .prose-wrap h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -0.02em; margin-bottom: 20px;
+    }
+    .prose-wrap p { font-size: 1.05rem; line-height: 1.75; color: var(--ink-mid); margin-bottom: 20px; }
+    .prose-wrap strong { color: var(--ink); }
+
+    /* Two-col callout */
+    .callout-section { padding: 80px 0; background: var(--surface); }
+    .callout-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -0.02em;
+      text-align: center; margin-bottom: 48px;
+    }
+    .callout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .callout-card {
+      border: 1px solid var(--border); border-radius: var(--radius-md); padding: 32px;
+    }
+    .callout-card.sense { background: #f8f7f3; }
+    .callout-card.skoolit { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .callout-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: 1.2rem; letter-spacing: -0.02em; margin-bottom: 20px;
+    }
+    .callout-card.skoolit h3 { color: #fff; }
+    .callout-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .callout-card ul li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.95rem; line-height: 1.55; color: var(--ink-mid);
+    }
+    .callout-card.skoolit ul li { color: rgba(255,255,255,0.9); }
+    .callout-card ul li .li-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+
+    /* Comparison table */
+    .comparison-section { padding: 80px 0; }
+    .comparison-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -0.02em;
+      text-align: center; margin-bottom: 48px;
+    }
+    .compare-table {
+      width: 100%; border-collapse: collapse;
+      background: var(--surface); border-radius: var(--radius-md); overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .compare-table thead { background: var(--ink); color: #fff; }
+    .compare-table thead th {
+      padding: 18px 24px; text-align: left; font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700; font-size: 1rem;
+    }
+    .compare-table thead th:first-child { width: 40%; }
+    .compare-table thead th.skoolit-col { background: var(--blue); }
+    .compare-table tbody tr { border-bottom: 1px solid var(--border); }
+    .compare-table tbody tr:last-child { border-bottom: none; }
+    .compare-table tbody tr:hover { background: #f8f7f3; }
+    .compare-table td {
+      padding: 15px 24px; font-size: 0.93rem; color: var(--ink-mid); vertical-align: top;
+    }
+    .compare-table td:first-child { color: var(--ink); font-weight: 500; }
+    .yes  { color: var(--green-dot); font-weight: 600; }
+    .no   { color: var(--red); font-weight: 600; }
+    .partial { color: #D97706; font-weight: 600; }
+
+    /* Steps */
+    .steps-section { padding: 80px 0; background: var(--surface); }
+    .steps-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -0.02em;
+      text-align: center; margin-bottom: 48px;
+    }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .step-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 32px;
+    }
+    .step-num {
+      width: 36px; height: 36px; background: var(--blue); color: #fff;
+      border-radius: 50%; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: 1rem; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .step-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      font-size: 1.05rem; margin-bottom: 10px;
+    }
+    .step-card p { font-size: 0.95rem; color: var(--ink-mid); line-height: 1.6; }
+
+    /* Testimonials */
+    .testimonials-section { padding: 80px 0; }
+    .testimonials-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -0.02em;
+      text-align: center; margin-bottom: 48px;
+    }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .testimonial-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 28px 28px 24px;
+    }
+    .testimonial-quote {
+      font-size: 1rem; line-height: 1.7; color: var(--ink-mid);
+      margin-bottom: 20px; font-style: italic;
+    }
+    .testimonial-quote::before { content: '\201C'; }
+    .testimonial-quote::after  { content: '\201D'; }
+    .testimonial-author {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 50%; background: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: 0.9rem; color: #fff; flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      font-size: 0.9rem; color: var(--ink);
+    }
+    .testimonial-role { font-size: 0.82rem; color: var(--ink-light); }
+
+    /* FAQ */
+    .faq-section { padding: 80px 0; background: var(--surface); }
+    .faq-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -0.02em;
+      text-align: center; margin-bottom: 48px;
+    }
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 4px; }
+    .faq-item {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px; text-align: left; gap: 16px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1rem;
+      color: var(--ink);
+    }
+    .faq-q:hover { background: rgba(0,0,0,0.02); }
+    .faq-icon { font-size: 1.25rem; flex-shrink: 0; transition: transform 0.2s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      display: none; padding: 0 24px 20px;
+      font-size: 0.98rem; line-height: 1.7; color: var(--ink-mid);
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* CTA */
+    .cta-section { padding: 80px 0; text-align: center; }
+    .cta-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.03em; margin-bottom: 16px;
+    }
+    .cta-section p {
+      max-width: 480px; margin: 0 auto 36px; font-size: 1.05rem; color: var(--ink-mid); line-height: 1.6;
+    }
+    .cta-form { display: flex; gap: 8px; max-width: 440px; margin: 0 auto; }
+    .cta-form input {
+      flex: 1; padding: 14px 20px; border: 1px solid var(--border);
+      border-radius: 100px; background: var(--surface);
+      font-size: 0.95rem; font-family: inherit; color: var(--ink); outline: none;
+    }
+    .cta-form input:focus { border-color: var(--blue); }
+    .cta-form input::placeholder { color: var(--ink-light); }
+    .success-msg {
+      display: none; color: var(--green-dot); font-weight: 500; margin-top: 12px; font-size: 0.95rem;
+    }
+
+    /* Footer classes */
+    footer { border-top: none !important; padding: 0 !important; }
+    .sk-cta-row {
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap; justify-content: space-between;
+    }
+    .sk-cta-form { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .sk-fi:focus { outline: none; border-color: #8AC2E5 !important; background: rgba(246,243,236,0.12) !important; }
+    .sk-cta-btn:hover { background: #6cb5de !important; }
+    .sk-footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    }
+    .sk-footer-link {
+      font-size: 0.9375rem; color: rgba(246,243,236,0.55); text-decoration: none; line-height: 1;
+      transition: color 0.15s;
+    }
+    .sk-footer-link:hover { color: rgba(246,243,236,0.85); }
+    .sk-footer-email-link {
+      font-size: 0.9rem; color: rgba(246,243,236,0.5); text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .sk-footer-email-link:hover { color: rgba(246,243,236,0.75); }
+    .sk-legal-row {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .callout-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .sk-footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 640px) {
+      .cta-form { flex-direction: column; }
+      .compare-table thead th, .compare-table td { padding: 12px 14px; font-size: 0.84rem; }
+      .sk-cta-row { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .sk-cta-form { flex-direction: column; width: 100%; }
+      .sk-fi { width: 100% !important; }
+      .sk-footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .sk-legal-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/assets/logomark.svg" alt="Skoolit" fetchpriority="high" />
+      Skoolit
+    </a>
+    <a href="/#early-access"><button class="btn-nav">Get early access</button></a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="vs-hero">
+  <div class="container">
+    <span class="vs-badge">Head-to-Head Comparison</span>
+    <h1>Skoolit vs. Sense: Which Family App Actually Works for School?</h1>
+    <p>
+      Sense is useful for family organization — but it asks you to forward emails manually before it can help you. That's friction. Skoolit connects directly to your inbox and monitors it automatically. Here's why the difference matters every single day.
+    </p>
+    <div class="hero-ctas">
+      <a href="/#early-access"><button class="btn-primary">Get early access — free first year</button></a>
+      <a href="#comparison"><button class="btn-outline">See the comparison</button></a>
+    </div>
+  </div>
+</section>
+
+<!-- Core difference prose -->
+<section class="prose-section">
+  <div class="container">
+    <div class="prose-wrap">
+      <h2>The core difference: who does the work?</h2>
+      <p>
+        Sense is built around a forwarding model. When a school email arrives in your inbox, you forward it to a special Sense address. Sense then processes it and adds it to your family's shared view. It's clever — but it has a fundamental flaw: <strong>it only works when you remember to forward</strong>.
+      </p>
+      <p>
+        In practice, this means the emails you remember to forward get processed. The ones you open quickly on your phone during a work meeting don't. The ones from new senders you've never seen before — a new coach, a new teacher's aide, the updated PTA email address — don't make it into Sense unless you notice they're new and remember to add them to your forwarding habit.
+      </p>
+      <p>
+        <strong>Skoolit takes the opposite approach.</strong> You connect your Gmail, iCloud Mail, or Outlook account once via secure OAuth, and Skoolit starts monitoring your inbox automatically. No forwarding setup. No manual effort. Every school and activity email that arrives gets read, categorized, and processed — even from senders you've never seen before, even emails that arrived while you were busy, even emails you opened and forgot about.
+      </p>
+      <p>
+        The result is a family calendar that's actually complete — not just "complete except for the emails I forgot to forward." For busy parents managing two or three kids' schedules, that completeness is the whole point.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Side-by-side callout -->
+<section class="callout-section">
+  <div class="container">
+    <h2>Sense vs Skoolit: the honest breakdown</h2>
+    <div class="callout-grid">
+      <div class="callout-card sense">
+        <h3>Sense</h3>
+        <ul>
+          <li>
+            <span class="li-icon">✉️</span>
+            Requires you to forward emails to a Sense inbox address to process them
+          </li>
+          <li>
+            <span class="li-icon">🤔</span>
+            You have to remember to forward — and to forward from every relevant sender
+          </li>
+          <li>
+            <span class="li-icon">❌</span>
+            Emails from new or unknown senders are missed until you manually add them
+          </li>
+          <li>
+            <span class="li-icon">📅</span>
+            Good shared family organization once you do the forwarding work
+          </li>
+          <li>
+            <span class="li-icon">👥</span>
+            Co-parent visibility depends on both parents forwarding their own emails
+          </li>
+          <li>
+            <span class="li-icon">❌</span>
+            No caregiver relay or magic-link read-only access
+          </li>
+        </ul>
+      </div>
+      <div class="callout-card skoolit">
+        <h3>Skoolit</h3>
+        <ul>
+          <li>
+            <span class="li-icon">🔍</span>
+            Connects to your inbox and monitors it automatically — zero forwarding required
+          </li>
+          <li>
+            <span class="li-icon">⚡</span>
+            Catches every school and activity email, including from new senders
+          </li>
+          <li>
+            <span class="li-icon">📅</span>
+            Extracts 12 event types and adds them to your Google, Apple, or Microsoft Calendar
+          </li>
+          <li>
+            <span class="li-icon">🔔</span>
+            Urgency scoring 1–5: permission slips and time-sensitive items notify you immediately
+          </li>
+          <li>
+            <span class="li-icon">👨‍👩‍👧</span>
+            3-tier permissions: Owner, Co-parent, and Caregiver — each with the right access level
+          </li>
+          <li>
+            <span class="li-icon">🔗</span>
+            Caregiver magic link: share a read-only schedule with no account required
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Full comparison table -->
+<section class="comparison-section" id="comparison">
+  <div class="container">
+    <h2>Feature-by-feature comparison</h2>
+    <div style="overflow-x: auto;">
+      <table class="compare-table" style="min-width: 560px;">
+        <thead>
+          <tr>
+            <th scope="col">Feature</th>
+            <th scope="col" class="skoolit-col">Skoolit</th>
+            <th scope="col">Sense</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Automatic inbox monitoring</td>
+            <td><span class="yes">Yes — connects via OAuth</span></td>
+            <td><span class="no">No — forwarding required</span></td>
+          </tr>
+          <tr>
+            <td>Email forwarding required</td>
+            <td><span class="yes">No — never</span></td>
+            <td><span class="no">Yes — for every email</span></td>
+          </tr>
+          <tr>
+            <td>School event parsing</td>
+            <td><span class="yes">Yes — 12 event types</span></td>
+            <td><span class="partial">Partial — after forwarding</span></td>
+          </tr>
+          <tr>
+            <td>Calendar sync (Google / Apple / Microsoft)</td>
+            <td><span class="yes">Yes — all three</span></td>
+            <td><span class="partial">Partial — own app view</span></td>
+          </tr>
+          <tr>
+            <td>Co-parent access</td>
+            <td><span class="yes">Yes — shared calendar, both notified</span></td>
+            <td><span class="partial">Partial — shared view only</span></td>
+          </tr>
+          <tr>
+            <td>Caregiver relay (no account needed)</td>
+            <td><span class="yes">Yes — magic link</span></td>
+            <td><span class="no">No</span></td>
+          </tr>
+          <tr>
+            <td>Permission slip alerts</td>
+            <td><span class="yes">Yes — urgency score ≥ 4</span></td>
+            <td><span class="no">No automatic detection</span></td>
+          </tr>
+          <tr>
+            <td>Assignment deadlines</td>
+            <td><span class="yes">Yes — extracted automatically</span></td>
+            <td><span class="partial">Partial — if forwarded</span></td>
+          </tr>
+          <tr>
+            <td>Conflict detection</td>
+            <td><span class="yes">Yes — across all children</span></td>
+            <td><span class="no">No</span></td>
+          </tr>
+          <tr>
+            <td>Privacy: inbox not stored</td>
+            <td><span class="yes">Yes — only extracted items stored</span></td>
+            <td><span class="partial">Forwarded emails stored in Sense</span></td>
+          </tr>
+          <tr>
+            <td>FERPA / COPPA compliant</td>
+            <td><span class="yes">Yes</span></td>
+            <td><span class="partial">Check vendor documentation</span></td>
+          </tr>
+          <tr>
+            <td>Price (2-child family)</td>
+            <td><span style="font-weight: 600; color: var(--ink);">$7.99/mo</span></td>
+            <td>Varies by plan</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- How Skoolit works -->
+<section class="steps-section">
+  <div class="container">
+    <h2>How Skoolit works</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Connect your inbox</h3>
+        <p>Sign in with Gmail, iCloud Mail, or Outlook via secure OAuth. No passwords stored, no forwarding addresses to set up, no filters to configure. One authorization and you're done.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Skoolit monitors automatically</h3>
+        <p>Every incoming email is scanned in the background. Skoolit learns which senders are school-related and begins extracting events, deadlines, and action items — automatically and continuously.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Your calendar updates itself</h3>
+        <p>Events appear in your Google, Apple, or Microsoft Calendar without you typing anything. Urgent items — permission slips, school closures, payment deadlines — push to your phone immediately.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials-section">
+  <div class="container">
+    <h2>What parents say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-quote">I used to spend half my Sunday morning forwarding school emails to try to keep everything organized. With Skoolit I just… don't do that anymore. It's already handled by Monday morning.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MR</div>
+          <div>
+            <div class="testimonial-name">Marcus R.</div>
+            <div class="testimonial-role">Dad of 3 · Portland, OR</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-quote">My co-parent and I both see the same calendar now. No more "did you get the email about the field trip?" The kids' schedules are just there, on both our phones, automatically.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">JL</div>
+          <div>
+            <div class="testimonial-name">Jennifer L.</div>
+            <div class="testimonial-role">Mom of 2 · Austin, TX</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-quote">I missed a permission slip with my older kid last year because I forwarded the email to the wrong address. With Skoolit there's no forwarding. It caught the deadline four days out and pushed a notification.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">DN</div>
+          <div>
+            <div class="testimonial-name">David N.</div>
+            <div class="testimonial-role">Dad of 2 · Denver, CO</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          Does Sense monitor your email automatically?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          No. Sense requires you to forward emails to a special Sense inbox address in order to process them. This means you have to remember to forward every relevant school or activity email manually. If you forget — or the email comes from a new sender you haven't learned to forward yet — it doesn't get processed. Skoolit connects directly to your inbox and monitors it automatically, with no forwarding required.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          What email providers does Skoolit support?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Skoolit supports Gmail, iCloud Mail, and Outlook via secure OAuth connections. Once connected, Skoolit monitors your inbox automatically regardless of which email provider you use. No passwords are ever stored — just a secure authorization token that you can revoke at any time.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          Can I use both Skoolit and Sense?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Technically yes, but you won't need to. Skoolit covers everything Sense does — school event tracking, shared family calendar, co-parent coordination — and adds the automatic inbox monitoring that Sense is missing. Most families who try Skoolit don't go back to a forwarding-based system because the convenience difference is too significant.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          How does Skoolit handle co-parenting?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Skoolit has a three-tier permission system: Owner, Co-parent, and Caregiver. Co-parents each have their own account and see the same automatically populated calendar. Both receive urgency alerts for time-sensitive events — permission slips, school closures, payment deadlines. Caregivers — babysitters, nannies, grandparents — can access a read-only view of the schedule via a magic link, with no account needed on their end.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          What does Skoolit cost?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Skoolit costs $4.99/month for your first child, $3.00/month for a second child, $2.00/month for a third, and $1.00/month for each additional child beyond that. For a two-child family that's $7.99/month — less than a coffee. There's a free trial (credit card required). Parents who join the early access list get their first year free.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Stop forwarding emails. Start parenting.</h2>
+    <p>
+      Join the early access list and get your first year of Skoolit free. Launching September 15, 2026.
+    </p>
+    <div class="cta-form" id="page-form">
+      <input type="email" id="page-email" placeholder="your@email.com" autocomplete="email" aria-label="Email address" />
+      <button class="btn-primary" onclick="handleSignup('page-email', 'page-form', 'page-success', this)">Get early access</button>
+    </div>
+    <p class="success-msg" id="page-success" role="status">You're on the list. We'll be in touch soon.</p>
+  </div>
+</section>
+
+<footer style="background: #1B241F; font-family: 'Inter', sans-serif;">
+  <div style="border-bottom: 1px solid rgba(246,243,236,0.08); padding: clamp(48px,7vw,80px) clamp(24px,6vw,80px);">
+    <div style="max-width: 1200px; margin: 0 auto;" class="sk-cta-row">
+      <div style="max-width: 500px;">
+        <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(1.625rem,3.5vw,2.375rem); line-height: 1.1; letter-spacing: -0.025em; color: #F6F3EC; margin: 0 0 12px; text-wrap: balance;">Stop chasing emails.<br>Start parenting.</p>
+        <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.5); line-height: 1.65; margin: 0;">Join the early access list — free for your first year.</p>
+      </div>
+      <form id="footer-form" class="sk-cta-form" onsubmit="footerSignup(event)">
+        <input id="footer-email" type="email" placeholder="Your email address" required class="sk-fi" style="padding: 13px 16px; border-radius: 10px; border: 1px solid rgba(246,243,236,0.15); background: rgba(246,243,236,0.07); color: #F6F3EC; font-family: 'Inter', sans-serif; font-size: 0.9375rem; width: 248px; transition: border-color 0.15s, background 0.15s;" />
+        <button id="footer-btn" type="submit" class="sk-cta-btn" style="padding: 13px 26px; border-radius: 10px; background: #8AC2E5; color: #1A3D52; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9375rem; border: none; cursor: pointer; white-space: nowrap;">Get early access</button>
+      </form>
+      <div id="footer-success" style="display: none; align-items: center; gap: 10px; padding: 14px 20px; background: rgba(138,194,229,0.1); border-radius: 10px; border: 1px solid rgba(138,194,229,0.22);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8AC2E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <span style="font-size: 0.9375rem; color: #8AC2E5; font-weight: 500;">You're on the list. We'll be in touch soon.</span>
+      </div>
+    </div>
+  </div>
+  <div style="padding: clamp(44px,5.5vw,64px) clamp(24px,6vw,80px) clamp(36px,4vw,52px);">
+    <div style="max-width: 1200px; margin: 0 auto;" class="sk-footer-grid">
+      <div>
+        <div style="display: flex; align-items: center; gap: 9px; margin-bottom: 14px;">
+          <img src="/assets/logomark.svg" width="28" height="28" alt="Skoolit" loading="lazy" />
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.03em; color: #8AC2E5;">Skoolit</span>
+        </div>
+        <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.45); line-height: 1.72; max-width: 268px; margin: 0 0 22px;">The calm command center for parents. Reads school and activity emails, builds your family calendar, and handles the chaos.</p>
+        <a href="mailto:hello@getskoolit.com" class="sk-footer-email-link">hello@getskoolit.com</a>
+      </div>
+      <div>
+        <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Product</p>
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <a href="/#early-access" class="sk-footer-link">Get early access</a>
+          <a href="/#how-it-works" class="sk-footer-link">How it works</a>
+          <a href="/prototype/" class="sk-footer-link">Try the prototype</a>
+          <a href="/blog/school-email-overload/" class="sk-footer-link">Blog</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Compare</p>
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <a href="/vs/google-calendar/" class="sk-footer-link">vs Google Calendar</a>
+          <a href="/vs/apple-calendar/" class="sk-footer-link">vs Apple Calendar</a>
+          <a href="/vs/cozi/" class="sk-footer-link">vs Cozi</a>
+          <a href="/vs/skylight/" class="sk-footer-link">vs Skylight</a>
+          <a href="/vs/ourfamilywizard/" class="sk-footer-link">vs OurFamilyWizard</a>
+          <a href="/vs/fantastical/" class="sk-footer-link">vs Fantastical</a>
+          <a href="/alternatives/" class="sk-footer-link" style="color: rgba(246,243,236,0.38); font-size: 0.8125rem;">All comparisons &#8594;</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Resources</p>
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <a href="/cozi-alternative/" class="sk-footer-link">Cozi alternative</a>
+          <a href="/skylight-calendar-alternative/" class="sk-footer-link">Skylight alternative</a>
+          <a href="/sense-alternative/" class="sk-footer-link">Sense alternative</a>
+          <a href="/privacy/" class="sk-footer-link">Privacy policy</a>
+          <a href="/terms/" class="sk-footer-link">Terms of service</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="border-top: 1px solid rgba(246,243,236,0.07); padding: 18px clamp(24px,6vw,80px);">
+    <div style="max-width: 1200px; margin: 0 auto;" class="sk-legal-row">
+      <p style="font-size: 0.75rem; color: rgba(246,243,236,0.28); margin: 0;">© 2026 Skoolit · Launching September 15, 2026</p>
+      <p style="font-size: 0.75rem; color: rgba(246,243,236,0.22); margin: 0;">Made for parents who have better things to do.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+    btn.setAttribute('aria-expanded', !isOpen);
+  }
+
+  async function handleSignup(inputId, formId, successId, btn) {
+    const input = document.getElementById(inputId);
+    const email = input.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      input.style.borderColor = '#e53e3e';
+      setTimeout(() => input.style.borderColor = '', 1500);
+      input.focus();
+      return;
+    }
+    const orig = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Joining…';
+    try {
+      const res = await fetch('/subscribe', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        document.getElementById(formId).style.display = 'none';
+        document.getElementById(successId).style.display = 'block';
+      } else { throw new Error(); }
+    } catch { btn.disabled = false; btn.textContent = orig; }
+  }
+
+  document.querySelectorAll('input[type="email"]').forEach(input => {
+    input.addEventListener('keydown', e => {
+      if (e.key !== 'Enter') return;
+      const btn = input.closest('div')?.querySelector('button');
+      if (btn) btn.click();
+    });
+  });
+
+  async function footerSignup(e) {
+    e.preventDefault();
+    const input = document.getElementById('footer-email');
+    const btn = document.getElementById('footer-btn');
+    const email = input.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      input.style.borderColor = '#e53e3e';
+      setTimeout(() => input.style.borderColor = '', 1500);
+      input.focus();
+      return;
+    }
+    const orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Joining…';
+    try {
+      const res = await fetch('/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        document.getElementById('footer-form').style.display = 'none';
+        document.getElementById('footer-success').style.display = 'flex';
+      } else {
+        btn.disabled = false;
+        btn.textContent = orig;
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = orig;
+    }
+  }
+</script>
+
+</body>
+</html>
