@@ -62,7 +62,7 @@
           "name": "Is Skoolit private? Can it read all my personal emails?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Skoolit requests read-only inbox access and only extracts school and activity-related items. We don't store your inbox — we read it, identify what's relevant to your children's schedule, extract those items, and discard the rest. Personal emails, financial emails, and anything unrelated to school or activities are not stored or processed further."
+            "text": "Skoolit requests read-only inbox access via OAuth. For each incoming email, it checks the sender and subject line to determine if it's school-related — this takes under a second. For non-school emails (Amazon, your bank, work messages), Skoolit stops at the sender and subject. The message body is never read, never stored, and no one at Skoolit sees it. Only emails from school and activity senders have their full content read to extract events and deadlines. We don't store your inbox — only the calendar data extracted from school emails."
           }
         },
         {
@@ -625,7 +625,7 @@
             <span class="faq-chevron" aria-hidden="true">▼</span>
           </button>
           <div class="faq-answer">
-            Skoolit requests read-only inbox access and only extracts school and activity-related items. We don't store your inbox — we read it, identify what's relevant to your children's schedule, extract those items, and discard the rest. Personal emails, financial emails, and anything unrelated to school or activities are not stored or processed further.
+            Skoolit requests read-only inbox access via OAuth. For each incoming email, it checks the sender and subject line to determine if it's school-related — this takes under a second. For non-school emails (Amazon, your bank, work messages), Skoolit stops at the sender and subject. The message body is never read, never stored, and no one at Skoolit sees it. Only emails from school and activity senders have their full content read to extract events and deadlines. We don't store your inbox — only the calendar data extracted from school emails.
           </div>
         </div>
         <div class="faq-item">
