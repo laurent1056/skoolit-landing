@@ -4,27 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Skylight Calendar Alternative 2026 — Skoolit vs Skylight</title>
-  <meta name="description" content="Comparing Skoolit and Skylight Calendar? Skylight is a beautiful wall display. Skoolit reads your school emails and builds your calendar automatically. See the full comparison." />
+  <meta name="description" content="Skylight is a beautiful $300+ wall display. Skoolit is everything Skylight does — on your phone, monitoring your inbox automatically. See the comparison." />
   <link rel="canonical" href="https://getskoolit.com/vs/skylight/" />
   <meta property="og:title" content="Skylight Calendar Alternative 2026 — Skoolit vs Skylight" />
-  <meta property="og:description" content="Comparing Skoolit and Skylight Calendar? Skylight is a beautiful wall display. Skoolit reads your school emails and builds your calendar automatically." />
+  <meta property="og:description" content="Skylight is a beautiful $300+ wall display. Skoolit is everything Skylight does — on your phone, monitoring your inbox automatically. See the comparison." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://getskoolit.com/vs/skylight/" />
-  <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
+  <meta property="og:site_name" content="Skoolit" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.svg" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Skylight Calendar Alternative 2026 — Skoolit vs Skylight" />
+  <meta name="twitter:description" content="Skylight is a beautiful $300+ wall display. Skoolit is everything Skylight does — on your phone, monitoring your inbox automatically. See the comparison." />
+  <meta name="twitter:image" content="https://getskoolit.com/assets/og.svg" />
 
   <link rel="icon" href="/assets/logomark.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" as="style" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Skylight Calendar Alternative 2026 — Skoolit vs Skylight",
-    "description": "A detailed comparison of Skoolit and Skylight Calendar for busy parents managing school and activity schedules.",
-    "url": "https://getskoolit.com/vs/skylight/"
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the main difference between Skoolit and Skylight Calendar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Skylight Calendar is a hardware product — a $220–$380 wall-mounted display with optional software subscriptions. Skoolit is 100% software that runs on your existing phone. Skoolit also monitors your inbox automatically, extracting school and activity events without any manual entry."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Skoolit replace Skylight on the wall?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Skoolit doesn't provide a physical wall display — that's Skylight's hardware strength. Skoolit replaces Skylight's software functions: automatic email parsing, urgency scoring, co-parent sync, and schedule management — all on your phone, without the $300+ hardware cost."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can Skoolit do what Skylight Plus does?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, and more. Skylight Plus parses email events you've pointed it to. Skoolit monitors your entire inbox automatically — nothing slips through because you forgot to forward it. Skoolit also adds urgency triage (Urgent / Soon / Info) and caregiver relay, which Skylight Plus doesn't offer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to buy any hardware to use Skoolit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Skoolit is 100% software. It runs on your existing iPhone, Android phone, or any web browser. There is no device to purchase, no display to mount, and no hardware subscription on top of a software subscription."
+        }
+      }
+    ]
   }
   </script>
 
@@ -191,14 +227,94 @@
       .compare-table thead th, .compare-table td { padding: 12px 16px; font-size: 0.88rem; }
       .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
     }
+
+    /* FAQ */
+    .faq-section { padding: 72px 0; background: var(--surface); }
+    .faq-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em;
+      text-align: center; margin-bottom: 48px;
+    }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
+    .faq-item { background: var(--bg); border-radius: var(--radius-sm); overflow: hidden; }
+    .faq-question {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px; background: none; border: none; cursor: pointer;
+      font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--ink);
+      text-align: left; gap: 16px;
+    }
+    .faq-chevron { flex-shrink: 0; transition: transform 0.25s; font-size: 0.8rem; color: var(--ink-light); }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer { display: none; padding: 0 24px 20px; font-size: 0.95rem; line-height: 1.7; color: var(--ink-mid); }
+    .faq-item.open .faq-answer { display: block; }
+
+
+    footer { border-top: none !important; padding: 0 !important; }
+    /* ── New footer ─────────────────────────────────── */
+    .sk-footer-link { font-size: 0.9375rem; color: rgba(246,243,236,0.62); text-decoration: none; transition: color 0.15s; display: block; }
+    .sk-footer-link:hover { color: rgba(246,243,236,1); }
+    .sk-footer-email-link { font-size: 0.8125rem; color: rgba(246,243,236,0.42); text-decoration: none; transition: color 0.15s; }
+    .sk-footer-email-link:hover { color: rgba(246,243,236,0.72); }
+    .sk-fi::placeholder { color: rgba(246,243,236,0.3); }
+    .sk-fi:focus { outline: none; border-color: rgba(138,194,229,0.55) !important; background: rgba(246,243,236,0.1) !important; }
+    .sk-cta-btn { transition: background 0.15s, transform 0.1s; }
+    .sk-cta-btn:hover { background: #A5D0EC !important; }
+    .sk-cta-btn:active { transform: scale(0.98); }
+    .sk-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; }
+    .sk-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .sk-cta-form { display: flex; gap: 10px; align-items: stretch; flex-shrink: 0; }
+    .sk-legal-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    @media (max-width: 960px) { .sk-footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 40px; } }
+    @media (max-width: 640px) {
+      .sk-footer-grid { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
+      .sk-cta-row { flex-direction: column; align-items: flex-start; }
+      .sk-cta-form { flex-direction: column; width: 100%; }
+      .sk-fi { width: 100% !important; }
+      .sk-cta-btn { width: 100%; text-align: center; }
+    }
+    @media (max-width: 420px) { .sk-footer-grid { grid-template-columns: 1fr; } }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://getskoolit.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Comparisons",
+      "item": "https://getskoolit.com/alternatives/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Skoolit vs Skylight",
+      "item": "https://getskoolit.com/vs/skylight/"
+    }
+    ]
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G06C694J1V"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G06C694J1V');
+  </script>
 </head>
 <body>
 
   <nav>
     <div class="nav-inner">
       <a href="/" class="nav-logo">
-        <img src="/assets/logomark.svg" alt="Skoolit" />
+        <img src="/assets/logomark.svg" alt="Skoolit" fetchpriority="high" />
         Skoolit
       </a>
       <a href="/#hero-form" class="btn-nav">Get early access</a>
@@ -366,17 +482,132 @@
     </div>
   </section>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-logo">
-        <img src="/assets/logomark.svg" alt="Skoolit" />
-        Skoolit
+  <footer style="background: #1B241F; font-family: 'Inter', sans-serif;">
+
+    <!-- Pre-footer CTA -->
+    <div style="border-bottom: 1px solid rgba(246,243,236,0.08); padding: clamp(48px,7vw,80px) clamp(24px,6vw,80px);">
+      <div style="max-width: 1200px; margin: 0 auto;" class="sk-cta-row">
+        <div style="max-width: 500px;">
+          <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(1.625rem,3.5vw,2.375rem); line-height: 1.1; letter-spacing: -0.025em; color: #F6F3EC; margin: 0 0 12px; text-wrap: balance;">Stop chasing emails.<br>Start parenting.</p>
+          <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.5); line-height: 1.65; margin: 0;">Join the early access list. Launching September 15, 2026.</p>
+        </div>
+        <form id="footer-form" class="sk-cta-form" onsubmit="footerSignup(event)">
+          <input id="footer-email" type="email" placeholder="Your email address" required class="sk-fi" style="padding: 13px 16px; border-radius: 10px; border: 1px solid rgba(246,243,236,0.15); background: rgba(246,243,236,0.07); color: #F6F3EC; font-family: 'Inter', sans-serif; font-size: 0.9375rem; width: 248px; transition: border-color 0.15s, background 0.15s;" />
+          <button id="footer-btn" type="submit" class="sk-cta-btn" style="padding: 13px 26px; border-radius: 10px; background: #8AC2E5; color: #1A3D52; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9375rem; border: none; cursor: pointer; white-space: nowrap;">Get early access</button>
+        </form>
+        <div id="footer-success" style="display: none; align-items: center; gap: 10px; padding: 14px 20px; background: rgba(138,194,229,0.1); border-radius: 10px; border: 1px solid rgba(138,194,229,0.22);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8AC2E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span style="font-size: 0.9375rem; color: #8AC2E5; font-weight: 500;">You're on the list. We'll be in touch soon.</span>
+        </div>
       </div>
-      <p>© 2026 Skoolit · <a href="mailto:hello@getskoolit.com">hello@getskoolit.com</a> · <a href="/">Home</a> · <a href="/vs/cozi/">vs Cozi</a></p>
     </div>
+
+    <!-- Link columns -->
+    <div style="padding: clamp(44px,5.5vw,64px) clamp(24px,6vw,80px) clamp(36px,4vw,52px);">
+      <div style="max-width: 1200px; margin: 0 auto;" class="sk-footer-grid">
+
+        <!-- Brand -->
+        <div>
+          <div style="display: flex; align-items: center; gap: 9px; margin-bottom: 14px;">
+            <img src="/assets/logomark.svg" width="28" height="28" alt="Skoolit" loading="lazy" />
+            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.03em; color: #8AC2E5;">Skoolit</span>
+          </div>
+          <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.45); line-height: 1.72; max-width: 268px; margin: 0 0 22px;">The calm command center for parents. Reads school and activity emails, builds your family calendar, and handles the chaos.</p>
+          <a href="mailto:hello@getskoolit.com" class="sk-footer-email-link">hello@getskoolit.com</a>
+        </div>
+
+        <!-- Product -->
+        <div>
+          <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Product</p>
+          <div style="display: flex; flex-direction: column; gap: 13px;">
+            <a href="/#early-access" class="sk-footer-link">Get early access</a>
+            <a href="/#how-it-works" class="sk-footer-link">How it works</a>
+            <a href="/prototype/" class="sk-footer-link">Try the prototype</a>
+            <a href="/blog/school-email-overload/" class="sk-footer-link">Blog</a>
+          </div>
+        </div>
+
+        <!-- Compare -->
+        <div>
+          <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Compare</p>
+          <div style="display: flex; flex-direction: column; gap: 13px;">
+            <a href="/vs/google-calendar/" class="sk-footer-link">vs Google Calendar</a>
+            <a href="/vs/apple-calendar/" class="sk-footer-link">vs Apple Calendar</a>
+            <a href="/vs/cozi/" class="sk-footer-link">vs Cozi</a>
+            <a href="/vs/skylight/" class="sk-footer-link">vs Skylight</a>
+            <a href="/vs/ourfamilywizard/" class="sk-footer-link">vs OurFamilyWizard</a>
+            <a href="/vs/fantastical/" class="sk-footer-link">vs Fantastical</a>
+            <a href="/alternatives/" class="sk-footer-link" style="color: rgba(246,243,236,0.38); font-size: 0.8125rem;">All comparisons &#8594;</a>
+          </div>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Resources</p>
+          <div style="display: flex; flex-direction: column; gap: 13px;">
+            <a href="/cozi-alternative/" class="sk-footer-link">Cozi alternative</a>
+            <a href="/skylight-calendar-alternative/" class="sk-footer-link">Skylight alternative</a>
+            <a href="/privacy/" class="sk-footer-link">Privacy policy</a>
+            <a href="/terms/" class="sk-footer-link">Terms of service</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Legal bar -->
+    <div style="border-top: 1px solid rgba(246,243,236,0.07); padding: 18px clamp(24px,6vw,80px);">
+      <div style="max-width: 1200px; margin: 0 auto;" class="sk-legal-row">
+        <p style="font-size: 0.75rem; color: rgba(246,243,236,0.28); margin: 0;">&#169; 2026 Skoolit &middot; Launching soon</p>
+        <p style="font-size: 0.75rem; color: rgba(246,243,236,0.22); margin: 0;">Made for parents who have better things to do.</p>
+      </div>
+    </div>
+
   </footer>
 
   <script>
+    async function footerSignup(e) {
+      e.preventDefault();
+      const input = document.getElementById('footer-email');
+      const btn   = document.getElementById('footer-btn');
+      const email = input.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.style.borderColor = '#e53e3e';
+        setTimeout(() => input.style.borderColor = '', 1500);
+        input.focus();
+        return;
+      }
+      const orig = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Joining…';
+      try {
+        const res = await fetch('/subscribe', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        if (res.ok) {
+          document.getElementById('footer-form').style.display = 'none';
+          document.getElementById('footer-success').style.display = 'flex';
+        } else { btn.disabled = false; btn.textContent = orig; }
+      } catch { btn.disabled = false; btn.textContent = orig; }
+    }
+  </script>
+
+
+  <script>
+
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
     async function handleSignup(inputId, formId, successId, btn) {
       const input = document.getElementById(inputId);
       const email = input.value.trim();
