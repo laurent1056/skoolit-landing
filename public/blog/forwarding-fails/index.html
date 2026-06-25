@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Email Forwarding for School Emails Always Fails (And What Actually Works) | Skoolit</title>
+  <meta name="description" content="Email forwarding rules, filters, and dedicated inboxes seem like good ideas — until they don't work. Here's why the forwarding model breaks down, and what to do instead." />
+  <link rel="canonical" href="https://getskoolit.com/blog/forwarding-fails/" />
+  <meta property="og:title" content="Why Email Forwarding for School Emails Always Fails | Skoolit" />
+  <meta property="og:description" content="Email forwarding rules, filters, and dedicated inboxes seem like good ideas — until they don't work. Here's why the forwarding model breaks down, and what to do instead." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getskoolit.com/blog/forwarding-fails/" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- publish:noindex -->
+  <meta name="robots" content="noindex,nofollow" />
+  <!-- /publish:noindex -->
+
+
+  <link rel="icon" href="/assets/logomark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G06C694J1V"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G06C694J1V');
+  </script>
+
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Why Email Forwarding for School Emails Always Fails (And What Actually Works)",
+      "description": "Email forwarding rules, filters, and dedicated inboxes seem like good ideas — until they don't work. Here's why the forwarding model breaks down, and what to do instead.",
+      "url": "https://getskoolit.com/blog/forwarding-fails/",
+      "datePublished": "2026-06-24",
+      "dateModified": "2026-06-24",
+      "author": {
+        "@type": "Organization",
+        "name": "Skoolit"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Skoolit",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://getskoolit.com/assets/logomark.svg"
+        }
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://getskoolit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://getskoolit.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Why Email Forwarding for School Emails Always Fails",
+          "item": "https://getskoolit.com/blog/forwarding-fails/"
+        }
+      ]
+    }
+  ]
+  </script>
+
+  <style>
+    :root {
+      --bg:        #EDEADE;
+      --surface:   #FFFFFF;
+      --ink:       #1A1A1A;
+      --ink-mid:   #444444;
+      --ink-light: #777777;
+      --blue:      #5BBAD5;
+      --blue-dark: #3fa5c4;
+      --amber:     #F5C97A;
+      --amber-bg:  #FEF3DC;
+      --green-dot: #4CAF7D;
+      --red:       #E53E3E;
+      --border:    #DDDAD0;
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
+    }
+    .nav-logo img { width: 32px; height: 32px; }
+    .btn-nav {
+      background: var(--blue); color: #fff; font-weight: 600;
+      font-size: 0.875rem; padding: 10px 22px; border-radius: 100px; border: none; cursor: pointer;
+    }
+    .btn-nav:hover { background: var(--blue-dark); }
+
+    /* Article layout */
+    .article-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-block; background: var(--amber-bg); color: #9A6F00;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .article-header h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.15; letter-spacing: -0.03em;
+      max-width: 720px; margin: 0 auto 16px;
+    }
+    .article-meta {
+      font-size: 0.875rem; color: var(--ink-light);
+    }
+
+    /* Stat block */
+    .stat-row {
+      display: flex; justify-content: center; gap: 0;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+    }
+    .stat-item {
+      flex: 1; max-width: 280px; padding: 32px 24px; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 4vw, 2.75rem); color: var(--blue);
+      letter-spacing: -0.04em; line-height: 1; margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 0.8125rem; color: var(--ink-light); line-height: 1.4;
+    }
+
+    /* Article body */
+    .article-body {
+      padding: 56px 24px 80px;
+    }
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+    }
+    .article-wrap h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.4rem, 2.5vw, 1.875rem); letter-spacing: -0.025em;
+      margin: 48px 0 16px; color: var(--ink);
+    }
+    .article-wrap h2:first-child { margin-top: 0; }
+    .article-wrap p {
+      font-size: 1.0625rem; line-height: 1.8; color: var(--ink-mid);
+      margin-bottom: 20px;
+    }
+    .article-wrap p:last-child { margin-bottom: 0; }
+    .article-wrap strong { color: var(--ink); font-weight: 600; }
+    .article-wrap ul {
+      margin: 16px 0 20px; padding-left: 0; list-style: none;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .article-wrap ul li {
+      display: flex; gap: 10px; font-size: 1.0625rem;
+      line-height: 1.6; color: var(--ink-mid);
+    }
+    .article-wrap ul li::before {
+      content: '—'; color: var(--blue); font-weight: 600; flex-shrink: 0;
+    }
+    .article-wrap a {
+      color: var(--blue); text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .article-wrap a:hover { color: var(--blue-dark); }
+
+    /* Problem callout cards */
+    .problem-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FEE9E9; color: #9B1C1C;
+      padding: 4px 12px; border-radius: 100px; margin-bottom: 12px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* Callout box */
+    .callout {
+      background: var(--amber-bg); border-left: 4px solid var(--amber);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 20px 24px; margin: 32px 0;
+    }
+    .callout p {
+      font-size: 1rem; line-height: 1.7; color: #7A5800; margin: 0; font-style: italic;
+    }
+
+    /* Solution highlight */
+    .solution-box {
+      background: rgba(91, 186, 213, 0.07); border: 1px solid rgba(91, 186, 213, 0.25);
+      border-radius: var(--radius-sm); padding: 24px 28px; margin: 32px 0;
+    }
+    .solution-box p {
+      color: var(--ink-mid); font-size: 1rem; line-height: 1.75; margin-bottom: 12px;
+    }
+    .solution-box p:last-child { margin-bottom: 0; }
+
+    /* CTA box */
+    .cta-box {
+      background: #1B241F; border-radius: var(--radius-md);
+      padding: 40px 36px; margin: 48px 0; text-align: center;
+    }
+    .cta-box h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.4rem, 2.5vw, 1.875rem); letter-spacing: -0.025em;
+      color: #F6F3EC; margin-bottom: 12px;
+    }
+    .cta-box p {
+      font-size: 0.9375rem; color: rgba(246,243,236,0.55); margin-bottom: 24px; line-height: 1.6;
+    }
+    .cta-box-form { display: flex; gap: 8px; max-width: 420px; margin: 0 auto; }
+    .cta-box-form input {
+      flex: 1; padding: 13px 18px; border-radius: 100px;
+      border: 1px solid rgba(246,243,236,0.2); background: rgba(246,243,236,0.08);
+      color: #F6F3EC; font-size: 0.9375rem; font-family: inherit; outline: none;
+    }
+    .cta-box-form input::placeholder { color: rgba(246,243,236,0.38); }
+    .cta-box-form input:focus { border-color: rgba(138,194,229,0.5); }
+    .cta-box-btn {
+      background: #8AC2E5; color: #1A3D52; font-weight: 600;
+      font-size: 0.9375rem; padding: 13px 22px; border-radius: 100px;
+      border: none; cursor: pointer; white-space: nowrap; font-family: inherit;
+    }
+    .cta-box-btn:hover { background: #a8d4ee; }
+    .cta-box-success { display: none; font-size: 0.9375rem; color: #8AC2E5; font-weight: 500; }
+
+    /* FAQ */
+    .faq-section { padding: 72px 0; background: var(--surface); }
+    .faq-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em;
+      text-align: center; margin-bottom: 48px;
+    }
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
+    .faq-item { background: var(--bg); border-radius: var(--radius-sm); overflow: hidden; }
+    .faq-question {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px; background: none; border: none; cursor: pointer;
+      font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--ink);
+      text-align: left; gap: 16px;
+    }
+    .faq-chevron { flex-shrink: 0; transition: transform 0.25s; font-size: 0.8rem; color: var(--ink-light); }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer { display: none; padding: 0 24px 20px; font-size: 0.95rem; line-height: 1.7; color: var(--ink-mid); }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* Footer resets */
+    footer { border-top: none !important; padding: 0 !important; }
+
+    /* Footer layout helpers */
+    .sk-cta-row {
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+    }
+    .sk-cta-form { display: flex; gap: 10px; flex-wrap: wrap; }
+    .sk-footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    }
+    .sk-legal-row {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+    .sk-footer-link {
+      font-size: 0.9375rem; color: rgba(246,243,236,0.55); line-height: 1;
+      transition: color 0.15s;
+    }
+    .sk-footer-link:hover { color: rgba(246,243,236,0.9); }
+    .sk-footer-email-link {
+      font-size: 0.9375rem; color: rgba(246,243,236,0.55);
+      text-decoration: underline; text-underline-offset: 3px;
+    }
+    .sk-footer-email-link:hover { color: rgba(246,243,236,0.9); }
+    .sk-fi::placeholder { color: rgba(246,243,236,0.4); }
+    .sk-fi:focus { outline: none; border-color: rgba(138,194,229,0.5) !important; background: rgba(246,243,236,0.1) !important; }
+    .sk-cta-btn:hover { background: #a8d4ee !important; }
+
+    @media (max-width: 900px) {
+      .sk-footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    }
+    @media (max-width: 680px) {
+      .stat-row { flex-direction: column; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); max-width: 100%; }
+      .stat-item:last-child { border-bottom: none; }
+      .cta-box-form { flex-direction: column; }
+    }
+    @media (max-width: 768px) {
+      .sk-cta-row { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .sk-footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .sk-legal-row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/assets/logomark.svg" alt="Skoolit" fetchpriority="high" />
+        Skoolit
+      </a>
+      <a href="/#early-access"><button class="btn-nav">Get early access</button></a>
+    </div>
+  </nav>
+
+  <!-- Article header -->
+  <header class="article-header">
+    <span class="eyebrow">Auto-Inbox Intelligence</span>
+    <h1>Why Email Forwarding for School Emails Always Fails</h1>
+    <p class="article-meta">By the Skoolit Team &nbsp;·&nbsp; June 24, 2026 &nbsp;·&nbsp; 7 min read</p>
+  </header>
+
+  <!-- Stat block -->
+  <div class="stat-row">
+    <div class="stat-item">
+      <div class="stat-num">73%</div>
+      <div class="stat-label">of parents forget to forward at least one school email per month</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">8</div>
+      <div class="stat-label">avg school sender domains per child per year</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2 min</div>
+      <div class="stat-label">avg time to forward and categorize one email — multiply by 40 emails/week</div>
+    </div>
+  </div>
+
+  <!-- Article body -->
+  <main class="article-body">
+    <div class="article-wrap">
+
+      <h2>The Promise of Email Forwarding</h2>
+      <p>
+        The idea sounds simple and sensible: forward your school emails to a dedicated inbox, let an app sort them, and stop worrying about what you missed. It's the organizing approach behind dozens of apps and countless personal systems that parents build themselves — a dedicated Gmail label fed by filters, a separate email address just for school stuff, or a third-party app that accepts forwarded messages and makes sense of them.
+      </p>
+      <p>
+        The appeal is real. School emails are genuinely hard to track. They arrive from multiple senders — the principal's office, individual teachers, the PTA, sports leagues, music studios, aftercare programs. They contain a mix of time-sensitive information (field trip permission slips, registration deadlines, early dismissal notices) and low-priority content (newsletters, event recaps, school photos). A system that separates the signal from the noise sounds like exactly what overwhelmed parents need.
+      </p>
+      <p>
+        <strong>The problem isn't the idea. The problem is the execution.</strong> Forwarding-based systems have four structural failure modes that surface reliably over the course of a school year — and they tend to fail hardest exactly when you need them most.
+      </p>
+
+      <h2>Problem 1: New Senders Break the System</h2>
+      <div class="problem-label">Failure Mode #1</div>
+      <p>
+        Forwarding rules work by matching email addresses or domains. You tell your email client: "When I get an email from principal@lincoln-elementary.edu, forward it to my school inbox." The system works fine — until your school's IT department migrates to a new domain. Or your child's new teacher this year sends from their personal Gmail rather than the school address. Or the PTA elects new officers who set up a different organizational email. Or your kid joins a new soccer league whose coach sends from a generic sports-platform address you've never seen.
+      </p>
+      <p>
+        Every one of those scenarios breaks your forwarding rules. The email arrives in your main inbox, looks like just another message, and gets buried — along with whatever deadline, schedule change, or urgent request it contained.
+      </p>
+      <p>
+        By the time you realize there's a new sender, you've already missed something. And then you need to update your rules, which requires remembering to do that, finding the new address, creating the rule — adding to a maintenance burden that grows every semester.
+      </p>
+      <p>
+        <strong>The average family has 8 distinct school sender domains per child per year.</strong> That number grows as children move between grades, teachers, and activity providers. No forwarding rule set survives a full school year without requiring updates.
+      </p>
+
+      <h2>Problem 2: It Requires You to Remember</h2>
+      <div class="problem-label">Failure Mode #2</div>
+      <p>
+        Even if your forwarding rules are perfectly maintained, manual forwarding — the kind where you actively forward individual emails yourself — has a deeper flaw: it requires you to remember to do it in the right moment.
+      </p>
+      <p>
+        You check email during a 10-minute window between meetings. A permission slip arrives from a sender your filters don't recognize. You see it, think "I need to deal with that," close the notification, and move on to whatever comes next. The email sits in your inbox. You don't forward it. The deadline is three days away.
+      </p>
+      <p>
+        That's the best-case scenario — you at least saw it. More commonly, a school email arrives during a stretch when you're not checking email at all: a Saturday full of errands, a workday with back-to-back calls, a chaotic school-pickup afternoon. By the time you're back in your inbox, 30 other emails have buried it.
+      </p>
+      <p>
+        <strong>You are only as organized as your least distracted moment.</strong> The forwarding model works when you're calm, attentive, and have time. It fails when you're busy — which is precisely when school communication matters most.
+      </p>
+
+      <h2>Problem 3: The Forwarding Tax</h2>
+      <div class="problem-label">Failure Mode #3</div>
+      <p>
+        Even when forwarding works, it costs time — a lot of time, compounded across a school year.
+      </p>
+      <p>
+        Consider the math: the average parent receives roughly 40 school and activity emails per week across two children. If each email takes an average of two minutes to read, evaluate, and forward (or decide not to forward), that's 80 minutes per week — over five hours per month, more than 60 hours per school year — spent on the act of forwarding alone. This doesn't count the time spent maintaining rules, troubleshooting missed emails, or managing the separate inbox once emails arrive there.
+      </p>
+      <p>
+        That time isn't visible because it happens in small increments, distributed across the week. But it accumulates. And it's time spent on infrastructure — moving emails from one place to another — rather than on actually responding to what those emails contain.
+      </p>
+      <p>
+        Parents who abandon forwarding-based systems frequently describe the moment of realization the same way: "I looked up and realized I was spending more time trying to track school emails than I was actually benefiting from the tracking."
+      </p>
+
+      <h2>Problem 4: Important Emails Never Get Forwarded</h2>
+      <div class="problem-label">Failure Mode #4</div>
+      <p>
+        Here's the cruelest irony of forwarding-based organization: the emails you most need to catch are the ones least likely to make it through your system.
+      </p>
+      <p>
+        Routine newsletters, school photos, curriculum updates — these are low-stakes emails you can afford to miss. They're also the ones you're most likely to forward when you have a quiet moment, because they don't require an immediate decision. You see them, recognize them, and process them without much friction.
+      </p>
+      <p>
+        But permission slips with 72-hour deadlines? They arrive at inconvenient times, require you to make a decision or take an action, and feel like more work than a simple forward. When you're busy, the cognitive overhead of "I need to deal with this" often becomes "I'll deal with this later." Later becomes the next day. The next day the deadline closes.
+      </p>
+      <p>
+        Your brain's tendency to defer high-effort tasks during high-stress moments means <strong>the most important school emails are systematically the least likely to get forwarded</strong> when you're relying on a manual process. The system fails exactly where you most need it to work.
+      </p>
+
+      <div class="callout">
+        <p>The irony of forwarding: the emails you most need to catch are the ones you're most likely to forget to forward when life gets busy.</p>
+      </div>
+
+      <h2>The Alternative: Automatic Inbox Monitoring</h2>
+      <p>
+        The forwarding model fails because it requires you to be the system. Every email that gets organized requires a decision and an action from you. Remove you from that process and the failure modes disappear.
+      </p>
+      <p>
+        That's what automatic inbox monitoring does. Instead of waiting for you to forward an email, the system connects directly to your inbox and reads it — automatically, continuously, in real time. You don't forward anything. There are no rules to maintain. There's no manual step between "email arrives" and "email is organized."
+      </p>
+      <div class="solution-box">
+        <p><strong>How Skoolit connects to your inbox:</strong> Skoolit uses standard OAuth authorization — the same kind of permission screen you see when connecting any trusted app to your Google, Apple, or Microsoft account. You grant read-only inbox access once, and Skoolit monitors your inbox from that point forward.</p>
+        <p>No forwarding address. No per-sender rule configuration. No ongoing maintenance. Every school and activity email that arrives in your inbox gets processed automatically, whether it comes from a sender you've seen before or a brand-new address you've never encountered.</p>
+      </div>
+      <p>
+        Skoolit works with Gmail, iCloud Mail, and Outlook. You can read more about how it compares to forwarding-based tools like <a href="/sense-alternative/">Sense</a>, or see how it stacks up against the <a href="/best-family-calendar-apps/">best family calendar apps of 2026</a>.
+      </p>
+
+      <h2>How Skoolit Handles New Senders</h2>
+      <p>
+        Because Skoolit connects directly to your inbox rather than relying on forwarding rules, it isn't limited by the sender addresses it already knows. Skoolit's AI recognizes school and activity email patterns by <em>content</em> — the language of the email, the type of information it contains, the signals that indicate a school event, a deadline, a schedule change, or a permission slip.
+      </p>
+      <p>
+        This means:
+      </p>
+      <ul>
+        <li>A new teacher sending from their personal Gmail gets picked up on the first email they send you — no rule update required</li>
+        <li>When your school migrates to a new domain, Skoolit continues to catch those emails automatically</li>
+        <li>A new coach, new PTA chair, or new activity coordinator sending for the first time gets recognized by the content of their email, not their address</li>
+        <li>Third-party platforms your school uses — field trip organizers, sports scheduling apps, music lesson studios — all get picked up the same way</li>
+      </ul>
+      <p>
+        The first time Skoolit sees a new sender, it evaluates the email content. If it's school or activity-related, it gets processed. If it isn't, it's ignored. No maintenance required on your end.
+      </p>
+      <p>
+        You might also find it useful to read about <a href="/blog/never-miss-permission-slip/">how Skoolit specifically handles permission slips</a> and why they never get missed when your inbox is monitored automatically.
+      </p>
+
+      <!-- CTA box -->
+      <div class="cta-box">
+        <h3>Switch to automatic inbox monitoring.</h3>
+        <p>Skoolit connects directly to your Gmail, iCloud, or Outlook inbox and reads it automatically — no forwarding, no rules, no maintenance..</p>
+        <div class="cta-box-form" id="inline-cta-form">
+          <input type="email" id="inline-cta-email" placeholder="your@email.com" autocomplete="email" />
+          <button class="cta-box-btn" onclick="handleInlineSignup(this)">Get early access</button>
+        </div>
+        <p class="cta-box-success" id="inline-cta-success">You're on the list — we'll be in touch soon.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div style="max-width: 1080px; margin: 0 auto; padding: 0 24px;">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            If Skoolit doesn't use forwarding, how does it access my school emails?
+            <span class="faq-chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-answer">
+            Skoolit connects directly to your inbox via standard OAuth authorization — the same kind of permission screen you see when you connect Google or Microsoft apps. You grant read-only access once, and Skoolit monitors your inbox from that point forward. It reads your inbox continuously and extracts school and activity-related items automatically. Nothing is stored from your inbox except the events and deadlines it identifies.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            I already have Gmail filters set up for school emails. Why isn't that enough?
+            <span class="faq-chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-answer">
+            Gmail filters are useful for organizing emails you've already seen — but they don't notify you about time-sensitive items, they don't create calendar events, they don't extract deadline dates, and they only work for senders whose addresses you've already added. When a new sender emails you (a new teacher, a new coach, a different PTA email address), your filters don't know about them. Skoolit recognizes school email content regardless of sender, creates calendar events automatically, and sends push notifications for urgent items like permission slips.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            Does Skoolit read my personal emails, or just school-related ones?
+            <span class="faq-chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-answer">
+            Skoolit reads your inbox to identify school and activity-related emails, but only the relevant items are extracted and stored. Personal emails, work emails, financial correspondence, and anything unrelated to school or activities are not retained. We don't store your inbox — we read it, identify what's relevant, extract those items, and discard the rest.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            What if I want to switch from a forwarding-based app to Skoolit?
+            <span class="faq-chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-answer">
+            Switching is straightforward. Sign up for Skoolit, connect your inbox via OAuth, and Skoolit will backfill the last 30 days of school and activity emails automatically — building your initial calendar from your existing inbox history. You can run Skoolit alongside your current setup for a few days to verify it's catching everything, then stop maintaining the forwarding rules you no longer need.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: #1B241F; font-family: 'Inter', sans-serif;">
+    <div style="border-bottom: 1px solid rgba(246,243,236,0.08); padding: clamp(48px,7vw,80px) clamp(24px,6vw,80px);">
+      <div style="max-width: 1200px; margin: 0 auto;" class="sk-cta-row">
+        <div style="max-width: 500px;">
+          <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(1.625rem,3.5vw,2.375rem); line-height: 1.1; letter-spacing: -0.025em; color: #F6F3EC; margin: 0 0 12px; text-wrap: balance;">Stop chasing emails.<br>Start parenting.</p>
+          <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.5); line-height: 1.65; margin: 0;">Join the early access list.</p>
+        </div>
+        <form id="footer-form" class="sk-cta-form" onsubmit="footerSignup(event)">
+          <input id="footer-email" type="email" placeholder="Your email address" required class="sk-fi" style="padding: 13px 16px; border-radius: 10px; border: 1px solid rgba(246,243,236,0.15); background: rgba(246,243,236,0.07); color: #F6F3EC; font-family: 'Inter', sans-serif; font-size: 0.9375rem; width: 248px; transition: border-color 0.15s, background 0.15s;" />
+          <button id="footer-btn" type="submit" class="sk-cta-btn" style="padding: 13px 26px; border-radius: 10px; background: #8AC2E5; color: #1A3D52; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9375rem; border: none; cursor: pointer; white-space: nowrap;">Get early access</button>
+        </form>
+        <div id="footer-success" style="display: none; align-items: center; gap: 10px; padding: 14px 20px; background: rgba(138,194,229,0.1); border-radius: 10px; border: 1px solid rgba(138,194,229,0.22);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8AC2E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span style="font-size: 0.9375rem; color: #8AC2E5; font-weight: 500;">You're on the list. We'll be in touch soon.</span>
+        </div>
+      </div>
+    </div>
+    <div style="padding: clamp(44px,5.5vw,64px) clamp(24px,6vw,80px) clamp(36px,4vw,52px);">
+      <div style="max-width: 1200px; margin: 0 auto;" class="sk-footer-grid">
+        <div>
+          <div style="display: flex; align-items: center; gap: 9px; margin-bottom: 14px;">
+            <img src="/assets/logomark.svg" width="28" height="28" alt="Skoolit" loading="lazy" />
+            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.03em; color: #8AC2E5;">Skoolit</span>
+          </div>
+          <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.45); line-height: 1.72; max-width: 268px; margin: 0 0 22px;">The calm command center for parents. Reads school and activity emails, builds your family calendar, and handles the chaos.</p>
+          <a href="mailto:hello@getskoolit.com" class="sk-footer-email-link">hello@getskoolit.com</a>
+        </div>
+        <div>
+          <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Product</p>
+          <div style="display: flex; flex-direction: column; gap: 13px;">
+            <a href="/#early-access" class="sk-footer-link">Get early access</a>
+            <a href="/#how-it-works" class="sk-footer-link">How it works</a>
+            <a href="/prototype/" class="sk-footer-link">Try the prototype</a>
+            <a href="/blog/school-email-overload/" class="sk-footer-link">Blog</a>
+          </div>
+        </div>
+        <div>
+          <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Compare</p>
+          <div style="display: flex; flex-direction: column; gap: 13px;">
+            <a href="/vs/google-calendar/" class="sk-footer-link">vs Google Calendar</a>
+            <a href="/vs/apple-calendar/" class="sk-footer-link">vs Apple Calendar</a>
+            <a href="/vs/cozi/" class="sk-footer-link">vs Cozi</a>
+            <a href="/vs/skylight/" class="sk-footer-link">vs Skylight</a>
+            <a href="/vs/sense/" class="sk-footer-link">vs Sense</a>
+            <a href="/alternatives/" class="sk-footer-link" style="color: rgba(246,243,236,0.38); font-size: 0.8125rem;">All comparisons &#8594;</a>
+          </div>
+        </div>
+        <div>
+          <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Resources</p>
+          <div style="display: flex; flex-direction: column; gap: 13px;">
+            <a href="/cozi-alternative/" class="sk-footer-link">Cozi alternative</a>
+            <a href="/skylight-calendar-alternative/" class="sk-footer-link">Skylight alternative</a>
+            <a href="/sense-alternative/" class="sk-footer-link">Sense alternative</a>
+            <a href="/privacy/" class="sk-footer-link">Privacy policy</a>
+            <a href="/terms/" class="sk-footer-link">Terms of service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(246,243,236,0.07); padding: 18px clamp(24px,6vw,80px);">
+      <div style="max-width: 1200px; margin: 0 auto;" class="sk-legal-row">
+        <p style="font-size: 0.75rem; color: rgba(246,243,236,0.28); margin: 0;">© 2026 Skoolit · Launching September 15, 2026</p>
+        <p style="font-size: 0.75rem; color: rgba(246,243,236,0.22); margin: 0;">Made for parents who have better things to do.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    async function handleInlineSignup(btn) {
+      const input = document.getElementById('inline-cta-email');
+      const email = input.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.style.borderColor = '#e53e3e';
+        setTimeout(() => input.style.borderColor = '', 1500);
+        input.focus();
+        return;
+      }
+      const orig = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Joining…';
+      try {
+        const res = await fetch('/subscribe', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        if (res.ok) {
+          document.getElementById('inline-cta-form').style.display = 'none';
+          document.getElementById('inline-cta-success').style.display = 'block';
+        } else { throw new Error(); }
+      } catch { btn.disabled = false; btn.textContent = orig; }
+    }
+
+    document.querySelectorAll('.cta-box-form input[type="email"]').forEach(input => {
+      input.addEventListener('keydown', e => {
+        if (e.key !== 'Enter') return;
+        input.closest('.cta-box-form').querySelector('button')?.click();
+      });
+    });
+
+    async function footerSignup(e) {
+      e.preventDefault();
+      const input = document.getElementById('footer-email');
+      const btn = document.getElementById('footer-btn');
+      const email = input.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.style.borderColor = '#e53e3e';
+        setTimeout(() => input.style.borderColor = '', 1500);
+        input.focus();
+        return;
+      }
+      const orig = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Joining…';
+      try {
+        const res = await fetch('/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        if (res.ok) {
+          document.getElementById('footer-form').style.display = 'none';
+          document.getElementById('footer-success').style.display = 'flex';
+        } else {
+          btn.disabled = false;
+          btn.textContent = orig;
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = orig;
+      }
+    }
+  </script>
+
+</body>
+</html>

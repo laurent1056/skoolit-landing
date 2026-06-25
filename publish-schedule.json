@@ -1,0 +1,128 @@
+{
+  "2026-07-20": [
+    {
+      "file": "public/best-family-calendar-apps/index.html",
+      "url": "https://getskoolit.com/best-family-calendar-apps/",
+      "changefreq": "weekly",
+      "priority": "0.85"
+    }
+  ],
+  "2026-07-25": [
+    {
+      "file": "public/blog/back-to-school-guide/index.html",
+      "url": "https://getskoolit.com/blog/back-to-school-guide/",
+      "changefreq": "monthly",
+      "priority": "0.8"
+    }
+  ],
+  "2026-08-01": [
+    {
+      "file": "public/vs/sense/index.html",
+      "url": "https://getskoolit.com/vs/sense/",
+      "changefreq": "monthly",
+      "priority": "0.7"
+    }
+  ],
+  "2026-08-08": [
+    {
+      "file": "public/sense-alternative/index.html",
+      "url": "https://getskoolit.com/sense-alternative/",
+      "changefreq": "weekly",
+      "priority": "0.85"
+    },
+    {
+      "file": "public/blog/never-miss-permission-slip/index.html",
+      "url": "https://getskoolit.com/blog/never-miss-permission-slip/",
+      "changefreq": "monthly",
+      "priority": "0.75"
+    }
+  ],
+  "2026-08-15": [
+    {
+      "file": "public/blog/forwarding-fails/index.html",
+      "url": "https://getskoolit.com/blog/forwarding-fails/",
+      "changefreq": "monthly",
+      "priority": "0.75"
+    },
+    {
+      "file": "public/blog/multiple-kids-schedules/index.html",
+      "url": "https://getskoolit.com/blog/multiple-kids-schedules/",
+      "changefreq": "monthly",
+      "priority": "0.75"
+    }
+  ],
+  "2026-09-01": [
+    {
+      "file": "public/classdojo-alternative/index.html",
+      "url": "https://getskoolit.com/classdojo-alternative/",
+      "changefreq": "monthly",
+      "priority": "0.8"
+    }
+  ],
+  "2026-09-15": [
+    {
+      "file": "public/blog/7-apps-one-school/index.html",
+      "url": "https://getskoolit.com/blog/7-apps-one-school/",
+      "changefreq": "monthly",
+      "priority": "0.8"
+    },
+    {
+      "file": "public/blog/why-we-built-skoolit/index.html",
+      "url": "https://getskoolit.com/blog/why-we-built-skoolit/",
+      "changefreq": "monthly",
+      "priority": "0.8"
+    }
+  ],
+  "2026-10-15": [
+    {
+      "file": "public/for/co-parents/index.html",
+      "url": "https://getskoolit.com/for/co-parents/",
+      "changefreq": "monthly",
+      "priority": "0.75"
+    },
+    {
+      "file": "public/for/working-parents/index.html",
+      "url": "https://getskoolit.com/for/working-parents/",
+      "changefreq": "monthly",
+      "priority": "0.75"
+    },
+    {
+      "file": "public/blog/divorced-parent-school/index.html",
+      "url": "https://getskoolit.com/blog/divorced-parent-school/",
+      "changefreq": "monthly",
+      "priority": "0.75"
+    },
+    {
+      "file": "public/blog/caregiver-schedule/index.html",
+      "url": "https://getskoolit.com/blog/caregiver-schedule/",
+      "changefreq": "monthly",
+      "priority": "0.75"
+    },
+    {
+      "file": "public/blog/parent-information-gap/index.html",
+      "url": "https://getskoolit.com/blog/parent-information-gap/",
+      "changefreq": "monthly",
+      "priority": "0.75"
+    }
+  ],
+  "2026-11-01": [
+    {
+      "file": "public/blog/working-parent-school/index.html",
+      "url": "https://getskoolit.com/blog/working-parent-school/",
+      "changefreq": "monthly",
+      "priority": "0.75"
+    },
+    {
+      "file": "public/blog/ai-school-email/index.html",
+      "url": "https://getskoolit.com/blog/ai-school-email/",
+      "changefreq": "monthly",
+      "priority": "0.75"
+    },
+    {
+      "file": "public/blog/coach-email-tracking/index.html",
+      "url": "https://getskoolit.com/blog/coach-email-tracking/",
+      "changefreq": "monthly",
+      "priority": "0.75"
+    }
+  ]
+}
