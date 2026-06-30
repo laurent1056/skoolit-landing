@@ -700,6 +700,14 @@
           },
           {
             "@type": "Question",
+            "name": "Do I need to forward emails to Skoolit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No — forwarding is not required. Skoolit's primary method is a direct, secure OAuth connection to your Gmail, iCloud, or Outlook inbox. Once connected, it monitors automatically and catches every school and activity email, including from new senders. You can also forward individual emails into Skoolit if you prefer, but most parents never need to."
+            }
+          },
+          {
+            "@type": "Question",
             "name": "Does Skoolit store my emails?",
             "acceptedAnswer": {
               "@type": "Answer",
@@ -792,6 +800,7 @@
       <div class="trust-pills">
         <span class="trust-pill"><span class="dot"></span>Set up in under 5 minutes</span>
         <span class="trust-pill"><span class="dot"></span>Your emails are never stored</span>
+        <span class="trust-pill"><span class="dot"></span>Direct inbox connection — no forwarding required</span>
         <span class="trust-pill"><span class="dot"></span>Works with Gmail, iCloud &amp; Outlook</span>
       </div>
 
@@ -837,7 +846,7 @@
           </p>
           <div class="callout-card">
             <p>
-              <strong>Skoolit closes the loop.</strong> Connect your inbox, tell it who to watch — your kids' schools, their coaches, their instructors — and it handles everything automatically.
+              <strong>Skoolit closes the loop.</strong> Connect your inbox once via Gmail, iCloud, or Outlook — then tell it who to watch. Skoolit monitors automatically from that point forward. No forwarding setup required.
             </p>
           </div>
         </div>
@@ -861,10 +870,16 @@
       <div class="section-header">
         <span class="eyebrow" id="how-it-works">How it works</span>
         <h2 class="display display-lg">It reads. It organizes. It acts.</h2>
-        <p class="body-lg">Most apps just show you the problem. Skoolit solves it before you see it.</p>
+        <p class="body-lg">Connect your inbox once. Skoolit watches it automatically — no forwarding, no filters, no maintenance.</p>
       </div>
 
       <div class="features-grid">
+
+        <div class="feature-card">
+          <span class="feature-icon">🔌</span>
+          <h3>Connect once. Done.</h3>
+          <p>Sign in with Gmail, iCloud, or Outlook — the same secure OAuth used by Google Drive and Microsoft 365. Skoolit monitors your inbox automatically from that moment on. No passwords stored. No ongoing forwarding setup required.</p>
+        </div>
 
         <div class="feature-card">
           <span class="feature-icon">📋</span>
@@ -951,7 +966,7 @@
       <div class="section-header">
         <span class="eyebrow">Not another school app you have to check</span>
         <h2 class="display display-lg">Built for parents, not schools.</h2>
-        <p class="body-lg">ClassDojo, ParentSquare, and Remind are school tools. Schools decide to use them. You receive what they send. Skoolit is yours.</p>
+        <p class="body-lg">ClassDojo, ParentSquare, and Remind are school tools. Schools decide to use them. You receive what they send. Skoolit is yours — and it covers everything, not just what one school platform decides to share.</p>
       </div>
 
       <div class="diff-grid">
@@ -976,6 +991,14 @@
           </ul>
         </div>
       </div>
+
+      <div style="margin-top: 48px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 32px 36px; max-width: 720px; margin-left: auto; margin-right: auto;">
+        <p style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px;">Why Skoolit stays focused</p>
+        <p style="font-size: 1rem; line-height: 1.7; color: var(--ink-mid); margin: 0;">
+          Some family apps try to do everything — meal planning, grocery lists, chore charts, allowance tracking. Skoolit does one thing and does it completely: <strong style="color: var(--ink);">it kills the inbox chaos that makes every other part of parenting harder.</strong> When school emails, coach emails, and tutor reminders are handled automatically, you have the headspace to handle the rest.
+        </p>
+      </div>
+
     </div>
   </section>
 
@@ -1020,11 +1043,21 @@
 
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+            Do I need to forward emails to Skoolit?
+            <span class="faq-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            No — forwarding is not required. Skoolit's primary method is a direct, secure OAuth connection to your Gmail, iCloud, or Outlook inbox — the same standard banks and productivity apps use. Once connected, it monitors automatically. You can also forward individual emails into Skoolit if you prefer, but most parents never need to: the inbox connection catches everything, including from new senders the moment they first email you.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
             Does Skoolit store my emails?
             <span class="faq-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </button>
           <div class="faq-answer">
-            No. Skoolit reads and processes your emails in real time but never stores the raw content. Only structured data — events, deadlines, action items — is saved to your account.
+            No. Skoolit reads each email as it arrives, extracts the relevant information (event dates, deadlines, action items), and discards the raw content. Your inbox is never copied, cached, or retained on our servers. What stays in your Skoolit account is the structured data we extracted — the event on Tuesday, the permission slip due Friday — not the email itself.
           </div>
         </div>
 

@@ -417,8 +417,8 @@
           </div>
           <div class="pain-card">
             <div class="pain-icon">📅</div>
-            <h4>No automatic calendar creation</h4>
-            <p>Even if you forward everything perfectly, Sense doesn't automatically create calendar events. You still have to manually add dates and times from the emails to your family calendar.</p>
+            <h4>Gaps compound invisibly over the school year</h4>
+            <p>The emails you forward create events. The ones you forget to forward disappear. By December, your Sense calendar looks complete — but it's missing every email that arrived during a hectic morning when you couldn't forward in time.</p>
           </div>
         </div>
         <p>
@@ -448,8 +448,8 @@
           </tr>
           <tr>
             <td>Email forwarding required</td>
-            <td><span class="yes">Never</span></td>
-            <td><span class="no">Yes — forward each email manually</span></td>
+            <td><span class="yes">Not required — inbox monitored automatically (forwarding optional)</span></td>
+            <td><span class="no">Yes — primary method is manual email forwarding</span></td>
           </tr>
           <tr>
             <td>School event parsing</td>
@@ -459,17 +459,17 @@
           <tr>
             <td>Calendar sync &amp; event creation</td>
             <td><span class="yes">Yes — creates events automatically from inbox</span></td>
-            <td><span class="partial">Partial — manual calendar entry still required</span></td>
+            <td><span class="partial">Yes — but only from emails you remember to forward</span></td>
           </tr>
           <tr>
             <td>Co-parent sharing</td>
             <td><span class="yes">Yes — Owner / Co-parent / Caregiver tiers</span></td>
-            <td><span class="partial">Limited</span></td>
+            <td><span class="partial">Yes — shared family view via app</span></td>
           </tr>
           <tr>
             <td>Caregiver access (no account needed)</td>
             <td><span class="yes">Yes — read-only magic link for nannies, grandparents</span></td>
-            <td><span class="no">No</span></td>
+            <td><span class="partial">Requires caregivers to create a Sense account</span></td>
           </tr>
           <tr>
             <td>Permission slip alerts</td>
@@ -503,8 +503,8 @@
           </tr>
           <tr>
             <td>Price</td>
-            <td><span class="yes">From $4.99/mo (per-child pricing — see FAQ)</span></td>
-            <td><span class="partial">Subscription required</span></td>
+            <td><span class="yes">From $4.99/mo — per-child pricing, full inbox automation (see FAQ)</span></td>
+            <td><span class="partial">Free tier available; premium at $5.99/mo (unlimited family members)</span></td>
           </tr>
         </tbody>
       </table>
@@ -550,7 +550,7 @@
           </div>
         </div>
         <p>
-          From this point forward, Skoolit handles the monitoring automatically. You don't forward emails. You don't enter events. You don't maintain forwarding rules. Every event syncs directly to your Google, Apple, or Microsoft calendar — so you see school events in the same place you already look. And when a permission slip or urgent deadline arrives, Skoolit sends a push notification before you've even opened the app. The Skoolit digest is there when you want a full week view, but you never have to open it to catch something important.
+          From this point forward, Skoolit handles the monitoring automatically. You don't need to forward emails — though you can if you want to add something one-off. You don't enter events manually. Every event syncs directly to your Google, Apple, or Microsoft calendar — so you see school events in the same place you already look. And when a permission slip or urgent deadline arrives, Skoolit sends a push notification before you've even opened the app. The Skoolit digest is there when you want a full week view, but you never have to open it to catch something important.
         </p>
         <ul>
           <li>Urgency scoring surfaces time-sensitive items before deadlines pass</li>
@@ -602,7 +602,7 @@
             <span class="faq-chevron" aria-hidden="true">▼</span>
           </button>
           <div class="faq-answer">
-            No. Skoolit connects directly to your Gmail, iCloud Mail, or Outlook inbox via OAuth. It monitors your inbox automatically — you never need to forward a single email. Sense requires you to set up forwarding rules for every school sender; Skoolit reads your inbox continuously and catches every school or activity email regardless of who sent it.
+            No — forwarding is not required. Skoolit connects directly to your Gmail, iCloud Mail, or Outlook inbox via OAuth and monitors it automatically. Sense's primary method is email forwarding; Skoolit's primary method is direct inbox monitoring. You can forward individual emails into Skoolit if you want, but you'll never need to — it catches everything automatically, including from senders who've never emailed you before.
           </div>
         </div>
         <div class="faq-item">
@@ -638,7 +638,16 @@
             <span class="faq-chevron" aria-hidden="true">▼</span>
           </button>
           <div class="faq-answer">
-            Skoolit pricing starts at $4.99/month for your first child, +$3.00 for a second, +$2.00 for a third, and +$1.00 for each additional child. Cancel anytime.
+            Skoolit starts at $4.99/month for your first child, +$3.00 for a second, +$2.00 for a third, and +$1.00 for each additional child. Cancel anytime.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            Sense has a free tier. Why does Skoolit charge?
+            <span class="faq-chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-answer">
+            Sense is free for the features available in the forwarding model — you do the work of forwarding emails, and they extract the calendar events. Skoolit charges because it does the work for you: direct inbox monitoring, automatic event detection, urgency scoring, and push notifications for time-sensitive items. The $4.99/month covers infrastructure that runs 24/7 watching your inbox so you never have to think about it. If remembering to forward emails isn't a problem for you, Sense may suit you fine. If you want it handled automatically, that's what you're paying for with Skoolit.
           </div>
         </div>
       </div>
