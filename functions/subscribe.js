@@ -1,3 +1,4 @@
+// Cloudflare Pages Function — handles /subscribe POSTs and forwards to Apps Script.
 export async function onRequestPost(context) {
   const { request, env } = context;
 
