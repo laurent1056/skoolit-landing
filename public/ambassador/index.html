@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get paid to share Skoolit | Ambassador program</title>
+  <meta name="description" content="Get paid to share Skoolit with the parents who follow you. Free lifetime access, 25% commission, and 2–4 posts a month in your own voice. Apply to be an ambassador." />
+  <meta property="og:title" content="Get paid to share Skoolit | Ambassador program" />
+  <meta property="og:description" content="Free lifetime access, 25% commission, 2–4 posts a month in your voice. Apply to be a Skoolit ambassador." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getskoolit.com/ambassador/" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Dead-end recruitment page for social traffic — keep out of the index. -->
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="canonical" href="https://getskoolit.com/ambassador/" />
+  <link rel="icon" href="/assets/logomark.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Tokens ─────────────────────────────────────────── */
+    :root {
+      --blue:       #8AC2E5;   /* brand blue — accent + CTA */
+      --blue-hover: #6FB2DC;
+      --blue-wash:  #EAF4FB;
+      --blue-deep:  #1A3D52;   /* CTA label — dark text on light blue */
+      --ink:        #1A1A1A;
+      --ink-mid:    #4A4A4A;
+      --ink-light:  #767676;
+      --paper:      #FBFAF7;
+      --surface:    #FFFFFF;
+      --border:     #E7E3D9;
+      --green:      #2E9E6B;
+      --gold:       #C7821B;
+      --gold-wash:  #FBEECF;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .display {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.04;
+    }
+
+    /* ── Logo bar (only exit is the logo) ───────────────── */
+    header { max-width: 1160px; margin: 0 auto; padding: 22px 24px; }
+    .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800; font-size: 1.2rem; letter-spacing: -0.03em;
+      color: var(--blue-deep);
+    }
+    .logo img { width: 34px; height: 34px; }
+
+    /* ── Hero (above the fold) ──────────────────────────── */
+    .hero {
+      max-width: 1160px; margin: 0 auto;
+      padding: 24px 24px 72px;
+      display: grid; grid-template-columns: 1fr; gap: 44px; align-items: center;
+    }
+    .hero-copy { max-width: 580px; }
+    .kicker {
+      display: inline-block;
+      background: var(--gold-wash); color: var(--gold);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 22px;
+    }
+    .hero h1 { font-size: clamp(2.2rem, 5.6vw, 3.5rem); margin-bottom: 18px; }
+    .hero h1 .wash { color: var(--blue); }
+    .hero-sub {
+      font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+      color: var(--ink-mid); margin-bottom: 24px; max-width: 520px;
+    }
+
+    /* ── Offer chips (second-loudest after the CTA) ─────── */
+    .offer-chips {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px;
+    }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1.5px solid var(--blue);
+      color: var(--blue-deep); font-weight: 700; font-size: 0.9rem;
+      padding: 9px 16px; border-radius: 100px;
+    }
+    .chip .mark { font-size: 1rem; }
+    .chip.gold { border-color: #EAD9A8; background: var(--gold-wash); color: var(--gold); }
+
+    /* ── Application form ───────────────────────────────── */
+    .capture { max-width: 520px; }
+    .form-row { display: flex; gap: 10px; }
+    .form-row input[type="email"] {
+      flex: 1; min-width: 0; padding: 16px 20px;
+      font-size: 1rem; font-family: inherit; color: var(--ink);
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 12px; outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .form-row input::placeholder { color: var(--ink-light); }
+    .form-row input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(138,194,229,0.35); }
+    .cta {
+      flex-shrink: 0; padding: 16px 28px;
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      font-size: 1.05rem; font-weight: 800; letter-spacing: -0.01em;
+      color: var(--blue-deep); background: var(--blue); border: none; border-radius: 12px;
+      cursor: pointer; white-space: nowrap;
+      box-shadow: 0 6px 18px rgba(138,194,229,0.45);
+      transition: background 0.15s, transform 0.08s, box-shadow 0.15s;
+    }
+    .cta:hover { background: var(--blue-hover); box-shadow: 0 8px 22px rgba(138,194,229,0.55); }
+    .cta:active { transform: translateY(1px); }
+    .cta:focus-visible { outline: 3px solid var(--blue-deep); outline-offset: 3px; }
+    .cta:disabled { opacity: 0.65; cursor: not-allowed; }
+    .form-note { font-size: 0.85rem; color: var(--ink-light); margin-top: 12px; }
+    .form-note strong { color: var(--ink-mid); }
+
+    .success {
+      display: none; align-items: center; gap: 10px;
+      padding: 18px 22px; background: #EAF7F0; border: 1.5px solid var(--green);
+      border-radius: 12px; color: #1E6E4B; font-weight: 600; max-width: 520px;
+    }
+    .error { display: none; color: #C0392B; font-size: 0.85rem; margin-top: 10px; }
+
+    /* ── Hero visual: earnings card ─────────────────────── */
+    .hero-visual { display: flex; justify-content: center; }
+    .hero-visual svg { width: 100%; max-width: 420px; height: auto; }
+
+    /* ── How it works ───────────────────────────────────── */
+    .how {
+      background: var(--surface);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 72px 24px;
+    }
+    .inner { max-width: 1000px; margin: 0 auto; }
+    .section-eyebrow {
+      text-align: center; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-deep);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.5rem, 3.6vw, 2.2rem); letter-spacing: -0.03em;
+      margin-bottom: 48px; text-wrap: balance;
+    }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .step {
+      background: var(--paper); border: 1px solid var(--border);
+      border-radius: 16px; padding: 30px 26px;
+    }
+    .step-num {
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      background: var(--blue); color: var(--blue-deep);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.1rem;
+      border-radius: 50%; margin-bottom: 18px;
+    }
+    .step h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: 1.1rem; letter-spacing: -0.02em; margin-bottom: 8px;
+    }
+    .step p { font-size: 0.95rem; color: var(--ink-mid); }
+
+    /* ── What you get ───────────────────────────────────── */
+    .perks { padding: 72px 24px; }
+    .perk-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 900px; margin: 0 auto; }
+    .perk {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px 26px;
+    }
+    .perk-icon {
+      flex-shrink: 0; width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--blue-wash); border-radius: 12px; font-size: 1.35rem;
+    }
+    .perk h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: 1rem; letter-spacing: -0.01em; margin-bottom: 4px;
+    }
+    .perk p { font-size: 0.9rem; color: var(--ink-mid); }
+
+    /* ── Honesty / expectation-set ──────────────────────── */
+    .honesty { padding: 8px 24px 64px; }
+    .honesty-card {
+      max-width: 720px; margin: 0 auto;
+      background: var(--gold-wash); border: 1px solid #EAD9A8;
+      border-radius: 16px; padding: 26px 30px;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .honesty-card .badge { flex-shrink: 0; font-size: 1.5rem; }
+    .honesty-card p { font-size: 0.98rem; color: #5A4A25; line-height: 1.6; }
+    .honesty-card strong { color: #3F340F; }
+
+    /* ── Repeat CTA ─────────────────────────────────────── */
+    .repeat-cta { background: var(--blue-wash); text-align: center; padding: 72px 24px; }
+    .repeat-cta h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: -0.03em;
+      color: var(--blue-deep); margin-bottom: 10px; text-wrap: balance;
+    }
+    .repeat-cta p { color: var(--ink-mid); margin-bottom: 24px; }
+    .repeat-cta .cta { font-size: 1.1rem; padding: 18px 34px; }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    footer { padding: 40px 24px; text-align: center; }
+    .footer-logo {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      color: var(--blue-deep); margin-bottom: 12px;
+    }
+    .footer-logo img { width: 24px; height: 24px; }
+    footer p { font-size: 0.82rem; color: var(--ink-light); max-width: 460px; margin: 0 auto 6px; }
+    footer .ftc { font-weight: 600; color: var(--ink-mid); }
+
+    /* ── Desktop split-screen ───────────────────────────── */
+    @media (min-width: 1024px) {
+      .hero { grid-template-columns: 1.1fr 0.9fr; gap: 56px; padding: 40px 24px 96px; }
+    }
+    @media (max-width: 720px) {
+      .steps, .perk-grid { grid-template-columns: 1fr; }
+      .form-row { flex-direction: column; }
+      .cta { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G06C694J1V"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G06C694J1V');
+  </script>
+  <script src="/assets/tracking.js"></script>
+</head>
+<body>
+
+  <!-- Logo bar — the only outbound link on the page -->
+  <header>
+    <a class="logo" href="/" aria-label="Skoolit home">
+      <img src="/assets/logomark.svg" alt="" fetchpriority="high" width="34" height="34" />
+      Skoolit
+    </a>
+  </header>
+
+  <!-- ── Above the fold ───────────────────────────────── -->
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="kicker">Ambassador program</span>
+        <h1 class="display">Get <span class="wash">paid</span> to share Skoolit with the parents who follow you.</h1>
+        <p class="hero-sub">
+          Any niche — baking, gaming, fitness, books. If your audience juggles
+          school-year chaos, you're a fit.
+        </p>
+
+        <div class="offer-chips">
+          <span class="chip gold"><span class="mark">∞</span> Free lifetime access</span>
+          <span class="chip"><span class="mark">💸</span> 25% commission (first 30)</span>
+          <span class="chip"><span class="mark">✍️</span> 2–4 posts/month, your voice</span>
+        </div>
+
+        <div class="capture" id="capture">
+          <form class="form-row" id="signup" onsubmit="return handleSignup(event)">
+            <label for="email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required />
+            <button type="submit" class="cta" id="cta-btn">Apply to be an ambassador</button>
+          </form>
+          <p class="form-note"><strong>60-second application.</strong> Only 50 spots in this cohort.</p>
+          <p class="error" id="error" role="alert" aria-live="assertive"></p>
+        </div>
+
+        <div class="success" id="success" role="status" aria-live="polite">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E6E4B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Application started — check your inbox for the next step.</span>
+        </div>
+      </div>
+
+      <!-- Earnings visual (hand-built, no stock/AI) -->
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 420 380" role="img" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="40" width="360" height="300" rx="24" fill="#FFFFFF" stroke="#E7E3D9"/>
+          <!-- header -->
+          <rect x="30" y="40" width="360" height="72" rx="24" fill="#8AC2E5"/>
+          <rect x="30" y="80" width="360" height="32" fill="#8AC2E5"/>
+          <circle cx="70" cy="76" r="18" fill="#FFFFFF" opacity="0.9"/>
+          <path d="M70 68 a8 8 0 1 0 0.1 0 M56 90 a14 14 0 0 1 28 0" fill="#8AC2E5"/>
+          <rect x="98" y="66" width="120" height="9" rx="4.5" fill="#FFFFFF" opacity="0.95"/>
+          <rect x="98" y="82" width="80" height="7" rx="3.5" fill="#FFFFFF" opacity="0.7"/>
+          <rect x="300" y="62" width="66" height="30" rx="15" fill="#FFFFFF"/>
+          <text x="333" y="82" font-family="Plus Jakarta Sans, sans-serif" font-size="15" font-weight="800" fill="#1A3D52" text-anchor="middle">25%</text>
+
+          <!-- earnings headline -->
+          <text x="56" y="164" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#767676" letter-spacing="1">THIS MONTH</text>
+          <text x="54" y="206" font-family="Plus Jakarta Sans, sans-serif" font-size="46" font-weight="800" fill="#1A1A1A">$1,240</text>
+
+          <!-- bars -->
+          <g>
+            <rect x="56" y="238" width="308" height="14" rx="7" fill="#EAF4FB"/>
+            <rect x="56" y="238" width="230" height="14" rx="7" fill="#8AC2E5"/>
+            <rect x="56" y="266" width="308" height="14" rx="7" fill="#EAF4FB"/>
+            <rect x="56" y="266" width="168" height="14" rx="7" fill="#8AC2E5"/>
+            <rect x="56" y="294" width="308" height="14" rx="7" fill="#EAF4FB"/>
+            <rect x="56" y="294" width="118" height="14" rx="7" fill="#8AC2E5"/>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ── How it works ─────────────────────────────────── -->
+    <section class="how">
+      <div class="inner">
+        <p class="section-eyebrow">How it works</p>
+        <h2 class="section-title">Three steps. Barely any lift.</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Apply (60 sec)</h3>
+            <p>Tell us your niche and where you post. That's the whole application.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Get your link + free access</h3>
+            <p>Approved ambassadors get a personal referral link and lifetime free Skoolit.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Post in your voice, earn</h3>
+            <p>Share 2–4 times a month however you like. Earn on every signup you drive.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── What you get ─────────────────────────────────── -->
+    <section class="perks">
+      <div class="inner">
+        <p class="section-eyebrow">What you get</p>
+        <h2 class="section-title">More than a discount code.</h2>
+        <div class="perk-grid">
+          <div class="perk">
+            <div class="perk-icon" aria-hidden="true">🎟️</div>
+            <div>
+              <h3>Lifetime free Skoolit</h3>
+              <p>Full access for you, free for good — the moment you're accepted.</p>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon" aria-hidden="true">💸</div>
+            <div>
+              <h3>25% commission for 3 months</h3>
+              <p>Per referral, for the first 30 signups you bring in. Real recurring earnings.</p>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon" aria-hidden="true">🏅</div>
+            <div>
+              <h3>Ambassador badge + product input</h3>
+              <p>Early access to features and a direct line to shape what we build next.</p>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon" aria-hidden="true">📣</div>
+            <div>
+              <h3>We amplify your posts</h3>
+              <p>We put paid media behind your content — growing <em>your</em> reach, not just ours.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Honesty / expectation-set ────────────────────── -->
+    <section class="honesty">
+      <div class="honesty-card">
+        <span class="badge" aria-hidden="true">🤝</span>
+        <p>
+          <strong>Straight talk:</strong> we select 30 from the first 50 applicants by
+          niche fit. If you're not in this round, you're first in line for the next cohort —
+          no reapplying needed.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Repeat CTA ───────────────────────────────────── -->
+    <section class="repeat-cta">
+      <h2>Only 50 spots. Claim yours.</h2>
+      <p>60-second application. Free lifetime access the moment you're in.</p>
+      <button type="button" class="cta" onclick="scrollToForm()">Apply to be an ambassador</button>
+    </section>
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────── -->
+  <footer>
+    <a class="footer-logo" href="/" aria-label="Skoolit home">
+      <img src="/assets/logomark.svg" alt="" width="24" height="24" />
+      Skoolit
+    </a>
+    <p class="ftc">Ambassadors disclose paid partnerships with <strong>#SkoolitPartner</strong>.</p>
+    <p>Your email stays private. We'll only use it to process your application.</p>
+  </footer>
+
+  <script>
+    var SOURCE = 'ambassador-lp';
+
+    function scrollToForm() {
+      document.getElementById('capture').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      var form = document.getElementById('signup');
+      if (form && form.style.display !== 'none') {
+        setTimeout(function () { document.getElementById('email').focus(); }, 400);
+      }
+    }
+
+    async function handleSignup(e) {
+      e.preventDefault();
+      var input = document.getElementById('email');
+      var btn   = document.getElementById('cta-btn');
+      var error = document.getElementById('error');
+      var email = input.value.trim();
+
+      error.style.display = 'none';
+      error.textContent = '';
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.style.borderColor = '#C0392B';
+        setTimeout(function () { input.style.borderColor = ''; }, 1500);
+        input.focus();
+        return false;
+      }
+
+      var label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Applying…';
+
+      try {
+        var res = await fetch('/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          // tracking.js transparently appends utm_* + referrer before this leaves the browser
+          body: JSON.stringify({ email: email, source: SOURCE }),
+        });
+        if (res.ok) {
+          document.getElementById('capture').style.display = 'none';
+          document.getElementById('success').style.display = 'flex';
+          gtag('event', 'sign_up', { method: SOURCE });
+        } else {
+          var data = await res.json().catch(function () { return {}; });
+          throw new Error(data.error || 'Something went wrong. Please try again.');
+        }
+      } catch (err) {
+        error.textContent = err.message;
+        error.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = label;
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>
