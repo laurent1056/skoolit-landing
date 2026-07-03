@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Take back the mental load of school | Skoolit early access</title>
+  <meta name="description" content="Skoolit turns the flood of school, tutor, team, and activity emails into one calm, sorted place — so nothing slips. Get early access." />
+  <meta property="og:title" content="Take back the mental load of school | Skoolit" />
+  <meta property="og:description" content="Skoolit turns the flood of school, tutor, team, and activity emails into one calm, sorted place — so nothing slips." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getskoolit.com/trial/" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Dead-end conversion page for paid traffic — keep out of the index. -->
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="canonical" href="https://getskoolit.com/trial/" />
+  <link rel="icon" href="/assets/logomark.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Tokens ─────────────────────────────────────────── */
+    :root {
+      --blue:       #8AC2E5;   /* brand blue — accent + CTA */
+      --blue-hover: #6FB2DC;
+      --blue-wash:  #EAF4FB;
+      --blue-deep:  #1A3D52;   /* CTA label — dark text on light blue */
+      --coral:      #FF6B4A;   /* reserved for reassurance chip accent */
+      --coral-dark: #F04E2A;
+      --ink:        #1A1A1A;
+      --ink-mid:    #4A4A4A;
+      --ink-light:  #767676;   /* AA on white */
+      --paper:      #FBFAF7;
+      --surface:    #FFFFFF;
+      --border:     #E7E3D9;
+      --green:      #2E9E6B;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .display {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.04;
+    }
+
+    /* ── Logo bar (only exit is the logo) ───────────────── */
+    header {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 22px 24px;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
+      color: var(--blue-deep);
+    }
+    .logo img { width: 34px; height: 34px; }
+
+    /* ── Hero (above the fold) ──────────────────────────── */
+    .hero {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 24px 24px 72px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 44px;
+      align-items: center;
+    }
+    .hero-copy { max-width: 560px; }
+    .kicker {
+      display: inline-block;
+      background: var(--blue-wash);
+      color: var(--blue-deep);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 22px;
+    }
+    .hero h1 {
+      font-size: clamp(2.3rem, 6vw, 3.6rem);
+      margin-bottom: 18px;
+    }
+    .hero h1 .wash { color: var(--blue); }
+    .hero-sub {
+      font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+      color: var(--ink-mid);
+      margin-bottom: 26px;
+      max-width: 520px;
+    }
+
+    /* ── Email capture form ─────────────────────────────── */
+    .capture { max-width: 500px; }
+    .form-row {
+      display: flex;
+      gap: 10px;
+    }
+    .form-row input[type="email"] {
+      flex: 1;
+      min-width: 0;
+      padding: 16px 20px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .form-row input::placeholder { color: var(--ink-light); }
+    .form-row input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(138,194,229,0.35);
+    }
+    .cta {
+      flex-shrink: 0;
+      padding: 16px 28px;
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--blue-deep);
+      background: var(--blue);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 6px 18px rgba(138,194,229,0.45);
+      transition: background 0.15s, transform 0.08s, box-shadow 0.15s;
+    }
+    .cta:hover { background: var(--blue-hover); box-shadow: 0 8px 22px rgba(138,194,229,0.55); }
+    .cta:active { transform: translateY(1px); }
+    .cta:focus-visible { outline: 3px solid var(--blue-deep); outline-offset: 3px; }
+    .cta:disabled { opacity: 0.65; cursor: not-allowed; }
+
+    .form-note {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      margin-top: 12px;
+    }
+    .reassure {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 18px;
+      background: #FFF4EF;
+      border: 1px solid #FFD9CC;
+      color: var(--coral-dark);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 100px;
+    }
+    .reassure .gift { font-size: 1rem; }
+
+    .success {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 22px;
+      background: #EAF7F0;
+      border: 1.5px solid var(--green);
+      border-radius: 12px;
+      color: #1E6E4B;
+      font-weight: 600;
+      max-width: 500px;
+    }
+    .error {
+      display: none;
+      color: #C0392B;
+      font-size: 0.85rem;
+      margin-top: 10px;
+    }
+
+    /* ── Hero visual: chaos → calm ──────────────────────── */
+    .hero-visual { display: flex; justify-content: center; }
+    .hero-visual svg { width: 100%; max-width: 480px; height: auto; }
+
+    /* ── Benefit tiles ──────────────────────────────────── */
+    .relief {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 24px;
+    }
+    .relief-inner { max-width: 1000px; margin: 0 auto; }
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .tile {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px 26px;
+    }
+    .tile-icon {
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--blue-wash);
+      border-radius: 12px;
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+    }
+    .tile h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .tile p { font-size: 0.95rem; color: var(--ink-mid); }
+
+    /* ── Empathy strip ──────────────────────────────────── */
+    .empathy {
+      text-align: center;
+      padding: 64px 24px;
+    }
+    .empathy p {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.3rem, 3.2vw, 1.9rem);
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      max-width: 620px;
+      margin: 0 auto;
+      text-wrap: balance;
+    }
+
+    /* ── Repeat CTA ─────────────────────────────────────── */
+    .repeat-cta {
+      background: var(--blue-wash);
+      text-align: center;
+      padding: 72px 24px;
+    }
+    .repeat-cta h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      letter-spacing: -0.03em;
+      color: var(--blue-deep);
+      margin-bottom: 24px;
+      text-wrap: balance;
+    }
+    .repeat-cta .cta { font-size: 1.1rem; padding: 18px 34px; }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    footer {
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      color: var(--blue-deep);
+      margin-bottom: 12px;
+    }
+    .footer-logo img { width: 24px; height: 24px; }
+    footer p { font-size: 0.82rem; color: var(--ink-light); max-width: 420px; margin: 0 auto; }
+
+    /* ── Desktop split-screen ───────────────────────────── */
+    @media (min-width: 1024px) {
+      .hero {
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 56px;
+        padding: 40px 24px 96px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .tiles { grid-template-columns: 1fr; }
+      .form-row { flex-direction: column; }
+      .cta { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G06C694J1V"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G06C694J1V');
+  </script>
+  <!-- First-touch UTM capture + transparent /subscribe enrichment -->
+  <script src="/assets/tracking.js"></script>
+</head>
+<body>
+
+  <!-- Logo bar — the only outbound link on the page -->
+  <header>
+    <a class="logo" href="/" aria-label="Skoolit home">
+      <img src="/assets/logomark.svg" alt="" fetchpriority="high" width="34" height="34" />
+      Skoolit
+    </a>
+  </header>
+
+  <!-- ── Above the fold ───────────────────────────────── -->
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="kicker">Early access</span>
+        <h1 class="display">Take back the <span class="wash">mental load</span> of school.</h1>
+        <p class="hero-sub">
+          Skoolit turns the flood of school, tutor, team, and activity emails into
+          one calm, sorted place — so nothing slips.
+        </p>
+
+        <div class="capture" id="capture">
+          <form class="form-row" id="signup" onsubmit="return handleSignup(event)">
+            <label for="email" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required />
+            <button type="submit" class="cta" id="cta-btn">Get early access</button>
+          </form>
+          <p class="form-note">
+            No credit card. Just an email — we'll send your invite when your spot opens.
+          </p>
+          <span class="reassure"><span class="gift">🎁</span> Founding families get 3 months free.</span>
+          <p class="error" id="error" role="alert" aria-live="assertive"></p>
+        </div>
+
+        <div class="success" id="success" role="status" aria-live="polite">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E6E4B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>You're on the list. We'll send your invite when your spot opens.</span>
+        </div>
+      </div>
+
+      <!-- Chaotic inbox resolving into a tidy day (hand-built, no stock/AI) -->
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 480 400" role="img" xmlns="http://www.w3.org/2000/svg">
+          <!-- scattered incoming emails -->
+          <g opacity="0.9">
+            <g transform="translate(18 40) rotate(-11)">
+              <rect width="120" height="82" rx="12" fill="#FFFFFF" stroke="#E7E3D9"/>
+              <path d="M8 16 L60 52 L112 16" fill="none" stroke="#FF6B4A" stroke-width="3" stroke-linecap="round"/>
+              <rect x="20" y="60" width="80" height="7" rx="3.5" fill="#EFE9DD"/>
+            </g>
+            <g transform="translate(34 150) rotate(8)">
+              <rect width="120" height="82" rx="12" fill="#FFFFFF" stroke="#E7E3D9"/>
+              <path d="M8 16 L60 52 L112 16" fill="none" stroke="#8AC2E5" stroke-width="3" stroke-linecap="round"/>
+              <rect x="20" y="60" width="64" height="7" rx="3.5" fill="#EFE9DD"/>
+            </g>
+            <g transform="translate(6 250) rotate(-6)">
+              <rect width="120" height="82" rx="12" fill="#FFFFFF" stroke="#E7E3D9"/>
+              <path d="M8 16 L60 52 L112 16" fill="none" stroke="#F4B83A" stroke-width="3" stroke-linecap="round"/>
+              <rect x="20" y="60" width="72" height="7" rx="3.5" fill="#EFE9DD"/>
+            </g>
+          </g>
+
+          <!-- flow arrow -->
+          <path d="M168 200 C 205 200 205 200 236 200" fill="none" stroke="#8AC2E5" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 12"/>
+          <path d="M232 190 L252 200 L232 210 Z" fill="#8AC2E5"/>
+
+          <!-- tidy, sorted day -->
+          <g transform="translate(268 46)">
+            <rect x="0" y="0" width="196" height="308" rx="20" fill="#FFFFFF" stroke="#E7E3D9"/>
+            <rect x="0" y="0" width="196" height="56" rx="20" fill="#8AC2E5"/>
+            <rect x="0" y="36" width="196" height="20" fill="#8AC2E5"/>
+            <rect x="20" y="20" width="96" height="9" rx="4.5" fill="#FFFFFF" opacity="0.95"/>
+            <rect x="20" y="34" width="60" height="7" rx="3.5" fill="#FFFFFF" opacity="0.7"/>
+
+            <!-- sorted rows with checks -->
+            <g transform="translate(18 78)">
+              <rect x="0" y="0" width="160" height="44" rx="10" fill="#F6FBFE"/>
+              <circle cx="22" cy="22" r="11" fill="#2E9E6B"/>
+              <path d="M17 22 l4 4 l7 -8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="42" y="14" width="98" height="7" rx="3.5" fill="#CBE3F1"/>
+              <rect x="42" y="26" width="66" height="6" rx="3" fill="#E7EFF5"/>
+            </g>
+            <g transform="translate(18 132)">
+              <rect x="0" y="0" width="160" height="44" rx="10" fill="#FFF4EF"/>
+              <circle cx="22" cy="22" r="11" fill="#FF6B4A"/>
+              <rect x="21" y="16" width="2.4" height="9" rx="1.2" fill="#fff"/>
+              <circle cx="22.2" cy="28" r="1.4" fill="#fff"/>
+              <rect x="42" y="14" width="90" height="7" rx="3.5" fill="#FFD3C6"/>
+              <rect x="42" y="26" width="58" height="6" rx="3" fill="#FFE6DE"/>
+            </g>
+            <g transform="translate(18 186)">
+              <rect x="0" y="0" width="160" height="44" rx="10" fill="#F6FBFE"/>
+              <circle cx="22" cy="22" r="11" fill="#2E9E6B"/>
+              <path d="M17 22 l4 4 l7 -8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="42" y="14" width="104" height="7" rx="3.5" fill="#CBE3F1"/>
+              <rect x="42" y="26" width="72" height="6" rx="3" fill="#E7EFF5"/>
+            </g>
+            <g transform="translate(18 240)">
+              <rect x="0" y="0" width="160" height="44" rx="10" fill="#F6FBFE"/>
+              <circle cx="22" cy="22" r="11" fill="#2E9E6B"/>
+              <path d="M17 22 l4 4 l7 -8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="42" y="14" width="86" height="7" rx="3.5" fill="#CBE3F1"/>
+              <rect x="42" y="26" width="60" height="6" rx="3" fill="#E7EFF5"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ── Below the fold: the relief, in 3 tiles ───────── -->
+    <section class="relief">
+      <div class="relief-inner">
+        <div class="tiles">
+          <div class="tile">
+            <div class="tile-icon" aria-hidden="true">🗂️</div>
+            <h3>One place, not five</h3>
+            <p>School, tutor, team, and activity — every thread lands in a single calm view.</p>
+          </div>
+          <div class="tile">
+            <div class="tile-icon" aria-hidden="true">⏰</div>
+            <h3>Never miss a deadline</h3>
+            <p>Permission slips, payments, and RSVPs surface before they're due — not after.</p>
+          </div>
+          <div class="tile">
+            <div class="tile-icon" aria-hidden="true">🌤️</div>
+            <h3>~30 min/day back</h3>
+            <p>Stop re-reading the same inbox. Skim one sorted digest and get on with your day.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Empathy strip ────────────────────────────────── -->
+    <section class="empathy">
+      <p>Built by parents drowning in the same inbox.</p>
+    </section>
+
+    <!-- ── Repeat CTA (scrolls to form) ─────────────────── -->
+    <section class="repeat-cta">
+      <h2>Ready for a calmer school year?</h2>
+      <button type="button" class="cta" onclick="scrollToForm()">Get early access</button>
+    </section>
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────── -->
+  <footer>
+    <a class="footer-logo" href="/" aria-label="Skoolit home">
+      <img src="/assets/logomark.svg" alt="" width="24" height="24" />
+      Skoolit
+    </a>
+    <p>Your email stays private. We'll only use it to send your invite.</p>
+  </footer>
+
+  <script>
+    var SOURCE = 'trial-lp';
+
+    function scrollToForm() {
+      var form = document.getElementById('signup');
+      if (!form || form.style.display === 'none') {
+        document.getElementById('capture').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      document.getElementById('capture').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(function () { document.getElementById('email').focus(); }, 400);
+    }
+
+    async function handleSignup(e) {
+      e.preventDefault();
+      var input = document.getElementById('email');
+      var btn   = document.getElementById('cta-btn');
+      var error = document.getElementById('error');
+      var email = input.value.trim();
+
+      error.style.display = 'none';
+      error.textContent = '';
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.style.borderColor = '#C0392B';
+        setTimeout(function () { input.style.borderColor = ''; }, 1500);
+        input.focus();
+        return false;
+      }
+
+      var label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Joining…';
+
+      try {
+        var res = await fetch('/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          // tracking.js transparently appends utm_* + referrer before this leaves the browser
+          body: JSON.stringify({ email: email, source: SOURCE }),
+        });
+        if (res.ok) {
+          document.getElementById('capture').style.display = 'none';
+          document.getElementById('success').style.display = 'flex';
+          gtag('event', 'sign_up', { method: SOURCE });
+        } else {
+          var data = await res.json().catch(function () { return {}; });
+          throw new Error(data.error || 'Something went wrong. Please try again.');
+        }
+      } catch (err) {
+        error.textContent = err.message;
+        error.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = label;
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>
