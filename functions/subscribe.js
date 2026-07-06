@@ -40,6 +40,8 @@ export async function onRequestPost(context) {
     name:   sanitize(body.name,   100),
     phone:  sanitize(body.phone,  40),
     source: sanitize(body.source, 100),
+    // Ambassador applicants' social handles (pipe-joined), used for vetting.
+    social: sanitize(body.social, 500),
     // Attribution fields (default to empty string when absent so the Sheet
     // columns stay aligned for submissions that carry no campaign data).
     utm_source:     sanitize(body.utm_source,     200) || '',

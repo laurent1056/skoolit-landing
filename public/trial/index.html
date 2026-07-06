@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Take back the mental load of school | Skoolit early access</title>
-  <meta name="description" content="Skoolit turns the flood of school, tutor, team, and activity emails into one calm, sorted place — so nothing slips. Get early access." />
+  <title>Take back the mental load of school | Join the Skoolit beta</title>
+  <meta name="description" content="Skoolit turns the flood of school, tutor, team, and activity emails into one calm, sorted place — so nothing slips. Join the Skoolit beta." />
   <meta property="og:title" content="Take back the mental load of school | Skoolit" />
   <meta property="og:description" content="Skoolit turns the flood of school, tutor, team, and activity emails into one calm, sorted place — so nothing slips." />
   <meta property="og:type" content="website" />
@@ -161,19 +161,13 @@
       margin-top: 12px;
     }
     .reassure {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      margin-top: 18px;
-      background: #FFF4EF;
-      border: 1px solid #FFD9CC;
-      color: var(--coral-dark);
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 7px 14px;
-      border-radius: 100px;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--ink-mid);
+      max-width: 500px;
     }
-    .reassure .gift { font-size: 1rem; }
+    .reassure strong { color: var(--ink); font-weight: 600; }
 
     .success {
       display: none;
@@ -328,7 +322,7 @@
   <main>
     <section class="hero">
       <div class="hero-copy">
-        <span class="kicker">Early access</span>
+        <span class="kicker">Beta program</span>
         <h1 class="display">Take back the <span class="wash">mental load</span> of school.</h1>
         <p class="hero-sub">
           Skoolit turns the flood of school, tutor, team, and activity emails into
@@ -339,12 +333,12 @@
           <form class="form-row" id="signup" onsubmit="return handleSignup(event)">
             <label for="email" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
             <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required />
-            <button type="submit" class="cta" id="cta-btn">Get early access</button>
+            <button type="submit" class="cta" id="cta-btn">Join the beta</button>
           </form>
           <p class="form-note">
             No credit card. Just an email — we'll send your invite when your spot opens.
           </p>
-          <span class="reassure"><span class="gift">🎁</span> Founding families get 3 months free.</span>
+          <p class="reassure"><strong>Beta families get 3 months free</strong> — expect a few bugs along the way, and in exchange we get your honest feedback to help shape the product.</p>
           <p class="error" id="error" role="alert" aria-live="assertive"></p>
         </div>
 
@@ -454,7 +448,7 @@
     <!-- ── Repeat CTA (scrolls to form) ─────────────────── -->
     <section class="repeat-cta">
       <h2>Ready for a calmer school year?</h2>
-      <button type="button" class="cta" onclick="scrollToForm()">Get early access</button>
+      <button type="button" class="cta" onclick="scrollToForm()">Join the beta</button>
     </section>
   </main>
 

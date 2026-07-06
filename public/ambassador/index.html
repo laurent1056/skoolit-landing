@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Get paid to share Skoolit | Ambassador program</title>
-  <meta name="description" content="Get paid to share Skoolit with the parents who follow you. Free lifetime access, 25% commission, and 2–4 posts a month in your own voice. Apply to be an ambassador." />
+  <meta name="description" content="Get paid to share Skoolit with the parents who follow you. Free lifetime access and 25% commission on every family you refer. Apply to be an ambassador." />
   <meta property="og:title" content="Get paid to share Skoolit | Ambassador program" />
-  <meta property="og:description" content="Free lifetime access, 25% commission, 2–4 posts a month in your voice. Apply to be a Skoolit ambassador." />
+  <meta property="og:description" content="Free lifetime access and 25% commission on every family you refer. Apply to be a Skoolit ambassador." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://getskoolit.com/ambassador/" />
   <meta property="og:image" content="https://getskoolit.com/assets/og.svg" />
@@ -128,6 +128,29 @@
     .form-note { font-size: 0.85rem; color: var(--ink-light); margin-top: 12px; }
     .form-note strong { color: var(--ink-mid); }
 
+    .field { margin-bottom: 14px; }
+    .field label {
+      display: block; font-size: 0.85rem; font-weight: 600;
+      color: var(--ink-mid); margin-bottom: 7px;
+    }
+    .field label .hint { font-weight: 400; color: var(--ink-light); }
+    #signup input[type="email"], #signup .handle {
+      width: 100%; padding: 15px 18px; font-size: 1rem; font-family: inherit;
+      color: var(--ink); background: var(--surface);
+      border: 1.5px solid var(--border); border-radius: 12px; outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    #signup input::placeholder { color: var(--ink-light); }
+    #signup input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(138,194,229,0.35); }
+    #handles .handle + .handle { margin-top: 8px; }
+    .add-handle {
+      margin-top: 8px; background: none; border: none; padding: 4px 0;
+      font-family: inherit; font-size: 0.85rem; font-weight: 600;
+      color: var(--blue-deep); cursor: pointer;
+    }
+    .add-handle:hover { text-decoration: underline; }
+    #signup .cta { width: 100%; margin-top: 6px; }
+
     .success {
       display: none; align-items: center; gap: 10px;
       padding: 18px 22px; background: #EAF7F0; border: 1.5px solid var(--green);
@@ -192,17 +215,9 @@
     }
     .perk p { font-size: 0.9rem; color: var(--ink-mid); }
 
-    /* ── Honesty / expectation-set ──────────────────────── */
-    .honesty { padding: 8px 24px 64px; }
-    .honesty-card {
-      max-width: 720px; margin: 0 auto;
-      background: var(--gold-wash); border: 1px solid #EAD9A8;
-      border-radius: 16px; padding: 26px 30px;
-      display: flex; gap: 16px; align-items: flex-start;
-    }
-    .honesty-card .badge { flex-shrink: 0; font-size: 1.5rem; }
-    .honesty-card p { font-size: 0.98rem; color: #5A4A25; line-height: 1.6; }
-    .honesty-card strong { color: #3F340F; }
+    /* ── Footer terms link ──────────────────────────────── */
+    .terms-link { color: var(--blue-deep); text-decoration: underline; text-underline-offset: 2px; }
+    .terms-link:hover { color: var(--ink); }
 
     /* ── Repeat CTA ─────────────────────────────────────── */
     .repeat-cta { background: var(--blue-wash); text-align: center; padding: 72px 24px; }
@@ -272,17 +287,24 @@
 
         <div class="offer-chips">
           <span class="chip gold"><span class="mark">∞</span> Free lifetime access</span>
-          <span class="chip"><span class="mark">💸</span> 25% commission (first 30)</span>
-          <span class="chip"><span class="mark">✍️</span> 2–4 posts/month, your voice</span>
+          <span class="chip"><span class="mark">💸</span> 25% commission — 3 months per referred family, renews with every signup</span>
         </div>
 
         <div class="capture" id="capture">
-          <form class="form-row" id="signup" onsubmit="return handleSignup(event)">
-            <label for="email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
-            <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required />
+          <form id="signup" onsubmit="return handleSignup(event)">
+            <div class="field">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="handle-0">Social handles <span class="hint">— for vetting, add as many as you like</span></label>
+              <div id="handles">
+                <input type="text" id="handle-0" class="handle" placeholder="Instagram, TikTok, YouTube… @yourhandle" autocomplete="off" />
+              </div>
+              <button type="button" class="add-handle" id="add-handle">+ Add another handle</button>
+            </div>
             <button type="submit" class="cta" id="cta-btn">Apply to be an ambassador</button>
           </form>
-          <p class="form-note"><strong>60-second application.</strong> Only 50 spots in this cohort.</p>
           <p class="error" id="error" role="alert" aria-live="assertive"></p>
         </div>
 
@@ -332,7 +354,7 @@
         <div class="steps">
           <div class="step">
             <div class="step-num">1</div>
-            <h3>Apply (60 sec)</h3>
+            <h3>Apply</h3>
             <p>Tell us your niche and where you post. That's the whole application.</p>
           </div>
           <div class="step">
@@ -343,7 +365,7 @@
           <div class="step">
             <div class="step-num">3</div>
             <h3>Post in your voice, earn</h3>
-            <p>Share 2–4 times a month however you like. Earn on every signup you drive.</p>
+            <p>Share however you like. Earn on every signup you drive.</p>
           </div>
         </div>
       </div>
@@ -366,7 +388,7 @@
             <div class="perk-icon" aria-hidden="true">💸</div>
             <div>
               <h3>25% commission for 3 months</h3>
-              <p>Per referral, for the first 30 signups you bring in. Real recurring earnings.</p>
+              <p>Per referred family — and it renews with every new signup you bring in. Real recurring earnings.</p>
             </div>
           </div>
           <div class="perk">
@@ -387,22 +409,10 @@
       </div>
     </section>
 
-    <!-- ── Honesty / expectation-set ────────────────────── -->
-    <section class="honesty">
-      <div class="honesty-card">
-        <span class="badge" aria-hidden="true">🤝</span>
-        <p>
-          <strong>Straight talk:</strong> we select 30 from the first 50 applicants by
-          niche fit. If you're not in this round, you're first in line for the next cohort —
-          no reapplying needed.
-        </p>
-      </div>
-    </section>
-
     <!-- ── Repeat CTA ───────────────────────────────────── -->
     <section class="repeat-cta">
-      <h2>Only 50 spots. Claim yours.</h2>
-      <p>60-second application. Free lifetime access the moment you're in.</p>
+      <h2>Get paid to share what you already love.</h2>
+      <p>Free lifetime access, and 25% commission on every family you refer.</p>
       <button type="button" class="cta" onclick="scrollToForm()">Apply to be an ambassador</button>
     </section>
   </main>
@@ -414,11 +424,34 @@
       Skoolit
     </a>
     <p class="ftc">Ambassadors disclose paid partnerships with <strong>#SkoolitPartner</strong>.</p>
-    <p>Your email stays private. We'll only use it to process your application.</p>
+    <p><a href="/ambassador/terms/" class="terms-link">Commission terms</a> &middot; Your email stays private. We'll only use it to process your application.</p>
   </footer>
 
   <script>
     var SOURCE = 'ambassador-lp';
+
+    // Applicants can list handles across multiple platforms.
+    var handleCount = 1;
+    document.getElementById('add-handle').addEventListener('click', function () {
+      var wrap = document.getElementById('handles');
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'handle';
+      input.id = 'handle-' + handleCount++;
+      input.placeholder = 'Another platform… @yourhandle';
+      input.autocomplete = 'off';
+      wrap.appendChild(input);
+      input.focus();
+    });
+
+    function collectHandles() {
+      var vals = [];
+      document.querySelectorAll('#handles .handle').forEach(function (el) {
+        var v = el.value.trim();
+        if (v) vals.push(v);
+      });
+      return vals.join(' | ');
+    }
 
     function scrollToForm() {
       document.getElementById('capture').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -454,7 +487,7 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           // tracking.js transparently appends utm_* + referrer before this leaves the browser
-          body: JSON.stringify({ email: email, source: SOURCE }),
+          body: JSON.stringify({ email: email, source: SOURCE, social: collectHandles() }),
         });
         if (res.ok) {
           document.getElementById('capture').style.display = 'none';
