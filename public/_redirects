@@ -1,0 +1,13 @@
+# Cloudflare Pages redirects
+#
+# Canonicalize the www subdomain to the apex domain with a 301.
+# GSC reported https://www.getskoolit.com/ and http://www.getskoolit.com/
+# returning 403 (Blocked due to access forbidden) — Googlebot could not
+# crawl the www host. This sends all www traffic to the apex domain, which
+# already serves 200 and matches every <link rel="canonical"> on the site.
+#
+# IMPORTANT: For this rule to take effect, www.getskoolit.com must be added
+# as a custom domain on the Cloudflare Pages project (Pages → skoolit-landing
+# → Custom domains → Set up a domain → www.getskoolit.com). Until the host is
+# registered, Pages rejects it with "host_not_allowed" before _redirects runs.
+https://www.getskoolit.com/* https://getskoolit.com/:splat 301
