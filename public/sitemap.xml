@@ -21,6 +21,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://getskoolit.com/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://getskoolit.com/blog/school-email-overload/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -137,6 +142,16 @@
   </url>
   <url>
     <loc>https://getskoolit.com/blog/ai-school-email/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://getskoolit.com/blog/7-apps-one-school/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://getskoolit.com/blog/why-we-built-skoolit/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
