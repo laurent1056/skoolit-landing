@@ -115,6 +115,23 @@
     .form-row {
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
+    }
+    .form-row select {
+      flex-basis: 100%;
+      padding: 16px 20px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .form-row select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(138,194,229,0.35);
     }
     .form-row input[type="email"] {
       flex: 1;
@@ -331,6 +348,16 @@
 
         <div class="capture" id="capture">
           <form class="form-row" id="signup" onsubmit="return handleSignup(event)">
+            <label for="heard-from" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">How did you hear about us?</label>
+            <select id="heard-from" name="heard_from">
+              <option value="">How did you hear about us? (optional)</option>
+              <option value="search">Search</option>
+              <option value="facebook_instagram">Facebook/Instagram</option>
+              <option value="friend_family">A friend or family member</option>
+              <option value="pta_school">PTA / school</option>
+              <option value="ambassador_creator">Ambassador / creator</option>
+              <option value="other">Other</option>
+            </select>
             <label for="email" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
             <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required />
             <button type="submit" class="cta" id="cta-btn">Join the beta</button>
@@ -495,12 +522,17 @@
       btn.disabled = true;
       btn.textContent = 'Joining…';
 
+      // Optional "How did you hear about us?" attribution.
+      var heardSel = document.getElementById('heard-from');
+      var payload = { email: email, source: SOURCE };
+      if (heardSel && heardSel.value) payload.heard_from = heardSel.value;
+
       try {
         var res = await fetch('/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          // tracking.js transparently appends utm_* + referrer before this leaves the browser
-          body: JSON.stringify({ email: email, source: SOURCE }),
+          // tracking.js transparently appends utm_* + referrer (incl. per-referrer ?ref=) before this leaves the browser
+          body: JSON.stringify(payload),
         });
         if (res.ok) {
           document.getElementById('capture').style.display = 'none';
