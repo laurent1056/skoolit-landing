@@ -175,7 +175,21 @@
       gap: 8px;
       max-width: 480px;
       margin: 0 auto;
+      flex-wrap: wrap;
     }
+    .signup-form select {
+      flex-basis: 100%;
+      padding: 14px 20px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: var(--surface);
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .signup-form select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(91,186,213,0.25); }
     .signup-form input {
       flex: 1;
       padding: 14px 20px;
@@ -806,6 +820,15 @@
       </div>
 
       <div class="signup-form" id="hero-form">
+        <select id="hero-heard-from" name="heard_from" aria-label="How did you hear about us?">
+          <option value="">How did you hear about us? (optional)</option>
+          <option value="search">Search</option>
+          <option value="facebook_instagram">Facebook/Instagram</option>
+          <option value="friend_family">A friend or family member</option>
+          <option value="pta_school">PTA / school</option>
+          <option value="ambassador_creator">Ambassador / creator</option>
+          <option value="other">Other</option>
+        </select>
         <input type="email" id="hero-email" aria-label="Email address" placeholder="your@email.com" autocomplete="email" />
         <button class="btn-primary" onclick="handleSignup('hero-email', 'hero-form', 'hero-success', 'hero-error', this)">Get early access</button>
       </div>
@@ -1267,11 +1290,17 @@
       btn.disabled = true;
       btn.textContent = 'Joining…';
 
+      // Optional "How did you hear about us?" attribution, if the form has the select.
+      const form = document.getElementById(formId);
+      const heardSel = form && form.querySelector('select[name="heard_from"]');
+      const payload = { email };
+      if (heardSel && heardSel.value) payload.heard_from = heardSel.value;
+
       try {
         const res = await fetch('/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify(payload),
         });
 
         if (res.ok) {
