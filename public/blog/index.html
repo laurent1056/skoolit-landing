@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Skoolit Blog — Taming School Email for Busy Parents</title>
+  <meta name="description" content="Practical guides on school email overload, permission slips, caregivers and co-parenting, and staying on top of every deadline — from the Skoolit team." />
+  <link rel="canonical" href="https://getskoolit.com/blog/" />
+  <meta property="og:title" content="The Skoolit Blog" />
+  <meta property="og:description" content="Practical guides on school email overload, permission slips, caregivers and co-parenting, and staying on top of every deadline." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getskoolit.com/blog/" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/assets/logomark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G06C694J1V"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G06C694J1V');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "The Skoolit Blog",
+    "url": "https://getskoolit.com/blog/",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://getskoolit.com/blog/school-email-overload/",
+          "name": "We Counted Every School Email One Parent Got in a Month"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "url": "https://getskoolit.com/blog/forwarding-fails/",
+          "name": "Why Email Forwarding for School Emails Always Fails"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "url": "https://getskoolit.com/blog/7-apps-one-school/",
+          "name": "The Modern Parent Has 7 Apps for One School"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "url": "https://getskoolit.com/blog/ai-school-email/",
+          "name": "How AI Is Finally Solving School Email Overload"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "url": "https://getskoolit.com/blog/parent-information-gap/",
+          "name": "The Parent Information Gap"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "url": "https://getskoolit.com/blog/caregiver-schedule/",
+          "name": "Keep Your Nanny or Grandparent in the Loop"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "url": "https://getskoolit.com/blog/divorced-parent-school/",
+          "name": "School Communication When You’re Co-Parenting"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "url": "https://getskoolit.com/blog/working-parent-school/",
+          "name": "How Working Parents Stay On Top of School"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "url": "https://getskoolit.com/blog/never-miss-permission-slip/",
+          "name": "How to Never Miss a Permission Slip Again"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "url": "https://getskoolit.com/blog/coach-email-tracking/",
+          "name": "The Coach Email Problem"
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "url": "https://getskoolit.com/blog/multiple-kids-schedules/",
+          "name": "Manage Multiple Kids’ Schedules Without Losing Your Mind"
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "url": "https://getskoolit.com/blog/back-to-school-guide/",
+          "name": "The Back-to-School Email Survival Guide (2026)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "url": "https://getskoolit.com/blog/why-we-built-skoolit/",
+          "name": "Why We Built Skoolit"
+        }
+      ]
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg:        #EDEADE;
+      --surface:   #FFFFFF;
+      --ink:       #1A1A1A;
+      --ink-mid:   #444444;
+      --ink-light: #777777;
+      --blue:      #5BBAD5;
+      --blue-dark: #3fa5c4;
+      --amber:     #F5C97A;
+      --amber-bg:  #FEF3DC;
+      --green-dot: #4CAF7D;
+      --red:       #E53E3E;
+      --border:    #DDDAD0;
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
+    }
+    .nav-logo img { width: 32px; height: 32px; }
+    .btn-nav {
+      background: var(--blue); color: #fff; font-weight: 600;
+      font-size: 0.875rem; padding: 10px 22px; border-radius: 100px; border: none; cursor: pointer;
+    }
+    .btn-nav:hover { background: var(--blue-dark); }
+
+    /* Article layout */
+    .article-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-block; background: var(--amber-bg); color: #9A6F00;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .article-header h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.15; letter-spacing: -0.03em;
+      max-width: 720px; margin: 0 auto 16px;
+    }
+    .article-meta {
+      font-size: 0.875rem; color: var(--ink-light);
+    }
+
+    /* Stat block */
+    .stat-row {
+      display: flex; justify-content: center; gap: 0;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+    }
+    .stat-item {
+      flex: 1; max-width: 280px; padding: 32px 24px; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 4vw, 2.75rem); color: var(--blue);
+      letter-spacing: -0.04em; line-height: 1; margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 0.8125rem; color: var(--ink-light); line-height: 1.4;
+    }
+
+    /* Article body */
+    .article-body {
+      padding: 56px 24px 80px;
+    }
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+    }
+    .article-wrap h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.4rem, 2.5vw, 1.875rem); letter-spacing: -0.025em;
+      margin: 48px 0 16px; color: var(--ink);
+    }
+    .article-wrap h2:first-child { margin-top: 0; }
+    .article-wrap p {
+      font-size: 1.0625rem; line-height: 1.8; color: var(--ink-mid);
+      margin-bottom: 20px;
+    }
+    .article-wrap p:last-child { margin-bottom: 0; }
+    .article-wrap strong { color: var(--ink); font-weight: 600; }
+    .article-wrap ul {
+      margin: 16px 0 20px; padding-left: 0; list-style: none;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .article-wrap ul li {
+      display: flex; gap: 10px; font-size: 1.0625rem;
+      line-height: 1.6; color: var(--ink-mid);
+    }
+    .article-wrap ul li::before {
+      content: '—'; color: var(--blue); font-weight: 600; flex-shrink: 0;
+    }
+    .article-wrap a {
+      color: var(--blue); text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .article-wrap a:hover { color: var(--blue-dark); }
+
+    /* Problem callout cards */
+    .problem-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FEE9E9; color: #9B1C1C;
+      padding: 4px 12px; border-radius: 100px; margin-bottom: 12px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* Callout box */
+    .callout {
+      background: var(--amber-bg); border-left: 4px solid var(--amber);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 20px 24px; margin: 32px 0;
+    }
+    .callout p {
+      font-size: 1rem; line-height: 1.7; color: #7A5800; margin: 0; font-style: italic;
+    }
+
+    /* Solution highlight */
+    .solution-box {
+      background: rgba(91, 186, 213, 0.07); border: 1px solid rgba(91, 186, 213, 0.25);
+      border-radius: var(--radius-sm); padding: 24px 28px; margin: 32px 0;
+    }
+    .solution-box p {
+      color: var(--ink-mid); font-size: 1rem; line-height: 1.75; margin-bottom: 12px;
+    }
+    .solution-box p:last-child { margin-bottom: 0; }
+
+    /* CTA box */
+    .cta-box {
+      background: #1B241F; border-radius: var(--radius-md);
+      padding: 40px 36px; margin: 48px 0; text-align: center;
+    }
+    .cta-box h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.4rem, 2.5vw, 1.875rem); letter-spacing: -0.025em;
+      color: #F6F3EC; margin-bottom: 12px;
+    }
+    .cta-box p {
+      font-size: 0.9375rem; color: rgba(246,243,236,0.55); margin-bottom: 24px; line-height: 1.6;
+    }
+    .cta-box-form { display: flex; gap: 8px; max-width: 420px; margin: 0 auto; }
+    .cta-box-form input {
+      flex: 1; padding: 13px 18px; border-radius: 100px;
+      border: 1px solid rgba(246,243,236,0.2); background: rgba(246,243,236,0.08);
+      color: #F6F3EC; font-size: 0.9375rem; font-family: inherit; outline: none;
+    }
+    .cta-box-form input::placeholder { color: rgba(246,243,236,0.38); }
+    .cta-box-form input:focus { border-color: rgba(138,194,229,0.5); }
+    .cta-box-btn {
+      background: #8AC2E5; color: #1A3D52; font-weight: 600;
+      font-size: 0.9375rem; padding: 13px 22px; border-radius: 100px;
+      border: none; cursor: pointer; white-space: nowrap; font-family: inherit;
+    }
+    .cta-box-btn:hover { background: #a8d4ee; }
+    .cta-box-success { display: none; font-size: 0.9375rem; color: #8AC2E5; font-weight: 500; }
+
+    /* FAQ */
+    .faq-section { padding: 72px 0; background: var(--surface); }
+    .faq-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em;
+      text-align: center; margin-bottom: 48px;
+    }
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
+    .faq-item { background: var(--bg); border-radius: var(--radius-sm); overflow: hidden; }
+    .faq-question {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px; background: none; border: none; cursor: pointer;
+      font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--ink);
+      text-align: left; gap: 16px;
+    }
+    .faq-chevron { flex-shrink: 0; transition: transform 0.25s; font-size: 0.8rem; color: var(--ink-light); }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer { display: none; padding: 0 24px 20px; font-size: 0.95rem; line-height: 1.7; color: var(--ink-mid); }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* Footer resets */
+    footer { border-top: none !important; padding: 0 !important; }
+
+    /* Footer layout helpers */
+    .sk-cta-row {
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+    }
+    .sk-cta-form { display: flex; gap: 10px; flex-wrap: wrap; }
+    .sk-footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    }
+    .sk-legal-row {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+    .sk-footer-link {
+      font-size: 0.9375rem; color: rgba(246,243,236,0.55); line-height: 1;
+      transition: color 0.15s;
+    }
+    .sk-footer-link:hover { color: rgba(246,243,236,0.9); }
+    .sk-footer-email-link {
+      font-size: 0.9375rem; color: rgba(246,243,236,0.55);
+      text-decoration: underline; text-underline-offset: 3px;
+    }
+    .sk-footer-email-link:hover { color: rgba(246,243,236,0.9); }
+    .sk-fi::placeholder { color: rgba(246,243,236,0.4); }
+    .sk-fi:focus { outline: none; border-color: rgba(138,194,229,0.5) !important; background: rgba(246,243,236,0.1) !important; }
+    .sk-cta-btn:hover { background: #a8d4ee !important; }
+
+    @media (max-width: 900px) {
+      .sk-footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    }
+    @media (max-width: 680px) {
+      .stat-row { flex-direction: column; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); max-width: 100%; }
+      .stat-item:last-child { border-bottom: none; }
+      .cta-box-form { flex-direction: column; }
+    }
+    @media (max-width: 768px) {
+      .sk-cta-row { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .sk-footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .sk-legal-row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+  <style>
+    /* Blog hub */
+    .hub-header { background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 64px 24px 52px; text-align: center; }
+    .hub-header h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.12; letter-spacing: -0.03em;
+      max-width: 760px; margin: 0 auto 16px; }
+    .hub-header p { font-size: 1.0625rem; line-height: 1.7; color: var(--ink-mid);
+      max-width: 620px; margin: 0 auto; }
+    .hub-body { padding: 56px 24px 72px; }
+    .hub-wrap { max-width: 1080px; margin: 0 auto; }
+    .hub-section { margin-bottom: 64px; }
+    .hub-section:last-child { margin-bottom: 0; }
+    .hub-section-head { margin-bottom: 24px; }
+    .hub-section-head h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.025em; color: var(--ink);
+      margin: 0 0 6px; }
+    .hub-section-head p { font-size: 0.9375rem; color: var(--ink-light); margin: 0; }
+    .post-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .post-card { display: flex; flex-direction: column; gap: 10px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius-md); padding: 26px;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s; }
+    .post-card:hover { transform: translateY(-3px); border-color: var(--blue);
+      box-shadow: 0 12px 30px rgba(26,61,82,0.10); }
+    .post-cat { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--blue); }
+    .post-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: 1.1875rem; line-height: 1.28; letter-spacing: -0.02em; color: var(--ink);
+      margin: 0; }
+    .post-card p { font-size: 0.9375rem; line-height: 1.6; color: var(--ink-mid); margin: 0;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .post-meta { font-size: 0.8125rem; color: var(--ink-light); }
+    .post-more { margin-top: auto; font-size: 0.875rem; font-weight: 600; color: var(--blue); }
+    @media (max-width: 860px) { .post-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .post-grid { grid-template-columns: 1fr; } }
+  </style>
+  <script src="/assets/tracking.js"></script>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/assets/logomark.svg" alt="Skoolit" fetchpriority="high" />
+        Skoolit
+      </a>
+      <a href="/#early-access"><button class="btn-nav">Get early access</button></a>
+    </div>
+  </nav>
+
+  <header class="hub-header">
+    <h1>The Skoolit Blog</h1>
+    <p>Practical guides on school email overload, permission slips, caregivers and co-parenting, and staying on top of every deadline — from the team building Skoolit.</p>
+  </header>
+
+  <main class="hub-body">
+    <div class="hub-wrap">
+      <section class="hub-section">
+        <div class="hub-section-head">
+          <h2>The inbox problem</h2>
+          <p>Why school email is broken — and what actually fixes it.</p>
+        </div>
+        <div class="post-grid">
+        <a class="post-card" href="/blog/school-email-overload/">
+          <span class="post-cat">The inbox problem</span>
+          <h3>We Counted Every School Email One Parent Got in a Month</h3>
+          <p>One mom, two kids, 94 school emails in 30 days. We read every one to see how much parents are expected to track — and how much slips.</p>
+          <span class="post-meta">June 2026 · 8 min read</span>
+          <span class="post-more">Read article &rarr;</span>
+        </a>
+        <a class="post-card" href="/blog/forwarding-fails/">
+          <span class="post-cat">The inbox problem</span>
+          <h3>Why Email Forwarding for School Emails Always Fails</h3>
+          <p>Forwarding rules, filters, and dedicated inboxes seem smart — until they break. Here’s why the model fails, and what works instead.</p>
+          <span class="post-meta">June 24, 2026 · 7 min read</span>
+          <span class="post-more">Read article &rarr;</span>
+        </a>
+        <a class="post-card" href="/blog/7-apps-one-school/">
+          <span class="post-cat">The inbox problem</span>
+          <h3>The Modern Parent Has 7 Apps for One School</h3>
+          <p>ClassDojo, Remind, Google Classroom, the school site, the PTA newsletter, email… seven places for one school. There’s a better way.</p>
+          <span class="post-meta">September 15, 2026 · 9 min read</span>
+          <span class="post-more">Read article &rarr;</span>
+        </a>
+        <a class="post-card" href="/blog/ai-school-email/">
+          <span class="post-cat">The inbox problem</span>
+          <h3>How AI Is Finally Solving School Email Overload</h3>
+          <p>Filters and labels never worked. The real fix is AI that knows what a permission slip looks like and acts before you open it.</p>
+          <span class="post-meta">November 2026 · 8 min read</span>
+          <span class="post-more">Read article &rarr;</span>
+        </a>
+        <a class="post-card" href="/blog/parent-information-gap/">
+          <span class="post-cat">The inbox problem</span>
+          <h3>The Parent Information Gap</h3>
+          <p>Schools send the information. Parents try to receive it. In between, events get missed and slips go unsigned. Here’s the fix.</p>
+          <span class="post-meta">October 2026 · 8 min read</span>
+          <span class="post-more">Read article &rarr;</span>
+        </a>
+        </div>
+      </section>
+      <section class="hub-section">
+        <div class="hub-section-head">
+          <h2>Sharing the load</h2>
+          <p>Keeping caregivers, co-parents, and partners in sync.</p>
+        </div>
+        <div class="post-grid">
+        <a class="post-card" href="/blog/caregiver-schedule/">
+          <span class="post-cat">Sharing the load</span>
+          <h3>Keep Your Nanny or Grandparent in the Loop</h3>
+          <p>Your caregiver needs Tuesday’s practice and Friday’s slip — without full access to your family calendar. Here’s how.</p>
+          <span class="post-meta">October 2026 · 5 min read</span>
+          <span class="post-more">Read article &rarr;</span>
+        </a>
+        <a class="post-card" href="/blog/divorced-parent-school/">
+          <span class="post-cat">Sharing the load</span>
+          <h3>School Communication When You’re Co-Parenting</h3>
+          <p>Make sure both parents get the same information at the same time — without texting each other all day.</p>
+          <span class="post-meta">October 2026 · 7 min read</span>
+          <span class="post-more">Read article &rarr;</span>
+        </a>
+        <a class="post-card" href="/blog/working-parent-school/">
+          <span class="post-cat">Sharing the load</span>
+          <h3>How Working Parents Stay On Top of School</h3>
+          <p>You work full-time, emails land during meetings, slips are due Friday. Here’s how working parents actually keep up.</p>
+          <span class="post-meta">November 2026 · 7 min read</span>
+          <span class="post-more">Read article &rarr;</span>
+        </a>
+        </div>
+      </section>
+      <section class="hub-section">
+        <div class="hub-section-head">
+          <h2>Never miss a thing</h2>
+          <p>Deadlines, permission slips, and staying ahead of the calendar.</p>
+        </div>
+        <div class="post-grid">
+        <a class="post-card" href="/blog/never-miss-permission-slip/">
+          <span class="post-cat">Never miss a thing</span>
+          <h3>How to Never Miss a Permission Slip Again</h3>
+          <p>The average parent misses at least one slip a year. Here’s why it keeps happening — and how automatic monitoring ends it.</p>
+          <span class="post-meta">June 24, 2026 · 6 min read</span>
+          <span class="post-more">Read article &rarr;</span>
+        </a>
+        <a class="post-card" href="/blog/coach-email-tracking/">
+          <span class="post-cat">Never miss a thing</span>
+          <h3>The Coach Email Problem</h3>
+          <p>Practice changes, game times, sign-up deadlines — from random addresses at unpredictable times. Here’s how to never miss one.</p>
+          <span class="post-meta">November 2026 · 6 min read</span>
+          <span class="post-more">Read article &rarr;</span>
+        </a>
+        <a class="post-card" href="/blog/multiple-kids-schedules/">
+          <span class="post-cat">Never miss a thing</span>
+          <h3>Manage Multiple Kids’ Schedules Without Losing Your Mind</h3>
+          <p>Two kids, three schools, four activities, and a slip due Thursday. The system parents with multiple children actually use.</p>
+          <span class="post-meta">June 24, 2026 · 8 min read</span>
+          <span class="post-more">Read article &rarr;</span>
+        </a>
+        <a class="post-card" href="/blog/back-to-school-guide/">
+          <span class="post-cat">Never miss a thing</span>
+          <h3>The Back-to-School Email Survival Guide (2026)</h3>
+          <p>School starts and your inbox explodes. The complete guide to slips, sign-ups, and back-to-school email without the meltdown.</p>
+          <span class="post-meta">June 24, 2026 · 10 min read</span>
+          <span class="post-more">Read article &rarr;</span>
+        </a>
+        <a class="post-card" href="/blog/why-we-built-skoolit/">
+          <span class="post-cat">Never miss a thing</span>
+          <h3>Why We Built Skoolit</h3>
+          <p>We missed a permission slip. The field trip left without our kid. That was the moment we decided to build Skoolit.</p>
+          <span class="post-meta">September 15, 2026 · 5 min read</span>
+          <span class="post-more">Read article &rarr;</span>
+        </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer style="background: #1B241F; font-family: 'Inter', sans-serif;">
+    <div style="border-bottom: 1px solid rgba(246,243,236,0.08); padding: clamp(48px,7vw,80px) clamp(24px,6vw,80px);">
+      <div style="max-width: 1200px; margin: 0 auto;" class="sk-cta-row">
+        <div style="max-width: 500px;">
+          <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(1.625rem,3.5vw,2.375rem); line-height: 1.1; letter-spacing: -0.025em; color: #F6F3EC; margin: 0 0 12px; text-wrap: balance;">Stop chasing emails.<br>Start parenting.</p>
+          <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.5); line-height: 1.65; margin: 0;">Join the early access list.</p>
+        </div>
+        <form id="footer-form" class="sk-cta-form" onsubmit="footerSignup(event)">
+          <input id="footer-email" type="email" placeholder="Your email address" required class="sk-fi" style="padding: 13px 16px; border-radius: 10px; border: 1px solid rgba(246,243,236,0.15); background: rgba(246,243,236,0.07); color: #F6F3EC; font-family: 'Inter', sans-serif; font-size: 0.9375rem; width: 248px; transition: border-color 0.15s, background 0.15s;" />
+          <button id="footer-btn" type="submit" class="sk-cta-btn" style="padding: 13px 26px; border-radius: 10px; background: #8AC2E5; color: #1A3D52; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9375rem; border: none; cursor: pointer; white-space: nowrap;">Get early access</button>
+        </form>
+        <div id="footer-success" style="display: none; align-items: center; gap: 10px; padding: 14px 20px; background: rgba(138,194,229,0.1); border-radius: 10px; border: 1px solid rgba(138,194,229,0.22);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8AC2E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span style="font-size: 0.9375rem; color: #8AC2E5; font-weight: 500;">You're on the list. We'll be in touch soon.</span>
+        </div>
+      </div>
+    </div>
+    <div style="padding: clamp(44px,5.5vw,64px) clamp(24px,6vw,80px) clamp(36px,4vw,52px);">
+      <div style="max-width: 1200px; margin: 0 auto;" class="sk-footer-grid">
+        <div>
+          <div style="display: flex; align-items: center; gap: 9px; margin-bottom: 14px;">
+            <img src="/assets/logomark.svg" width="28" height="28" alt="Skoolit" loading="lazy" />
+            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.03em; color: #8AC2E5;">Skoolit</span>
+          </div>
+          <p style="font-size: 0.9375rem; color: rgba(246,243,236,0.45); line-height: 1.72; max-width: 268px; margin: 0 0 22px;">The calm command center for parents. Reads school and activity emails, builds your family calendar, and handles the chaos.</p>
+          <a href="mailto:hello@getskoolit.com" class="sk-footer-email-link">hello@getskoolit.com</a>
+        </div>
+        <div>
+          <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Product</p>
+          <div style="display: flex; flex-direction: column; gap: 13px;">
+            <a href="/#early-access" class="sk-footer-link">Get early access</a>
+            <a href="/#how-it-works" class="sk-footer-link">How it works</a>
+            <a href="/prototype/" class="sk-footer-link">Try the prototype</a>
+            <a href="/blog/" class="sk-footer-link">Blog</a>
+          </div>
+        </div>
+        <div>
+          <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Compare</p>
+          <div style="display: flex; flex-direction: column; gap: 13px;">
+            <a href="/vs/google-calendar/" class="sk-footer-link">vs Google Calendar</a>
+            <a href="/vs/apple-calendar/" class="sk-footer-link">vs Apple Calendar</a>
+            <a href="/vs/cozi/" class="sk-footer-link">vs Cozi</a>
+            <a href="/vs/skylight/" class="sk-footer-link">vs Skylight</a>
+            <a href="/vs/sense/" class="sk-footer-link">vs Sense</a>
+            <a href="/alternatives/" class="sk-footer-link" style="color: rgba(246,243,236,0.38); font-size: 0.8125rem;">All comparisons &#8594;</a>
+          </div>
+        </div>
+        <div>
+          <p style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,243,236,0.3); margin: 0 0 18px;">Resources</p>
+          <div style="display: flex; flex-direction: column; gap: 13px;">
+            <a href="/cozi-alternative/" class="sk-footer-link">Cozi alternative</a>
+            <a href="/skylight-calendar-alternative/" class="sk-footer-link">Skylight alternative</a>
+            <a href="/sense-alternative/" class="sk-footer-link">Sense alternative</a>
+            <a href="/privacy/" class="sk-footer-link">Privacy policy</a>
+            <a href="/terms/" class="sk-footer-link">Terms of service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(246,243,236,0.07); padding: 18px clamp(24px,6vw,80px);">
+      <div style="max-width: 1200px; margin: 0 auto;" class="sk-legal-row">
+        <p style="font-size: 0.75rem; color: rgba(246,243,236,0.28); margin: 0;">© 2026 Skoolit · Launching September 15, 2026</p>
+        <p style="font-size: 0.75rem; color: rgba(246,243,236,0.22); margin: 0;">Made for parents who have better things to do.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    async function footerSignup(e) {
+      e.preventDefault();
+      const input = document.getElementById('footer-email');
+      const btn = document.getElementById('footer-btn');
+      const email = input.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.style.borderColor = '#e53e3e';
+        setTimeout(() => input.style.borderColor = '', 1500);
+        input.focus();
+        return;
+      }
+      const orig = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Joining…';
+      try {
+        const res = await fetch('/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        if (res.ok) {
+          document.getElementById('footer-form').style.display = 'none';
+          document.getElementById('footer-success').style.display = 'flex';
+        } else {
+          btn.disabled = false;
+          btn.textContent = orig;
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = orig;
+      }
+    }
+  </script>
+
+</body>
+</html>
