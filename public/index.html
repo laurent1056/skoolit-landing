@@ -177,8 +177,24 @@
       margin: 0 auto;
       flex-wrap: wrap;
     }
-    .signup-form select {
+    .signup-form .heard-step {
       flex-basis: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      text-align: left;
+      margin-top: 2px;
+    }
+    .signup-form .heard-step[hidden] { display: none; }
+    .signup-form .heard-step label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink-mid);
+      padding-left: 4px;
+    }
+    .signup-form .heard-step label .opt { color: var(--ink-light); font-weight: 400; }
+    .signup-form select {
+      width: 100%;
       padding: 14px 20px;
       border: 1px solid var(--border);
       border-radius: 100px;
@@ -820,17 +836,20 @@
       </div>
 
       <div class="signup-form" id="hero-form">
-        <select id="hero-heard-from" name="heard_from" aria-label="How did you hear about us?">
-          <option value="">How did you hear about us? (optional)</option>
-          <option value="search">Search</option>
-          <option value="facebook_instagram">Facebook/Instagram</option>
-          <option value="friend_family">A friend or family member</option>
-          <option value="pta_school">PTA / school</option>
-          <option value="ambassador_creator">Ambassador / creator</option>
-          <option value="other">Other</option>
-        </select>
         <input type="email" id="hero-email" aria-label="Email address" placeholder="your@email.com" autocomplete="email" />
         <button class="btn-primary" onclick="handleSignup('hero-email', 'hero-form', 'hero-success', 'hero-error', this)">Get early access</button>
+        <div class="heard-step" hidden>
+          <label for="hero-heard-from">How did you hear about us? <span class="opt">(optional)</span></label>
+          <select id="hero-heard-from" name="heard_from">
+            <option value="">Select one…</option>
+            <option value="search">Search</option>
+            <option value="facebook_instagram">Facebook/Instagram</option>
+            <option value="friend_family">A friend or family member</option>
+            <option value="pta_school">PTA / school</option>
+            <option value="ambassador_creator">Ambassador / creator</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
       </div>
       <div class="success-msg" id="hero-success" role="status" aria-live="polite">
         🎉 You're on the list. We'll be in touch soon.
@@ -1286,12 +1305,24 @@
         return;
       }
 
+      const form = document.getElementById(formId);
+
+      // Step 1: once the email is valid, reveal the optional "How did you hear
+      // about us?" prompt and wait for a second submit before writing.
+      const heardStep = form && form.querySelector('.heard-step');
+      if (heardStep && heardStep.hidden) {
+        heardStep.hidden = false;
+        btn.textContent = 'Finish signup';
+        const sel = heardStep.querySelector('select');
+        if (sel) sel.focus();
+        return;
+      }
+
       const originalLabel = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Joining…';
 
-      // Optional "How did you hear about us?" attribution, if the form has the select.
-      const form = document.getElementById(formId);
+      // Optional attribution — included only if the visitor picked something.
       const heardSel = form && form.querySelector('select[name="heard_from"]');
       const payload = { email };
       if (heardSel && heardSel.value) payload.heard_from = heardSel.value;
