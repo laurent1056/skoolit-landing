@@ -42,6 +42,12 @@ export async function onRequestPost(context) {
     source: sanitize(body.source, 100),
     // Ambassador applicants' social handles (pipe-joined), used for vetting.
     social: sanitize(body.social, 500),
+    // "How did you hear about us?" — captured on the second step of signup.
+    heard_from: sanitize(body.heard_from, 100) || '',
+    // When true, the Apps Script should fill heard_from on this email's most
+    // recent existing row instead of appending a brand-new row. The email is
+    // written on the first submit; the attribution arrives on the second.
+    update: body.update === true,
     // Attribution fields (default to empty string when absent so the Sheet
     // columns stay aligned for submissions that carry no campaign data).
     utm_source:     sanitize(body.utm_source,     200) || '',
