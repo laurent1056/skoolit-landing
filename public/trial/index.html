@@ -536,47 +536,57 @@
         return false;
       }
 
-      // Step 1: once the email is valid, reveal the optional "How did you hear
-      // about us?" prompt and wait for a second submit before writing.
+      var heardSel = document.getElementById('heard-from');
+
+      // Step 1: write the email to the sheet right away — so it's captured even
+      // if the visitor abandons step 2 — then reveal the optional "How did you
+      // hear about us?" prompt.
       var heardStep = document.getElementById('heard-step');
       if (heardStep && heardStep.hidden) {
+        btn.disabled = true;
+        btn.textContent = 'Saving…';
+        try {
+          var res1 = await fetch('/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            // tracking.js transparently appends utm_* + referrer (incl. per-referrer ?ref=) before this leaves the browser
+            body: JSON.stringify({ email: email, source: SOURCE }),
+          });
+          if (!res1.ok) {
+            var d1 = await res1.json().catch(function () { return {}; });
+            throw new Error(d1.error || 'Something went wrong. Please try again.');
+          }
+        } catch (err1) {
+          error.textContent = err1.message;
+          error.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Join the beta';
+          return false;
+        }
+        gtag('event', 'sign_up', { method: SOURCE });
         heardStep.hidden = false;
+        btn.disabled = false;
         btn.textContent = 'Finish signup';
-        var sel = document.getElementById('heard-from');
-        if (sel) sel.focus();
+        if (heardSel) heardSel.focus();
         return false;
       }
 
-      var label = btn.textContent;
+      // Step 2: the email is already saved. If they picked an option, append it
+      // to that same row (keyed by email, update:true). Best-effort — a hiccup
+      // here won't block a visitor whose email is already captured.
       btn.disabled = true;
       btn.textContent = 'Joining…';
-
-      // Optional attribution — included only if the visitor picked something.
-      var heardSel = document.getElementById('heard-from');
-      var payload = { email: email, source: SOURCE };
-      if (heardSel && heardSel.value) payload.heard_from = heardSel.value;
-
-      try {
-        var res = await fetch('/subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          // tracking.js transparently appends utm_* + referrer (incl. per-referrer ?ref=) before this leaves the browser
-          body: JSON.stringify(payload),
-        });
-        if (res.ok) {
-          document.getElementById('capture').style.display = 'none';
-          document.getElementById('success').style.display = 'flex';
-          gtag('event', 'sign_up', { method: SOURCE });
-        } else {
-          var data = await res.json().catch(function () { return {}; });
-          throw new Error(data.error || 'Something went wrong. Please try again.');
-        }
-      } catch (err) {
-        error.textContent = err.message;
-        error.style.display = 'block';
-        btn.disabled = false;
-        btn.textContent = label;
+      if (heardSel && heardSel.value) {
+        try {
+          await fetch('/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, source: SOURCE, heard_from: heardSel.value, update: true }),
+          });
+        } catch (e) { /* email already captured on step 1 */ }
       }
+      document.getElementById('capture').style.display = 'none';
+      document.getElementById('success').style.display = 'flex';
       return false;
     }
   </script>

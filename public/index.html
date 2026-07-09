@@ -1306,38 +1306,75 @@
       }
 
       const form = document.getElementById(formId);
-
-      // Step 1: once the email is valid, reveal the optional "How did you hear
-      // about us?" prompt and wait for a second submit before writing.
       const heardStep = form && form.querySelector('.heard-step');
+      const heardSel = form && form.querySelector('select[name="heard_from"]');
+
+      const showSuccess = () => {
+        document.getElementById(formId).style.display = 'none';
+        document.getElementById(successId).style.display = 'flex';
+      };
+
+      // Step 1 (forms with an attribution prompt): write the email to the sheet
+      // right away — so it's captured even if the visitor abandons step 2 — then
+      // reveal the optional "How did you hear about us?" prompt.
       if (heardStep && heardStep.hidden) {
+        btn.disabled = true;
+        btn.textContent = 'Saving…';
+        try {
+          const res = await fetch('/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+          });
+          if (!res.ok) {
+            const data = await res.json().catch(() => ({}));
+            throw new Error(data.error || 'Something went wrong. Please try again.');
+          }
+        } catch (err) {
+          errorEl.textContent = err.message;
+          errorEl.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Get early access';
+          return;
+        }
         heardStep.hidden = false;
+        btn.disabled = false;
         btn.textContent = 'Finish signup';
-        const sel = heardStep.querySelector('select');
-        if (sel) sel.focus();
+        if (heardSel) heardSel.focus();
         return;
       }
 
-      const originalLabel = btn.textContent;
       btn.disabled = true;
+      const originalLabel = btn.textContent;
       btn.textContent = 'Joining…';
 
-      // Optional attribution — included only if the visitor picked something.
-      const heardSel = form && form.querySelector('select[name="heard_from"]');
-      const payload = { email };
-      if (heardSel && heardSel.value) payload.heard_from = heardSel.value;
+      // Step 2 (attribution form): the email is already saved, so append the
+      // chosen "How did you hear about us?" value to that same row. Best-effort —
+      // keyed by email with update:true so the backend fills the existing row,
+      // and a hiccup here won't block a visitor whose email is already captured.
+      if (heardStep) {
+        if (heardSel && heardSel.value) {
+          try {
+            await fetch('/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, heard_from: heardSel.value, update: true }),
+            });
+          } catch (e) { /* email already captured on step 1 */ }
+        }
+        showSuccess();
+        return;
+      }
 
+      // Single-step form (the final CTA has no attribution prompt): write now.
       try {
         const res = await fetch('/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
+          body: JSON.stringify({ email }),
         });
-
         if (res.ok) {
-          document.getElementById(formId).style.display = 'none';
-          const successEl = document.getElementById(successId);
-          successEl.style.display = 'flex';
+          showSuccess();
         } else {
           const data = await res.json().catch(() => ({}));
           throw new Error(data.error || 'Something went wrong. Please try again.');
