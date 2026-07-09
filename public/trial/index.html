@@ -117,8 +117,24 @@
       gap: 10px;
       flex-wrap: wrap;
     }
-    .form-row select {
+    .form-row .heard-step {
       flex-basis: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+      margin-top: 2px;
+    }
+    .form-row .heard-step[hidden] { display: none; }
+    .form-row .heard-step label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--ink-mid);
+      padding-left: 2px;
+    }
+    .form-row .heard-step label .opt { color: var(--ink-light); font-weight: 400; }
+    .form-row select {
+      width: 100%;
       padding: 16px 20px;
       font-size: 1rem;
       font-family: inherit;
@@ -348,19 +364,21 @@
 
         <div class="capture" id="capture">
           <form class="form-row" id="signup" onsubmit="return handleSignup(event)">
-            <label for="heard-from" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">How did you hear about us?</label>
-            <select id="heard-from" name="heard_from">
-              <option value="">How did you hear about us? (optional)</option>
-              <option value="search">Search</option>
-              <option value="facebook_instagram">Facebook/Instagram</option>
-              <option value="friend_family">A friend or family member</option>
-              <option value="pta_school">PTA / school</option>
-              <option value="ambassador_creator">Ambassador / creator</option>
-              <option value="other">Other</option>
-            </select>
             <label for="email" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
             <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required />
             <button type="submit" class="cta" id="cta-btn">Join the beta</button>
+            <div class="heard-step" id="heard-step" hidden>
+              <label for="heard-from">How did you hear about us? <span class="opt">(optional)</span></label>
+              <select id="heard-from" name="heard_from">
+                <option value="">Select one…</option>
+                <option value="search">Search</option>
+                <option value="facebook_instagram">Facebook/Instagram</option>
+                <option value="friend_family">A friend or family member</option>
+                <option value="pta_school">PTA / school</option>
+                <option value="ambassador_creator">Ambassador / creator</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
           </form>
           <p class="form-note">
             No credit card. Just an email — we'll send your invite when your spot opens.
@@ -518,11 +536,22 @@
         return false;
       }
 
+      // Step 1: once the email is valid, reveal the optional "How did you hear
+      // about us?" prompt and wait for a second submit before writing.
+      var heardStep = document.getElementById('heard-step');
+      if (heardStep && heardStep.hidden) {
+        heardStep.hidden = false;
+        btn.textContent = 'Finish signup';
+        var sel = document.getElementById('heard-from');
+        if (sel) sel.focus();
+        return false;
+      }
+
       var label = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Joining…';
 
-      // Optional "How did you hear about us?" attribution.
+      // Optional attribution — included only if the visitor picked something.
       var heardSel = document.getElementById('heard-from');
       var payload = { email: email, source: SOURCE };
       if (heardSel && heardSel.value) payload.heard_from = heardSel.value;
