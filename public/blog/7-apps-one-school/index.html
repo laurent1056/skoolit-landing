@@ -18,9 +18,9 @@
 
 
   <link rel="icon" href="/assets/logomark.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/fonts/fonts.css" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G06C694J1V"></script>
@@ -294,9 +294,12 @@
   <p class="article-meta">By the Skoolit Team &nbsp;·&nbsp; September 15, 2026 &nbsp;·&nbsp; 9 min read</p>
 
     <img
-      src="/assets/blog/katie-blog-surrounded-by-app-alerts.png"
+      src="/assets/blog/katie-blog-surrounded-by-app-alerts.webp"
       alt="Katie surrounded by floating school-app alert cards, looking exasperated while holding her phone"
       class="article-hero"
+      width="1672"
+      height="941"
+      fetchpriority="high"
       loading="eager"
     />
 
