@@ -10,18 +10,19 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://getskoolit.com/" />
   <meta property="og:site_name" content="Skoolit" />
-  <meta property="og:image" content="https://getskoolit.com/assets/og.svg" />
+  <meta property="og:image" content="https://getskoolit.com/assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="School, Sports & Activity Organizer for Parents | Skoolit" />
   <meta name="twitter:description" content="Skoolit reads emails from your kids' school, tutors, coaches, and activity programs — and builds your family calendar automatically. Never miss a deadline or permission slip." />
-  <meta name="twitter:image" content="https://getskoolit.com/assets/og.svg" />
+  <meta name="twitter:image" content="https://getskoolit.com/assets/og.png" />
 
   <link rel="canonical" href="https://getskoolit.com/" />
   <link rel="icon" href="assets/logomark.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" as="style" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/fonts/fonts.css" />
 
   <style>
     /* ── Tokens ─────────────────────────────────────── */
@@ -693,17 +694,12 @@
         "description": "Skoolit reads your school and activity emails, builds your family calendar automatically, and surfaces what needs your attention — across all your kids, all their schools, and every activity.",
         "applicationCategory": "ProductivityApplication",
         "operatingSystem": "Web, iOS, Android",
-        "screenshot": "https://getskoolit.com/assets/og.svg",
+        "screenshot": "https://getskoolit.com/assets/og.png",
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD",
           "description": "Free 30-day trial"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "ratingCount": "142"
         }
       },
       {
@@ -819,9 +815,9 @@
     <div class="container">
       <span class="badge">Coming soon</span>
 
-      <h1 class="display display-xl hero-headline">
-        Less inbox.<br />
-        <span class="accent">More parenting.</span>
+      <p class="eyebrow" style="color: var(--blue); margin-bottom: 12px;">Less inbox. More parenting.</p>
+      <h1 class="display display-xl hero-headline" style="font-size: clamp(2rem, 4.5vw, 3.2rem); text-wrap: balance;">
+        The school &amp; activity <span class="accent">email organizer</span> that builds your family calendar for you.
       </h1>
 
       <p class="hero-sub">
