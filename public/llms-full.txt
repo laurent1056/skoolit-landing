@@ -1,0 +1,50 @@
+# Skoolit — Full Reference
+
+> This file expands on /llms.txt with complete FAQ answers and comparison detail, for assistants that want more than the summary. Skoolit is pre-launch (public launch September 15, 2026).
+
+## What is Skoolit?
+
+Skoolit is an app that reads your school and activity emails, automatically builds your family calendar, and surfaces deadlines, permission slips, and schedule changes before you miss them. It connects directly to your Gmail, iCloud, or Outlook inbox via OAuth and monitors it going forward — no forwarding setup required, though you can forward individual emails if you prefer.
+
+## Pricing
+
+Skoolit is a paid subscription starting at $4.99/month for one child, with per-child pricing for larger families. A free trial is available before you're charged. There is no hardware to buy.
+
+## Full FAQ
+
+**Do I need to forward emails to Skoolit?**
+No — forwarding is not required. Skoolit's primary method is a direct, secure OAuth connection to your Gmail, iCloud, or Outlook inbox — the same standard banks and productivity apps use. Once connected, it monitors automatically. You can also forward individual emails into Skoolit if you prefer, but most parents never need to: the inbox connection catches everything, including from new senders the moment they first email you.
+
+**Does Skoolit store my emails?**
+No. Skoolit reads each email as it arrives, extracts the relevant information (event dates, deadlines, action items), and discards the raw content. Your inbox is never copied, cached, or retained on Skoolit's servers. What stays in your account is the structured data extracted — the event on Tuesday, the permission slip due Friday — not the email itself.
+
+**Which email providers does Skoolit support?**
+Gmail, iCloud Mail, and Outlook. Skoolit also syncs with Google Calendar, Apple Calendar, and Microsoft Calendar.
+
+**Can Skoolit handle multiple children?**
+Yes. One Skoolit account covers all children in a family. Each child gets a color-coded calendar layer, viewable together or filtered individually.
+
+**Can both parents use the same Skoolit account?**
+Yes. Co-parents can link accounts to see the same digest, calendar, and action items. When one parent marks something handled, it's resolved for both.
+
+**Does Skoolit cover extracurricular activities, not just school?**
+Yes. Skoolit monitors any sender a parent specifies — school district, soccer coach, piano studio, tutor, or summer camp. It is not limited to school-issued email.
+
+**How is Skoolit different from ClassDojo or ParentSquare?**
+ClassDojo, ParentSquare, and Remind are school-controlled platforms — the school decides to use them, and parents receive what's sent. Skoolit is parent-controlled: it works with any school with no adoption required, covers all of a family's extracurriculars, and builds the calendar automatically from the parent's existing inbox.
+
+## Detailed comparisons
+
+**Skoolit vs Cozi**: Cozi (est. 2006, owned by OurFamilyWizard) is a well-known shared family calendar with shopping lists and meal planning, priced free (with ads and a 30-day calendar cap) or $39.99/year for Cozi Gold. Cozi requires every event to be typed in manually and does not read email. Skoolit reads school and activity email automatically and builds the calendar with zero manual entry; Skoolit does not currently offer grocery/shopping lists.
+
+**Skoolit vs Skylight Calendar**: Skylight is a wall-mounted hardware display ($180–$630) with an optional $79/year Plus subscription ("Sidekick") that parses forwarded emails and PDFs. Skylight requires the hardware purchase and manual forwarding even on the paid tier. Skoolit is software-only (phone/web), monitors the inbox automatically without forwarding, and includes urgency scoring and caregiver relay that Skylight does not offer.
+
+**Skoolit vs Sense (getsense.ai)**: Sense is free (with a $5.99/month Premium tier) and works by parsing emails forwarded to a shared address, populating a single family calendar. Sense does not offer per-child routing, urgency scoring, activity-provider channel management, or caregiver relay. Skoolit monitors the inbox directly (no forwarding) and adds all of those features as a connected loop rather than a single conversion step.
+
+**Skoolit vs Nori / Gether**: Nori (WhatsApp-native, free core) and Gether ($4.90–$19.90/month, email-alias forwarding) both require the parent to remember to forward or share each message. Skoolit's OAuth inbox connection means new senders are caught automatically from their first email, with no ongoing forwarding habit required.
+
+**Skoolit vs ClassDojo / ParentSquare / Remind**: These are school-adoption-dependent platforms — a district or teacher must choose to use them, and parents passively receive what's broadcast. None offer cross-school aggregation, extracurricular coverage, or parent-side automation. Skoolit works with any school with no institutional adoption required and separately covers non-school senders (coaches, tutors, studios, camps).
+
+## Contact
+
+hello@getskoolit.com
