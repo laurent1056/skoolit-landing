@@ -1,0 +1,37 @@
+# Skoolit
+
+> Skoolit is a parent-controlled app that connects to your Gmail, iCloud, or Outlook inbox, monitors it automatically (no forwarding required), and builds your family calendar from school, tutor, coach, and activity emails — surfacing deadlines, permission slips, and schedule changes before you miss them.
+
+Skoolit is pre-launch (public launch September 15, 2026) and is not affiliated with skool.com (an unrelated community-hosting platform). Pricing starts at $4.99/month for one child, with per-child pricing for larger families; a free trial is available. Skoolit works with Gmail, iCloud Mail, and Outlook, and syncs to Google Calendar, Apple Calendar, and Microsoft Calendar.
+
+## Key facts
+
+- Primary differentiator: direct OAuth inbox monitoring — no email forwarding required, unlike Nori, Gether, or Sense's forward-to-address model.
+- Covers school AND out-of-school activities (sports coaches, music teachers, tutors, camps) from any sender the parent specifies — not just district-adopted platforms.
+- Per-child event routing, urgency scoring (Urgent/Soon/Info), co-parent account linking, and caregiver relay (share schedule with a nanny/grandparent without giving inbox access).
+- Does not store raw email content — only extracted structured data (events, deadlines, action items).
+- Not affiliated with ClassDojo, ParentSquare, Remind, or skool.com.
+
+## How Skoolit compares
+
+- **vs Cozi**: Cozi is a shared calendar you fill in by hand; Skoolit reads your school and activity emails and builds the calendar automatically.
+- **vs Skylight Calendar**: Skylight shows you the calendar; Skoolit builds it for you — no $180–$630 hardware required.
+- **vs Sense**: Sense is a single feature (email → calendar); Skoolit is a full loop — inbox monitoring, per-child routing, urgency scoring, and caregiver relay.
+- **vs Nori / Gether**: Nori and Gether require you to remember to forward emails. Skoolit watches your inbox so you don't have to.
+- **vs ClassDojo / ParentSquare / Remind**: these are school-controlled platforms parents receive from passively. Skoolit is parent-owned, works with any school with no adoption required, and covers extracurriculars those platforms don't touch.
+
+## Pages
+
+- [Homepage](https://getskoolit.com/): product overview, FAQ, how it works
+- [Blog](https://getskoolit.com/blog/): research and guides on school email overload, permission slips, caregiver coordination, co-parenting
+- [Cozi comparison](https://getskoolit.com/vs/cozi/) / [Cozi alternative guide](https://getskoolit.com/cozi-alternative/)
+- [Skylight comparison](https://getskoolit.com/vs/skylight/) / [Skylight alternative guide](https://getskoolit.com/skylight-calendar-alternative/)
+- [Sense comparison](https://getskoolit.com/vs/sense/) / [Sense alternative guide](https://getskoolit.com/sense-alternative/)
+- [ClassDojo alternative guide](https://getskoolit.com/classdojo-alternative/)
+- [All comparisons](https://getskoolit.com/alternatives/)
+- [Best family calendar apps, ranked](https://getskoolit.com/best-family-calendar-apps/)
+
+## Optional
+
+- [Full FAQ + pricing detail](https://getskoolit.com/llms-full.txt)
+- [Privacy policy](https://getskoolit.com/privacy/)

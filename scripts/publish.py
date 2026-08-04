@@ -19,12 +19,11 @@ SITEMAP_CLOSE = '</urlset>'
 SITEMAP_PATH = Path('public/sitemap.xml')
 SCHEDULE_PATH = Path('publish-schedule.json')
 
-def sitemap_entry(url, changefreq, priority):
+def sitemap_entry(url, lastmod):
     return (
         f'  <url>\n'
         f'    <loc>{url}</loc>\n'
-        f'    <changefreq>{changefreq}</changefreq>\n'
-        f'    <priority>{priority}</priority>\n'
+        f'    <lastmod>{lastmod}</lastmod>\n'
         f'  </url>\n'
     )
 
@@ -48,7 +47,7 @@ def publish_pages(pages):
 
         # Add to sitemap if not already present
         if page['url'] not in sitemap:
-            entry = sitemap_entry(page['url'], page['changefreq'], page['priority'])
+            entry = sitemap_entry(page['url'], date.today().isoformat())
             sitemap = sitemap.replace(SITEMAP_CLOSE, entry + SITEMAP_CLOSE)
             print(f'  ✓ Added {page["url"]} to sitemap')
         else:
