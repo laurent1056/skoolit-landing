@@ -8,10 +8,14 @@
 <title>Skoolit — Prototype</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #1B241F; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  body { background: #1A3D52; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
          display: flex; align-items: center; justify-content: center; min-height: 100vh; }
 
   .card { background: #fff; border-radius: 12px; padding: 32px 28px; width: 100%; max-width: 360px; }
+
+  .gate-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+  .gate-brand img { width: 38px; height: 38px; border-radius: 9px; }
+  .gate-brand span { color: #1A3D52; font-size: 20px; font-weight: 800; letter-spacing: -.03em; }
 
   .card input {
     display: block; width: 100%; padding: 10px 12px; margin-bottom: 10px;
@@ -46,7 +50,7 @@
 
   iframe { display: none; position: fixed; inset: 0; width: 100%; height: 100%; border: none; }
   #gate  { display: flex; align-items: center; justify-content: center;
-           position: fixed; inset: 0; background: #1B241F; }
+           position: fixed; inset: 0; background: #1A3D52; }
 </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G06C694J1V"></script>
@@ -62,6 +66,10 @@
 
 <div id="gate">
   <div class="card">
+    <div class="gate-brand">
+      <img src="/assets/logomark.svg" width="38" height="38" alt="Skoolit" />
+      <span>Skoolit prototype</span>
+    </div>
 
     <div id="state-pw">
       <input id="pw" type="password" placeholder="Password" autocomplete="off" />
@@ -83,17 +91,25 @@
   </div>
 </div>
 
-<iframe id="frame" src="app.html" title="Skoolit Prototype"></iframe>
+<iframe id="frame" src="app.html#onboarding" title="Skoolit Prototype"></iframe>
 
 <script>
 (function () {
   var KEY = 'skoolit_proto';
   var PW  = btoa('skoolit2026');
+  var frame = document.getElementById('frame');
+  var next = new URLSearchParams(window.location.search).get('next');
+
+  // Only accept an internal prototype destination when the app sends a
+  // direct-link visitor back through this gate.
+  if (next && /^\/prototype\/app(?:\.html)?\/?(?:#.*)?$/.test(next)) {
+    frame.src = next;
+  }
 
   function unlock() {
     sessionStorage.setItem(KEY, '1');
     document.getElementById('gate').style.display  = 'none';
-    document.getElementById('frame').style.display = 'block';
+    frame.style.display = 'block';
   }
 
   if (sessionStorage.getItem(KEY) === '1') unlock();
