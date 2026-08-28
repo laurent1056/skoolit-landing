@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./geist-latin.woff2") format("woff2");
+}
+
 :root {
   --ink-900: #172123;
   --ink-700: #344244;
@@ -36,7 +44,7 @@
 
 * { box-sizing: border-box; }
 html { background: var(--paper); scroll-behavior: smooth; }
-body { margin: 0; background: var(--paper); color: var(--ink-900); font-family: var(--font-geist-sans), Inter, system-ui, sans-serif; }
+body { margin: 0; background: var(--paper); color: var(--ink-900); font-family: "Geist", Inter, system-ui, sans-serif; }
 button, input, select, textarea { color: inherit; font: inherit; }
 button { -webkit-tap-highlight-color: transparent; }
 button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(138, 194, 229, 0.5); outline-offset: 2px; }
