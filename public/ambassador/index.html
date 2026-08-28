@@ -493,7 +493,8 @@
         if (res.ok) {
           document.getElementById('capture').style.display = 'none';
           document.getElementById('success').style.display = 'flex';
-          gtag('event', 'sign_up', { method: SOURCE });
+          /* GA4 sign_up fires centrally in tracking.js on the /subscribe response
+             (method = this page's source: 'ambassador-lp'), avoiding a double count. */
         } else {
           var data = await res.json().catch(function () { return {}; });
           throw new Error(data.error || 'Something went wrong. Please try again.');
