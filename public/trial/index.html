@@ -564,7 +564,10 @@
           btn.textContent = 'Join the beta';
           return false;
         }
-        gtag('event', 'sign_up', { method: SOURCE });
+        /* GA4 sign_up fires centrally in tracking.js on the first /subscribe
+           response (method = this page's source: 'trial-lp'). The step-2
+           "heard_from" POST carries update:true and is intentionally not
+           counted again. */
         heardStep.hidden = false;
         btn.disabled = false;
         btn.textContent = 'Finish signup';
